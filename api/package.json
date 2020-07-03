@@ -5,16 +5,20 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "combine-image": "^1.0.3",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
+    "path": "^0.12.7",
     "proxy-chain": "^0.4.5",
     "puppeteer": "^4.0.1",
     "puppeteer-extra": "^3.1.9",
     "puppeteer-extra-plugin-anonymize-ua": "^2.2.8",
     "puppeteer-extra-plugin-stealth": "^2.4.9",
     "puppeteer-select": "^1.0.3",
-    "random-useragent": "^0.3.1"
+    "random-useragent": "^0.3.1",
+    "sequelize": "^6.2.4"
   },
   "devDependencies": {
     "var_dump": "^1.0.5"

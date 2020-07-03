@@ -40,3 +40,23 @@
 .table {
   margin-top: 20px;
 }
+
+.form-inline {
+  width: 80%;
+}
+
+.form-group {
+  width: inherit;
+}
+
+.form-inline .form-group {
+  flex-flow: nowrap;
+}
+
+.form-inline .form-control {
+  width: 90%;
+}
+
+.commenterDataTable, .messageForm {
+  padding-top: 20px;
+}

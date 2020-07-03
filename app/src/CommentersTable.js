@@ -1,40 +1,44 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table'
-//import Button from 'react-bootstrap/Button'
+import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form'
+import DataTable from 'react-data-table-component'
 
-const TableHeader = () => {
-  return (
-    <thead>
-      <tr>
-        <th>Commenter URL</th>
-      </tr>
-    </thead>
-  )
-}
+class CommentersTable extends Component {
 
-const TableBody = props => {
-  const rows = props.commenters.map((row, index) => {
-    return (
-      <tr key={index}>
-        <td><a target='_blank' rel="noopener noreferrer" href={row.commenterUrl}>{row.commenterUrl}</a></td>
-      </tr>
-    )
-  })
 
-  return <tbody>{rows}</tbody>
-}
-
-const CommentersTable = props => {
-  const { commenters } = props
+    handleChange = changeEvent => {
+      
+          this.props.handleCommentersChange(changeEvent.selectedRows);
+    }
+    
+    
+    render() {
+        
+        const commenterData = this.props.commenterData
   
-  const showCommentersTable = props.showCommentersTable ? {display: 'block'} : {display: 'none'};
-  
-  return (
-    <Table style={showCommentersTable}>
-      <TableHeader />
-      <TableBody commenters={commenters} />
-    </Table>
-  )
+        const showCommentersTable = this.props.showCommentersTable ? {display: 'block'} : {display: 'none'};
+        
+        const columns =  [
+            { name: 'Profile URL', selector: 'profileUrl', sortable: true },
+            { name: 'Messaged Before', selector: 'messagedBefore', sortable: true }
+            ];
+      
+          
+        return (
+          
+          <Form>
+              <DataTable style={showCommentersTable}
+                columns={columns}
+                data={commenterData}
+                defaultSortField="messagedBefore"
+                selectableRows
+                onSelectedRowsChange={this.handleChange}
+                highlightOnHover
+              />
+                       
+          </Form>
+        )
+    }
+
 }
 
-export default CommentersTable
+export default CommentersTable;

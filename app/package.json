@@ -7,10 +7,17 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.0",
+    "bootstrap-sass": "^3.4.1",
+    "font-awesome": "^4.7.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
+    "react-bs-datatable": "^2.1.1",
+    "react-data-grid": "^7.0.0-canary.16",
+    "react-data-table-component": "^6.9.3",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-tooltip": "^4.2.7",
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

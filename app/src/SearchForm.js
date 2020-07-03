@@ -2,54 +2,55 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
+import ReactTooltip from "react-tooltip";
 
 class SearchForm extends Component {
     
-    initialState = {
-        url: '',
-        enableSubmitButton: false
-    }
-
-    state = this.initialState
   
-    handleChange = event => {
-        const { name, value } = event.target
-  
-        this.setState({
-          [name]: value,
-            url: value
-        })
+    handleChange = changeEvent => {
+          
+        ReactTooltip.hide();
+        this.props.handleSearchChange(changeEvent)
         
     }
     
-    submitForm = () => {
-        this.props.handleSubmit(this.state)
-        //this.setState(this.initialState)
+    handleSubmit = () => {
+
+        this.props.handleSearchSubmit()
+
     }
     
     render() {
-        const { url } = this.state;
-
-        const showSubmitButton = this.props.showSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showSubmitLoadingButton = this.props.showSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         
-        const enableSubmitButton = url.length > 0;
+        const showSearchSubmitButton = this.props.showSearchSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showSearchSubmitLoadingButton = this.props.showSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+        
+        const searchUrl = this.props.searchUrl;
+        const enableSearchSubmitButton = this.props.enableSearchSubmitButton;
         
         return (
-          <Form onSubmit={this.onFormSubmit} >
+          <Form inline onSubmit={this.handleSubmit}>
             <Form.Group>
                 <Form.Label>Soundcloud Song URL</Form.Label>
                 <Form.Control
-                    type="url"
-                    name="url"
-                    id="url"
-                    value={url}
+                    data-tip="Must include http or https"
+                    type="text"
+                    name="searchUrl"
+                    value={searchUrl}
                     onChange={this.handleChange} />
+                    <ReactTooltip delayShow={250}/>
             </Form.Group>
     
-            <Button type="submit" value="Submit" disabled={!enableSubmitButton} onClick={e => {e.preventDefault(); this.submitForm()}} style={showSubmitButton}>Submit</Button>
+            <Button
+                type="submit"
+                value="Submit"
+                disabled={!enableSearchSubmitButton}
+                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                style={showSearchSubmitButton}>
+                Submit
+            </Button>
             
-              <Button variant="primary" disabled style={showSubmitLoadingButton}>
+              <Button variant="primary" disabled style={showSearchSubmitLoadingButton}>
                 <Spinner
                   as="span"
                   animation="grow"
@@ -60,6 +61,7 @@ class SearchForm extends Component {
                 Loading...
               </Button>
           </Form>
+          
           
         );
     }

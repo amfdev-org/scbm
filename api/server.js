@@ -4,23 +4,53 @@ const app = express()
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const commenterScraper = require('./scrapeCommenters')
-const login = require('./login')
-const loadTest = require('./loadTest')
+const utils = require('./scrapers/utils')
+const CommenterScraper = require('./scrapers/scrapeCommenters')
+const login = require('./scrapers/login')
+const loadTest = require('./scrapers/loadTest')
 
+const db = require('./database')
+const CommenterModel = require('./models/commenter')
+
+/*
 app.get('/test/', (req, res) => {
     
-    console.log('test GET query');
-                     
+    //just loads the URL in the params as a test
     var query = Object.keys(req.query); 
+    
+    if (query.length == 0) {
+        url = "soundcloud.com";
+    } else {
+        url = query;
+    }
+    
+    console.log('test GET query: ' + url);
     
     const doLoadTest = new Promise((resolve, reject) => {
     loadTest
-    .doLoadTest("https://"+query)
+    .doLoadTest("https://"+url, false)
       .then(result => {
         resolve(result)
         //console.log(result);
-          res.sendFile('/var/www/vhosts/scbm/api/test-screenshot.png');
+          res.sendFile(utils.screenshotPath + '/screenshot.png');
+      })
+      .catch(err => res.status(500).send(err))
+     })
+    
+})
+
+
+app.get('/sctest/', (req, res) => {
+    
+    console.log('test GET query: sc test');
+    
+    const doLoadTestSc = new Promise((resolve, reject) => {
+    loadTest
+    .doLoadTestSc("https://soundcloud.com")
+      .then(result => {
+        resolve(result)
+        //console.log(result);
+          res.sendFile(utils.screenshotPath + '/screenshot.png');
       })
       .catch(err => res.status(500).send(err))
      })
@@ -34,46 +64,84 @@ app.get('/', (req, res) => {
     
     const doLogin = new Promise((resolve, reject) => {
     login
-    .doLogin(req.query)
+    .doLogin("https://soundcloud.com/signin")
       .then(result => {
         resolve(result)
         console.log(result);
-          res.sendFile('/var/www/vhosts/scbm/api/screenshot.png');
+          res.sendFile(utils.screenshotPath + '/screenshot.png');
       })
       .catch(err => res.status(500).send(err))
      })
     
+})*/
+
+
+app.get('/commenters/', function(req, res) {
+    
+    console.log('GET /commenters/');
+    
+    let searchUrl = decodeURI(req.query.searchUrl);
+    
+    let scrapeCommenters = () => {
+        
+        return new Promise((resolve, reject) => {
+            
+        CommenterScraper
+        .scrapeCommenters(searchUrl)
+          .then(data => {
+            //console.log(data)
+            resolve(data)
+          })
+          .catch(err => reject('Commenters scrape failed'))
+         })
+    }
+    
+        scrapeCommenters()
+        .then(data => CommenterModel.checkCommenterMessageStatus(data))
+        .then(data =>{
+          console.log(data)
+          res.send(JSON.stringify(data))
+        })
+        .catch(e => {
+          console.log(e)
+          res.send(JSON.stringify({errorMessage : "commenters scraped failed"}))
+        })
+    
 })
 
 
-app.post('/', function(req, res) {
+app.get('/message/send/', function(req, res) {
     
-    console.log('POST request');
+    console.log('GET /message/send/');
+            
     
-    const fetchCommenters = new Promise((resolve, reject) => {
-    commenterScraper
-    .scrapeCommenters(req.body.url)
-      .then(commenters => {
-        resolve(commenters)
-      })
-      .catch(err => reject('Commenters scrape failed'))
-     })
+    /*
+    const dataArray = [
+        { profileUrl: 'https://soundcloud.com/ocmoon' },
+        { profileUrl: 'https://soundcloud.com/fogcapture' },
+        { profileUrl: 'https://soundcloud.com/patrickxtaylor' }
+      ];
     
-
-    Promise.all([fetchCommenters])
-    .then(commenters => {
-        console.log(commenters[0]);
-        res.send(JSON.stringify(commenters[0]));
+    const Commenter = 
+    commenterModel.bulkCreate(dataArray, { updateOnDuplicate: ["lastSearchedSongUrl",
+                                                               "lastMessaged",
+                                                               "messageIds",
+                                                               "createdAt",
+                                                               "updatedAt"]})
+    .then(commenter => {
+        console.log(commenter);
+        // you can now access the newly ChatMessage task via the variable message
+    }).catch(err => {
+        console.log(err)
     })
-    .catch(err => res.status(500).send(err))
     
-    //console.log(commenters);
-    //res.send(JSON.stringify(commenters));
-    
-    
+    */
+  
 })
 
 
-app.listen(3002,() => {
+var server = app.listen(3002,() => {
   console.log("Started on PORT 3002");
 })
+
+server.setTimeout(900000);
