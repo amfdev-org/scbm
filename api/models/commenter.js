@@ -1,6 +1,7 @@
 const database = require("../database");
 const sequelize = database.sequelize;
 const DataTypes = database.DataTypes;
+const Op = database.Op
 
 const Commenter = sequelize.define("commenter", {
     
@@ -9,7 +10,7 @@ const Commenter = sequelize.define("commenter", {
         autoIncrement: true,
         primaryKey: true
         },
-    lastSearchedSongUrl: {
+    songUrl: {
         type: DataTypes.STRING,
         allowNull: true
         },
@@ -18,7 +19,7 @@ const Commenter = sequelize.define("commenter", {
         allowNull: true,
         unique: true
         },
-    lastMessaged: {
+    messaged: {
         type: DataTypes.STRING,
         allowNull: true
         },
@@ -30,11 +31,26 @@ const Commenter = sequelize.define("commenter", {
 });
 
 
-
-let checkCommenterMessageStatus = (profileUrlArray) => {
     
-    console.log('commenter model');
-    console.log(profileUrlArray);
+let logCommenters = (data) => {
+
+    for (const commenter of data) {
+            
+            const findOrCreate = Commenter.findOrCreate({
+                where: {
+                  songUrl:    commenter.songUrl,
+                  profileUrl:      commenter.profileUrl   
+                }})
+
+    }
+
+}
+
+    
+let checkCommenterMessageStatus = (commentersArray) => {
+    
+    //console.log('commenter model');
+    //console.log(profileUrlArray);
     return new Promise((resolve, reject) => {
     
     /*const profileUrlArray = [
@@ -45,29 +61,31 @@ let checkCommenterMessageStatus = (profileUrlArray) => {
         { profileUrl: 'https://soundcloud.com/matcatmusic' }
       ];*/
     
-    let profileUrlArrayLength = profileUrlArray.length;
+    let commentersArrayLength = commentersArray.length;
     
     let compositeArray = [];
     
-    for (var i = 0 ; i < profileUrlArrayLength; i++) {
+    for (var i = 0 ; i < commentersArrayLength; i++) {
         
-            let profileUrlToFind = profileUrlArray[i].profileUrl;
+            let songUrl = commentersArray[i].songUrl;
+            let profileUrlToFind = commentersArray[i].profileUrl;
             
-            const commenter = Commenter.findOne({ where: { profileUrl: profileUrlToFind }})
+            const commenter = Commenter.findOne({ where: { profileUrl: profileUrlToFind, messaged: {[Op.ne]: null} }})
             .then(commenter => {
     
                 if (commenter) {
-                    compositeArray.push({ profileUrl: profileUrlToFind, messagedBefore : "Yes"});
+                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrlToFind, messaged : commenter.lastMessaged});
                 } else {
-                    compositeArray.push({ profileUrl: profileUrlToFind, messagedBefore : "No"});
+                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrlToFind, messaged : "Never"});
                 }
                  //console.log(compositeArray);
-                 if (compositeArray.length == profileUrlArrayLength) {
+                 if (compositeArray.length == commentersArrayLength) {
                     resolve(compositeArray);
                  }
                  
             }).catch(err => {
                 console.log(err)
+                reject(err)
             })
         
         }
@@ -77,4 +95,4 @@ let checkCommenterMessageStatus = (profileUrlArray) => {
 }
 
 
-module.exports = { Commenter, checkCommenterMessageStatus };
+module.exports = { Commenter, logCommenters, checkCommenterMessageStatus };

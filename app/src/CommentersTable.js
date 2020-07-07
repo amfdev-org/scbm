@@ -17,9 +17,11 @@ class CommentersTable extends Component {
   
         const showCommentersTable = this.props.showCommentersTable ? {display: 'block'} : {display: 'none'};
         
+        const toggledClearRows = this.props.toggledClearRows;
+        
         const columns =  [
             { name: 'Profile URL', selector: 'profileUrl', sortable: true },
-            { name: 'Messaged Before', selector: 'messagedBefore', sortable: true }
+            { name: 'Messaged', selector: 'messaged', sortable: true }
             ];
       
           
@@ -29,10 +31,11 @@ class CommentersTable extends Component {
               <DataTable style={showCommentersTable}
                 columns={columns}
                 data={commenterData}
-                defaultSortField="messagedBefore"
+                defaultSortField="profileUrl"
                 selectableRows
                 onSelectedRowsChange={this.handleChange}
                 highlightOnHover
+                clearSelectedRows={toggledClearRows}
               />
                        
           </Form>

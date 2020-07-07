@@ -42,7 +42,7 @@
 }
 
 .form-inline {
-  width: 80%;
+  width: 100%;
 }
 
 .form-group {
@@ -58,5 +58,48 @@
 }
 
 .commenterDataTable, .messageForm {
-  padding-top: 20px;
+  padding-top: 40px;
+}
+
+.messageForm textarea {
+  white-space: pre-line;
+}
+
+.error-alert, .success-alert, .info-alert {
+  text-align: center;
+}
+
+.info-alert button {
+  display: none;
+}
+
+.alert-fixed {
+    position:fixed; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.logged-in-info {
+  float: right;
+}
+
+.main {
+  margin-top:50px;
+}
+
+.logout-button {
+  margin-left:10px;
+  margin-top:-5px;
+}
+
+.rdt_TableHeader {
+  display: none;
 }

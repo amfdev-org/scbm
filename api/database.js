@@ -1,7 +1,9 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const dotenv = require('dotenv').config()
 
-const sequelize = new Sequelize('scbm', 'root', 'Melon10283', {
-  host: 'localhost',
+const { Sequelize, DataTypes, Op } = require('sequelize');
+
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+  host: process.env.DB_HOST,
   dialect: 'mysql',
   logging: false
 });
@@ -15,4 +17,4 @@ sequelize
   console.error('Error! Unable to connect to the database:', err)
  })
 
-module.exports = { sequelize, DataTypes };
+module.exports = { sequelize, DataTypes, Op};

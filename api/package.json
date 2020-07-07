@@ -4,10 +4,17 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "combine-image": "^1.0.3",
+    "cookie-parser": "^1.4.5",
+    "cryptr": "^6.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
     "fs": "^0.0.1-security",
+    "moment": "^2.27.0",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "path": "^0.12.7",
@@ -18,6 +25,7 @@
     "puppeteer-extra-plugin-stealth": "^2.4.9",
     "puppeteer-select": "^1.0.3",
     "random-useragent": "^0.3.1",
+    "sanitize-filename": "^1.6.3",
     "sequelize": "^6.2.4"
   },
   "devDependencies": {

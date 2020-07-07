@@ -20,9 +20,6 @@ class MessageForm extends Component {
     render() {
         
         const showMessageForm = this.props.showMessageForm ? {display: 'block'} : {display: 'none'}
-         
-        const message = this.props.message;
-        
         const showMessageSubmitButton = this.props.showMessageSubmitButton ? {display: 'block'} : {display: 'none'};
         const showMessageSubmitLoadingButton = this.props.showMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         const enableMessageSubmitButton = this.props.enableMessageSubmitButton;
@@ -32,16 +29,17 @@ class MessageForm extends Component {
         <Form className="messageForm" style={showMessageForm}>
 
         <Form.Control as="textarea"
-          data-tip="Must be at least 10 characters long"
+          data-tip="Must be at least 10 characters long. Include a full song URL too if you like!"
           rows="8"
           name="message"
-          value={message}
+          value={this.props.message}
+          disabled={!this.props.enableMessageInput}
           onChange={this.handleChange} />
         <ReactTooltip delayShow={400}/>
           
             <Button
                 type="submit"
-                value="Submit"
+                value="Send Message!"
                 disabled={!enableMessageSubmitButton}
                 onClick={e => {e.preventDefault(); this.handleSubmit()}}
                 style={showMessageSubmitButton}>
@@ -56,7 +54,7 @@ class MessageForm extends Component {
                   role="status"
                   aria-hidden="true"
                 />
-                Loading...
+                
               </Button>
           </Form>
         )

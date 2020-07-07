@@ -22,29 +22,29 @@ class SearchForm extends Component {
     
     render() {
         
+        const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
+         
         const showSearchSubmitButton = this.props.showSearchSubmitButton ? {display: 'block'} : {display: 'none'};
         const showSearchSubmitLoadingButton = this.props.showSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
-        
-        const searchUrl = this.props.searchUrl;
-        const enableSearchSubmitButton = this.props.enableSearchSubmitButton;
+    
         
         return (
-          <Form inline onSubmit={this.handleSubmit}>
+          <Form inline onSubmit={this.handleSubmit} style={showSearchForm}>
             <Form.Group>
                 <Form.Label>Soundcloud Song URL</Form.Label>
                 <Form.Control
                     data-tip="Must include http or https"
                     type="text"
                     name="searchUrl"
-                    value={searchUrl}
+                    value={this.props.searchUrl}
+                    disabled={!this.props.enableSearchInput}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
-            </Form.Group>
     
             <Button
                 type="submit"
                 value="Submit"
-                disabled={!enableSearchSubmitButton}
+                disabled={!this.props.enableSearchSubmitButton}
                 onClick={e => {e.preventDefault(); this.handleSubmit()}}
                 style={showSearchSubmitButton}>
                 Submit
@@ -58,8 +58,10 @@ class SearchForm extends Component {
                   role="status"
                   aria-hidden="true"
                 />
-                Loading...
               </Button>
+              
+            </Form.Group>
+            
           </Form>
           
           
