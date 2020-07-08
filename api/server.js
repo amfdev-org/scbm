@@ -50,57 +50,6 @@ app.use(session({
     }
 }))
 
-
-app.get('/sc-login-test/', (req, res) => {
-  
-    if(!req.session.scCookies) {
-      //needs to do a login
-    }
-    
-    const sanitizedUsername = sanitize(req.session.user.scUsername);
-    //console.log(sanitizedUsername);
-    
-    const doLogin = new Promise((resolve, reject) => {
-    LoginScraper
-    .login("https://soundcloud.com/signin", sanitizedUsername)
-      .then(result => {
-        resolve(result)
-        console.log(result);
-        //res.sendFile(utils.screenshotPath + '/screenshot.png');
-      })
-      .catch(err => res.status(500).send(err))
-     })
-    
-    
-        
-})
-
-
-app.get('/cookie/', (req, res) => {
-
-       console.log('GET /cookie/');
-       const cookiesString = fs.readFileSync(utils.userDataPath + '/cookies.json');
-       const cookies = JSON.parse(cookiesString);
-       //console.log(cookies);
-       
-       for(const cookie of cookies) {
-        
-        //console.log(cookie);
-            let cookieExpiry = moment.unix(cookie.expires);
-            if (cookie.secure) {
-                if(cookieExpiry.isAfter()) {
-                    console.log(cookie.name + cookieExpiry.format("MM/DD/YYYY"));
-                } else {
-                    //console.log(cookie.name + cookieExpiry.format("MM/DD/YYYY"));
-                }
-            }
-        
-        //login cookies: connect_session, oauth_token
-       }
-
-})
-
-
 /*
 app.get('/test/', (req, res) => {
     
@@ -151,10 +100,21 @@ app.get('/sctest/', (req, res) => {
 app.get('/auth/', (req, res) => {
     
     console.log('GET /auth/');
-    
+       
     if (req.session.user && req.cookies.scbm_sid) {
         console.log('auth - req.sesssion.user && req.cookies.scbm_sid are true')
-        res.send(JSON.stringify({authResult: true, userData: req.session.user}));
+           
+            utils.validateScCookies(req.session.user.scCookies)
+            .then(data => {
+                console.log(data) 
+                res.send(JSON.stringify({authResult: true, scCookiesValid: true, userData: req.session.user}));
+            })
+            .catch(error => {
+                console.log(error)
+                console.log(req.session.user.scCookies + ' cookies not valid')
+                res.send(JSON.stringify({authResult: false, scCookiesValid: false}));
+            }) 
+    
     } else {
         console.log('no auth - req.sesssion.user && req.cookies.scbm_sid are not true')
         res.send(JSON.stringify({authResult: false}));
@@ -167,67 +127,110 @@ app.post('/signup/', (req, res) => {
     
     console.log('POST /signup/');
     
-    res.send(JSON.stringify(req.body));
+    if(!req.session.scCookies) {
+      //needs to do a login
+    }
+    //console.log(sanitizedUsername);
     
-       UserModel.create({
-            scUsername: req.body.username,
-            scPassword: req.body.password
+    let tryScLogin = () => {
+        
+        return new Promise((resolve, reject) => {
+        LoginScraper
+        .login("https://google.com", req.body.scUsername, req.body.scPassword, sanitize(req.body.scUsername))
+          .then(result => {
+            resolve(result)
+            console.log(result);
+            //res.sendFile(utils.screenshotPath + '/screenshot.png');
+          })
+          .catch(error => {
+                //res.redirect('/signup');
+                console.log(error)
+                reject(error)
+                
+            })
+         })
+    }
+    
+    
+    let createUser = (scCookies) => {
+        
+        return new Promise((resolve, reject) => {
+            
+            UserModel.create({
+                scUsername: req.body.scUsername,
+                scPassword: req.body.scPassword,
+                scCookies: scCookies
+            }).then(user => {
+                req.session.user = user.dataValues;
+                //console.log(user.dataValues);
+                res.send(JSON.stringify({
+                    signupResult: "success",
+                    signupResultReason : "user created",
+                    userData: req.session.user
+                    }))
+            })
+            .catch(error => {
+                //res.redirect('/signup');
+                console.log(error)
+                reject(error)
+                
+            });
+            
         })
-        .then(user => {
-            req.session.user = user.dataValues;
-            console.log(user.dataValues);
+    }
+              
+        // run the promises!
+    tryScLogin()
+        .then(scCookies => createUser(scCookies))
+        .then(data => {
+            console.log("**logged commenters to DB**");
+            console.log("**sending data to browser**");
+            res.send(JSON.stringify({signupResult: "success", signupResultReason : "user created", userData: req.session.user}))
         })
-        .catch(error => {
-            //res.redirect('/signup');
-            console.log(error)
-        });
+        .catch(e => {
+          console.log(e);
+          res.send(JSON.stringify({signupResult: "error", signupResultReason : "user could not be created", userData: req.session.user}))
+        })
+        
     
 });
+
+
 
 app.post('/login/', (req, res) => {
     
         console.log('POST /login/');
 
         //console.log(req.body);
-        
-        if (!req.body.isSignup) {
-    
             UserModel.findOne({ where: { scUsername: req.body.scUsername } })
             .then(function (user) {
                 if (!user) {
                 console.log('user not found')
-                res.send(JSON.stringify({loginResult : "error",
-                                            loginResultReason: "user not found"
+                res.send(JSON.stringify({userFound : false,
+                                            scCookiesValid: null
                                             }))
+                
                 } else if (!user.validPassword(req.body.scPassword)) {
+                    
                     console.log('password not valid')
-                     res.send(JSON.stringify({loginResult: "error", loginResultReason : "user not found"}))
+                     res.send(JSON.stringify({userFound: false, scCookiesValid: null}))
+                     
                 } else {
-                    req.session.user = user.dataValues;
-                    //console.log(user.dataValues)
-                    res.send(JSON.stringify({loginResult: "success", loginResultReason : "user found", userData: req.session.user}))
-                    //res.send(JSON.stringify({loginSuccess: user.dataValues}));
+                    
+                        utils.validateScCookies(user.dataValues.scCookies)
+                        .then(data => {
+                            console.log(data)
+                            req.session.user = user.dataValues;
+                            res.send(JSON.stringify({scCookiesValid: true, userFound: true, userData: req.session.user}));
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            console.log(user.dataValues.scCookies + ' cookies not valid')
+                            res.send(JSON.stringify({scCookiesValid: false, userFound: true}));
+                        }) 
+
                 }
             });
-            
-        } else {
-                
-            UserModel.create({
-                scUsername: req.body.scUsername,
-                scPassword: req.body.scPassword
-            })
-            .then(user => {
-                req.session.user = user.dataValues;
-                //console.log(user.dataValues);
-                res.send(JSON.stringify({loginResult: "success", loginResultReason : "user created", userData: req.session.user}))
-            })
-            .catch(error => {
-                //res.redirect('/signup');
-                console.log(error)
-                res.send(JSON.stringify({loginResult: "error", loginResultReason : "user could not be created", userData: req.session.user}))
-            });
-        
-        }
         
     });
 
@@ -237,7 +240,7 @@ app.get('/commenters/', function(req, res) {
     
     console.log('GET /commenters/');
     
-let validateSearchUrl = () => {
+    let validateSearchUrl = () => {
         
         return new Promise((resolve, reject) => {
             
@@ -253,7 +256,7 @@ let validateSearchUrl = () => {
         
     }
     
-    let getPasswordPlain = () => {
+    /*let getPasswordPlain = () => {
         
         return new Promise((resolve, reject) => {
             
@@ -287,12 +290,11 @@ let validateSearchUrl = () => {
           .catch(err => reject("Server says: could not get commenters!"))
          })
     }
-        
+        */
            
         // run the promises!
         validateSearchUrl()
-        .then(data => getPasswordPlain())
-        .then(scPasswordPlain => scrapeCommenters(scPasswordPlain))
+        .then(data => scrapeCommenters(data))
         .then(data => MessageModel.checkCommenterMessageStatus(data))
         .then(data => {
             console.log("**logged commenters to DB**");
@@ -367,8 +369,7 @@ app.post('/message/', function(req, res) {
                 
             MessageScraper
             .sendMessageOnProfile(
-                                  req.session.user.scUsername,
-                                  scPasswordPlain,
+                                  req.session.user.scCookies,
                                   req.body.selectedCommenters,
                                   req.body.message,
                                   decodeURI(req.body.searchUrl))
@@ -383,8 +384,7 @@ app.post('/message/', function(req, res) {
     
         // run the promises!
         validateMessage()
-        .then(data => getPasswordPlain())
-        .then(scPasswordPlain => sendMessageOnProfile(scPasswordPlain))
+        .then(data => sendMessageOnProfile())
         .then(data => {
           //console.log(data)
             console.log("**logging message result to db**");

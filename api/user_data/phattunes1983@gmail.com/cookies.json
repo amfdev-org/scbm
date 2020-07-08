@@ -1,0 +1,48 @@
+[
+  {
+    "name": "ANID",
+    "value": "AHWqTUlZIwrtbVGWZwCyC8_D8a09A4NJiFI5wf9yIbor9NCOBz38g7d-tw0lIBuL",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1627913299.664159,
+    "size": 68,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None"
+  },
+  {
+    "name": "1P_JAR",
+    "value": "2020-7-8-14",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1596809299,
+    "size": 17,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "NID",
+    "value": "204=kXyfVfWgybh5KHXWAyl8POJhNkkGayfSQBBEZeupVrmSaaON0Qr6xSKXe_mU6AHzeewxnYhhhkMh4iZR-ShAEqU2sEj3vjvS1JXpsvZiqiahn9HVZOnztuhOX31Dl_uV5lIF7A7w61-Yf1RlRUAIIZTa0nC5yJm4ztYXvN5NHzU",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1610028498.316841,
+    "size": 178,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None"
+  },
+  {
+    "name": "CONSENT",
+    "value": "WP.288b04",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 2145916800.213222,
+    "size": 16,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  }
+]

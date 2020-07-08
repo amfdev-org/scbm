@@ -15,7 +15,7 @@ const connection = require('./connection')
     */
 
 
-    const scrapeCommenters = async (scUsername, scPasswordPlain, songUrl) => {
+    const scrapeCommenters = async (songUrl) => {
         
         //await console.log(scUsername);
         //await console.log(scPasswordPlain);

@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config()
 const database = require("../database");
 const sequelize = database.sequelize;
 const DataTypes = database.DataTypes;
@@ -5,7 +6,7 @@ const Op = database.Op;
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr('Melon10283Trance0283!7');
+const cryptr = new Cryptr(process.env.CRYPTR_KEY);
 
 const User = sequelize.define('users', {
     id: {

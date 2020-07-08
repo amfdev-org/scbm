@@ -5,7 +5,7 @@ const connection = require('./connection')
 //const ProxyChain = require('proxy-chain');
 //const randomUseragent = require('random-useragent');
 
-   const login = async (url, sanitizedUsername) => {
+   const login = async (url, scUsername, scPassword, sanitizedUsername) => {
           
       //instantiate puppeteer, browser and page
       const browser = await connection.puppeteer.launch(connection.options);
@@ -17,23 +17,23 @@ const connection = require('./connection')
       // evaluate document + apply stealth preoad
       await page.evaluateOnNewDocument(connection.preload, connection.device);
       await console.log("**document evaluated + stealth preload applied**");
-  
+
       //try to load the signin page
       try {
          await page.goto(url, {waitUntil: 'networkidle0'});
          await console.log('**navigated to: ' + url);
       } catch(error) {
          await console.log('ERROR! could not navigate to url ' + url);
-         return;
+         throw new Error(error)
       }
-        
-      //await page.waitFor(utils.randomWait1);
+      
+      await page.waitFor(utils.randomWait1);
       
       //check for the webauthcontainer iframe
       await page.waitForSelector('.webAuthContainer')
       .catch ((error) => {
         console.log('ERROR! could not load webauth iframe!');
-        return;
+        throw new Error(error)
       })
 
       const elementHandle = await page.$('div.webAuthContainer iframe');
@@ -44,7 +44,7 @@ const connection = require('./connection')
       await frame.waitForSelector('input[name="email"]')
       .catch ((error) => {
         console.log('ERROR! could not access username input!');
-        return;
+        throw new Error(error)
       })
 
       const username = await frame.$('input[name="email"]');
@@ -56,7 +56,7 @@ const connection = require('./connection')
          await console.log('**username entered**');
       } catch(error) {
          await console.log('ERROR! could not enter username!');
-         return;
+         throw new Error(error)
       }
       
       //await frame.waitFor(utils.randomWait3);
@@ -67,7 +67,7 @@ const connection = require('./connection')
          await console.log('**username submitted**');
       } catch(error) {
          await console.log('ERROR! could not submit username!');
-         return;
+         throw new Error(error)
       }
       
       //await frame.waitFor(utils.randomWait3);
@@ -76,7 +76,7 @@ const connection = require('./connection')
        await frame.waitForSelector('#enter_password_field')
       .catch ((error) => {
         console.log("ERROR! could not access password input!");
-        return;
+        throw new Error(error)
       })
       
       const password = await frame.$('#enter_password_field');
@@ -87,7 +87,7 @@ const connection = require('./connection')
          await console.log('**password entered**');
       } catch (error) {
          await console.log("ERROR! could not enter password!");
-         return;
+         throw new Error(error)
       }
 
       //await frame.waitFor(utils.randomWait5);
@@ -98,7 +98,7 @@ const connection = require('./connection')
          await console.log('**password submitted**');
       } catch (error) {
          await console.log("ERROR! could not submit password!");
-         return;
+         throw new Error(error)
       }
       
       //wait for login to be processed and webauth iframe to be removed, and to look like a user
@@ -140,7 +140,7 @@ const connection = require('./connection')
          await console.log('**random link scraped: ' + randomLink);
       } catch(error) {
          await console.log('ERROR! random link could not be scraped!');
-         return;
+         throw new Error(error)
       }
       
       //go to the random link. TODO: would be better to click a link
@@ -149,7 +149,7 @@ const connection = require('./connection')
          await console.log('**navigated to: ' + randomLink);
       } catch(error) {
          await console.log("ERROR! could not navigate to random link " + randomLink);
-         //return;
+         throw new Error(error)
       }
       
       // long random wait to let new page load
@@ -184,30 +184,39 @@ const connection = require('./connection')
          await console.log("ERROR! could not scroll up on "+randomLink);
       }
 
-      
       //NOW GRAB THE SESSION COOKIES
       try {
          const cookies = await page.cookies();
+         //const cookies = {test: "test"};
         //await console.log(cookies);
          //await console.log(utils.userDataPath +  '/' + sanitizedUsername);
          await fs.mkdir(utils.userDataPath +  '/' + sanitizedUsername, { recursive: true }).catch(console.error);
+         await console.log('**cookie directory created**');
          await fs.writeFile(utils.userDataPath +  '/' + sanitizedUsername + '/cookies.json', JSON.stringify(cookies, null, 2));
          await console.log('**cookies saved**');
       } catch(error) {
          await console.log('ERROR! cookies could not be saved!');
-         return;
+         throw new Error(error)
       }
       
+      //CHECK COOKIE FILE IS NOT ZERO BYTES
+      const fileStat = await fs.stat(utils.userDataPath +  '/' + sanitizedUsername + '/cookies.json')
+      if(!fileStat["size"] > 0) {
+         await console.log('ERROR! cookie file zero bytes.');
+         throw new Error('ERROR! cookie file zero bytes.')
+      }
       //try to take the final screenshot
-      /*try {
-         await page.screenshot({path: utils.screenshotPath + '/screenshot.png'});
-         await console.log('**screenshot saved**');
-      } catch(error) {
-         await console.log('ERROR! screenshot could not be saved!');
-      }*/
-
+      //try {
+      //   await page.screenshot({path: utils.screenshotPath + '/screenshot.png'});
+      //   await console.log('**screenshot saved**');
+      //} catch(error) {
+      //   await console.log('ERROR! screenshot could not be saved!');
+      //}
+      
       //close the browser
       await browser.close();
+      
+      return utils.userDataPath +  '/' + sanitizedUsername + '/cookies.json';
 
     }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 
 import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 import SearchForm from './SearchForm';
 import CommentersTable from './CommentersTable';
 import MessageForm from './MessageForm';
@@ -39,10 +40,15 @@ class App extends Component {
         showCommentersTable: false,
         showMessageForm: false,
         
+        //signup form
+        showSignupSubmitButton: true,
+        enableSignupSubmitButton: false,
+        showSignupSubmitLoadingButton: false,
+        
         //login form buttons
         showLoginSubmitButton: true,
         showLogoutSubmitButton: false,
-        enableLoginSubmitButton: false,
+        enableLoginSubmitButton: true,
         showLoginSubmitLoadingButton: false,
         
         //search form buttons and input
@@ -66,19 +72,55 @@ class App extends Component {
         infoAlertText: '',
         infoAlertTextHeading: '',
         errorAlertLink: '',
-        errorAlertLinkText: '',
-        
-        isSignup: false
+        errorAlertLinkText: ''
       }
       
       this.state = this.initialState;
       
   }
   
+      
+  checkAutofill = () => {
+    
+    let checkUsernameAutofill = setInterval(() => {
+         
+         //document.getElementById("login-sc-username").click();
+         
+        var autofilledUsername = document.getElementById('login-sc-username').value;
+        console.log(autofilledUsername)
+        if (autofilledUsername.length > 0) {
+              this.setState({ scUsername: autofilledUsername }, () => {
+                    console.log(this.state);
+            })
+              clearInterval(checkUsernameAutofill);
+        }
+      }, 1000)
+    
+    
+      let checkPasswordAutofill = setInterval(() => {
+    
+        var autofilledPassword = document.getElementById('login-sc-password').value;
+        console.log(autofilledPassword)
+        if (autofilledPassword.length > 0) {
+              this.setState({ scPassword: autofilledPassword }, () => {
+                    console.log(this.state);
+            })
+              clearInterval(checkPasswordAutofill);
+        }
+      }, 1000)
+      
+  }
+  
+  
   componentDidMount = () => {
-      this.doAuth();
+    
+      this.doAuth(); 
+      //document.getElementById("login-sc-username").click();
+      //document.getElementById("root").click();
+      //this.checkAutofill();
   }
 
+  
   doAuth = () => {
     
     //console.log('do auth');
@@ -112,6 +154,7 @@ class App extends Component {
               
                 if (jsonResponse.authResult === true) {
                     
+                    
                     this.setState({showSearchForm: true});
                     
                     this.setState({showLoggedInInfo: true});
@@ -120,21 +163,35 @@ class App extends Component {
                          
                     this.setState({successAlertText: "We logged you in!" });
                     
-                          this.setState({showSuccessAlert: true},()=>{
+                        this.setState({showSuccessAlert: true},()=>{
                           window.setTimeout(()=>{
                             this.setState({showSuccessAlert: false})
                           },4000)
                         });
                         
                         
-                } else {
+                  } else {
+                    
+                    
+                        if (jsonResponse.scCookiesValid === false) {
+                          
+                              this.setState({showLoginForm: false});
+                              this.setState({errorAlertText: "Cookies invalid. Please contact support." });
+                              this.setState({showErrorAlert: true});
+                              
+                        } else {
+                          
+                              this.setState({showLoginForm: true});
+                        
+                              this.setState({infoAlertTextHeading: "Welcome" });
+                              this.setState({infoAlertText: "Please log in." });
+                        
+                              this.setState({showInfoAlert: true});
+                      
+                          
+                        }
+                      
                   
-                        this.setState({showLoginForm: true});
-                  
-                        this.setState({infoAlertTextHeading: "Welcome" });
-                        this.setState({infoAlertText: "Please log in." });
-                  
-                        this.setState({showInfoAlert: true});
                           
                 }
     
@@ -149,7 +206,7 @@ class App extends Component {
   }
   
   render() {
-    
+         
     const showErrorAlert = this.state.showErrorAlert ? {display: 'block'} : {display: 'none'};
     const showSuccessAlert = this.state.showSuccessAlert ? {display: 'block'} : {display: 'none'};
     const showInfoAlert = this.state.showInfoAlert ? {display: 'block'} : {display: 'none'};
@@ -157,6 +214,8 @@ class App extends Component {
     const showLoginForm = this.state.showLoginForm ? {display: 'block'} : {display: 'none'};
     const showLoggedInInfo = this.state.showLoggedInInfo ? {display: 'block'} : {display: 'none'};
     const showLogoutSubmitButton = this.state.showLogoutSubmitButton ? {display: 'block'} : {display: 'none'};
+    
+    const showSignupForm = this.state.showSignupForm ? {display: 'block'} : {display: 'none'};
     
     const showSearchForm = this.state.showSearchForm ? {display: 'block'} : {display: 'none'};
     const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
@@ -194,8 +253,21 @@ class App extends Component {
             
             <h6 className="logged-in-info" style={showLoggedInInfo}>{this.state.loggedInInfoText}</h6>
             
-            <h3 className="main" style={showLoginForm}>{this.state.loginHeaderText}</h3>
+            <h3 className="main" style={showSignupForm}>Sign Up</h3>
+            <SignupForm className="main"
+              showSignupForm={this.state.showSignupForm}
+              scUsername={this.state.scUsername}
+              scPassword={this.state.scPassword}
+              signupButtonText = {this.state.signupHeaderText}
+              handleSignupChange={this.handleSignupChange}
+              handleSignupSubmit={this.handleSignupSubmit}
+              enableSignupSubmitButton={this.state.enableSignupSubmitButton}
+              showSignupSubmitButton={this.state.showSignupSubmitButton}
+              showSignupSubmitLoadingButton={this.state.showSignupSubmitLoadingButton} />
+              
+            <h3 className="main" style={showLoginForm}>Login</h3>
             <LoginForm className="main"
+              checkAutofill={this.checkAutofill}
               showLoginForm={this.state.showLoginForm}
               scUsername={this.state.scUsername}
               scPassword={this.state.scPassword}
@@ -284,29 +356,126 @@ class App extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({scUsername: this.state.scUsername,
                                  scPassword: this.state.scPassword,
-                                 isSignup: this.state.isSignup})
+                                 })
         };
         fetch('https://scbm.amfdev.co.uk/api/login/', requestOptions)
               .then(async response => {
                 const jsonResponse = await response.json();
                 console.log(jsonResponse);
                 // check for error response
-                if (jsonResponse.loginResult === "error" ) {
-                    // get error message from body or default to response status
-                    //const error = (commenterData && commenterData.message) || response.status;
-                    //await console.log(jsonResponse.errorMessage);
-                    //return Promise.reject(jsonResponse.errorMessage);
+                if (!jsonResponse.userFound) {
                   
                       this.setState({errorAlertText: 'User not found. Please try again, or '});
                       this.setState({errorAlertLinkText: 'sign up instead?'});
                       this.setState({showInfoAlert: false});
                       this.setState({showSuccessAlert: false});
                       this.setState({showErrorAlert: true});
+                      
+                } else if (!jsonResponse.scCookiesValid) {
+                  
+                      this.setState({showLoginForm: false});
+                      this.setState({errorAlertText: "Cookies invalid. Please contact support." });
+                      this.setState({showErrorAlert: true});
+                      this.setState({errorAlertLinkText: ''});
+                      this.setState({showInfoAlert: false});
+                          
+                } else {
+                  
+                      this.setState({showErrorAlert: false});
+                      this.setState({showLoginForm: false});
+                      this.setState({showSearchForm: true});
+                      this.setState({showLogoutSubmitButton: true});
+  
+                      this.setState({showLoggedInInfo: true});
+                      this.setState({loggedInInfoText: "Logged in as " + jsonResponse.userData.scUsername});
+                      this.setState({showLogoutSubmitButton: true});
+                      
+                      this.setState({showInfoAlert: false});
+                      this.setState({showErrorAlert: false});
+                       
+                      this.setState({successAlertText: "You're now logged in!" });
+                  
+                        this.setState({showSuccessAlert: true},()=>{
+                        window.setTimeout(()=>{
+                          this.setState({showSuccessAlert: false})
+                        },4000)
+                      });
+                          
+                }
+            
+        
+            })
+            .catch(error => {
+                //this.setState({ errorMessage: error.toString() });
+                console.error('There was an error!', error);
+                        
+            });
+              
+                this.setState({ showLoginSubmitButton: true })
+                this.setState({ showLoginSubmitLoadingButton: false })
+                
+  }
+  
+  
+   handleSignupChange = (event) => {
+
+      this.setState({showErrorAlert: false});
+      
+      const { name, value } = event.target
+  
+      this.setState({[name]: value},()=> {
+        //console.log(this.state);
+        
+          if (this.state.scUsername.length > 0 && this.state.scPassword.length > 0) {
+            this.setState({enableSignupSubmitButton: true}, () => {   
+              //console.log(this.state);
+            })
+          } else {
+             this.setState({enableSignupSubmitButton: false}, () => {   
+              //console.log(this.state);
+            })
+          }
+          
+      });
+                  
+  }
+  
+  
+    handleSignupSubmit = () => {
+
+        this.setState({ showSignupSubmitButton: false })
+        this.setState({ showSignupSubmitLoadingButton: true })
+              
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({scUsername: this.state.scUsername,
+                                 scPassword: this.state.scPassword})
+        };
+        fetch('https://scbm.amfdev.co.uk/api/signup/', requestOptions)
+              .then(async response => {
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+                // check for error response
+                if (jsonResponse.signupResult === "error" ) {
+                    // get error message from body or default to response status
+                    //const error = (commenterData && commenterData.message) || response.status;
+                    //await console.log(jsonResponse.errorMessage);
+                    //return Promise.reject(jsonResponse.errorMessage);
+                  
+                      this.setState({errorAlertText: 'Something went wrong. Are you sure that\'s a working SC login?'});
+                      this.setState({errorAlertLinkText: ''});
+                      this.setState({showInfoAlert: false});
+                      this.setState({showSuccessAlert: false});
+                      this.setState({showErrorAlert: true});
+                      
+                      this.setState({ showSignupSubmitButton: true });
+                      this.setState({ showSignupSubmitLoadingButton: false });
                     
-                } else if (jsonResponse.loginResult === "success" ) {
+                } else if (jsonResponse.signupResult === "success" ) {
                   
                         this.setState({showErrorAlert: false});
-                        this.setState({showLoginForm: false});
+                        this.setState({showSignupForm: false});
                         this.setState({showSearchForm: true});
                         this.setState({showLogoutSubmitButton: true});
     
@@ -332,28 +501,29 @@ class App extends Component {
             .catch(error => {
                 //this.setState({ errorMessage: error.toString() });
                 console.error('There was an error!', error);
+                this.setState({ showSignupSubmitButton: true })
+                this.setState({ showSignupSubmitLoadingButton: false })
                         
             });
-              
-                this.setState({ showLoginSubmitButton: true })
-                this.setState({ showLoginSubmitLoadingButton: false })
+            
                 
   }
   
   
   switchToSignup = () => {
     
+    this.setState({showLoginForm: false});
+    this.setState({showSignupForm: true});
     //console.log('dwitch to signup');
-    this.setState({isSignup: true}, () => {
       
-        this.setState({loginHeaderText: "Sign Up"})
+        //this.setState({loginHeaderText: "Sign Up"})
+        
         this.setState({showErrorAlert: false});
         
         this.setState({infoAlertTextHeading: "OK then!" });
         this.setState({infoAlertText: "Please sign up below." });
         this.setState({showInfoAlert: true});
-    })
-    
+  
   }
   
   handleSearchChange = event => {

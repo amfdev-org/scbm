@@ -5,7 +5,7 @@ const connection = require('./connection')
 //const ProxyChain = require('proxy-chain');
 //const randomUseragent = require('random-useragent');
 
-   const sendMessageOnProfile = async (scUsername, scPasswordPlain, commenters, message, searchUrl) => {
+   const sendMessageOnProfile = async (scCookies, commenters, message, searchUrl) => {
       
       await console.log(scUsername);  
       await console.log(scPasswordPlain);
@@ -26,7 +26,7 @@ const connection = require('./connection')
   
       //try to load cookies
        try {
-           const cookiesString = await fs.readFile(utils.userDataPath + '/cookies.json');
+           const cookiesString = await fs.readFile(scCookies);
            const cookies = JSON.parse(cookiesString);
            await page.setCookie(...cookies);
            await console.log("**cookies loaded**");
@@ -39,7 +39,6 @@ const connection = require('./connection')
       for (const commenter of commenters) {
          
             const randomWait = Math.floor((Math.random() * 1000) + 3)
-         
 
             let profileUrl = commenter.profileUrl;
             await console.log("**iterating array: profile " + profileUrl);

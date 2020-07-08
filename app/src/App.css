@@ -103,3 +103,18 @@
 .rdt_TableHeader {
   display: none;
 }
+
+@keyframes onAutoFillStart {
+}
+
+@keyframes onAutoFillCancel {
+}
+
+.form-control:-webkit-autofill {
+  animation-name: onAutoFillStart;
+  transition: background-color 50000s ease-in-out 0s;
+}
+
+.form-control:not(:-webkit-autofill) {
+  animation-name: onAutoFillCancel;
+}

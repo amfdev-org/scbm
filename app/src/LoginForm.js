@@ -20,6 +20,12 @@ class LoginForm extends Component {
 
     }
     
+    handleClick = () => {
+
+        console.log('input click');
+        this.props.checkAutofill()
+    }
+    
     render() {
         
         const showLoginForm = this.props.showLoginForm ? {display: 'block'} : {display: 'none'}
@@ -35,7 +41,11 @@ class LoginForm extends Component {
                 <Form.Control
                     data-tip="SC Username"
                     type="text"
+                    id="login-sc-username"
+                    ref={this.clickInput}
                     name="scUsername"
+                    autoComplete="off"
+                    //onClick={this.handleClick}
                     value={this.props.scUsername}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
@@ -45,6 +55,7 @@ class LoginForm extends Component {
                     data-tip="SC Password"
                     type="password"
                     name="scPassword"
+                    id="login-sc-password"
                     value={this.props.scPassword}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>

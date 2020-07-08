@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const moment = require('moment');
 
 const rootPath = '/var/www/vhosts/scbm';
 const apiPath = rootPath + "/api"
@@ -42,6 +43,61 @@ const randomWaitVeryLong = Math.floor((Math.random() * 1000) + 3567);
         await page.evaluate(_ => {
         window.scrollTo(0, 0);
         });
+    }
+    
+    
+    async function validateScCookies(scCookies) {
+                
+            try {
+                const cookiesString = await fs.readFile(scCookies);
+            } catch(error) {
+                throw new Error(scCookies +  " not found");
+            }
+            
+            const cookiesString = await fs.readFile(scCookies);
+            
+            try {
+                const cookies = await JSON.parse(cookiesString);
+            } catch(error) {
+                throw new Error("Can not JSON.parse " + scCookies);
+            }
+            
+            const cookies = await JSON.parse(cookiesString);
+          
+            //console.log(cookies);
+            await moment.locale('gb');
+            
+            //let cookiesValid = false;
+            for(const cookie of cookies) {
+
+                 let cookieExpiry = await moment.unix(cookie.expires);
+                 let cookieExpiryDate = await cookieExpiry.format("DD/MM/YYYY");
+                 
+                 if (cookie.name === 'connect_session') {
+                  
+                      if (!cookie.domain.includes("soundcloud")) {
+                           throw new Error("Soundcloud connect_session not found");
+                      }
+                   
+                      if(!cookieExpiryDate === '31/12/1969') {
+                          throw new Error("Soundcloud connect_session cookie expired")  
+                      }
+                    
+                 } else if (cookie.name === 'oauth_token') {
+                  
+                      if (!cookie.domain.includes("soundcloud")) {
+                        throw new Error("Soundcloud oauth_token not found");
+                      }
+                     
+                      if(!cookieExpiry.isAfter()) {
+                         throw new Error("Soundcloud oauth_token cookie expired")  
+                      }
+                 }
+                 
+            }
+            
+            return true;
+  
     }
     
     
@@ -97,5 +153,6 @@ const randomWaitVeryLong = Math.floor((Math.random() * 1000) + 3567);
                 autoScrollDown,
                 autoScrollUp,
                 getRandomLink,
-                saveCookies
+                saveCookies,
+                validateScCookies
                 };
