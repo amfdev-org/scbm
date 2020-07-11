@@ -15,11 +15,10 @@ const connection = require('./connection')
     */
 
 
-    const scrapeCommenters = async (songUrl) => {
+    const scrapeCommenters = async (songUrl, scCookies) => {
         
         //await console.log(scUsername);
         //await console.log(scPasswordPlain);
-    
         const browser = await connection.puppeteer.launch(connection.options);
      
         const page = await browser.newPage();
@@ -27,6 +26,22 @@ const connection = require('./connection')
         //await page.setExtraHTTPHeaders({Referer: 'https://soundcloud.com/'});
         await console.log("**browser and page instantiated**");
             
+                
+        // evaluate document + apply stealth preoad
+        await page.evaluateOnNewDocument(connection.preload, connection.device);
+        await console.log("**document evaluated + stealth preload applied**");
+  
+        //try to load cookies
+         try {
+             const cookiesString = await fs.readFileSync(utils.userDataPath +  '/' + scCookies);
+             const cookies = JSON.parse(cookiesString);
+             await page.setCookie(...cookies);
+             await console.log("**cookies loaded**");
+         } catch(error) {
+             await console.log(error);
+             return Promise.reject(new Error("ERROR! cookies could not be loaded"));
+         }
+       
         try {
            await page.goto(songUrl, {waitUntil: 'networkidle0'});
            await console.log('**navigated to: ' + songUrl);
@@ -35,15 +50,36 @@ const connection = require('./connection')
            return Promise.reject(new Error('ERROR! could not navigate to url ' + songUrl));
         }
   
-         await page.waitFor(utils.randomWait1);
-         
-        await page.waitForSelector('span.commentItem__username > a')
-        .catch ((error) => {
-          console.log('ERROR! could not access span.commentItem__username > a!');
-          return Promise.reject(new Error('ERROR! could not access span.commentItem__username > a!'));
-        })
+         //await page.waitFor(utils.randomWait1);
+        
+        try {
+            await page.waitForSelector('span.commentItem__username > a', {
+            timeout: 6000
+          })
+            //.catch ((error) => {  
+            //  console.log('ERROR! could not access span.commentItem__username > a!');
+            //})
+        } catch {
+  
+                if (await page.waitForSelector('div.emptyComments')) {
+                    
+                    //await console.log('div.emptyComments found. That means no commenters')
+                    //throw new Error('no commenters')
+                    throw {error: "no commenters"}
+                    //return;
+                
+                } else {
 
-        await page.waitFor(utils.randomWait2);
+                     //await console.log('ERROR! could not access span.commentItem__username OR div.emptyComments!')
+                    throw new Error('ERROR! could not access span.commentItem__username OR div.emptyComments!')
+                    //return;
+ 
+                } 
+   
+        }
+        
+    
+        //await page.waitFor(utils.randomWait2);
         
         try {
             await utils.autoScrollDown(page);
@@ -52,21 +88,26 @@ const connection = require('./connection')
             await console.log("ERROR! could not scroll down on " + songUrl);
          }
     
-         await page.waitFor(utils.randomWait3);
+         //await page.waitFor(utils.randomWait3);
     
         const profileUrlsRaw = await page.evaluate(() => {
             const links = Array.from(document.querySelectorAll('span.commentItem__username > a'))
-            return links.map(link => link.href).slice(0, 9999)
+            return links.map(link => link.href + '^' + link.innerHTML)
         })
-    
+        
         profileUrlsRawUnique = Array.from(new Set(profileUrlsRaw));
         
         profileUrls = []
         var jsonObj = {};
         for (var i = 0 ; i < profileUrlsRawUnique.length; i++) {
-                profileUrls.push({songUrl: songUrl, profileUrl : profileUrlsRawUnique[i]});
+                var [profileUrl, profileName] = profileUrlsRawUnique[i].split('^');
+                //var profileUrlRelative = profileUrl.replace("https://soundcloud.com", "");
+                profileUrls.push({songUrl: songUrl,
+                                 profileUrl : profileUrl,
+                                 profileName : profileName
+                                 });
         }
-        
+
         await browser.close()
         
         /*profileUrls = [ { songUrl: songUrl, profileUrl: 'https://soundcloud.com/ocmoon' },
@@ -81,8 +122,9 @@ const connection = require('./connection')
                         { songUrl: songUrl, profileUrl: 'https://soundcloud.com/venkman' },
                         { songUrl: songUrl, profileUrl: 'https://soundcloud.com/user-221609609' } ];*/
         
+        //await console.log(profileUrls);
 
-        return await profileUrls
+        return profileUrls
     }
 
 

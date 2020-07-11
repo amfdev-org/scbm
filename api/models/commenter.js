@@ -46,53 +46,5 @@ let logCommenters = (data) => {
 
 }
 
-    
-let checkCommenterMessageStatus = (commentersArray) => {
-    
-    //console.log('commenter model');
-    //console.log(profileUrlArray);
-    return new Promise((resolve, reject) => {
-    
-    /*const profileUrlArray = [
-        { profileUrl: 'https://soundcloud.com/ocmoon' },
-        { profileUrl: 'https://soundcloud.com/fogcapture' },
-        { profileUrl: 'https://soundcloud.com/patrickxtaylor' },
-        { profileUrl: 'https://soundcloud.com/deceivingsounds' },
-        { profileUrl: 'https://soundcloud.com/matcatmusic' }
-      ];*/
-    
-    let commentersArrayLength = commentersArray.length;
-    
-    let compositeArray = [];
-    
-    for (var i = 0 ; i < commentersArrayLength; i++) {
-        
-            let songUrl = commentersArray[i].songUrl;
-            let profileUrlToFind = commentersArray[i].profileUrl;
-            
-            const commenter = Commenter.findOne({ where: { profileUrl: profileUrlToFind, messaged: {[Op.ne]: null} }})
-            .then(commenter => {
-    
-                if (commenter) {
-                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrlToFind, messaged : commenter.lastMessaged});
-                } else {
-                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrlToFind, messaged : "Never"});
-                }
-                 //console.log(compositeArray);
-                 if (compositeArray.length == commentersArrayLength) {
-                    resolve(compositeArray);
-                 }
-                 
-            }).catch(err => {
-                console.log(err)
-                reject(err)
-            })
-        
-        }
-    
-    })
 
-}
-
-
-module.exports = { Commenter, logCommenters, checkCommenterMessageStatus };
+module.exports = { Commenter, logCommenters };

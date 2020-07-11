@@ -57,8 +57,12 @@
   width: 90%;
 }
 
-.commenterDataTable, .messageForm {
+.commenterDataTable {
   padding-top: 40px;
+}
+
+.messageForm {
+  padding-top: 5px;
 }
 
 .messageForm textarea {
@@ -88,11 +92,12 @@
 }
 
 .logged-in-info {
-  float: right;
+  float: left;
+  font-weight: 500;
 }
 
 .main {
-  margin-top:50px;
+  margin-top:0px;
 }
 
 .logout-button {
@@ -104,17 +109,24 @@
   display: none;
 }
 
-@keyframes onAutoFillStart {
+input:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
-@keyframes onAutoFillCancel {
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
-.form-control:-webkit-autofill {
-  animation-name: onAutoFillStart;
-  transition: background-color 50000s ease-in-out 0s;
+.search-accordion {
+  margin-top: 85px;
 }
 
-.form-control:not(:-webkit-autofill) {
-  animation-name: onAutoFillCancel;
+.card-header {
+  font-weight: 500;
+}
+
+h6 {
+  font-weight: 400;
 }

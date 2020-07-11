@@ -36,6 +36,7 @@ class SignupForm extends Component {
                     data-tip="SC Username"
                     type="text"
                     name="scUsername"
+                    disabled={!this.props.enableSignupFormInputs}
                     value={this.props.scUsername}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
@@ -45,11 +46,11 @@ class SignupForm extends Component {
                     data-tip="SC Password"
                     type="password"
                     name="scPassword"
+                    disabled={!this.props.enableSignupFormInputs}
                     value={this.props.scPassword}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
               
-                 
              </Form.Group>
              
             <Button
@@ -70,7 +71,7 @@ class SignupForm extends Component {
                 role="status"
                 aria-hidden="true"
               />
-              Loading...
+              Validating...
             </Button>
             
           </Form>

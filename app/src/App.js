@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
@@ -9,6 +11,8 @@ import MessageForm from './MessageForm';
 
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
+import Card from 'react-bootstrap/Card'
+import Accordion from 'react-bootstrap/Accordion'
 
 class App extends Component {
   
@@ -27,7 +31,7 @@ class App extends Component {
         commenterData : [],
         selectedCommenters : [],
         toggledClearRows: false,
-        message : '',
+        message : 'Hi <<profileName>>,',
         
         //headings
         loginHeaderText: 'Login',
@@ -42,8 +46,9 @@ class App extends Component {
         
         //signup form
         showSignupSubmitButton: true,
-        enableSignupSubmitButton: false,
+        enableSignupSubmitButton: true,
         showSignupSubmitLoadingButton: false,
+        enableSignupFormInputs: true,
         
         //login form buttons
         showLoginSubmitButton: true,
@@ -154,29 +159,26 @@ class App extends Component {
               
                 if (jsonResponse.authResult === true) {
                     
-                    
                     this.setState({showSearchForm: true});
                     
                     this.setState({showLoggedInInfo: true});
                     this.setState({showLogoutSubmitButton: true});
-                    this.setState({loggedInInfoText: "Logged in as " + jsonResponse.userData.scUsername});
+                    this.setState({loggedInInfoText: jsonResponse.userData.scUsername});
                          
                     this.setState({successAlertText: "We logged you in!" });
                     
                         this.setState({showSuccessAlert: true},()=>{
                           window.setTimeout(()=>{
                             this.setState({showSuccessAlert: false})
-                          },4000)
+                          },2000)
                         });
-                        
-                        
-                  } else {
-                    
-                    
+                                     
+                } else {
+                       
                         if (jsonResponse.scCookiesValid === false) {
                           
                               this.setState({showLoginForm: false});
-                              this.setState({errorAlertText: "Cookies invalid. Please contact support." });
+                              this.setState({errorAlertText: "Credentials invalid. Please contact support." });
                               this.setState({showErrorAlert: true});
                               
                         } else {
@@ -188,9 +190,7 @@ class App extends Component {
                         
                               this.setState({showInfoAlert: true});
                       
-                          
-                        }
-                      
+                        }                  
                   
                           
                 }
@@ -218,13 +218,14 @@ class App extends Component {
     const showSignupForm = this.state.showSignupForm ? {display: 'block'} : {display: 'none'};
     
     const showSearchForm = this.state.showSearchForm ? {display: 'block'} : {display: 'none'};
-    const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
+    //const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
     const showMessageForm = this.state.showMessageForm ? {display: 'block'} : {display: 'none'};
 
     
       return (
         <Container>
-
+           <Row>
+           <Col>
           <Alert className="error-alert alert-fixed" style={showErrorAlert} variant='danger' onClose={() => this.dismissErrorAlert()} dismissible>
           <Alert.Heading>Uh oh!</Alert.Heading>
             {this.state.errorAlertText}
@@ -240,7 +241,9 @@ class App extends Component {
             <Alert.Heading>{this.state.infoAlertTextHeading}</Alert.Heading>
              {this.state.infoAlertText}
           </Alert>
-        
+            
+            <h6 className="logged-in-info" style={showLoggedInInfo}><div className="hide-sm">{this.state.loggedInInfoText}</div></h6>
+            
             <Button
               className="logged-in-info logout-button"
               size="sm"
@@ -250,15 +253,15 @@ class App extends Component {
                 style={showLogoutSubmitButton}>
                 Logout
             </Button>
-            
-            <h6 className="logged-in-info" style={showLoggedInInfo}>{this.state.loggedInInfoText}</h6>
-            
+
+
             <h3 className="main" style={showSignupForm}>Sign Up</h3>
             <SignupForm className="main"
               showSignupForm={this.state.showSignupForm}
               scUsername={this.state.scUsername}
               scPassword={this.state.scPassword}
               signupButtonText = {this.state.signupHeaderText}
+              enableSignupFormInputs={this.state.enableSignupFormInputs}
               handleSignupChange={this.handleSignupChange}
               handleSignupSubmit={this.handleSignupSubmit}
               enableSignupSubmitButton={this.state.enableSignupSubmitButton}
@@ -278,44 +281,69 @@ class App extends Component {
               showLoginSubmitButton={this.state.showLoginSubmitButton}
               showLoginSubmitLoadingButton={this.state.showLoginSubmitLoadingButton} />
                     
-            <h3 className="main" style={showSearchForm}>Search</h3>
-            <SearchForm
-              className="main"
-              showSearchForm={this.state.showSearchForm}
-              searchUrl={this.state.searchUrl}
-              handleSearchChange={this.handleSearchChange}
-              handleSearchSubmit={this.handleSearchSubmit}
-              enableSearchInput={this.state.enableSearchInput}
-              enableSearchSubmitButton={this.state.enableSearchSubmitButton}
-              showSearchSubmitButton={this.state.showSearchSubmitButton}
-              showSearchSubmitLoadingButton={this.state.showSearchSubmitLoadingButton} />
+            <Accordion className="search-accordion" style={showSearchForm}>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="0">
+                  Commenters
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                      <h6 className="main">Song URL</h6>
+                        <SearchForm
+                          className="main"
+                          searchUrl={this.state.searchUrl}
+                          handleSearchChange={this.handleSearchChange}
+                          handleSearchSubmit={this.handleSearchSubmit}
+                          enableSearchInput={this.state.enableSearchInput}
+                          enableSearchSubmitButton={this.state.enableSearchSubmitButton}
+                          showSearchSubmitButton={this.state.showSearchSubmitButton}
+                          showSearchSubmitLoadingButton={this.state.showSearchSubmitLoadingButton} />
+                  
+                       {/*<h6 style={showCommentersTable} className="commenterDataTable">Results</h6>*/}
             
-            <h3 style={showCommentersTable} className="commenterDataTable">Commenters</h3>
+                      <CommentersTable
+                          commenterData={this.state.commenterData}
+                          showCommentersTable={this.state.showCommentersTable}
+                          handleCommentersChange={this.handleCommentersChange}
+                          handleCommentersSubmit={this.handleCommentersSubmit}
+                          showCommentersSubmitButton={this.state.showCommentersSubmitButton}
+                          showCommentersSubmitLoadingButton={this.state.showCommentersSubmitLoadingButton}
+                          selectedCommenters={this.state.selectedCommenters}
+                          toggledClearRows={this.state.toggledClearRows}
+                          />
+                      
+                      <h6 style={showMessageForm} className="messageForm">Message</h6>
+                      
+                      <MessageForm
+                          message={this.state.message}
+                          showMessageForm={this.state.showMessageForm}
+                          handleMessageChange={this.handleMessageChange}
+                          handleMessageSubmit={this.handleMessageSubmit}
+                          enableMessageInput={this.state.enableMessageInput}
+                          enableMessageSubmitButton={this.state.enableMessageSubmitButton}
+                          showMessageSubmitButton = {this.state.showMessageSubmitButton}
+                          showMessageSubmitLoadingButton = {this.state.showMessageSubmitLoadingButton}
+                          />
+                  
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="1">
+                  Followers
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>
+                  nothing
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
             
-            <CommentersTable
-                commenterData={this.state.commenterData}
-                showCommentersTable={this.state.showCommentersTable}
-                handleCommentersChange={this.handleCommentersChange}
-                handleCommentersSubmit={this.handleCommentersSubmit}
-                showCommentersSubmitButton={this.state.showCommentersSubmitButton}
-                showCommentersSubmitLoadingButton={this.state.showCommentersSubmitLoadingButton}
-                selectedCommenters={this.state.selectedCommenters}
-                toggledClearRows={this.state.toggledClearRows}
-                />
-            
-            <h3 style={showMessageForm} className="messageForm">Message</h3>
-            
-            <MessageForm
-                message={this.state.message}
-                showMessageForm={this.state.showMessageForm}
-                handleMessageChange={this.handleMessageChange}
-                handleMessageSubmit={this.handleMessageSubmit}
-                enableMessageInput={this.state.enableMessageInput}
-                enableMessageSubmitButton={this.state.enableMessageSubmitButton}
-                showMessageSubmitButton = {this.state.showMessageSubmitButton}
-                showMessageSubmitLoadingButton = {this.state.showMessageSubmitLoadingButton}
-                />
-                
+       
+               
+           </Col>
+              </Row>
         </Container>
       )
   }
@@ -349,7 +377,12 @@ class App extends Component {
     handleLoginSubmit = () => {
 
         this.setState({ showLoginSubmitButton: false })
+        this.setState({ showLoginSubmitButton: false })
         this.setState({ showLoginSubmitLoadingButton: true })
+        
+        this.setState({showInfoAlert: false});
+        this.setState({showErrorAlert: false});
+                       
               
         const requestOptions = {
             method: 'POST',
@@ -360,6 +393,13 @@ class App extends Component {
         };
         fetch('https://scbm.amfdev.co.uk/api/login/', requestOptions)
               .then(async response => {
+                
+                if (!response.ok) {
+                   //throw Error(response.statusText);
+                    this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                    this.setState({showErrorAlert: true}); 
+                }
+                
                 const jsonResponse = await response.json();
                 console.log(jsonResponse);
                 // check for error response
@@ -370,11 +410,13 @@ class App extends Component {
                       this.setState({showInfoAlert: false});
                       this.setState({showSuccessAlert: false});
                       this.setState({showErrorAlert: true});
+                      this.setState({showLoginSubmitButton: true});
+                      this.setState({showLoginSubmitLoadingButton: false});
                       
                 } else if (!jsonResponse.scCookiesValid) {
                   
                       this.setState({showLoginForm: false});
-                      this.setState({errorAlertText: "Cookies invalid. Please contact support." });
+                      this.setState({errorAlertText: "Credentials invalid. Please contact support." });
                       this.setState({showErrorAlert: true});
                       this.setState({errorAlertLinkText: ''});
                       this.setState({showInfoAlert: false});
@@ -398,7 +440,7 @@ class App extends Component {
                         this.setState({showSuccessAlert: true},()=>{
                         window.setTimeout(()=>{
                           this.setState({showSuccessAlert: false})
-                        },4000)
+                        },2000)
                       });
                           
                 }
@@ -411,8 +453,6 @@ class App extends Component {
                         
             });
               
-                this.setState({ showLoginSubmitButton: true })
-                this.setState({ showLoginSubmitLoadingButton: false })
                 
   }
   
@@ -443,8 +483,12 @@ class App extends Component {
   
     handleSignupSubmit = () => {
 
+        this.setState({ showErrorAlert: false })
+        this.setState({ showSuccessAlert: false })
+        this.setState({ showInfoAlert: false })
         this.setState({ showSignupSubmitButton: false })
         this.setState({ showSignupSubmitLoadingButton: true })
+        this.setState({ enableSignupFormInputs: false })
               
         const requestOptions = {
             method: 'POST',
@@ -454,25 +498,22 @@ class App extends Component {
         };
         fetch('https://scbm.amfdev.co.uk/api/signup/', requestOptions)
               .then(async response => {
+                
+                if (!response.ok) {
+                   //throw Error(response.statusText);
+                    this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                    this.setState({errorAlertLink: ''});
+                     this.setState({errorAlertLinkText: ''});
+                    this.setState({showErrorAlert: true}); 
+                    this.setState({showErrorAlert: true});
+            
+                }
+                
                 const jsonResponse = await response.json();
                 console.log(jsonResponse);
                 // check for error response
-                if (jsonResponse.signupResult === "error" ) {
-                    // get error message from body or default to response status
-                    //const error = (commenterData && commenterData.message) || response.status;
-                    //await console.log(jsonResponse.errorMessage);
-                    //return Promise.reject(jsonResponse.errorMessage);
-                  
-                      this.setState({errorAlertText: 'Something went wrong. Are you sure that\'s a working SC login?'});
-                      this.setState({errorAlertLinkText: ''});
-                      this.setState({showInfoAlert: false});
-                      this.setState({showSuccessAlert: false});
-                      this.setState({showErrorAlert: true});
-                      
-                      this.setState({ showSignupSubmitButton: true });
-                      this.setState({ showSignupSubmitLoadingButton: false });
                     
-                } else if (jsonResponse.signupResult === "success" ) {
+                if (jsonResponse.signupSuccess) {
                   
                         this.setState({showErrorAlert: false});
                         this.setState({showSignupForm: false});
@@ -480,7 +521,7 @@ class App extends Component {
                         this.setState({showLogoutSubmitButton: true});
     
                         this.setState({showLoggedInInfo: true});
-                         this.setState({loggedInInfoText: "Logged in as " + jsonResponse.userData.scUsername});
+                        this.setState({loggedInInfoText: "Logged in as " + jsonResponse.userData.scUsername});
                         this.setState({showLogoutSubmitButton: true});
                         
                         this.setState({showInfoAlert: false});
@@ -488,12 +529,36 @@ class App extends Component {
                          
                         this.setState({successAlertText: "You're now logged in!" });
                     
-                          this.setState({showSuccessAlert: true},()=>{
+                          this.setState({showSuccessAlert: true}, () => {
                           window.setTimeout(()=>{
                             this.setState({showSuccessAlert: false})
                           },4000)
                         });
                           
+                } else if (!jsonResponse.signupSuccess ) {
+                  
+                        if (jsonResponse.scCookiesValid === false) {
+                          
+                              this.setState({showLoginForm: false});
+                              this.setState({errorAlertText: "Credentials invalid. Please contact support." });
+                              this.setState({errorAlertLinkText: ''})
+                              this.setState({showErrorAlert: true});
+                              
+                        } else {
+                            
+                            this.setState({errorAlertText: 'Something went wrong. Are you sure those details are correct?'});
+                            this.setState({errorAlertLinkText: ''})
+                            this.setState({showInfoAlert: false});
+                            this.setState({showSuccessAlert: false});
+                            this.setState({showErrorAlert: true});
+                            
+                            this.setState({ showSignupSubmitButton: true });
+                            this.setState({ showSignupSubmitLoadingButton: false });
+                            
+                            this.setState({ enableSignupFormInputs: true })
+                      
+                        }
+
                 }
             
         
@@ -551,38 +616,94 @@ class App extends Component {
     this.setState({ showSearchSubmitButton: false })
     this.setState({ showSearchSubmitLoadingButton: true })
     this.setState({ enableSearchInput: false })
+    this.setState({ showErrorAlert: false })
+    this.setState({ showSuccessAlert: false })
+    this.setState({ showInfoAlert: false })
     
-    fetch('https://scbm.amfdev.co.uk/api/commenters/?searchUrl='+encodeURI((this.state.searchUrl)))
+      var myHeaders = new Headers();
+        myHeaders.set('Accept', 'application/json');
+        myHeaders.set('Content-Type', 'application/json');
+        //myHeaders.set('Authorization', 'Token token=' + String(token));
+        myHeaders.set('Cache-Control', 'no-cache');
+        myHeaders.set('Pragma', 'no-cache');
+        myHeaders.set('Expires', '0');
+    
+    fetch('https://scbm.amfdev.co.uk/api/commenters/?searchUrl='+encodeURI((this.state.searchUrl)), {
+            method: 'GET',
+            headers: myHeaders
+        })
     .then(async response => {
+      
+            if (!response.ok) {
+               //throw Error(response.statusText);
+                this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                this.setState({showErrorAlert: true});
+                
+                this.setState({ showSearchSubmitButton: true })
+                this.setState({ showSearchSubmitLoadingButton: false })
+            }
             //console.log(response);
             const jsonResponse = await response.json();
-
-            // check for error response
-            if (jsonResponse.errorMessage) {
-                // get error message from body or default to response status
-                //const error = (commenterData && commenterData.message) || response.status;
-                console.log(jsonResponse.errorMessage);
-                return Promise.reject(jsonResponse.errorMessage);
+            console.log(jsonResponse);
                 
-            } else {
-              
-              this.setState({ commenterData: jsonResponse })
-              this.setState({ showCommentersTable: true })
-              document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
-
-              this.setState({successAlertText: "Found " + jsonResponse.length + ' commenters.'});
-              
-                this.setState({showSuccessAlert: true},()=>{
-                window.setTimeout(()=>{
-                  this.setState({showSuccessAlert: false})
-                },4000)
+            if (jsonResponse.success) {
+                  
+                this.setState({ commenterData: jsonResponse.commenterData })
+                this.setState({ showCommentersTable: true })
+                document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
+  
+                this.setState({successAlertText: "Found " + jsonResponse.commenterData.length + ' commenters.'});
+                
+                  this.setState({showSuccessAlert: true},()=>{
+                  window.setTimeout(()=>{
+                    this.setState({showSuccessAlert: false})
+                  },4000)
+                  
               });
-              
+                
                   this.setState({ enableSearchInput: true })
                   this.setState({ showSearchSubmitButton: true })
                   this.setState({ showSearchSubmitLoadingButton: false })
                   
+            
+            } else if (!jsonResponse.success) {
+              
+                  if (jsonResponse.commenterData === "no commenters") {
+                    
+                        this.setState({ showCommentersTable: true })
+                        document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
+          
+                        this.setState({successAlertText: "But there were no commenters found for this track."});
+                        
+                          this.setState({showSuccessAlert: true},()=>{
+                          window.setTimeout(()=>{
+                            this.setState({showSuccessAlert: false})
+                          },4000)
+                          
+                      });
+                      
+                          this.setState({ enableSearchInput: true })
+                          this.setState({ showSearchSubmitButton: true })
+                          this.setState({ showSearchSubmitLoadingButton: false })
+                          
+                  } else {
+                    
+                        // get error message from body or default to response status
+                         //const error = (commenterData && commenterData.message) || response.status;
+                         //console.log(jsonResponse.errorMessage);
+                         //return Promise.reject(jsonResponse.errorMessage);
+                         this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                         this.setState({showErrorAlert: true});
+                         
+                         this.setState({ showSearchSubmitButton: true })
+                         this.setState({ showSearchSubmitLoadingButton: false })
+                         this.setState({ enableSearchInput: true })
+  
+                  }
+           
+                  
             }
+            
         })
         .catch(error => {
             //this.setState({ errorMessage: error.toString() });
@@ -650,7 +771,7 @@ class App extends Component {
   
   handleMessageChange = (changeEvent) => {
       
-      console.log(changeEvent.target.value);
+      //console.log(changeEvent.target.value);
     
         this.setState({message: changeEvent.target.value}, () => {
         
@@ -674,6 +795,9 @@ class App extends Component {
     this.setState({ showMessageSubmitButton: false })
     this.setState({ enableMessageInput: false })
     this.setState({ showMessageSubmitLoadingButton: true })
+    
+    this.setState({ enableSearchSubmitButton: false})
+    this.setState({ enableSearchInput: false})
 
     const requestOptions = {
         method: 'POST',
@@ -684,6 +808,13 @@ class App extends Component {
     };
     fetch('https://scbm.amfdev.co.uk/api/message/', requestOptions)
           .then(async response => {
+            
+            if (!response.ok) {
+               //throw Error(response.statusText);
+                this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                this.setState({showErrorAlert: true}); 
+            }
+                
             const jsonResponse = await response.json();
             console.log(jsonResponse);
             // check for error response
@@ -733,6 +864,8 @@ class App extends Component {
               this.setState({ showMessageSubmitLoadingButton: false })
                this.setState({ enableMessageInput: true })
     
+              this.setState({ enableSearchSubmitButton: true})
+              this.setState({ enableSearchInput: true})
                       
             }
         })
@@ -741,7 +874,11 @@ class App extends Component {
             console.error('There was an error!', error);
             this.setState({ showMessageSubmitButton: true })
             this.setState({ showMessageSubmitLoadingButton: false })
-            
+            this.setState({ enableMessageInput: true })
+             
+            this.setState({ enableSearchSubmitButton: true})
+            this.setState({ enableSearchInput: true})
+              
             this.setState({errorAlertText: "Something went wrong."});
               
               
@@ -807,7 +944,7 @@ class App extends Component {
                         window.setTimeout(()=>{
                           this.setState({showSuccessAlert: false})
                           this.doReset();
-                        },2000)
+                        },1500)
                       });
                           
                     //this.setState({showLoginForm: true});

@@ -1,0 +1,189 @@
+[
+  {
+    "name": "_gid",
+    "value": "GA1.2.369562852.1594461795",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1594548194,
+    "size": 30,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "consentUUID",
+    "value": "3bffa379-5fbd-450d-9722-9466e30e0150",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1625997793.316402,
+    "size": 47,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "soundcloud_session_hint",
+    "value": "1",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": -1,
+    "size": 24,
+    "httpOnly": false,
+    "secure": true,
+    "session": true
+  },
+  {
+    "name": "ab.storage.deviceId.2c0ba43c-af74-488e-9dfd-b87280e02a92",
+    "value": "%7B%22g%22%3A%2286587d28-f331-340f-a2e1-d9af9602218f%22%2C%22c%22%3A1594461790284%2C%22l%22%3A1594461790284%7D",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1626018730,
+    "size": 166,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "resolvedID",
+    "value": "true",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1625997792.120081,
+    "size": 14,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "ja",
+    "value": "32",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1597053789,
+    "size": 4,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "oauth_token",
+    "value": "2-291538-493925409-sWyqNfJSmZYrDV",
+    "domain": "soundcloud.com",
+    "path": "/",
+    "expires": 1625997788,
+    "size": 44,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "legacy_clean",
+    "value": "1",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1909821788.82434,
+    "size": 13,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.2.1156198868.1594461795",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1657533794,
+    "size": 30,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "ab.storage.sessionId.2c0ba43c-af74-488e-9dfd-b87280e02a92",
+    "value": "%7B%22g%22%3A%226f18ee26-4964-f52f-608d-e01a729b9eb6%22%2C%22e%22%3A1594463591772%2C%22c%22%3A1594461790264%2C%22l%22%3A1594461791772%7D",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1626018731,
+    "size": 193,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "cookie_consent",
+    "value": "1",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": -1,
+    "size": 15,
+    "httpOnly": false,
+    "secure": false,
+    "session": true
+  },
+  {
+    "name": "euconsent",
+    "value": "BO2X4-2O2X4-2AGABBENDS-AAAAxJ7_______9______9uz_Ov_v_f__33e8__9v_l_7_-___u_-33d4-_1vf99yfm1-7ftr3tp_87ues2_Xur__79__3z3_9pxP78k89r7337Mw_v-_v-b7JCPN_Y3v-8K4AAAA",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1625997793.328437,
+    "size": 169,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "authId",
+    "value": "9d36e11dfa790c778ecc264e5598d774ad3f3ae7",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": -1,
+    "size": 46,
+    "httpOnly": false,
+    "secure": true,
+    "session": true
+  },
+  {
+    "name": "connect_session",
+    "value": "1",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": -1,
+    "size": 16,
+    "httpOnly": false,
+    "secure": true,
+    "session": true
+  },
+  {
+    "name": "ab.storage.userId.2c0ba43c-af74-488e-9dfd-b87280e02a92",
+    "value": "%7B%22g%22%3A%22c291bmRjbG91ZDp1c2Vyczo0OTM5MjU0MDk%3D%22%2C%22c%22%3A1594461790252%2C%22l%22%3A1594461790252%7D",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1626018730,
+    "size": 166,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "sc_anonymous_id",
+    "value": "362836-400196-612174-974590",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1909821788,
+    "size": 42,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "sclocale",
+    "value": "en",
+    "domain": ".soundcloud.com",
+    "path": "/",
+    "expires": 1625997779.390621,
+    "size": 10,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  }
+]

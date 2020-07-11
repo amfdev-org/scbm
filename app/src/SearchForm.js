@@ -22,16 +22,15 @@ class SearchForm extends Component {
     
     render() {
         
-        const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
+        //const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
          
         const showSearchSubmitButton = this.props.showSearchSubmitButton ? {display: 'block'} : {display: 'none'};
         const showSearchSubmitLoadingButton = this.props.showSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
     
         
         return (
-          <Form inline onSubmit={this.handleSubmit} style={showSearchForm}>
+          <Form inline onSubmit={this.handleSubmit}>
             <Form.Group>
-                <Form.Label>Soundcloud Song URL</Form.Label>
                 <Form.Control
                     data-tip="Must include http or https"
                     type="text"

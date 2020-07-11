@@ -69,15 +69,16 @@ let checkCommenterMessageStatus = (commentersArray) => {
     for (var i = 0 ; i < commentersArrayLength; i++) {
         
             let songUrl = commentersArray[i].songUrl;
-            let profileUrlToFind = commentersArray[i].profileUrl;
+            let profileUrl = commentersArray[i].profileUrl;
+            let profileName = commentersArray[i].profileName;
             
-            const message = Message.findOne({ where: { profileUrl: profileUrlToFind, messageResult: "Success"} })
+            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"} })
             .then(message => {
     
                 if (message) {
-                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrlToFind, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrl, profileName: profileName, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
                 } else {
-                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrlToFind, messaged : "Never"});
+                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
                 }
                  //console.log(compositeArray);
                  if (compositeArray.length == commentersArrayLength) {

@@ -19,7 +19,12 @@ const randomWait7 = Math.floor((Math.random() * 1000) + 17);
 const randomWait8 = Math.floor((Math.random() * 1000) + 18);
 const randomWaitLong = Math.floor((Math.random() * 1000) + 1567);
 const randomWaitVeryLong = Math.floor((Math.random() * 1000) + 3567);
-     
+
+const randomWaitShort1 = Math.floor((Math.random() * 100) + 3);
+const randomWaitShort2 = Math.floor((Math.random() * 100) + 4);
+const randomWaitShort3 = Math.floor((Math.random() * 100) + 9);
+const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
+
     async function autoScrollDown(page) {
       await page.evaluate(async () => {
           await new Promise((resolve, reject) => {
@@ -49,25 +54,39 @@ const randomWaitVeryLong = Math.floor((Math.random() * 1000) + 3567);
     async function validateScCookies(scCookies) {
                 
             try {
-                const cookiesString = await fs.readFile(scCookies);
+                const cookiesString = await fs.readFile(userDataPath + '/' + scCookies);
             } catch(error) {
-                throw new Error(scCookies +  " not found");
+                throw new Error(userDataPath + '/' + scCookies +  " not found");
             }
             
-            const cookiesString = await fs.readFile(scCookies);
+            const cookiesString = await fs.readFile(userDataPath + '/' + scCookies);
             
             try {
                 const cookies = await JSON.parse(cookiesString);
             } catch(error) {
-                throw new Error("Can not JSON.parse " + scCookies);
+                throw new Error("Can not JSON.parse " + userDataPath + '/' + scCookies);
             }
             
             const cookies = await JSON.parse(cookiesString);
           
             //console.log(cookies);
             await moment.locale('gb');
-            
+            cookieNameArr = [];
             //let cookiesValid = false;
+            for(const cookie of cookies) {
+              
+              cookieNameArr.push(cookie.name);
+              
+            }
+            
+            if (!cookieNameArr.includes('connect_session')) {
+               throw new Error("Soundcloud connect_session not found");
+            }
+            
+            if (!cookieNameArr.includes('oauth_token')) {
+               throw new Error("Soundcloud oauth_token not found");
+            }
+            
             for(const cookie of cookies) {
 
                  let cookieExpiry = await moment.unix(cookie.expires);

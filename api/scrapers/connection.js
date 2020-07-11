@@ -106,7 +106,7 @@ stealth.enabledEvasions.delete('user-agent-override'); // Remove this specific s
             args,
             headless: true,
             ignoreHTTPSErrors: true,
-            slowMo: 200,
+            slowMo: 50,
             defaultViewport: device.viewport
         };
         

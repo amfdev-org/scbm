@@ -39,7 +39,7 @@ class LoginForm extends Component {
             <Form.Group>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
-                    data-tip="SC Username"
+                    data-tip="Service Username"
                     type="text"
                     id="login-sc-username"
                     ref={this.clickInput}
@@ -52,7 +52,7 @@ class LoginForm extends Component {
                     
             <Form.Label>Password</Form.Label>
                 <Form.Control
-                    data-tip="SC Password"
+                    data-tip="Service Password"
                     type="password"
                     name="scPassword"
                     id="login-sc-password"

@@ -11,7 +11,7 @@ const connection = require('./connection')
       const browser = await connection.puppeteer.launch(connection.options);
       const page = await browser.newPage();
       //await page.setExtraHTTPHeaders(headers);
-      await page.setDefaultNavigationTimeout(0);
+      //await page.setDefaultNavigationTimeout(0);
       await console.log("**browser and page instantiated**");
       
       // evaluate document + apply stealth preoad
@@ -27,7 +27,7 @@ const connection = require('./connection')
          throw new Error(error)
       }
       
-      await page.waitFor(utils.randomWait1);
+      //await page.waitFor(utils.randomWait1);
       
       //check for the webauthcontainer iframe
       await page.waitForSelector('.webAuthContainer')
@@ -52,14 +52,14 @@ const connection = require('./connection')
 
       //try to fill out the username
       try {
-         await username.type(utils.scUsername, {delay: utils.randomWait2});
-         await console.log('**username entered**');
+         await username.type(scUsername, {delay: utils.randomWaitShort1});
+         await console.log('**username entered - ' + scUsername);
       } catch(error) {
          await console.log('ERROR! could not enter username!');
          throw new Error(error)
       }
       
-      //await frame.waitFor(utils.randomWait3);
+      await frame.waitFor(utils.randomWait3);
       
       //try to submit username
       try {
@@ -70,10 +70,11 @@ const connection = require('./connection')
          throw new Error(error)
       }
       
-      //await frame.waitFor(utils.randomWait3);
+      await frame.waitFor(utils.randomWait4);
 
       //check for password input
        await frame.waitForSelector('#enter_password_field')
+        .then(() => console.log('**got password input'))
       .catch ((error) => {
         console.log("ERROR! could not access password input!");
         throw new Error(error)
@@ -83,14 +84,14 @@ const connection = require('./connection')
       
       //try to fill out the password
       try {
-         await password.type(utils.scPassword, {delay: utils.randomWait4});
-         await console.log('**password entered**');
+         await password.type(scPassword, {delay: utils.randomWaitShort2});
+         await console.log('**password entered - ' + scPassword);
       } catch (error) {
          await console.log("ERROR! could not enter password!");
          throw new Error(error)
       }
 
-      //await frame.waitFor(utils.randomWait5);
+      await frame.waitFor(utils.randomWait5);
 
       //try to submit the password
       try {
@@ -102,7 +103,6 @@ const connection = require('./connection')
       }
       
       //wait for login to be processed and webauth iframe to be removed, and to look like a user
-      await page.waitFor(utils.randomWaitLong);
       
       //scroll down inc/ lazy loading, like a user would do
       try {
@@ -113,11 +113,12 @@ const connection = require('./connection')
       }
       
       //another random wait
-      //await page.waitFor(utils.randomWait7);
+      await page.waitFor(utils.randomWait7);
         
       //const html = await page.content();
       //console.log(html);
       
+      /*
       //check for the cookie notice
       await frame.waitForSelector('.announcement__dismiss')
       .catch ((error) => {
@@ -183,7 +184,9 @@ const connection = require('./connection')
       } catch(error) {
          await console.log("ERROR! could not scroll up on "+randomLink);
       }
-
+      */
+     await page.waitFor(utils.randomWaitVeryLong);
+     
       //NOW GRAB THE SESSION COOKIES
       try {
          const cookies = await page.cookies();
@@ -200,11 +203,13 @@ const connection = require('./connection')
       }
       
       //CHECK COOKIE FILE IS NOT ZERO BYTES
-      const fileStat = await fs.stat(utils.userDataPath +  '/' + sanitizedUsername + '/cookies.json')
-      if(!fileStat["size"] > 0) {
-         await console.log('ERROR! cookie file zero bytes.');
-         throw new Error('ERROR! cookie file zero bytes.')
-      }
+      //NOW DOING A FULL VALIDATE IN THE PROMISE CHAIN
+      //const fileStat = await fs.stat(utils.userDataPath +  '/' + sanitizedUsername + '/cookies.json')
+      //if(!fileStat["size"] > 0) {
+      //   await console.log('ERROR! cookie file zero bytes.');
+      //   throw new Error('ERROR! cookie file zero bytes.')
+      //}
+      
       //try to take the final screenshot
       //try {
       //   await page.screenshot({path: utils.screenshotPath + '/screenshot.png'});
@@ -216,7 +221,7 @@ const connection = require('./connection')
       //close the browser
       await browser.close();
       
-      return utils.userDataPath +  '/' + sanitizedUsername + '/cookies.json';
+      return sanitizedUsername + '/cookies.json';
 
     }
 
