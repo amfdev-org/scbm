@@ -4,19 +4,19 @@ import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class SearchForm extends Component {
+class FollowersSearchForm extends Component {
     
   
     handleChange = changeEvent => {
           
         ReactTooltip.hide();
-        this.props.handleSearchChange(changeEvent)
+        this.props.handleFollowersSearchChange(changeEvent)
         
     }
     
     handleSubmit = () => {
 
-        this.props.handleSearchSubmit()
+        this.props.handleFollowersSearchSubmit()
 
     }
     
@@ -24,8 +24,8 @@ class SearchForm extends Component {
         
         //const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
          
-        const showSearchSubmitButton = this.props.showSearchSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showSearchSubmitLoadingButton = this.props.showSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+        const showFollowersSearchSubmitButton = this.props.showFollowersSearchSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showFollowersSearchSubmitLoadingButton = this.props.showFollowersSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
     
         
         return (
@@ -35,21 +35,21 @@ class SearchForm extends Component {
                     data-tip="Must include http or https"
                     type="text"
                     name="searchUrl"
-                    value={this.props.searchUrl}
-                    disabled={!this.props.enableSearchInput}
+                    value={this.props.followersSearchUrl}
+                    disabled={!this.props.enableFollowersSearchInput}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
     
             <Button
                 type="submit"
                 value="Submit"
-                disabled={!this.props.enableSearchSubmitButton}
+                disabled={!this.props.enableFollowersSearchSubmitButton}
                 onClick={e => {e.preventDefault(); this.handleSubmit()}}
-                style={showSearchSubmitButton}>
+                style={showFollowersSearchSubmitButton}>
                 Submit
             </Button>
             
-              <Button variant="primary" disabled style={showSearchSubmitLoadingButton}>
+              <Button variant="primary" disabled style={showFollowersSearchSubmitLoadingButton}>
                 <Spinner
                   as="span"
                   animation="grow"
@@ -69,4 +69,4 @@ class SearchForm extends Component {
 
 }
 
-export default SearchForm;
+export default FollowersSearchForm;

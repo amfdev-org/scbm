@@ -3,11 +3,17 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+//forms
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-import SearchForm from './SearchForm';
-import CommentersTable from './CommentersTable';
+
+import CommentersSearchForm from './CommentersSearchForm';
+import FollowersSearchForm from './FollowersSearchForm';
 import MessageForm from './MessageForm';
+
+//tables/grids
+import CommentersTable from './CommentersTable';
+import FollowersTable from './FollowersTable';
 
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
@@ -24,50 +30,58 @@ class App extends Component {
         /*commenterData: [ { songUrl: "https://soundcloud.com/fogcapture/to-my-roots", profileUrl: 'https://soundcloud.com/deceivingsounds', messaged: "message" },
                             { songUrl: "https://soundcloud.com/fogcapture/to-my-roots", profileUrl: "https://soundcloud.com/alvonmars", messaged: "message" },
                             { songUrl: "https://soundcloud.com/fogcapture/to-my-roots", profileUrl: "https://soundcloud.com/patrickxtaylor", messaged: "message" }],*/
-        //forms data
-        scUsername: '',
-        scPassword: '',
-        searchUrl : '',
-        commenterData : [],
-        selectedCommenters : [],
-        toggledClearRows: false,
-        message : 'Hi <<profileName>>,',
-        
-        //headings
-        loginHeaderText: 'Login',
-        loggedInInfoText: '',
-        showLoggedInInfo: false,
-        
-        //forms
-        showLoginForm: false,
-        showSearchForm: false,
-        showCommentersTable: false,
-        showMessageForm: false,
-        
-        //signup form
+  
+        //signup
         showSignupSubmitButton: true,
         enableSignupSubmitButton: true,
         showSignupSubmitLoadingButton: false,
         enableSignupFormInputs: true,
         
-        //login form buttons
+        //login
+        scUsername: '',
+        scPassword: '',
+        showLoginForm: false,
         showLoginSubmitButton: true,
         showLogoutSubmitButton: false,
         enableLoginSubmitButton: true,
         showLoginSubmitLoadingButton: false,
+        loginHeaderText: 'Login',
+        loggedInInfoText: '',
+        showLoggedInInfo: false,
         
-        //search form buttons and input
-        showSearchSubmitButton: true,
-        enableSearchSubmitButton: false,
-        showSearchSubmitLoadingButton: false,
-        enableSearchInput: true,
+        //commenters
+        commentersSearchUrl : '',
+        commenterData : [],
+        selectedCommenters : [],
+        toggledClearRows: false,
+        showCommentersSearchSubmitButton: true,
+        enableCommentersSearchSubmitButton: false,
+        showCommentersSearchSubmitLoadingButton: false,
+        enableCommentersSearchInput: true,
+        showCommentersSearchForm: false,
+        showCommentersTable: false,
         
-        //message form buttons and input
+        //messages
+        showMessageForm: false,
+        message : 'Hi <<profileName>>,',
         enableMessageSubmitButton: false,
         showMessageSubmitButton: true,
         showMessageSubmitLoadingButton: false,
         enableMessageInput: true,
-    
+     
+        //followers
+        followersSearchUrl : '',
+        followerData : [],
+        selectedFollowers : [],
+        toggledClearRows: false,
+        showFollowersSearchSubmitButton: true,
+        enableFollowersSearchSubmitButton: false,
+        showFollowersSearchSubmitLoadingButton: false,
+        enableFollowersSearchInput: true,
+        showFollowersSearchForm: false,
+        showFollowersTable: false,
+        
+  
         //alerts
         showErrorAlert: false,
         showSuccessAlert: false,
@@ -159,7 +173,7 @@ class App extends Component {
               
                 if (jsonResponse.authResult === true) {
                     
-                    this.setState({showSearchForm: true});
+                    this.setState({showCommentersSearchForm: true});
                     
                     this.setState({showLoggedInInfo: true});
                     this.setState({showLogoutSubmitButton: true});
@@ -217,7 +231,7 @@ class App extends Component {
     
     const showSignupForm = this.state.showSignupForm ? {display: 'block'} : {display: 'none'};
     
-    const showSearchForm = this.state.showSearchForm ? {display: 'block'} : {display: 'none'};
+    const showCommentersSearchForm = this.state.showCommentersSearchForm ? {display: 'block'} : {display: 'none'};
     //const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
     const showMessageForm = this.state.showMessageForm ? {display: 'block'} : {display: 'none'};
 
@@ -256,6 +270,7 @@ class App extends Component {
 
 
             <h3 className="main" style={showSignupForm}>Sign Up</h3>
+            
             <SignupForm className="main"
               showSignupForm={this.state.showSignupForm}
               scUsername={this.state.scUsername}
@@ -269,6 +284,7 @@ class App extends Component {
               showSignupSubmitLoadingButton={this.state.showSignupSubmitLoadingButton} />
               
             <h3 className="main" style={showLoginForm}>Login</h3>
+            
             <LoginForm className="main"
               checkAutofill={this.checkAutofill}
               showLoginForm={this.state.showLoginForm}
@@ -281,7 +297,7 @@ class App extends Component {
               showLoginSubmitButton={this.state.showLoginSubmitButton}
               showLoginSubmitLoadingButton={this.state.showLoginSubmitLoadingButton} />
                     
-            <Accordion className="search-accordion" style={showSearchForm}>
+            <Accordion className="search-accordion" style={showCommentersSearchForm}>
               <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
                   Commenters
@@ -289,19 +305,19 @@ class App extends Component {
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
                       <h6 className="main">Song URL</h6>
-                        <SearchForm
+                        <CommentersSearchForm
                           className="main"
-                          searchUrl={this.state.searchUrl}
-                          handleSearchChange={this.handleSearchChange}
-                          handleSearchSubmit={this.handleSearchSubmit}
-                          enableSearchInput={this.state.enableSearchInput}
-                          enableSearchSubmitButton={this.state.enableSearchSubmitButton}
-                          showSearchSubmitButton={this.state.showSearchSubmitButton}
-                          showSearchSubmitLoadingButton={this.state.showSearchSubmitLoadingButton} />
+                          searchUrl={this.state.commentersSearchUrl}
+                          handleCommentersSearchChange={this.handleCommentersSearchChange}
+                          handleCommentersSearchSubmit={this.handleCommentersSearchSubmit}
+                          enableCommentersSearchInput={this.state.enableCommentersSearchInput}
+                          enableCommentersSearchSubmitButton={this.state.enableCommentersSearchSubmitButton}
+                          showCommentersSearchSubmitButton={this.state.showCommentersSearchSubmitButton}
+                          showCommentersSearchSubmitLoadingButton={this.state.showCommentersSearchSubmitLoadingButton} />
                   
                        {/*<h6 style={showCommentersTable} className="commenterDataTable">Results</h6>*/}
             
-                      <CommentersTable
+                      <CommentersTable className="commentersDataTable"
                           commenterData={this.state.commenterData}
                           showCommentersTable={this.state.showCommentersTable}
                           handleCommentersChange={this.handleCommentersChange}
@@ -334,7 +350,44 @@ class App extends Component {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="1">
                   <Card.Body>
-                  nothing
+                        <h6 className="main">Profile URL</h6>
+                        
+                        <FollowersSearchForm
+                          className="main"
+                          searchUrl={this.state.searchUrl}
+                          handleFollowersSearchChange={this.handleFollowersSearchChange}
+                          handleFollowersSearchSubmit={this.handleFollowersSearchSubmit}
+                          enableFollowersSearchInput={this.state.enableFollowersSearchInput}
+                          enableFollowersSearchSubmitButton={this.state.enableFollowersSearchSubmitButton}
+                          showFollowersSearchSubmitButton={this.state.showFollowersSearchSubmitButton}
+                          showFollowersSearchSubmitLoadingButton={this.state.showFollowersSearchSubmitLoadingButton} />
+                  
+                       {/*<h6 style={showFollowersTable} className="followerDataTable">Results</h6>*/}
+            
+                      <FollowersTable className="followersDataTable"
+                          followerData={this.state.followerData}
+                          showFollowersTable={this.state.showFollowersTable}
+                          handleFollowersChange={this.handleFollowersChange}
+                          handleFollowersSubmit={this.handleFollowersSubmit}
+                          showFollowersSubmitButton={this.state.showFollowersSubmitButton}
+                          showFollowersSubmitLoadingButton={this.state.showFollowersSubmitLoadingButton}
+                          selectedFollowers={this.state.selectedFollowers}
+                          toggledClearRows={this.state.toggledClearRows}
+                          />
+                      
+                      <h6 style={showMessageForm} className="messageForm">Message</h6>
+                      
+                      <MessageForm
+                          message={this.state.message}
+                          showMessageForm={this.state.showMessageForm}
+                          handleMessageChange={this.handleMessageChange}
+                          handleMessageSubmit={this.handleMessageSubmit}
+                          enableMessageInput={this.state.enableMessageInput}
+                          enableMessageSubmitButton={this.state.enableMessageSubmitButton}
+                          showMessageSubmitButton = {this.state.showMessageSubmitButton}
+                          showMessageSubmitLoadingButton = {this.state.showMessageSubmitLoadingButton}
+                          />
+                          
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
@@ -425,7 +478,7 @@ class App extends Component {
                   
                       this.setState({showErrorAlert: false});
                       this.setState({showLoginForm: false});
-                      this.setState({showSearchForm: true});
+                      this.setState({showCommentersSearchForm: true});
                       this.setState({showLogoutSubmitButton: true});
   
                       this.setState({showLoggedInInfo: true});
@@ -517,7 +570,7 @@ class App extends Component {
                   
                         this.setState({showErrorAlert: false});
                         this.setState({showSignupForm: false});
-                        this.setState({showSearchForm: true});
+                        this.setState({showCommentersSearchForm: true});
                         this.setState({showLogoutSubmitButton: true});
     
                         this.setState({showLoggedInInfo: true});
@@ -591,17 +644,17 @@ class App extends Component {
   
   }
   
-  handleSearchChange = event => {
+  handleCommentersSearchChange = event => {
      
      const { name, value } = event.target
   
-      this.setState({[name]: value, searchUrl: value}, () => {   
-          if (this.state.searchUrl.length > 10 && this.state.searchUrl.includes("http")) {
-            this.setState({enableSearchSubmitButton: true}, () => {   
+      this.setState({[name]: value, commentersSearchUrl: value}, () => {   
+          if (this.state.commentersSearchUrl.length > 10 && this.state.commentersSearchUrl.includes("http")) {
+            this.setState({enableCommentersSearchSubmitButton: true}, () => {   
               //console.log(this.state);
             })
           } else {
-            this.setState({enableSearchSubmitButton: false}, () => {   
+            this.setState({enableCommentersSearchSubmitButton: false}, () => {   
               //console.log(this.state);
             })
           }
@@ -610,12 +663,12 @@ class App extends Component {
   }
     
     
-  handleSearchSubmit = () => {
+  handleCommentersSearchSubmit = () => {
   
     this.setState({ showCommentersTable: false })
-    this.setState({ showSearchSubmitButton: false })
-    this.setState({ showSearchSubmitLoadingButton: true })
-    this.setState({ enableSearchInput: false })
+    this.setState({ showCommentersSearchSubmitButton: false })
+    this.setState({ showCommentersSearchSubmitLoadingButton: true })
+    this.setState({ enableCommentersSearchInput: false })
     this.setState({ showErrorAlert: false })
     this.setState({ showSuccessAlert: false })
     this.setState({ showInfoAlert: false })
@@ -628,7 +681,7 @@ class App extends Component {
         myHeaders.set('Pragma', 'no-cache');
         myHeaders.set('Expires', '0');
     
-    fetch('https://scbm.amfdev.co.uk/api/commenters/?searchUrl='+encodeURI((this.state.searchUrl)), {
+    fetch('https://scbm.amfdev.co.uk/api/commenters/?commentersSearchUrl='+encodeURI((this.state.commentersSearchUrl)), {
             method: 'GET',
             headers: myHeaders
         })
@@ -639,8 +692,8 @@ class App extends Component {
                 this.setState({errorAlertText: "Something went wrong. Please try again later."});
                 this.setState({showErrorAlert: true});
                 
-                this.setState({ showSearchSubmitButton: true })
-                this.setState({ showSearchSubmitLoadingButton: false })
+                this.setState({ showCommentersSearchSubmitButton: true })
+                this.setState({ showCommentersSearchSubmitLoadingButton: false })
             }
             //console.log(response);
             const jsonResponse = await response.json();
@@ -661,9 +714,9 @@ class App extends Component {
                   
               });
                 
-                  this.setState({ enableSearchInput: true })
-                  this.setState({ showSearchSubmitButton: true })
-                  this.setState({ showSearchSubmitLoadingButton: false })
+                  this.setState({ enableCommentersSearchInput: true })
+                  this.setState({ showCommentersSearchSubmitButton: true })
+                  this.setState({ showCommentersSearchSubmitLoadingButton: false })
                   
             
             } else if (!jsonResponse.success) {
@@ -682,9 +735,9 @@ class App extends Component {
                           
                       });
                       
-                          this.setState({ enableSearchInput: true })
-                          this.setState({ showSearchSubmitButton: true })
-                          this.setState({ showSearchSubmitLoadingButton: false })
+                          this.setState({ enableCommentersSearchInput: true })
+                          this.setState({ showCommentersSearchSubmitButton: true })
+                          this.setState({ showCommentersSearchSubmitLoadingButton: false })
                           
                   } else {
                     
@@ -695,9 +748,9 @@ class App extends Component {
                          this.setState({errorAlertText: "Something went wrong. Please try again later."});
                          this.setState({showErrorAlert: true});
                          
-                         this.setState({ showSearchSubmitButton: true })
-                         this.setState({ showSearchSubmitLoadingButton: false })
-                         this.setState({ enableSearchInput: true })
+                         this.setState({ showCommentersSearchSubmitButton: true })
+                         this.setState({ showCommentersSearchSubmitLoadingButton: false })
+                         this.setState({ enableCommentersSearchInput: true })
   
                   }
            
@@ -709,9 +762,9 @@ class App extends Component {
             //this.setState({ errorMessage: error.toString() });
             console.error('There was an error!', error);
             
-             this.setState({ enableSearchInput: true })
-            this.setState({ showSearchSubmitButton: true })
-            this.setState({ showSearchSubmitLoadingButton: false })
+             this.setState({ enableCommentersSearchInput: true })
+            this.setState({ showCommentersSearchSubmitButton: true })
+            this.setState({ showCommentersSearchSubmitLoadingButton: false })
             
               this.setState({showErrorAlert: true},()=>{
               window.setTimeout(()=>{
@@ -737,6 +790,163 @@ class App extends Component {
         
             this.setState({ commenterData: commenterData })
             this.setState({ showCommentersTable: true })
+            
+            this.setState({ showSearchSubmitButton: true })
+            this.setState({ showSearchSubmitLoadingButton: false })*/
+            
+ 
+  }
+  
+  
+  
+  handleFollowersSearchChange = event => {
+    
+    console.log(event);
+     
+     const { name, value } = event.target
+  
+      this.setState({[name]: value, followersSearchUrl: value}, () => {   
+          if (this.state.followersSearchUrl.length > 10 && this.state.followersSearchUrl.includes("http")) {
+            this.setState({enableFollowersSearchSubmitButton: true}, () => {   
+              //console.log(this.state);
+            })
+          } else {
+            this.setState({enableFollowersSearchSubmitButton: false}, () => {   
+              //console.log(this.state);
+            })
+          }
+      })
+        
+  }
+    
+    
+  handleFollowersSearchSubmit = () => {
+  
+    this.setState({ showFollowersTable: false })
+    this.setState({ showFollowersSearchSubmitButton: false })
+    this.setState({ showFollowersSearchSubmitLoadingButton: true })
+    this.setState({ enableFollowersSearchInput: false })
+    this.setState({ showErrorAlert: false })
+    this.setState({ showSuccessAlert: false })
+    this.setState({ showInfoAlert: false })
+    
+      var myHeaders = new Headers();
+        myHeaders.set('Accept', 'application/json');
+        myHeaders.set('Content-Type', 'application/json');
+        //myHeaders.set('Authorization', 'Token token=' + String(token));
+        myHeaders.set('Cache-Control', 'no-cache');
+        myHeaders.set('Pragma', 'no-cache');
+        myHeaders.set('Expires', '0');
+    
+    fetch('https://scbm.amfdev.co.uk/api/followers/?followersSearchUrl='+encodeURI((this.state.followersSearchUrl)), {
+            method: 'GET',
+            headers: myHeaders
+        })
+    .then(async response => {
+      
+            if (!response.ok) {
+               //throw Error(response.statusText);
+                this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                this.setState({showErrorAlert: true});
+                
+                this.setState({ showFollowersSearchSubmitButton: true })
+                this.setState({ showFollowersSearchSubmitLoadingButton: false })
+            }
+            //console.log(response);
+            const jsonResponse = await response.json();
+            console.log(jsonResponse);
+                
+            if (jsonResponse.success) {
+                  
+                this.setState({ followerData: jsonResponse.followerData })
+                this.setState({ showFollowersTable: true })
+                document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
+  
+                this.setState({successAlertText: "Found " + jsonResponse.followerData.length + ' followers.'});
+                
+                  this.setState({showSuccessAlert: true},()=>{
+                  window.setTimeout(()=>{
+                    this.setState({showSuccessAlert: false})
+                  },4000)
+                  
+              });
+                
+                  this.setState({ enableFollowersSearchInput: true })
+                  this.setState({ showFollowersSearchSubmitButton: true })
+                  this.setState({ showFollowersSearchSubmitLoadingButton: false })
+                  
+            
+            } else if (!jsonResponse.success) {
+              
+                  if (jsonResponse.followerData === "no followers") {
+                    
+                        this.setState({ showFollowersTable: true })
+                        document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
+          
+                        this.setState({successAlertText: "But there were no followers found for this track."});
+                        
+                          this.setState({showSuccessAlert: true},()=>{
+                          window.setTimeout(()=>{
+                            this.setState({showSuccessAlert: false})
+                          },4000)
+                          
+                      });
+                      
+                          this.setState({ enableFollowersSearchInput: true })
+                          this.setState({ showFollowersSearchSubmitButton: true })
+                          this.setState({ showFollowersSearchSubmitLoadingButton: false })
+                          
+                  } else {
+                    
+                        // get error message from body or default to response status
+                         //const error = (followerData && followerData.message) || response.status;
+                         //console.log(jsonResponse.errorMessage);
+                         //return Promise.reject(jsonResponse.errorMessage);
+                         this.setState({errorAlertText: "Something went wrong. Please try again later."});
+                         this.setState({showErrorAlert: true});
+                         
+                         this.setState({ showFollowersSearchSubmitButton: true })
+                         this.setState({ showFollowersSearchSubmitLoadingButton: false })
+                         this.setState({ enableFollowersSearchInput: true })
+  
+                  }
+           
+                  
+            }
+            
+        })
+        .catch(error => {
+            //this.setState({ errorMessage: error.toString() });
+            console.error('There was an error!', error);
+            
+             this.setState({ enableFollowersSearchInput: true })
+            this.setState({ showFollowersSearchSubmitButton: true })
+            this.setState({ showFollowersSearchSubmitLoadingButton: false })
+            
+              this.setState({showErrorAlert: true},()=>{
+              window.setTimeout(()=>{
+                this.setState({showErrorAlert: false})
+              },4000)
+            });
+              
+        });
+      
+    
+      /*
+        const followerData = [
+            {profileUrl: "https://soundcloud.com/cloaked-music", messagedBefore: "No"},
+            {profileUrl: "https://srewrewr.com", messagedBefore: "No"},
+            {profileUrl: "https://soundcloud.com/patrickxtaylor", messagedBefore: "Yes"},
+            {profileUrl: "https://soundcloud.com/alvonmars", messagedBefore: "No"},
+            {profileUrl: "https://soundcloud.com/upukrecords", messagedBefore: "No"},
+            {profileUrl: "https://soundcloud.com/user-355158966-477119345", messagedBefore: "No"},
+            {profileUrl: "https://soundcloud.com/deftsoulmusique1995", messagedBefore: "No"},
+            {profileUrl: "https://soundcloud.com/ocmoon", messagedBefore: "Yes"}
+            ];
+        
+        
+            this.setState({ followerData: followerData })
+            this.setState({ showFollowersTable: true })
             
             this.setState({ showSearchSubmitButton: true })
             this.setState({ showSearchSubmitLoadingButton: false })*/
@@ -796,8 +1006,8 @@ class App extends Component {
     this.setState({ enableMessageInput: false })
     this.setState({ showMessageSubmitLoadingButton: true })
     
-    this.setState({ enableSearchSubmitButton: false})
-    this.setState({ enableSearchInput: false})
+    this.setState({ enableCommentersSearchSubmitButton: false})
+    this.setState({ enableCommentersSearchInput: false})
 
     const requestOptions = {
         method: 'POST',
@@ -864,8 +1074,8 @@ class App extends Component {
               this.setState({ showMessageSubmitLoadingButton: false })
                this.setState({ enableMessageInput: true })
     
-              this.setState({ enableSearchSubmitButton: true})
-              this.setState({ enableSearchInput: true})
+              this.setState({ enableCommentersSearchSubmitButton: true})
+              this.setState({ enableCommentersSearchInput: true})
                       
             }
         })
@@ -876,8 +1086,8 @@ class App extends Component {
             this.setState({ showMessageSubmitLoadingButton: false })
             this.setState({ enableMessageInput: true })
              
-            this.setState({ enableSearchSubmitButton: true})
-            this.setState({ enableSearchInput: true})
+            this.setState({ enableCommentersSearchSubmitButton: true})
+            this.setState({ enableCommentersSearchInput: true})
               
             this.setState({errorAlertText: "Something went wrong."});
               
@@ -929,7 +1139,7 @@ class App extends Component {
               
                 if (jsonResponse.logoutResult === 'success') {
                   
-                      this.setState({showSearchForm: false});
+                      this.setState({showCommentersSearchForm: false});
                       this.setState({showCommentersTable: false});
                       this.setState({showMessageForm: false});
                       

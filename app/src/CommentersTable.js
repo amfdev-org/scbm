@@ -28,7 +28,7 @@ class CommentersTable extends Component {
           
         return (
           
-          <Form>
+          <Form className="commentersDataTable">
               <DataTable style={showCommentersTable}
                 columns={columns}
                 data={commenterData}
