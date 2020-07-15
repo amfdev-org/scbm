@@ -110,8 +110,10 @@ app.get('/auth/', (req, res) => {
                 resolve(true)
             } else {
                 console.log('not authd - req.sesssion.user && req.cookies.scbm_sid are invalid')
-                reject('session invalid')
+             
                 //res.send(JSON.stringify({authResult: false}));
+                res.send(JSON.stringify({authSuccess: false, sessionValid: false, scCookiesValid: null, authError: "session invalid", userData: null}));
+                reject('session invalid')
             }
         
         });
@@ -129,9 +131,10 @@ app.get('/auth/', (req, res) => {
                 resolve(true)
             })
             .catch(error => {
-                
-                //console.log(error)
-                console.log(req.session.user.scCookies + ' cookies not valid')
+
+                console.log(error)
+               
+                res.send(JSON.stringify({authSuccess: false, sessionValid: true, scCookiesValid: false, authError: "cookies invalid", userData: null}));
                 reject("sc cookies not valid")
                 
             })
@@ -145,17 +148,11 @@ app.get('/auth/', (req, res) => {
     validateSession()
         .then(data => validateScCookies())
         .then(data => {
-            res.send(JSON.stringify({authResult: true, scCookiesValid: true, userData: req.session.user}));
+            res.send(JSON.stringify({authSuccess: true, sessionValid: true, scCookiesValid: true, authError: null, userData: req.session.user}));
         })
         .catch(error => {
                  
           console.log(error);
-          
-            if(error === 'sc cookies not valid') {
-                res.send(JSON.stringify({authResult: false, scCookiesValid: false}));
-            } else {
-                res.send(JSON.stringify({authResult: false, scCookiesValid: true}));
-            }
 
         })
                 
@@ -189,6 +186,7 @@ app.post('/signup/', (req, res) => {
           })
           .catch(error => {
                 //console.log(error)
+                res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: false, scCookiesValid: null, userCreated: false, error: "service login failed", userData: null}));
                 reject(error)
                 
             })
@@ -210,6 +208,7 @@ app.post('/signup/', (req, res) => {
             })
             .catch(error => {
                 //console.log(scCookies + ' cookies not valid')
+                res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: false, userCreated: false, error: "cookies not valid", userData: null}));
                 reject("sc cookies not valid")
                 
             })
@@ -236,6 +235,7 @@ app.post('/signup/', (req, res) => {
             })
             .catch(error => {
                 //console.log(error)
+                res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: true, userCreated: false, error: "user could not be created", userData: null}));
                 reject(error)
                 
             });
@@ -250,21 +250,12 @@ app.post('/signup/', (req, res) => {
         .then(data => {
             console.log("**logged commenters to DB**");
             console.log("**sending data to browser**");
-            res.send(JSON.stringify({
-                signupSuccess: true,
-                signupResultReason : "user created",
-                userData: data
-                }))
+            res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: true, userCreated: true, error: null, userData: data}));
         })
         .catch(error => {
             
           console.log(error);
-          
-            if(error === 'sc cookies not valid') {
-                res.send(JSON.stringify({signupSuccess: false, scCookiesValid: false}));
-            } else {
-                res.send(JSON.stringify({signupSuccess: false, scCookiesValid: true}));
-            }
+
             
         })
         
@@ -286,11 +277,13 @@ app.post('/login/', (req, res) => {
                     if (!user) {
                         
                             console.log('user not found')
+                            res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
                             reject('user not found')
                         
                         } else if (!user.validPassword(req.body.scPassword)) {
                             
                             console.log('password not valid')
+                            res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "password not valid", userData: null}));
                             reject('password not valid')
                              
                         } else {
@@ -318,8 +311,9 @@ app.post('/login/', (req, res) => {
                 })
                 .catch(error => {
                     //console.log(error)
-                    console.log(user.scCookies + ' cookies not valid')
+                    console.log(error)
                     reject("sc cookies not valid")
+                    res.send(JSON.stringify({loginSuccess: false, userFound: true, scCookiesValid: false, loginError: "cookies not valid", userData: null}));
                     
                 })
             
@@ -333,16 +327,11 @@ app.post('/login/', (req, res) => {
         .then(user => validateScCookies(user))
         .then(user => {
             req.session.user = user;
-            res.send(JSON.stringify({scCookiesValid: true, userFound: true, userData: req.session.user}));
+            res.send(JSON.stringify({loginSuccess: true, userFound: true, scCookiesValid: true, loginError: null, userData: req.session.user}));
         })
         .catch(error => {
             console.log(error);
           
-            if(error === 'sc cookies not valid') {
-                res.send(JSON.stringify({scCookiesValid: false, userFound: true}));
-            } else {
-                res.send(JSON.stringify({scCookiesValid: false, userFound: false}));
-            }
         })
         
 });
@@ -415,7 +404,7 @@ app.get('/commenters/', function(req, res) {
             CommenterModel.logCommenters(data);
             console.log("**sending data to browser**");
             //console.log(JSON.stringify(data))
-            res.send({success: true, commenterData: data})
+            res.send({success: true, noResults: false, commenterData: data})
         })
         .catch(error => {
           //console.log(error);
@@ -423,9 +412,9 @@ app.get('/commenters/', function(req, res) {
             emptyArr = [];
             if (error.error == "no commenters") {
                 //console.log('yes');
-                 res.send({success: false, commenterData: "no commenters"})
+                 res.send({success: false, noResults: true, commenterData: "no commenters"})
             } else {
-                 res.send({success: false, commenterData: null})
+                 res.send({success: false, noResults: false, commenterData: null})
             }
         })
         
@@ -598,11 +587,11 @@ app.post('/message/', function(req, res) {
             console.log("**logging message result to db**");
             MessageModel.logMessages(data);
             console.log("**sending message result data to browser**");
-            res.send(JSON.stringify(data))
+            res.send({success: true, error: null, result: data })
         })
         .catch(e => {
           console.log(e);
-          res.send(JSON.stringify({errorMessage : "Server says:  message send failed!"}))
+          res.send({success: false, error : "Message send failed!", result: null})
         })
         
     
@@ -620,11 +609,15 @@ app.post('/message/', function(req, res) {
 
 
 app.get('/logout', (req, res) => {
-    if (req.session.user && req.cookies.scbm_sid) {
-        res.clearCookie('scbm_sid');
-        res.send(JSON.stringify({logoutResult: "success"}))
-    } else {
-        res.send(JSON.stringify({logoutResult: "success"}))
+    if (req.session.user) {
+        if(req.cookies.scbm_sid) {
+            req.session.destroy();
+            res.clearCookie('scbm_sid');
+            res.send(JSON.stringify({logoutSuccess: true}))
+        } else {
+            req.session.destroy();
+            res.send(JSON.stringify({logoutSuccess: true}))
+        }
     }
 });
 

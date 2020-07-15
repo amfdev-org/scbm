@@ -1,0 +1,132 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.form-inline {
+  width: 100%;
+}
+
+.form-group {
+  width: inherit;
+}
+
+.form-inline .form-group {
+  flex-flow: nowrap;
+}
+
+.form-inline .form-control {
+  width: 90%;
+}
+
+.commentersDataTable {
+  padding-top: 40px;
+}
+
+.messageForm {
+  padding-top: 5px;
+}
+
+.messageForm textarea {
+  white-space: pre-line;
+}
+
+.error-alert, .success-alert, .info-alert {
+  text-align: center;
+}
+
+.info-alert button {
+  display: none;
+}
+
+.alert-fixed {
+    position:fixed; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px
+}
+
+.container {
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.logged-in-info {
+  float: left;
+  font-weight: 500;
+}
+
+.main {
+  /*margin-top:0px;*/
+}
+
+.logout-button {
+  margin-left:10px;
+  margin-top:-5px;
+}
+
+.rdt_TableHeader {
+  display: none;
+}
+
+input:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.main-accordion {
+  margin-top: 85px;
+}
+
+.card-header {
+  font-weight: 500;
+}
+
+h6 {
+  font-weight: 400;
+}

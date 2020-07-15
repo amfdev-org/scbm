@@ -44,7 +44,7 @@ const connection = require('./connection')
             let profileName = commenter.profileName;
             let messageWithName = message.replace("<<profileName>>", profileName);
             await console.log("**iterating array: profile " + profileUrl);
-                   
+            /*
             //try to load the profile page
             try {
                await page.goto(profileUrl, {waitUntil: 'networkidle0'});
@@ -55,6 +55,7 @@ const connection = require('./connection')
                return true;
                //return Promise.reject(new Error('ERROR! could not navigate to url ' + profileUrl));
             }
+            
             
             await page.waitFor(randomWaitLong);
             
@@ -179,7 +180,7 @@ const connection = require('./connection')
             //   await console.log('ERROR! screenshot could not be saved!');
            // }
          
-         
+         */
             sendMessageResult.push({profileUrl : profileUrl,
                                       message: messageWithName,
                                       searchUrl: searchUrl,

@@ -19,6 +19,7 @@ const connection = require('./connection')
         
         //await console.log(scUsername);
         //await console.log(scPasswordPlain);
+        /*
         const browser = await connection.puppeteer.launch(connection.options);
      
         const page = await browser.newPage();
@@ -26,7 +27,6 @@ const connection = require('./connection')
         //await page.setExtraHTTPHeaders({Referer: 'https://soundcloud.com/'});
         await console.log("**browser and page instantiated**");
             
-                
         // evaluate document + apply stealth preoad
         await page.evaluateOnNewDocument(connection.preload, connection.device);
         await console.log("**document evaluated + stealth preload applied**");
@@ -109,18 +109,10 @@ const connection = require('./connection')
         }
 
         await browser.close()
-        
-        /*profileUrls = [ { songUrl: songUrl, profileUrl: 'https://soundcloud.com/ocmoon' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/fogcapture' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/patrickxtaylor' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/deceivingsounds' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/matcatmusic' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/alvonmars' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/upukrecords' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/user-355158966-477119345' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/deftsoulmusique1995' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/venkman' },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/user-221609609' } ];*/
+        */
+        profileUrls = [ { songUrl: songUrl, profileUrl: 'https://soundcloud.com/ocmoon', profileName: "OC Moon" },
+                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/fogcapture', profileName: "fogcapture"  },
+                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/patrickxtaylor', profileName: "patrpick taylor" } ];
         
         //await console.log(profileUrls);
 
