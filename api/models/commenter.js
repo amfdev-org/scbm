@@ -10,7 +10,7 @@ const Commenter = sequelize.define("commenter", {
         autoIncrement: true,
         primaryKey: true
         },
-    songUrl: {
+    searchUrl: {
         type: DataTypes.STRING,
         allowNull: true
         },
@@ -38,7 +38,7 @@ let logCommenters = (data) => {
             
             const findOrCreate = Commenter.findOrCreate({
                 where: {
-                  songUrl:    commenter.songUrl,
+                  searchUrl:    commenter.searchUrl,
                   profileUrl:      commenter.profileUrl   
                 }})
 
@@ -46,5 +46,6 @@ let logCommenters = (data) => {
 
 }
 
+//Commenter.sync({ force: true });
 
 module.exports = { Commenter, logCommenters };

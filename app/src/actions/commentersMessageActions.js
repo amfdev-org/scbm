@@ -50,29 +50,29 @@ export function handleCommentersMessageSubmit(event) {
            
         axios({
         method: 'post',
-        url: 'https://scbm.amfdev.co.uk/api/messages/',
+        url: 'https://scbm.amfdev.co.uk/api/message/',
         headers: {}, 
         data: {
-            selectedCommenters: getState().selectedCommenters,
+            selectedProfiles: getState().selectedCommenters,
             message: getState().commentersMessage,
-            commentersSearchUrl: getState().commentersSearchUrl                     
+            searchUrl: getState().commentersSearchUrl                     
         }
         })    
         .then(json => catchCommentersMessageError(json.data, dispatch))
         .then(json => dispatch(doCommentersMessageSuccess(json, dispatch, getState)))
-        .catch(error => console.log(error));
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: COMMENTERS_MESSAGE_UNKNOWN_ERROR
+                      })  
+                }
+        });
                   
     }
     
 }
 
-function catchCommentersMessageUnknownError(error, dispatch) {
-    console.log('catchCommentersMessageOtherError')
-        dispatch({
-                type: COMMENTERS_MESSAGE_UNKNOWN_ERROR
-              });
-        return;
-}
 
 function catchCommentersMessageError(json, dispatch) {
     console.log('catchCommentersMessageError')
@@ -91,7 +91,6 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
     
     return (dispatch, getState) => {
         
-            let newArray = [];
             let successArray = [];
             
                 for (let sendResult of json.result) {
@@ -125,6 +124,12 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
                  sendCount: successArray.length
                });
                              
+                dispatch({ type: "SUCCESS_ALERT_SHOW" });
+                
+                window.setTimeout(()=>{ 
+                dispatch({ type: "SUCCESS_ALERT_HIDE" });
+                },4000)
+                    
                 //return { newArray, successArray };
      
     }

@@ -24,7 +24,7 @@ export const initialState = {
         loggedInInfoText: '',
         showLoggedInInfo: false,
         
-        //commenters
+        //commenters search
         commentersSearchUrl : '',
         commenterData : [],
         selectedCommenters : [],
@@ -36,7 +36,7 @@ export const initialState = {
         showCommentersSearchForm: false,
         showCommentersTable: false,
         
-        //commentersmessages
+        //commenter smessages
         showCommentersMessageForm: false,
         commentersMessage : 'Hi <<profileName>>,',
         enableCommentersMessageSubmitButton: false,
@@ -44,7 +44,7 @@ export const initialState = {
         showCommentersMessageSubmitLoadingButton: false,
         enableCommentersMessageInput: true,
      
-        //followers
+        //followers search
         followersSearchUrl : '',
         followerData : [],
         selectedFollowers : [],
@@ -56,7 +56,14 @@ export const initialState = {
         showFollowersSearchForm: false,
         showFollowersTable: false,
         
-  
+        //followers smessages
+        showFollowersMessageForm: false,
+        followersMessage : 'Hi <<profileName>>,',
+        enableFollowersMessageSubmitButton: false,
+        showFollowersMessageSubmitButton: true,
+        showFollowersMessageSubmitLoadingButton: false,
+        enableFollowersMessageInput: true,
+        
         //alerts
         showErrorAlert: false,
         showSuccessAlert: false,

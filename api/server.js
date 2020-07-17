@@ -26,11 +26,13 @@ const CommenterScraper = require('./scrapers/CommenterScraper')
 const LoginScraper = require('./scrapers/LoginScraper')
 const TestScraper = require('./scrapers/TestScraper')
 const MessageScraper = require('./scrapers/MessageScraper')
+const FollowerScraper = require('./scrapers/FollowerScraper')
 
 const db = require('./database')
 const CommenterModel = require('./models/commenter')
 const MessageModel = require('./models/message')
 const UserModel = require('./models/user')
+const FollowerModel = require('./models/follower')
 
 app.use(bodyParser.json());
 
@@ -346,13 +348,13 @@ app.get('/commenters/', function(req, res) {
         
         return new Promise((resolve, reject) => {
             
-            let commentersSearchUrl = decodeURI(req.query.commentersSearchUrl);
+            let searchUrl = decodeURI(req.query.searchUrl);
     
-            if (!commentersSearchUrl.includes("soundcloud")) {
+            if (!searchUrl.includes("soundcloud")) {
                 reject("Search URL does not contain 'soundcloud'");
                 //res.send(JSON.stringify({errorMessage : "Server says: could not get commenters!"}))
             } else {
-                resolve(commentersSearchUrl);
+                resolve(searchUrl);
             }
         })
         
@@ -379,12 +381,12 @@ app.get('/commenters/', function(req, res) {
         }
     */
     
-    let scrapeCommenters = (validatedCommentersSearchUrl) => {
+    let scrapeCommenters = (searchUrl) => {
             
         return new Promise((resolve, reject) => {
             
         CommenterScraper
-        .scrapeCommenters(validatedCommentersSearchUrl, req.session.user.scCookies)
+        .scrapeCommenters(searchUrl, req.session.user.scCookies)
           .then(data => {
             //console.log(data)
             resolve(data)
@@ -399,7 +401,7 @@ app.get('/commenters/', function(req, res) {
         .then(data => scrapeCommenters(data))
         .then(data => MessageModel.checkCommenterMessageStatus(data))
         .then(data => {
-            //console.log(data)
+            console.log(data)
             console.log("**logged commenters to DB**");
             CommenterModel.logCommenters(data);
             console.log("**sending data to browser**");
@@ -407,8 +409,8 @@ app.get('/commenters/', function(req, res) {
             res.send({success: true, noResults: false, commenterData: data})
         })
         .catch(error => {
-          //console.log(error);
-          //console.log(error.error);
+          console.log(error);
+          console.log(error.error);
             emptyArr = [];
             if (error.error == "no commenters") {
                 //console.log('yes');
@@ -426,17 +428,19 @@ app.get('/followers/', function(req, res) {
     
     console.log('GET /followers/');
 
+    
     let validateFollowersSearchUrl = () => {
         
         return new Promise((resolve, reject) => {
             
-            let followersSearchUrl = decodeURI(req.query.followersSearchUrl);
-    
-            if (!followersSearchUrl.includes("soundcloud")) {
+            let searchUrl = decodeURI(req.query.searchUrl);
+            console.log(searchUrl);
+            
+            if (!searchUrl.includes("soundcloud")) {
                 reject("Search URL does not contain 'soundcloud'");
                 //res.send(JSON.stringify({errorMessage : "Server says: could not get followers!"}))
             } else {
-                resolve(followersSearchUrl);
+                resolve(searchUrl);
             }
         })
         
@@ -463,12 +467,12 @@ app.get('/followers/', function(req, res) {
         }
     */
     
-    let scrapeFollowers = (validatedFollowersSearchUrl) => {
+    let scrapeFollowers = (searchUrl) => {
             
         return new Promise((resolve, reject) => {
             
         FollowerScraper
-        .scrapeFollowers(validatedFollowersSearchUrl, req.session.user.scCookies)
+        .scrapeFollowers(searchUrl, req.session.user.scCookies)
           .then(data => {
             //console.log(data)
             resolve(data)
@@ -483,22 +487,22 @@ app.get('/followers/', function(req, res) {
         .then(data => scrapeFollowers(data))
         .then(data => MessageModel.checkFollowerMessageStatus(data))
         .then(data => {
-            //console.log(data)
+            console.log(data)
             console.log("**logged followers to DB**");
-            FollowerModel.logFollowers(data);
+            //FollowerModel.logFollowers(data);
             console.log("**sending data to browser**");
             //console.log(JSON.stringify(data))
-            res.send({success: true, followerData: data})
+            res.send({success: true, noResults: false, followerData: data})
         })
         .catch(error => {
-          //console.log(error);
-          //console.log(error.error);
+          console.log(error);
+          console.log(error.error);
             emptyArr = [];
             if (error.error == "no followers") {
                 //console.log('yes');
-                 res.send({success: false, followerData: "no followers"})
+                    res.send({success: false, noResults: true, followerData: "no commenters"})
             } else {
-                 res.send({success: false, followerData: null})
+                    res.send({success: false, noResults: false, followerData: null})
             }
         })
         
@@ -516,17 +520,17 @@ app.post('/message/', function(req, res) {
            
            return new Promise((resolve, reject) => {
                
-               let selectedCommenters = req.body.selectedCommenters;
+               let selectedProfiles = req.body.selectedProfiles;
                let message = req.body.message;
-               let commentersSearchUrl = decodeURI(req.body.commentersSearchUrl);
+               let searchUrl = decodeURI(req.body.searchUrl);
        
-               if (!commentersSearchUrl.includes("soundcloud")) {
+               if (!searchUrl.includes("soundcloud")) {
                    reject("Search URL does not contain 'soundcloud'");
                    //res.send(JSON.stringify({errorMessage : "Server says: could not get commenters!"}))
                } else if (message.length < 10) {
                    reject("Message is not long enough");
                    //res.send(JSON.stringify({errorMessage : "Server says: could not get commenters!"}))
-               } else if (selectedCommenters.length < 1) {
+               } else if (selectedProfiles.length < 1) {
                    reject("No commenters selected");
                    //res.send(JSON.stringify({errorMessage : "Server says: could not get commenters!"}))
                } else {
@@ -567,9 +571,9 @@ app.post('/message/', function(req, res) {
             MessageScraper
             .sendMessageOnProfile(
                                   req.session.user.scCookies,
-                                  req.body.selectedCommenters,
+                                  req.body.selectedProfiles,
                                   req.body.message,
-                                  decodeURI(req.body.commentersSearchUrl))
+                                  decodeURI(req.body.searchUrl))
               .then(data => {
                 //console.log(data)
                 resolve(data)

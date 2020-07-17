@@ -5,9 +5,9 @@ import DataTable from 'react-data-table-component'
 class FollowersTable extends Component {
 
 
-    handleChange = changeEvent => {
+    handleChange = (event) => {
       
-          this.props.handleFollowersChange(changeEvent.selectedRows);
+          this.props.handleFollowersSelectedRowsChange(event.selectedRows);
     }
     
     

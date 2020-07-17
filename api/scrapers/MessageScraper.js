@@ -44,7 +44,7 @@ const connection = require('./connection')
             let profileName = commenter.profileName;
             let messageWithName = message.replace("<<profileName>>", profileName);
             await console.log("**iterating array: profile " + profileUrl);
-            /*
+          
             //try to load the profile page
             try {
                await page.goto(profileUrl, {waitUntil: 'networkidle0'});
@@ -149,6 +149,8 @@ const connection = require('./connection')
             
             //await page.waitFor(randomWait);
             
+            
+              /*
             //try to send the message!
             try {
                await page.click('.composeMessage__sendButton');

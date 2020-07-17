@@ -4,13 +4,24 @@ import Alert from 'react-bootstrap/Alert'
 
 class infoAlert extends Component {
     
+    handleChange = (alertType, alertAction) => {
+        //ReactTooltip.hide();
+        this.props.handleAlertChange(alertType, alertAction) 
+    }
+    
     render() {
 
         const showInfoAlert = this.props.showInfoAlert ? {display: 'block'} : {display: 'none'};
      
         return (
      
-              <Alert className="info-alert alert-fixed" style={showInfoAlert} variant='info' onClose={() => this.props.dismissInfoAlert()} dismissible>
+              <Alert
+                className="info-alert alert-fixed"
+                style={showInfoAlert}
+                variant='info'
+                onClose={() => this.props.this.handleChange("INFO", "HIDE")()}
+                dismissible
+                >
                 <Alert.Heading>{this.props.infoAlertTextHeading}</Alert.Heading>
                  {this.props.infoAlertText}
               </Alert>

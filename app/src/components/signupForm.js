@@ -9,7 +9,7 @@ class SignupForm extends Component {
   
     handleChange = changeEvent => {
           
-        //ReactTooltip.hide();
+        ReactTooltip.hide();
         this.props.handleSignupChange(changeEvent)
         
     }
@@ -37,7 +37,7 @@ class SignupForm extends Component {
                     type="text"
                     name="scUsername"
                     disabled={!this.props.enableSignupFormInputs}
-                    value={this.props.scUsername}
+                    value={this.props.scUsername || ""}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
                     
@@ -47,7 +47,7 @@ class SignupForm extends Component {
                     type="password"
                     name="scPassword"
                     disabled={!this.props.enableSignupFormInputs}
-                    value={this.props.scPassword}
+                    value={this.props.scPassword || ""}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
               

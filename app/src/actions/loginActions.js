@@ -94,8 +94,7 @@ export function handleLoginSwitchToSignup(event) {
   
   
 function catchLoginUserNotFoundError(json, dispatch) {
-    console.log('catchLoginUserNotFound')
-    console.log(json)
+    //console.log('catchLoginUserNotFound')
     if (!json.userFound) {
         dispatch({
                 type: LOGIN_USER_NOT_FOUND_ERROR
@@ -108,7 +107,7 @@ function catchLoginUserNotFoundError(json, dispatch) {
 
 
 function catchLoginCookieError(json, dispatch) {
-    console.log('catchLoginCookieError')
+    //console.log('catchLoginCookieError')
     if (!json.scCookiesValid) {
         dispatch({
                 type: LOGIN_COOKIE_ERROR
@@ -121,17 +120,8 @@ function catchLoginCookieError(json, dispatch) {
 
 
 
-function catchLoginUnknownError(error, dispatch) {
-
-        dispatch({
-                type: LOGIN_UNKNOWN_ERROR
-              });
-        return;
-}
-
-
 function doLoginSuccess(json, dispatch) {
-    console.log('doLoginSuccess')
+    //console.log('doLoginSuccess')
  
         dispatch({
                 type: LOGIN_SUCCESS,
@@ -159,7 +149,7 @@ export function handleLogoutSubmit(event) {
 
 
 function doLogout(json, dispatch) {
-    console.log('doLogout')
+    //console.log('doLogout')
     if (json.logoutSuccess) {
         dispatch({
                 type: LOGOUT_SUCCESS,

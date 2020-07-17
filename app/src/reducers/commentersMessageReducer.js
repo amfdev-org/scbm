@@ -9,7 +9,6 @@ import {
   COMMENTERS_MESSAGE_SUBMIT_ENABLE,
   COMMENTERS_MESSAGE_SUBMIT_DISABLE,
   COMMENTERS_MESSAGE_ERROR,
-  COMMENTERS_MESSAGE_OTHER_ERROR,
   COMMENTERS_MESSAGE_SUCCESS,
   COMMENTERS_MESSAGE_SUCCESS_SEND_COUNT,
   COMMENTERS_MESSAGE_SUBMITTED,
@@ -62,6 +61,7 @@ export default function commentersMessageReducer(state, action) {
         showSuccessAlert: false,
         showInfoAlert: false,
         enableCommentersSearchInput: false,
+        enableCommentersSearchSubmitButton: false,
         showCommentersMessageSubmitButton: false,
         showCommentersMessageSubmitLoadingButton: true,
         enableCommentersMessageInput: false
@@ -83,7 +83,7 @@ export default function commentersMessageReducer(state, action) {
       };
     
       case COMMENTERS_MESSAGE_UNKNOWN_ERROR:
-        console.log('reducer unknoqn error')
+        //console.log('reducer unknoqn error')
       return {
         ...state,
           showCommentersMessageSubmitButton: true,
@@ -105,7 +105,6 @@ export default function commentersMessageReducer(state, action) {
         enableCommentersSearchSubmitButton: true,
         enableCommentersSearchInput: true,
         commenterData: action.commenterData
-                    
       };
     
     
@@ -113,8 +112,6 @@ export default function commentersMessageReducer(state, action) {
       return {
         ...state,
         successAlertText: "Message sent to " + action.sendCount + " users.",
-        showSuccessAlert: true
-                    
       };
       
     

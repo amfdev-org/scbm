@@ -7,10 +7,10 @@ import ReactTooltip from "react-tooltip";
 class FollowersSearchForm extends Component {
     
   
-    handleChange = changeEvent => {
+    handleChange = (event) => {
           
         ReactTooltip.hide();
-        this.props.handleFollowersSearchChange(changeEvent)
+        this.props.handleFollowersSearchChange(event)
         
     }
     

@@ -15,11 +15,11 @@ const connection = require('./connection')
     */
 
 
-    const scrapeCommenters = async (songUrl, scCookies) => {
+    const scrapeCommenters = async (searchUrl, scCookies) => {
         
         //await console.log(scUsername);
         //await console.log(scPasswordPlain);
-        /*
+        
         const browser = await connection.puppeteer.launch(connection.options);
      
         const page = await browser.newPage();
@@ -43,11 +43,11 @@ const connection = require('./connection')
          }
        
         try {
-           await page.goto(songUrl, {waitUntil: 'networkidle0'});
-           await console.log('**navigated to: ' + songUrl);
+           await page.goto(searchUrl, {waitUntil: 'networkidle0'});
+           await console.log('**navigated to: ' + searchUrl);
         } catch(error) {
-           await console.log('ERROR! could not navigate to url ' + songUrl);
-           return Promise.reject(new Error('ERROR! could not navigate to url ' + songUrl));
+           await console.log('ERROR! could not navigate to url ' + searchUrl);
+           return Promise.reject(new Error('ERROR! could not navigate to url ' + searchUrl));
         }
   
          //await page.waitFor(utils.randomWait1);
@@ -83,9 +83,9 @@ const connection = require('./connection')
         
         try {
             await utils.autoScrollDown(page);
-            await console.log('**scrolled down on ' + songUrl);
+            await console.log('**scrolled down on ' + searchUrl);
          } catch(error) {
-            await console.log("ERROR! could not scroll down on " + songUrl);
+            await console.log("ERROR! could not scroll down on " + searchUrl);
          }
     
          //await page.waitFor(utils.randomWait3);
@@ -102,17 +102,17 @@ const connection = require('./connection')
         for (var i = 0 ; i < profileUrlsRawUnique.length; i++) {
                 var [profileUrl, profileName] = profileUrlsRawUnique[i].split('^');
                 //var profileUrlRelative = profileUrl.replace("https://soundcloud.com", "");
-                profileUrls.push({songUrl: songUrl,
+                profileUrls.push({searchUrl: searchUrl,
                                  profileUrl : profileUrl,
                                  profileName : profileName
                                  });
         }
 
         await browser.close()
-        */
-        profileUrls = [ { songUrl: songUrl, profileUrl: 'https://soundcloud.com/ocmoon', profileName: "OC Moon" },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/fogcapture', profileName: "fogcapture"  },
-                        { songUrl: songUrl, profileUrl: 'https://soundcloud.com/patrickxtaylor', profileName: "patrpick taylor" } ];
+    
+        /*profileUrls = [ { searchUrl: searchUrl, profileUrl: 'https://soundcloud.com/ocmoon', profileName: "OC Moon" },
+                        { searchUrl: searchUrl, profileUrl: 'https://soundcloud.com/fogcapture', profileName: "fogcapture"  },
+                        { searchUrl: searchUrl, profileUrl: 'https://soundcloud.com/patrickxtaylor', profileName: "patrpick taylor" } ];*/
         
         //await console.log(profileUrls);
 

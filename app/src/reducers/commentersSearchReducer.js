@@ -49,7 +49,7 @@ export default function commentersSearchReducer(state, action) {
       };
     
     case COMMENTERS_SEARCH_NO_RESULTS:
-        console.log("sc login error - reducer");
+        //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {
         ...state,
@@ -68,7 +68,7 @@ export default function commentersSearchReducer(state, action) {
       };
       
     case COMMENTERS_SEARCH_OTHER_ERROR:
-         console.log("sc cookie error - reducer");
+         //console.log("sc cookie error - reducer");
       return {
         ...state,
         showInfoAlert: false,
@@ -84,7 +84,7 @@ export default function commentersSearchReducer(state, action) {
       
       
     case COMMENTERS_SEARCH_SUCCESS:
-         console.log("sc commentersSearch success - reducer");
+         //console.log("sc commentersSearch success - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
         ...state,
@@ -97,23 +97,15 @@ export default function commentersSearchReducer(state, action) {
         commenterData: action.commenterData,
         showCommentersTable: true,
         successAlertText: "Found " + action.commenterData.length + ' commenters.',
-        
-                
-            /*this.setState({showSuccessAlert: true},()=>{
-            window.setTimeout(()=>{
-              this.setState({showSuccessAlert: false})
-            },4000)*/
-
-        //successAlertText: "You're now logged in!"
     
       };
       
     case COMMENTERS_SEARCH_UNKNOWN_ERROR:
-        console.log('reducer other error')
+        //console.log('reducer other error')
       return {
         ...state,
-          showCommentersMessageSubmitButton: true,
-          showCommentersMessageSubmitLoadingButton: false,
+          showCommentersSearchSubmitButton: true,
+          showCommentersSearchSubmitLoadingButton: false,
           enableCommentersSearchInput: true,
           showErrorAlert: true,
           errorAlertText: "Something went wrong. Please contact support."
@@ -122,7 +114,7 @@ export default function commentersSearchReducer(state, action) {
       
       
     case COMMENTERS_SELECTED_ROWS_CHANGE:
-         console.log("COMMENTERS_SELECTED_ROWS_CHANGE - reducer");
+         //console.log("COMMENTERS_SELECTED_ROWS_CHANGE - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
         ...state,

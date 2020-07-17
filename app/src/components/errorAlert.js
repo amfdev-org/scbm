@@ -4,6 +4,13 @@ import Alert from 'react-bootstrap/Alert'
 
 class errorAlert extends Component {
     
+    handleChange = (alertType, alertAction) => {
+ 
+        //ReactTooltip.hide();
+        this.props.handleAlertChange(alertType, alertAction)
+        
+    }
+    
     render() {
 
         const showErrorAlert = this.props.showErrorAlert ? {display: 'block'} : {display: 'none'};   
@@ -11,7 +18,12 @@ class errorAlert extends Component {
      
         return (
                 
-            <Alert className="error-alert alert-fixed" style={showErrorAlert} variant='danger' onClose={() => this.props.dismissErrorAlert()} dismissible>
+            <Alert
+                className="error-alert alert-fixed"
+                style={showErrorAlert}
+                variant='danger'
+                onClose={() => this.handleChange("ERROR", "HIDE")} dismissible
+                >
                 <Alert.Heading>Uh oh!</Alert.Heading>
                     {this.props.errorAlertText}
                 <Alert.Link href="#" onClick={this.props.handleLoginSwitchToSignup}>{this.props.errorAlertLinkText}</Alert.Link>

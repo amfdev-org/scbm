@@ -30,6 +30,23 @@ import {
   handleCommentersMessageSubmit
   } from '../actions/commentersMessageActions' 
   
+import {
+  handleFollowersSearchChange,
+  handleFollowersSearchSubmit,
+  handleFollowersSelectedRowsChange
+  } from '../actions/followersSearchActions'
+  
+import {
+  handleFollowersMessageChange,
+  handleFollowersMessageSubmit
+  } from '../actions/followersMessageActions' 
+  
+  
+import {
+  handleAlertChange
+  } from '../actions/uiActions' 
+  
+  
 //BOOTSTRAP
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -45,6 +62,7 @@ import SignupForm from '../components/signupForm';
 import CommentersSearchForm from '../components/commentersSearchForm';
 import FollowersSearchForm from '../components/followersSearchForm';
 import CommentersMessageForm from '../components/commentersMessageForm';
+import FollowersMessageForm from '../components/followersMessageForm';
 
 //tables/grids
 import CommentersTable from '../components/commentersTable';
@@ -77,6 +95,8 @@ class App extends Component {
     const showCommentersMessageForm = this.props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'};
     
     const showSignupForm = this.props.showSignupForm ? {display: 'block'} : {display: 'none'};
+    
+    const showFollowersMessageForm = this.props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'}; 
     /*
     const showCommentersSearchForm = this.state.showCommentersSearchForm ? {display: 'block'} : {display: 'none'};
     //const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
@@ -89,6 +109,7 @@ class App extends Component {
           <Col>
        
            <ErrorAlert
+            handleAlertChange={this.props.handleAlertChange}
             showErrorAlert={this.props.showErrorAlert}
             errorAlertText={this.props.errorAlertText}
             errorAlertLinkText={this.props.errorAlertLinkText}
@@ -97,12 +118,14 @@ class App extends Component {
            />
            
            <SuccessAlert
+            handleAlertChange={this.props.handleAlertChange}
             showSuccessAlert={this.props.showSuccessAlert}
             successAlertText={this.props.successAlertText}
             dismissSuccessAlert={this.dismissSuccessAlert}
            />
            
            <InfoAlert
+            handleAlertChange={this.props.handleAlertChange}
            showInfoAlert={this.props.showInfoAlert}
             infoAlertText={this.props.infoAlertText}
             infoAlertTextHeading={this.props.infoAlertTextHeading}
@@ -204,41 +227,39 @@ class App extends Component {
                   
                     <h6 className="main">Profile URL</h6>
                         
-                        
-                        {/*<FollowersSearchForm
+                        <FollowersSearchForm
                           className="main"
-                          searchUrl={this.state.searchUrl}
-                          handleFollowersSearchChange={this.handleFollowersSearchChange}
-                          handleFollowersSearchSubmit={this.handleFollowersSearchSubmit}
-                          enableFollowersSearchInput={this.state.enableFollowersSearchInput}
-                          enableFollowersSearchSubmitButton={this.state.enableFollowersSearchSubmitButton}
-                          showFollowersSearchSubmitButton={this.state.showFollowersSearchSubmitButton}
-                          showFollowersSearchSubmitLoadingButton={this.state.showFollowersSearchSubmitLoadingButton} />
+                          searchUrl={this.props.followersSearchUrl}
+                          handleFollowersSearchChange={this.props.handleFollowersSearchChange}
+                          handleFollowersSearchSubmit={this.props.handleFollowersSearchSubmit}
+                          enableFollowersSearchInput={this.props.enableFollowersSearchInput}
+                          enableFollowersSearchSubmitButton={this.props.enableFollowersSearchSubmitButton}
+                          showFollowersSearchSubmitButton={this.props.showFollowersSearchSubmitButton}
+                          showFollowersSearchSubmitLoadingButton={this.props.showFollowersSearchSubmitLoadingButton} />
             
-                      <FollowersTable className="followersDataTable"
-                          followerData={this.state.followerData}
-                          showFollowersTable={this.state.showFollowersTable}
-                          handleFollowersChange={this.handleFollowersChange}
-                          handleFollowersSubmit={this.handleFollowersSubmit}
-                          showFollowersSubmitButton={this.state.showFollowersSubmitButton}
-                          showFollowersSubmitLoadingButton={this.state.showFollowersSubmitLoadingButton}
-                          selectedFollowers={this.state.selectedFollowers}
-                          toggledClearRows={this.state.toggledClearRows}
+                          <FollowersTable className="followersDataTable"
+                          followerData={this.props.followerData}
+                          showFollowersTable={this.props.showFollowersTable}
+                          handleFollowersSelectedRowsChange={this.props.handleFollowersSelectedRowsChange}
+  
+                          showFollowersSubmitButton={this.props.showFollowersSubmitButton}
+                          showFollowersSubmitLoadingButton={this.props.showFollowersSubmitLoadingButton}
+                          selectedFollowers={this.props.selectedFollowers}
+                          toggledClearRows={this.props.toggledClearRows}
                           />
                       
-                      <h6 style={showMessageForm} className="messageForm">Message</h6>
+                          <h6 style={showFollowersMessageForm} className="messageForm">Message</h6>
                       
-                      <MessageForm
-                          message={this.state.message}
-                          showMessageForm={this.state.showMessageForm}
-                          handleMessageChange={this.handleMessageChange}
-                          handleMessageSubmit={this.handleMessageSubmit}
-                          enableMessageInput={this.state.enableMessageInput}
-                          enableMessageSubmitButton={this.state.enableMessageSubmitButton}
-                          showMessageSubmitButton = {this.state.showMessageSubmitButton}
-                          showMessageSubmitLoadingButton = {this.state.showMessageSubmitLoadingButton}
-                          />*/}
-                          
+                          <FollowersMessageForm
+                            followersMessage={this.props.followersMessage}
+                            showFollowersMessageForm={this.props.showFollowersMessageForm}
+                            handleFollowersMessageChange={this.props.handleFollowersMessageChange}
+                            handleFollowersMessageSubmit={this.props.handleFollowersMessageSubmit}
+                            enableFollowersMessageInput={this.props.enableFollowersMessageInput}
+                            enableFollowersMessageSubmitButton={this.props.enableFollowersMessageSubmitButton}
+                            showFollowersMessageSubmitButton = {this.props.showFollowersMessageSubmitButton}
+                            showFollowersMessageSubmitLoadingButton = {this.props.showFollowersMessageSubmitLoadingButton}
+                          />
                           
                   </Card.Body>
                 </Accordion.Collapse>
@@ -251,182 +272,6 @@ class App extends Component {
       )
   }
   
-
-  
-  handleFollowersSearchChange = event => {
-    
-    console.log(event);
-     
-     const { name, value } = event.target
-  
-      this.setState({[name]: value, followersSearchUrl: value}, () => {   
-          if (this.state.followersSearchUrl.length > 10 && this.state.followersSearchUrl.includes("http")) {
-            this.setState({enableFollowersSearchSubmitButton: true}, () => {   
-              //console.log(this.state);
-            })
-          } else {
-            this.setState({enableFollowersSearchSubmitButton: false}, () => {   
-              //console.log(this.state);
-            })
-          }
-      })
-        
-  }
-    
-    
-  handleFollowersSearchSubmit = () => {
-  
-    this.setState({ showFollowersTable: false })
-    this.setState({ showFollowersSearchSubmitButton: false })
-    this.setState({ showFollowersSearchSubmitLoadingButton: true })
-    this.setState({ enableFollowersSearchInput: false })
-    this.setState({ showErrorAlert: false })
-    this.setState({ showSuccessAlert: false })
-    this.setState({ showInfoAlert: false })
-    
-      var myHeaders = new Headers();
-        myHeaders.set('Accept', 'application/json');
-        myHeaders.set('Content-Type', 'application/json');
-        //myHeaders.set('Authorization', 'Token token=' + String(token));
-        myHeaders.set('Cache-Control', 'no-cache');
-        myHeaders.set('Pragma', 'no-cache');
-        myHeaders.set('Expires', '0');
-    
-    fetch('https://scbm.amfdev.co.uk/api/followers/?followersSearchUrl='+encodeURI((this.state.followersSearchUrl)), {
-            method: 'GET',
-            headers: myHeaders
-        })
-    .then(async response => {
-      
-            if (!response.ok) {
-               //throw Error(response.statusText);
-                this.setState({errorAlertText: "Something went wrong. Please try again later."});
-                this.setState({showErrorAlert: true});
-                
-                this.setState({ showFollowersSearchSubmitButton: true })
-                this.setState({ showFollowersSearchSubmitLoadingButton: false })
-            }
-            //console.log(response);
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-                
-            if (jsonResponse.success) {
-                  
-                this.setState({ followerData: jsonResponse.followerData })
-                this.setState({ showFollowersTable: true })
-                document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
-  
-                this.setState({successAlertText: "Found " + jsonResponse.followerData.length + ' followers.'});
-                
-                  this.setState({showSuccessAlert: true},()=>{
-                  window.setTimeout(()=>{
-                    this.setState({showSuccessAlert: false})
-                  },4000)
-                  
-              });
-                
-                  this.setState({ enableFollowersSearchInput: true })
-                  this.setState({ showFollowersSearchSubmitButton: true })
-                  this.setState({ showFollowersSearchSubmitLoadingButton: false })
-                  
-            
-            } else if (!jsonResponse.success) {
-              
-                  if (jsonResponse.followerData === "no followers") {
-                    
-                        this.setState({ showFollowersTable: true })
-                        document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
-          
-                        this.setState({successAlertText: "But there were no followers found for this track."});
-                        
-                          this.setState({showSuccessAlert: true},()=>{
-                          window.setTimeout(()=>{
-                            this.setState({showSuccessAlert: false})
-                          },4000)
-                          
-                      });
-                      
-                          this.setState({ enableFollowersSearchInput: true })
-                          this.setState({ showFollowersSearchSubmitButton: true })
-                          this.setState({ showFollowersSearchSubmitLoadingButton: false })
-                          
-                  } else {
-                    
-                        // get error message from body or default to response status
-                         //const error = (followerData && followerData.message) || response.status;
-                         //console.log(jsonResponse.errorMessage);
-                         //return Promise.reject(jsonResponse.errorMessage);
-                         this.setState({errorAlertText: "Something went wrong. Please try again later."});
-                         this.setState({showErrorAlert: true});
-                         
-                         this.setState({ showFollowersSearchSubmitButton: true })
-                         this.setState({ showFollowersSearchSubmitLoadingButton: false })
-                         this.setState({ enableFollowersSearchInput: true })
-  
-                  }
-           
-                  
-            }
-            
-        })
-        .catch(error => {
-            //this.setState({ errorMessage: error.toString() });
-            console.error('There was an error!', error);
-            
-             this.setState({ enableFollowersSearchInput: true })
-            this.setState({ showFollowersSearchSubmitButton: true })
-            this.setState({ showFollowersSearchSubmitLoadingButton: false })
-            
-              this.setState({showErrorAlert: true},()=>{
-              window.setTimeout(()=>{
-                this.setState({showErrorAlert: false})
-              },4000)
-            });
-              
-        });
-      
-    
-      /*
-        const followerData = [
-            {profileUrl: "https://soundcloud.com/cloaked-music", messagedBefore: "No"},
-            {profileUrl: "https://srewrewr.com", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/patrickxtaylor", messagedBefore: "Yes"},
-            {profileUrl: "https://soundcloud.com/alvonmars", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/upukrecords", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/user-355158966-477119345", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/deftsoulmusique1995", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/ocmoon", messagedBefore: "Yes"}
-            ];
-        
-        
-            this.setState({ followerData: followerData })
-            this.setState({ showFollowersTable: true })
-            
-            this.setState({ showSearchSubmitButton: true })
-            this.setState({ showSearchSubmitLoadingButton: false })*/
-            
- 
-  }
-  
-  
-  dismissErrorAlert = () => {
-        this.setState({showErrorAlert: false});
-  }
-    
-  dismissSuccessAlert = () => {
-        this.setState({showSuccessAlert: false});
-  }
-  
-  dismissInfoAlert = () => {
-        this.setState({showInfoAlert: false});
-  }
-  
-  
-  doReset = () => {
-      //console.log('do reset');
-      this.setState(this.initialState);
-      this.componentDidMount(); 
-  }
   
 
 }
@@ -446,18 +291,16 @@ function mapStateToProps(state) {
       showLogoutSubmitButton: state.showLogoutSubmitButton,
       loggedInInfoText: state.loggedInInfoText,
       
-      //commenters
+      //commenters search
+      showCommentersSearchSubmitButton: state.showCommentersSearchSubmitButton,
+      enableCommentersSearchSubmitButton: state.enableCommentersSearchSubmitButton,
+      showCommentersSearchSubmitLoadingButton: state.showCommentersSearchSubmitLoadingButton,
+      enableCommentersSearchInput: state.enableCommentersSearchInput,
       showCommentersTable: state.showCommentersTable,
       commenterData : state.commenterData,
       selectedCommenters : state.selectedCommenters,
       toggledClearRows: state.toggledClearRows,
       
-      //commenters search form
-      showCommentersSearchSubmitButton: state.showCommentersSearchSubmitButton,
-      enableCommentersSearchSubmitButton: state.enableCommentersSearchSubmitButton,
-      showCommentersSearchSubmitLoadingButton: state.showCommentersSearchSubmitLoadingButton,
-      enableCommentersSearchInput: state.enableCommentersSearchInput,
-
       //login
       showLoginForm: state.showLoginForm,
       showLoginSubmitButton: state.showLoginSubmitButton,
@@ -484,13 +327,31 @@ function mapStateToProps(state) {
       showSuccessAlert: state.showSuccessAlert,
       successAlertText: state.successAlertText,
       
-      //messages
+      //commenters messages
       showCommentersMessageForm: state.showCommentersMessageForm,
       commentersMessage: state.commentersMessage,
       showCommentersMessageSubmitButton: state.showCommentersMessageSubmitButton,
       showCommentersMessageSubmitLoadingButton: state.showCommentersMessageSubmitLoadingButton,
       enableCommentersMessageSubmitButton : state.enableCommentersMessageSubmitButton,
-      enableCommentersMessageInput: state.enableCommentersMessageInput
+      enableCommentersMessageInput: state.enableCommentersMessageInput,
+      
+      //followers search
+      showFollowersSearchSubmitButton: state.showFollowersSearchSubmitButton,
+      enableFollowersSearchSubmitButton: state.enableFollowersSearchSubmitButton,
+      showFollowersSearchSubmitLoadingButton: state.showFollowersSearchSubmitLoadingButton,
+      enableFollowersSearchInput: state.enableFollowersSearchInput,
+      showFollowersTable: state.showFollowersTable,
+      followerData : state.followerData,
+      selectedFollowers : state.selectedFollowers,
+      //toggledClearRows: state.toggledClearRows,
+      
+      //followers messages
+      showFollowersMessageForm: state.showFollowersMessageForm,
+      followersMessage: state.followersMessage,
+      showFollowersMessageSubmitButton: state.showFollowersMessageSubmitButton,
+      showFollowersMessageSubmitLoadingButton: state.showFollowersMessageSubmitLoadingButton,
+      enableFollowersMessageSubmitButton : state.enableFollowersMessageSubmitButton,
+      enableFollowersMessageInput: state.enableFollowersMessageInput
       }
       
 }
@@ -510,7 +371,13 @@ const mapDispatchToProps = {
       handleCommentersSearchSubmit,
       handleCommentersSelectedRowsChange,
       handleCommentersMessageChange,
-      handleCommentersMessageSubmit
+      handleCommentersMessageSubmit,
+      handleFollowersSearchChange,
+      handleFollowersSearchSubmit,
+      handleFollowersSelectedRowsChange,
+      handleFollowersMessageChange,
+      handleFollowersMessageSubmit,
+      handleAlertChange
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

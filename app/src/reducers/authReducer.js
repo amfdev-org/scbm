@@ -1,5 +1,4 @@
 import {
-  AUTH_HTTP_ERROR,
   AUTH_SESSION_ERROR,
   AUTH_COOKIE_ERROR,
   AUTH_SUCCESS,
@@ -21,6 +20,7 @@ export default function authReducer(state, action) {
       
       return {
         ...state,
+        showInfoAlert: false,
         errorAlertText: "HTTP or unknown error. Please try again later.",
         showErrorAlert: true   
       };
@@ -29,7 +29,6 @@ export default function authReducer(state, action) {
 
       return {
         ...state,
-        authErrorMessage: action.error,
         errorAlertText: "",
         showErrorAlert: false,
         showLoginForm: true,
@@ -45,7 +44,6 @@ export default function authReducer(state, action) {
 
       return {
         ...state,
-        authErrorMessage: action.error,
         errorAlertText: "Auth cookie error. Please contact support.",
         showErrorAlert: true
       };
@@ -54,7 +52,6 @@ export default function authReducer(state, action) {
 
       return {
         ...state,
-        authErrorMessage: null,
         errorAlertText: null,
         showErrorAlert: false,            
         showLoggedInInfo: true,

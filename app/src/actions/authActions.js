@@ -16,17 +16,16 @@ export function fetchAuth() {
       .then(json => catchAuthSessionError(json.data, dispatch))
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))
-      .catch(error => console.log(error));
+      .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: AUTH_UNKNOWN_ERROR
+                      })  
+                }
+      });
   }
 
-}
-
-function catchAuthUnknownError(error, dispatch) {
-    
-        dispatch({
-                type: AUTH_UNKNOWN_ERROR
-              });
-        return;
 }
 
 

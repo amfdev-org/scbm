@@ -10,7 +10,7 @@ class LoginForm extends Component {
       
     handleChange = (event) => {
           
-        //ReactTooltip.hide();
+        ReactTooltip.hide();
         this.props.handleLoginChange(event)
         
     }
@@ -37,7 +37,7 @@ class LoginForm extends Component {
                     id="login-sc-username"
                     name="scUsername"
                     autoComplete="off"
-                    value={this.props.scUsername}
+                    value={this.props.scUsername || ""}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>
                     
@@ -47,7 +47,7 @@ class LoginForm extends Component {
                     type="password"
                     name="scPassword"
                     id="login-sc-password"
-                    value={this.props.scPassword}
+                    value={this.props.scPassword || ""}
                     onChange={this.handleChange} />
                     <ReactTooltip delayShow={250}/>         
              </Form.Group>

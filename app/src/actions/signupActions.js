@@ -7,7 +7,7 @@ export const SIGNUP_SUBMIT_DISABLE = 'SIGNUP_SUBMIT_DISABLE'
 export const SIGNUP_SUBMITTED = 'SIGNUP_SUBMITTED'
 export const SIGNUP_SC_LOGIN_ERROR = 'SIGNUP_SC_LOGIN_ERROR'
 export const SIGNUP_COOKIE_ERROR = 'SIGNUP_COOKIE_ERROR'
-export const SIGNUP_UNKNOWN_ERROR = 'SIGNUP_COOKIE_ERROR'
+export const SIGNUP_UNKNOWN_ERROR = 'SIGNUP_UNKNOWN_ERROR'
 export const SIGNUP_USER_CREATED_ERROR = 'SIGNUP_USER_CREATED_ERROR'
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
 
@@ -67,7 +67,14 @@ export function handleSignupSubmit(event) {
             .then(json => catchSignupCookieError(json, dispatch))
             .then(json => catchSignupUserCreatedError(json, dispatch))
             .then(json => doSignupSuccess(json, dispatch))
-            .catch(error => catchSignupUnknownError(error, dispatch));
+            .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: SIGNUP_UNKNOWN_ERROR
+                      })  
+                }
+            });
                   
     }
     
@@ -77,7 +84,7 @@ export function handleSignupSubmit(event) {
 //res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: true, userCreated: true, signupError: null, userData: data}));
 
 function catchSignupScLoginError(json, dispatch) {
-    console.log('catchSignupScLoginError')
+    //console.log('catchSignupScLoginError')
     if (!json.scLoginSuccess) {
         dispatch({
                 type: SIGNUP_SC_LOGIN_ERROR
@@ -90,7 +97,7 @@ function catchSignupScLoginError(json, dispatch) {
 
 
 function catchSignupCookieError(json, dispatch) {
-    console.log('catchSignupCookieError')
+    //console.log('catchSignupCookieError')
     if (!json.scCookiesValid) {
         dispatch({
                 type: SIGNUP_COOKIE_ERROR
@@ -102,17 +109,8 @@ function catchSignupCookieError(json, dispatch) {
 }
 
 
-function catchSignupUnknownError(error, dispatch) {
-
-        dispatch({
-                type: SIGNUP_UNKNOWN_ERROR
-              });
-        return;
-}
-
-
 function catchSignupUserCreatedError(json, dispatch) {
-    console.log('catchSignupUserCreatedError')
+    //console.log('catchSignupUserCreatedError')
     if (!json.userCreated) {
         dispatch({
                 type: SIGNUP_USER_CREATED_ERROR
@@ -125,7 +123,7 @@ function catchSignupUserCreatedError(json, dispatch) {
 
 
 function doSignupSuccess(json, dispatch) {
-    console.log('doSignupSuccess')
+    //console.log('doSignupSuccess')
  
         dispatch({
                 type: SIGNUP_SUCCESS,

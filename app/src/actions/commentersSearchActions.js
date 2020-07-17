@@ -19,12 +19,10 @@ export const COMMENTERS_SEARCH_UNKNOWN_ERROR = 'COMMENTERS_SEARCH_UNKNOWN_ERROR'
 export function handleCommentersSearchChange(event) {
     
     return (dispatch, getState) => {
-        
-        const { name, value } = event.target
-  
+
             dispatch({
                 type: COMMENTERS_SEARCH_URL_CHANGE,
-                commentersSearchUrl: value
+                commentersSearchUrl: event.target.value
             })
        
         if(getState().commentersSearchUrl && getState().commentersSearchUrl.length > 0 && getState().commentersSearchUrl.includes("http")) {
@@ -53,13 +51,20 @@ export function handleCommentersSearchSubmit(event) {
            
         axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
          params: {
-           commentersSearchUrl: encodeURI(getState().commentersSearchUrl)
+           searchUrl: encodeURI(getState().commentersSearchUrl)
          }
          })
-         .then(json => catchCommentersSearchNoResults(json.data, dispatch))
-         .then(json => catchCommentersSearchOtherError(json, dispatch))
-         .then(json => doCommentersSearchSuccess(json, dispatch))
-         .catch(error => console.log(error));
+        .then(json => catchCommentersSearchNoResults(json.data, dispatch))
+        .then(json => catchCommentersSearchOtherError(json, dispatch))
+        .then(json => doCommentersSearchSuccess(json, dispatch))
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: COMMENTERS_SEARCH_UNKNOWN_ERROR
+                      })  
+                }
+        });
                   
     }
     
@@ -74,19 +79,17 @@ function catchCommentersSearchNoResults(json, dispatch) {
         dispatch({
                 type: COMMENTERS_SEARCH_NO_RESULTS
               })
+        dispatch({ type: "SUCCESS_ALERT_SHOW" });
+        
+        window.setTimeout(()=>{ 
+        dispatch({ type: "SUCCESS_ALERT_HIDE" });
+        },4000)
+    
         throw Error(json.error);
+                
     }
     
   return json;
-}
-
-
-function catchCommentersSearchUnknownError(error, dispatch) {
-    console.log('catchCommentersSearchUnknownError')
-        dispatch({
-                type: COMMENTERS_SEARCH_UNKNOWN_ERROR
-              });
-        return;
 }
 
 
@@ -110,6 +113,13 @@ function doCommentersSearchSuccess(json, dispatch) {
                 type: COMMENTERS_SEARCH_SUCCESS,
                 commenterData: json.commenterData
               })
+          
+            dispatch({ type: "SUCCESS_ALERT_SHOW" });
+            
+            window.setTimeout(()=>{ 
+            dispatch({ type: "SUCCESS_ALERT_HIDE" });
+            },4000)
+               
   return json;
 }
 

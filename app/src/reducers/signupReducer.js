@@ -55,58 +55,67 @@ export default function signupReducer(state, action) {
       };
       
     case SIGNUP_SC_LOGIN_ERROR:
-        console.log("sc login error - reducer");
+        //console.log("sc login error - reducer");
       return {
         ...state,
         errorAlertText: 'Something went wrong. Are you sure those details are correct?',
         errorAlertLinkText: '',
-        showInfoAlert: false,
-        showSuccessAlert: false,
         showErrorAlert: true,
+        
         showSignupSubmitButton: true,
         showSignupSubmitLoadingButton: false,
-        enableSignupFormInputs: true
+        enableSignupFormInputs: true,
+        enableSignupSubmitButton: true
       };
       
     case SIGNUP_COOKIE_ERROR:
-         console.log("sc cookie error - reducer");
+         //console.log("sc cookie error - reducer");
       return {
         ...state,
-        showInfoAlert: false,
-        showLoginForm: false,
         errorAlertText: "Credentials invalid. Please contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
-        showSignupSubmitLoadingButton: false
+        
+        showSignupSubmitButton: true,
+        showSignupSubmitLoadingButton: false,
+        enableSignupFormInputs: true,
+        enableSignupSubmitButton: true
       };
       
     case SIGNUP_USER_CREATED_ERROR:
-         console.log("sc user created error - reducer");
+         //console.log("sc user created error - reducer");
       return {
         ...state,
         errorAlertText: "User not created. Please contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
-        showSignupSubmitLoadingButton: false
-                            
+        
+        showSignupSubmitButton: true,
+        showSignupSubmitLoadingButton: false,
+        enableSignupFormInputs: true,
+        enableSignupSubmitButton: true
+            
       };
       
     case SIGNUP_UNKNOWN_ERROR:
-      
+        //console.log("sc unknown error - reducer");
       return {
         ...state,
-        errorAlertText: "HTTP or unknown error. Please try again later.",
+        errorAlertText: "HTTP or unknown error. Please contact support.",
         errorAlertLinkText: '',
-        showErrorAlert: true  
+        showErrorAlert: true,
+        
+        showSignupSubmitButton: true,
+        showSignupSubmitLoadingButton: false,
+        enableSignupFormInputs: true,
+        enableSignupSubmitButton: true
       };
 
       
     case SIGNUP_SUCCESS:
-         console.log("sc signup success - reducer");
+         //console.log("sc signup success - reducer");
       return {
         ...state,
-        showInfoAlert: false,
-        showErrorAlert: false,
         showSignupForm: false,
         showLogoutSubmitButton: true,
         showLoggedInInfo: true,
@@ -119,7 +128,6 @@ export default function signupReducer(state, action) {
         enableCommentersSearchInput: true
 
         //successAlertText: "You're now logged in!"
-    
       };
       
     

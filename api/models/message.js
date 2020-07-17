@@ -68,7 +68,7 @@ let checkCommenterMessageStatus = (commentersArray) => {
     
     for (var i = 0 ; i < commentersArrayLength; i++) {
         
-            let songUrl = commentersArray[i].songUrl;
+            let searchUrl = commentersArray[i].searchUrl;
             let profileUrl = commentersArray[i].profileUrl;
             let profileName = commentersArray[i].profileName;
             
@@ -76,9 +76,9 @@ let checkCommenterMessageStatus = (commentersArray) => {
             .then(message => {
     
                 if (message) {
-                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrl, profileName: profileName, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
                 } else {
-                    compositeArray.push({ songUrl: songUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
+                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
                 }
                  //console.log(compositeArray);
                  if (compositeArray.length == commentersArrayLength) {
@@ -96,6 +96,54 @@ let checkCommenterMessageStatus = (commentersArray) => {
 
 }
 
+let checkFollowerMessageStatus = (followersArray) => {
+    
+    //console.log('follower model');
+    //console.log(profileUrlArray);
+    return new Promise((resolve, reject) => {
+    
+    /*const profileUrlArray = [
+        { profileUrl: 'https://soundcloud.com/ocmoon' },
+        { profileUrl: 'https://soundcloud.com/fogcapture' },
+        { profileUrl: 'https://soundcloud.com/patrickxtaylor' },
+        { profileUrl: 'https://soundcloud.com/deceivingsounds' },
+        { profileUrl: 'https://soundcloud.com/matcatmusic' }
+      ];*/
+    
+    let followersArrayLength = followersArray.length;
+    
+    let compositeArray = [];
+    
+    for (var i = 0 ; i < followersArrayLength; i++) {
+        
+            let searchUrl = followersArray[i].searchUrl;
+            let profileUrl = followersArray[i].profileUrl;
+            let profileName = followersArray[i].profileName;
+            
+            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"} })
+            .then(message => {
+    
+                if (message) {
+                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                } else {
+                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
+                }
+                 //console.log(compositeArray);
+                 if (compositeArray.length == followersArrayLength) {
+                    resolve(compositeArray);
+                 }
+                 
+            }).catch(err => {
+                console.log(err)
+                reject(err)
+            })
+        
+        }
+    
+    })
+
+}
+
 //Message.sync({ force: true });
 
-module.exports = { Message, logMessages, checkCommenterMessageStatus };
+module.exports = { Message, logMessages, checkCommenterMessageStatus, checkFollowerMessageStatus };

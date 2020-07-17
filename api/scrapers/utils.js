@@ -39,7 +39,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                       clearInterval(timer);
                       resolve();
                   }
-              }, 400);
+              }, 100);
           });
       });
     }
