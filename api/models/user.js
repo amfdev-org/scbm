@@ -26,6 +26,10 @@ const User = sequelize.define('users', {
     scCookies: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    scProfile: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     hooks: {

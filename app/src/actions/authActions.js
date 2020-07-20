@@ -1,5 +1,9 @@
 import axios from 'axios';
-
+  
+import {
+  fetchMyFollowers
+  } from '../actions/myFollowersSearchActions'
+  
 export const AUTH_HTTP_ERROR = 'AUTH_HTTP_ERROR'
 export const AUTH_SESSION_ERROR = 'AUTH_SESSION_ERROR'
 export const AUTH_COOKIE_ERROR = 'AUTH_COOKIE_ERROR'
@@ -16,6 +20,7 @@ export function fetchAuth() {
       .then(json => catchAuthSessionError(json.data, dispatch))
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))
+      .then(json => dispatch(fetchMyFollowers()))
       .catch(error => {
 
                 if (error.response) {   
@@ -61,8 +66,11 @@ function doAuthSuccess(json, dispatch) {
     if (json.authSuccess) {
         dispatch({
           type: AUTH_SUCCESS,
-          scUsername: json.userData.scUsername
+          userData: json.userData
         })
+        
+        fetchMyFollowers()
+            
     }
     
   return json;

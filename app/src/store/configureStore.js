@@ -73,7 +73,27 @@ export const initialState = {
         infoAlertText: '',
         infoAlertTextHeading: '',
         errorAlertLink: '',
-        errorAlertLinkText: ''};
+        errorAlertLinkText: '',
+         
+        //my followers
+        myFollowerData: [],
+        showMyFollowersTable: false,
+        showMyFollowersSubmitButton: true,
+        showMyFollowersSubmitLoadingButton: false,
+        selectedMyFollowers: [],
+        
+        //my followers messages
+        myFollowersMessage : 'Hi <<profileName>>,',
+        showMyFollowersMessageForm: false,
+        enableMyFollowersMessageInput: true,
+        enableMyFollowersMessageSubmitButton: false,
+        showMyFollowersMessageSubmitButton: true,
+        showMyFollowersMessageSubmitLoadingButton: false,
+        
+        showMyFollowersLoadingIcon: true,
+        
+        scProfile: ''
+};
 
 
 export default function configureStore(preloadedState) {

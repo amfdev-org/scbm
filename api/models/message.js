@@ -96,10 +96,11 @@ let checkCommenterMessageStatus = (commentersArray) => {
 
 }
 
-let checkFollowerMessageStatus = (followersArray) => {
-    
-    //console.log('follower model');
+let checkFollowerMessageStatus = (data) => {
+ 
+    console.log('follower model');
     //console.log(profileUrlArray);
+    console.log(data)
     return new Promise((resolve, reject) => {
     
     /*const profileUrlArray = [
@@ -110,15 +111,13 @@ let checkFollowerMessageStatus = (followersArray) => {
         { profileUrl: 'https://soundcloud.com/matcatmusic' }
       ];*/
     
-    let followersArrayLength = followersArray.length;
-    
     let compositeArray = [];
     
-    for (var i = 0 ; i < followersArrayLength; i++) {
+    for (var i = 0 ; i < data.followers.length; i++) {
         
-            let searchUrl = followersArray[i].searchUrl;
-            let profileUrl = followersArray[i].profileUrl;
-            let profileName = followersArray[i].profileName;
+            let searchUrl = data.followers[i].searchUrl;
+            let profileUrl = data.followers[i].profileUrl;
+            let profileName = data.followers[i].profileName;
             
             const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"} })
             .then(message => {
@@ -129,8 +128,8 @@ let checkFollowerMessageStatus = (followersArray) => {
                     compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
                 }
                  //console.log(compositeArray);
-                 if (compositeArray.length == followersArrayLength) {
-                    resolve(compositeArray);
+                 if (compositeArray.length == data.followers.length) {
+                    resolve({followerData: compositeArray, isMyFollowersSearch: data.isMyFollowersSearch});
                  }
                  
             }).catch(err => {

@@ -86,13 +86,14 @@ export default function loginReducer(state, action) {
             showLoginForm: false,
             showLogoutSubmitButton: true,
             showLoggedInInfo: true,
-            loggedInInfoText: "Logged in as " + action.scUsername, 
+            loggedInInfoText: "Logged in as " + action.userData.scUsername, 
             showInfoAlert: false,
             showMainAccordion: true,
             showCommentersSearchForm: true,
             showCommentersSearchSubmitButton: true,
             enableCommentersSearchSubmitButton: true, 
-            enableCommentersSearchInput: true
+            enableCommentersSearchInput: true,
+            scProfile: action.userData.scProfile
             
       };
     
@@ -109,7 +110,7 @@ export default function loginReducer(state, action) {
             showErrorAlert: false,
             infoAlertTextHeading: "OK then!",
             infoAlertText: "Please sign up below.",
-            showInfoAlert: true
+            //showInfoAlert: true
 
       };
           

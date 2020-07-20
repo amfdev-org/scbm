@@ -33,7 +33,7 @@ class SignupForm extends Component {
             <Form.Group>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
-                    data-tip="SC Username"
+                    data-tip="Service Username"
                     type="text"
                     name="scUsername"
                     disabled={!this.props.enableSignupFormInputs}
@@ -43,7 +43,7 @@ class SignupForm extends Component {
                     
             <Form.Label>Password</Form.Label>
                 <Form.Control
-                    data-tip="SC Password"
+                    data-tip="Service Password"
                     type="password"
                     name="scPassword"
                     disabled={!this.props.enableSignupFormInputs}

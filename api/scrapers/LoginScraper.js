@@ -115,6 +115,17 @@ const connection = require('./connection')
       //another random wait
       await page.waitFor(utils.randomWait7);
         
+        
+      //NEW - get the profile URL
+      await page.waitForSelector('.header__userNav > a.header__userNavUsernameButton')
+        .then(() => console.log('**got username/profile link'))
+      .catch ((error) => {
+        console.log("ERROR! could not access username/profile link");
+        throw new Error(error)
+      })
+      
+      const profileUrl = await page.$eval('.header__userNav > a.header__userNavUsernameButton', el => el.href);
+      console.log(profileUrl);
       //const html = await page.content();
       //console.log(html);
       
@@ -221,7 +232,8 @@ const connection = require('./connection')
       //close the browser
       await browser.close();
       
-      return sanitizedUsername + '/cookies.json';
+      let obj = {scCookies: sanitizedUsername + '/cookies.json', scProfile: profileUrl};
+      return obj;
 
     }
 

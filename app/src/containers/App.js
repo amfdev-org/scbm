@@ -41,6 +41,16 @@ import {
   handleFollowersMessageSubmit
   } from '../actions/followersMessageActions' 
   
+import {
+  fetchMyFollowers,
+  handleMyFollowersSelectedRowsChange
+  } from '../actions/myFollowersSearchActions'
+ 
+import {
+  handleMyFollowersMessageChange,
+  handleMyFollowersMessageSubmit
+  } from '../actions/myFollowersMessageActions' 
+  
   
 import {
   handleAlertChange
@@ -56,17 +66,21 @@ import Accordion from 'react-bootstrap/Accordion'
 
 //COMPONENTS
 //forms
-import LoggedInInfo from '../components/loggedInInfo';
+import Header from '../components/header';
+import Footer from '../components/footer';
+//import LoggedInInfo from '../components/loggedInInfo';
 import LoginForm from '../components/loginForm';
 import SignupForm from '../components/signupForm';
 import CommentersSearchForm from '../components/commentersSearchForm';
 import FollowersSearchForm from '../components/followersSearchForm';
 import CommentersMessageForm from '../components/commentersMessageForm';
 import FollowersMessageForm from '../components/followersMessageForm';
+import MyFollowersMessageForm from '../components/myFollowersMessageForm';
 
 //tables/grids
 import CommentersTable from '../components/commentersTable';
 import FollowersTable from '../components/followersTable';
+import MyFollowersTable from '../components/myFollowersTable';
 
 //alerts
 import ErrorAlert from '../components/errorAlert';
@@ -84,6 +98,7 @@ class App extends Component {
   componentDidMount = () => {
 
     this.props.fetchAuth()
+
   }
 
   
@@ -96,7 +111,8 @@ class App extends Component {
     
     const showSignupForm = this.props.showSignupForm ? {display: 'block'} : {display: 'none'};
     
-    const showFollowersMessageForm = this.props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'}; 
+    const showFollowersMessageForm = this.props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'};
+    const showMyFollowersMessageForm = this.props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'}; 
     /*
     const showCommentersSearchForm = this.state.showCommentersSearchForm ? {display: 'block'} : {display: 'none'};
     //const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
@@ -104,10 +120,18 @@ class App extends Component {
 */
     
     return (
+      
+          <>
+   
+      <Header
+        showLoggedInInfo={this.props.showLoggedInInfo}
+        showLogoutSubmitButton={this.props.showLogoutSubmitButton}
+        />
+                
       <Container>
           <Row>
           <Col>
-       
+
            <ErrorAlert
             handleAlertChange={this.props.handleAlertChange}
             showErrorAlert={this.props.showErrorAlert}
@@ -132,12 +156,6 @@ class App extends Component {
             dismissInfoAlert={this.dismissInfoAlert}
            />
                
-        <LoggedInInfo
-          showLoggedInInfo={this.props.showLoggedInInfo}
-          showLogoutSubmitButton={this.props.showLogoutSubmitButton}
-          loggedInInfoText={this.props.loggedInInfoText}
-          handleLogoutSubmit={this.props.handleLogoutSubmit}
-          />
         
           <h3 className="main" style={showLoginForm}>Login</h3>
             
@@ -169,12 +187,47 @@ class App extends Component {
               
    
             <Accordion className="main-accordion" style={showMainAccordion}>
-              <Card>
+            
+                <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
-                  Commenters
+                  My Followers
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+    
+        
+                          <MyFollowersTable className="myFollowersDataTable"
+                          myFollowerData={this.props.myFollowerData}
+                          showMyFollowersTable={this.props.showMyFollowersTable}
+                          handleMyFollowersSelectedRowsChange={this.props.handleMyFollowersSelectedRowsChange}
+  
+                          showMyFollowersLoadingIcon={this.props.showMyFollowersLoadingIcon}
+                          selectedMyFollowers={this.props.selectedMyFollowers}
+                          />
+                      
+                          <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
+                      
+                          <MyFollowersMessageForm
+                            myFollowersMessage={this.props.myFollowersMessage}
+                            showMyFollowersMessageForm={this.props.showMyFollowersMessageForm}
+                            handleMyFollowersMessageChange={this.props.handleMyFollowersMessageChange}
+                            handleMyFollowersMessageSubmit={this.props.handleMyFollowersMessageSubmit}
+                            enableMyFollowersMessageInput={this.props.enableMyFollowersMessageInput}
+                            enableMyFollowersMessageSubmitButton={this.props.enableMyFollowersMessageSubmitButton}
+                            showMyFollowersMessageSubmitButton = {this.props.showMyFollowersMessageSubmitButton}
+                            showMyFollowersMessageSubmitLoadingButton = {this.props.showMyFollowersMessageSubmitLoadingButton}
+                          />
+                          
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="1">
+                  Find Commenters
                 </Accordion.Toggle>
                 
-                <Accordion.Collapse eventKey="0">
+                <Accordion.Collapse eventKey="1">
                   <Card.Body>
                   
                       <h6 className="main">Song URL</h6>
@@ -219,10 +272,10 @@ class App extends Component {
               </Card>
               
               <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="1">
-                  Followers
+                <Accordion.Toggle as={Card.Header} eventKey="2">
+                  Find Followers
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey="1">
+                <Accordion.Collapse eventKey="2">
                   <Card.Body>
                   
                     <h6 className="main">Profile URL</h6>
@@ -269,6 +322,14 @@ class App extends Component {
            </Col>
           </Row>
         </Container>
+ 
+                
+                     <Footer />
+                     
+                     </>
+             
+
+               
       )
   }
   
@@ -351,7 +412,22 @@ function mapStateToProps(state) {
       showFollowersMessageSubmitButton: state.showFollowersMessageSubmitButton,
       showFollowersMessageSubmitLoadingButton: state.showFollowersMessageSubmitLoadingButton,
       enableFollowersMessageSubmitButton : state.enableFollowersMessageSubmitButton,
-      enableFollowersMessageInput: state.enableFollowersMessageInput
+      enableFollowersMessageInput: state.enableFollowersMessageInput,
+      
+      //my followers
+        myFollowerData: state.myFollowerData,
+        showMyFollowersTable: state.showMyFollowersTable,
+        showMyFollowersLoadingIcon: state.showMyFollowersLoadingIcon,
+        selectedMyFollowers: state.selectedMyFollowers,
+        
+        //my followers messages
+
+        myFollowersMessage: state.myFollowersMessage,
+        showMyFollowersMessageForm: state.showMyFollowersMessageForm,
+        enableMyFollowersMessageInput: state.enableMyFollowersMessageInput,
+        enableMyFollowersMessageSubmitButton: state.enableMyFollowersMessageSubmitButton,
+        showMyFollowersMessageSubmitButton: state.showMyFollowersMessageSubmitButton,
+        showMyFollowersMessageSubmitLoadingButton: state.showMyFollowersMessageSubmitLoadingButton
       }
       
 }
@@ -377,7 +453,11 @@ const mapDispatchToProps = {
       handleFollowersSelectedRowsChange,
       handleFollowersMessageChange,
       handleFollowersMessageSubmit,
-      handleAlertChange
+      handleAlertChange,
+      fetchMyFollowers,
+      handleMyFollowersSelectedRowsChange,
+      handleMyFollowersMessageChange,
+      handleMyFollowersMessageSubmit
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

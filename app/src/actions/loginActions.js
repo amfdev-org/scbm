@@ -119,17 +119,15 @@ function catchLoginCookieError(json, dispatch) {
 }
 
 
-
 function doLoginSuccess(json, dispatch) {
     //console.log('doLoginSuccess')
  
         dispatch({
                 type: LOGIN_SUCCESS,
-                scUsername: json.userData.scUsername
+                userData: json.userData
               })
   return json;
 }
-
 
 
 export function handleLogoutSubmit(event) {

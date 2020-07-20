@@ -119,13 +119,14 @@ export default function signupReducer(state, action) {
         showSignupForm: false,
         showLogoutSubmitButton: true,
         showLoggedInInfo: true,
-        loggedInInfoText: "Logged in as " + action.scUsername,
+        loggedInInfoText: "Logged in as " + action.userData.scUsername,
         showSignupSubmitLoadingButton: false,
         showMainAccordion: true,
         showCommentersSearchForm: true,
         showCommentersSearchSubmitButton: true,
         enableCommentersSearchSubmitButton: true, 
-        enableCommentersSearchInput: true
+        enableCommentersSearchInput: true,
+        scProfile: action.userData.scProfile
 
         //successAlertText: "You're now logged in!"
       };

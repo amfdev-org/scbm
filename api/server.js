@@ -29,6 +29,7 @@ const MessageScraper = require('./scrapers/MessageScraper')
 const FollowerScraper = require('./scrapers/FollowerScraper')
 
 const db = require('./database')
+const Op = db.Op;
 const CommenterModel = require('./models/commenter')
 const MessageModel = require('./models/message')
 const UserModel = require('./models/user')
@@ -102,7 +103,8 @@ app.get('/sctest/', (req, res) => {
 app.get('/auth/', (req, res) => {
     
     console.log('GET /auth/');
-                 
+    console.log(req.session.user);
+    
     let validateSession = () => {
         
         return new Promise((resolve, reject) => {
@@ -127,10 +129,10 @@ app.get('/auth/', (req, res) => {
         
         return new Promise((resolve, reject) => {
             
-            utils.validateScCookies(req.session.user.scCookies)
+            utils.validateScCookies(req.session.user)
             .then(data => {
                 //console.log(data)
-                resolve(true)
+                resolve(data)
             })
             .catch(error => {
 
@@ -181,13 +183,12 @@ app.post('/signup/', (req, res) => {
                )
           .then(data => {
             console.log('tryScLogin signup promise - resolve data');
-            //console.log(data);
+            console.log(data);
             
             resolve(data)
-            //console.log(result);
           })
           .catch(error => {
-                //console.log(error)
+                console.log(error)
                 res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: false, scCookiesValid: null, userCreated: false, error: "service login failed", userData: null}));
                 reject(error)
                 
@@ -195,17 +196,17 @@ app.post('/signup/', (req, res) => {
          })
     }
     
-    let validateScCookies = (scCookies) => {
+    let validateScCookies = (data) => {
         
         return new Promise((resolve, reject) => {
             
-            utils.validateScCookies(scCookies)
+            utils.validateScCookies(data)
             .then(data => {
                 //console.log(data)
                 console.log('validate sc cookies signup promise - resolve scCookies');
-                console.log(scCookies);
+                console.log(data);
                 
-                resolve(scCookies)
+                resolve(data)
    
             })
             .catch(error => {
@@ -219,14 +220,15 @@ app.post('/signup/', (req, res) => {
                        
     }
     
-    let createUser = (scCookies) => {
+    let createUser = (data) => {
         
         return new Promise((resolve, reject) => {
             
             UserModel.create({
                 scUsername: req.body.scUsername,
                 scPassword: req.body.scPassword,
-                scCookies: scCookies
+                scCookies: data.scCookies,
+                scProfile: data.scProfile
             }).then(user => {
                 req.session.user = user.dataValues;
                 //console.log(user.dataValues);
@@ -279,13 +281,13 @@ app.post('/login/', (req, res) => {
                     if (!user) {
                         
                             console.log('user not found')
-                            res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
+                            res.send({ loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null });
                             reject('user not found')
                         
                         } else if (!user.validPassword(req.body.scPassword)) {
                             
                             console.log('password not valid')
-                            res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "password not valid", userData: null}));
+                            res.send({ loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "password not valid", userData: null });
                             reject('password not valid')
                              
                         } else {
@@ -306,7 +308,7 @@ app.post('/login/', (req, res) => {
             
             return new Promise((resolve, reject) => {
                 
-                utils.validateScCookies(user.scCookies)
+                utils.validateScCookies(user)
                 .then(data => {
                     //console.log(data)
                     resolve(user)
@@ -315,7 +317,7 @@ app.post('/login/', (req, res) => {
                     //console.log(error)
                     console.log(error)
                     reject("sc cookies not valid")
-                    res.send(JSON.stringify({loginSuccess: false, userFound: true, scCookiesValid: false, loginError: "cookies not valid", userData: null}));
+                    res.send({loginSuccess: false, userFound: true, scCookiesValid: false, loginError: "cookies not valid", userData: null });
                     
                 })
             
@@ -329,7 +331,7 @@ app.post('/login/', (req, res) => {
         .then(user => validateScCookies(user))
         .then(user => {
             req.session.user = user;
-            res.send(JSON.stringify({loginSuccess: true, userFound: true, scCookiesValid: true, loginError: null, userData: req.session.user}));
+            res.send({loginSuccess: true, userFound: true, scCookiesValid: true, loginError: null, userData: req.session.user} );
         })
         .catch(error => {
             console.log(error);
@@ -341,6 +343,11 @@ app.post('/login/', (req, res) => {
 
 
 app.get('/commenters/', function(req, res) {
+    
+    if (!req.session.user) {
+        console.log('no session')
+        res.end();
+    }
     
     console.log('GET /commenters/');
 
@@ -359,27 +366,7 @@ app.get('/commenters/', function(req, res) {
         })
         
     }
-    
-    /*let getPasswordPlain = () => {
-        
-        return new Promise((resolve, reject) => {
-            
-            UserModel.findOne({ where: { scUsername: req.session.user.scUsername } })
-                .then(function (user) {
-                    if (!user) {
-                        console.log('user not found')
-                        reject('user not found')
-                    } else {
-                        //console.log(scUsername);
-                        let scPasswordPlain = user.decryptPassword();
-                        //console.log(scPasswordPlain)
-                        resolve(scPasswordPlain);
-                    }
-                });
-            
-            })
-        }
-    */
+
     
     let scrapeCommenters = (searchUrl) => {
             
@@ -411,8 +398,8 @@ app.get('/commenters/', function(req, res) {
         .catch(error => {
           console.log(error);
           console.log(error.error);
-            emptyArr = [];
-            if (error.error == "no commenters") {
+            //emptyArr = [];
+            if (error.error === "no commenters") {
                 //console.log('yes');
                  res.send({success: false, noResults: true, commenterData: "no commenters"})
             } else {
@@ -425,10 +412,17 @@ app.get('/commenters/', function(req, res) {
         
         
 app.get('/followers/', function(req, res) {
-    
+      
     console.log('GET /followers/');
-
     
+    if (!req.session.user) {
+        console.log('no session')
+        res.end();
+    }
+    
+    console.log(req)
+     console.log(req.session.user)
+     
     let validateFollowersSearchUrl = () => {
         
         return new Promise((resolve, reject) => {
@@ -436,71 +430,107 @@ app.get('/followers/', function(req, res) {
             let searchUrl = decodeURI(req.query.searchUrl);
             console.log(searchUrl);
             
+            let isMyFollowersSearch = false;
+
             if (!searchUrl.includes("soundcloud")) {
+                 console.log("Search URL does not contain 'soundcloud'")
                 reject("Search URL does not contain 'soundcloud'");
                 //res.send(JSON.stringify({errorMessage : "Server says: could not get followers!"}))
+            } else if (searchUrl === req.session.user.scProfile) {
+                console.log('is my follower search')
+
+                //console.log(isMyFollowersSearch)
+                resolve({searchUrl: searchUrl, isMyFollowersSearch: true});
             } else {
-                resolve(searchUrl);
+      
+                console.log('is my follower search')
+
+                //console.log(isMyFollowersSearch)
+                resolve({searchUrl: searchUrl, isMyFollowersSearch: false});
             }
         })
         
     }
     
-    /*let getPasswordPlain = () => {
+      let checkForLoggedFollowers = (data) => {
         
         return new Promise((resolve, reject) => {
-            
-            UserModel.findOne({ where: { scUsername: req.session.user.scUsername } })
-                .then(function (user) {
-                    if (!user) {
-                        console.log('user not found')
-                        reject('user not found')
-                    } else {
-                        //console.log(scUsername);
-                        let scPasswordPlain = user.decryptPassword();
-                        //console.log(scPasswordPlain)
-                        resolve(scPasswordPlain);
+            console.log("checkForLoggedFollowers")
+            FollowerModel.Follower.findAll({
+                where: {
+                      searchUrl: data.searchUrl,
+                      createdAt: {
+                        [Op.gte]: moment().subtract(1, 'days').toDate()
+                      }
                     }
+                })
+                .then(function (followers) {
+                    console.log(followers);
+                    console.log('*****')
+                    //console.log(data)
+                    //console.log('no logged followers')
+                    //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
+                    resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: followers })
+                
+        
+                }).catch(error => {
+                   console.log(error)
+                   reject(error)
                 });
-            
-            })
-        }
-    */
+        
+        })
     
-    let scrapeFollowers = (searchUrl) => {
+      }
+    
+    
+    let scrapeFollowers = (data) => {
             
         return new Promise((resolve, reject) => {
-            
-        FollowerScraper
-        .scrapeFollowers(searchUrl, req.session.user.scCookies)
-          .then(data => {
-            //console.log(data)
-            resolve(data)
-          })
-          .catch(error => reject(error))
-         })
-    }
-        
+            console.log('scrape followers')
+           if (data.followers.length > 0) {
+               
+               resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: data.followers })
+               
+           } else {
            
+               console.log(data.searchUrl)
+               
+               FollowerScraper
+               .scrapeFollowers(data.searchUrl, req.session.user.scCookies)
+                 .then(scrapedFollowers => {
+                   console.log(data)
+                   console.log(data)
+                    resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: scrapedFollowers })
+                   })
+                   .catch(error => reject(error))
+           
+           }
+        })
+    }
+    
+        
         // run the promises!
         validateFollowersSearchUrl()
+        .then(data => checkForLoggedFollowers(data))
         .then(data => scrapeFollowers(data))
         .then(data => MessageModel.checkFollowerMessageStatus(data))
         .then(data => {
             console.log(data)
-            console.log("**logged followers to DB**");
-            //FollowerModel.logFollowers(data);
+            if (data.isMyFollowersSearch) {
+                FollowerModel.logFollowers(data.followerData);
+                console.log("**logged followers to DB**");
+            }
             console.log("**sending data to browser**");
-            //console.log(JSON.stringify(data))
-            res.send({success: true, noResults: false, followerData: data})
+            console.log(JSON.stringify(data))
+            res.send({success: true, noResults: false, followerData: data.followerData})
         })
         .catch(error => {
           console.log(error);
           console.log(error.error);
-            emptyArr = [];
-            if (error.error == "no followers") {
+            //emptyArr = [];
+            if (error.error === "no followers") {
                 //console.log('yes');
-                    res.send({success: false, noResults: true, followerData: "no commenters"})
+                    res.send({success: false, noResults: true, followerData: "no followers"})
             } else {
                     res.send({success: false, noResults: false, followerData: null})
             }
@@ -512,9 +542,14 @@ app.get('/followers/', function(req, res) {
 
 app.post('/message/', function(req, res) {
     
+    if (!req.session.user) {
+        console.log('no session')
+        res.end();
+    }
+    
     console.log('POST /message/');
   
-    //console.log(req.body);
+    console.log(req.body);
     
         let validateMessage = () => {
            

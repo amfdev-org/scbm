@@ -36,7 +36,7 @@ export default function authReducer(state, action) {
         infoAlertTextHeading: "Welcome",
         infoAlertText: "Please log in.",
         enableLoginSubmitButton: true,
-        showInfoAlert: true                        
+        //showInfoAlert: true                        
                               
       };
       
@@ -56,12 +56,13 @@ export default function authReducer(state, action) {
         showErrorAlert: false,            
         showLoggedInInfo: true,
         showLogoutSubmitButton: true,
-        loggedInInfoText: "Logged in as " + action.scUsername,
+        loggedInInfoText: "Logged in as " + action.userData.scUsername,
         showMainAccordion: true,
         showCommentersSearchForm: true,
         showCommentersSearchSubmitButton: true,
         enableCommentersSearchSubmitButton: false, 
-        enableCommentersSearchInput: true
+        enableCommentersSearchInput: true,
+        scProfile: action.userData.scProfile
                     
       };
       

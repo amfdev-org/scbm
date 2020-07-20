@@ -127,7 +127,7 @@ function doSignupSuccess(json, dispatch) {
  
         dispatch({
                 type: SIGNUP_SUCCESS,
-                scUsername: json.userData.scUsername
+                userData: json.userData
               })
   return json;
 }

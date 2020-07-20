@@ -130,3 +130,19 @@ button:disabled {
 h6 {
   font-weight: 400;
 }
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
+.footer-content {
+  font-size: xx-small;
+}
+.logged-in-info {
+  font-size: small;
+}
+
+.navbar-brand {
+  font-weight: 500;
+  font-size: x-large;
+}

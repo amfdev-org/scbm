@@ -6,7 +6,9 @@ import signupReducer from "./signupReducer";
 import commentersSearchReducer from "./commentersSearchReducer";
 import commentersMessageReducer from "./commentersMessageReducer";
 import followersSearchReducer from "./followersSearchReducer";
-import followersMessaeReducer from "./followersMessageReducer";
+import followersMessageReducer from "./followersMessageReducer";
+import myFollowersSearchReducer from "./myFollowersSearchReducer";
+import myFollowersMessageReducer from "./myFollowersMessageReducer";
 import uiReducer from "./uiReducer";
 //export default combineReducers({
 //  authReducer: authReducer
@@ -20,5 +22,7 @@ export default reduceReducers(
                               commentersSearchReducer,
                               commentersMessageReducer,
                               followersSearchReducer,
-                              followersMessaeReducer,
+                              followersMessageReducer,
+                              myFollowersSearchReducer,
+                              myFollowersMessageReducer,
                               uiReducer);

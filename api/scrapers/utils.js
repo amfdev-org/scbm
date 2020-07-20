@@ -39,7 +39,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                       clearInterval(timer);
                       resolve();
                   }
-              }, 100);
+              }, 200);
           });
       });
     }
@@ -51,20 +51,20 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
     }
     
     
-    async function validateScCookies(scCookies) {
+    async function validateScCookies(data) {
                 
             try {
-                const cookiesString = await fs.readFile(userDataPath + '/' + scCookies);
+                const cookiesString = await fs.readFile(userDataPath + '/' + data.scCookies);
             } catch(error) {
-                throw new Error(userDataPath + '/' + scCookies +  " not found");
+                throw new Error(userDataPath + '/' + data.scCookies +  " not found");
             }
             
-            const cookiesString = await fs.readFile(userDataPath + '/' + scCookies);
+            const cookiesString = await fs.readFile(userDataPath + '/' + data.scCookies);
             
             try {
                 const cookies = await JSON.parse(cookiesString);
             } catch(error) {
-                throw new Error("Can not JSON.parse " + userDataPath + '/' + scCookies);
+                throw new Error("Can not JSON.parse " + userDataPath + '/' + data.scCookies);
             }
             
             const cookies = await JSON.parse(cookiesString);
@@ -115,7 +115,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                  
             }
             
-            return true;
+            return data;
   
     }
     
