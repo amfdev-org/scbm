@@ -16,7 +16,7 @@ export function fetchAuth() {
   return dispatch => {
     //dispatch(requestAuth())
     
-      axios.get('https://scbm.amfdev.co.uk/api/auth/')
+      axios.get('https://scbm.amfdev.co.uk/api/auth/', { headers: { "X-Request-App": "scbm" } })
       .then(json => catchAuthSessionError(json.data, dispatch))
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))

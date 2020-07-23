@@ -112,8 +112,25 @@ app.get('/sctest/', (req, res) => {
 app.get('/auth/', (req, res) => {
     
     console.log('GET /auth/');
-    //console.log(req.session.user);
+    console.log(req.headers);
     
+    let validateHeaders = () => {
+        
+        return new Promise((resolve, reject) => {
+            
+             if (req.headers['x-request-app'] !== 'scbm') {
+                   console.log('forbidden')
+                    reject('forbidden')
+                    res.sendStatus(403)  
+                
+            } else {
+                resolve()
+            }
+            
+        })
+    
+     }
+     
     let validateSession = () => {
         
         return new Promise((resolve, reject) => {
@@ -158,7 +175,8 @@ app.get('/auth/', (req, res) => {
     
         
     // run the promises!
-    validateSession()
+    validateHeaders()
+        .then(data => validateSession())
         .then(data => validateScCookies())
         .then(data => {
             res.send(JSON.stringify({authSuccess: true, sessionValid: true, scCookiesValid: true, authError: null, userData: req.session.user}));
@@ -172,36 +190,70 @@ app.get('/auth/', (req, res) => {
 })
 
 
+
 app.post('/signup/', (req, res) => {
     
     console.log('POST /signup/');
     
-    if(!req.session.scCookies) {
-      //needs to do a login
-    }
     //console.log(sanitizedUsername);
+    //console.log(req.headers)
     
+     let validateHeaders = () => {
+        
+        return new Promise((resolve, reject) => {
+            
+            if (req.headers['origin'] !== 'https://scbm.amfdev.co.uk') {
+                    console.log('forbidden')
+                    reject('forbidden')
+                    res.sendStatus(403)
+        
+            } else if (req.headers['x-request-app'] !== 'scbm') {
+                   console.log('forbidden')
+                    reject('forbidden')
+                    res.sendStatus(403)  
+                
+            } else {
+                resolve()
+            }
+            
+        })
+    
+     }
+     
+     
     let tryScLogin = () => {
         
         return new Promise((resolve, reject) => {
-        LoginScraper
-        .login("https://soundcloud.com/signin",
-               req.body.scUsername,
-               req.body.scPassword,
-               sanitize(req.body.scUsername)
-               )
-          .then(data => {
-            console.log('tryScLogin signup promise - resolve data');
-            //console.log(data);
             
-            resolve(data)
-          })
-          .catch(error => {
-                console.log(error)
-                res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: false, scCookiesValid: null, userCreated: false, error: "service login failed", userData: null}));
-                reject(error)
+        if(!req.body.scUsername || req.body.scUsername.length < 5 || !req.body.scPassword || req.body.scPassword.length < 6) {
+      //needs to do a login
+            console.log('signup username or password missing or too short')
+            reject('signup username or password missing or too short')
+            res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: null, scCookiesValid: null, userCreated: null, error: "signup username or password missing or too short", userData: null}));
+        
+        } else {
+            
+            LoginScraper
+            .login("https://soundcloud.com/signup",
+                   req.body.scUsername,
+                   req.body.scPassword,
+                   sanitize(req.body.scUsername)
+                   )
+              .then(data => {
+                console.log('tryScLogin signup promise - resolve data');
+                //console.log(data);
                 
-            })
+                resolve(data)
+              })
+              .catch(error => {
+                    console.log(error)
+                    res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: false, scCookiesValid: null, userCreated: false, error: "service login failed", userData: null}));
+                    reject(error)
+                    
+                })
+              
+            }
+          
          })
     }
     
@@ -257,7 +309,8 @@ app.post('/signup/', (req, res) => {
     }
               
         // run the promises!
-    tryScLogin()
+    validateHeaders()
+        .then(data => tryScLogin())
         .then(data => validateScCookies(data))
         .then(data => createUser(data))
         .then(data => {
@@ -555,9 +608,7 @@ app.post('/message/', function(req, res) {
     }
     
     console.log('POST /message/');
-  
-    console.log(req.body);
-    
+
         let validateMessage = () => {
            
            return new Promise((resolve, reject) => {

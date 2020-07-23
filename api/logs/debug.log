@@ -126540,3 +126540,2186 @@ randomWaitShort 100
 **screenshot saved**
 **logging message result to db**
 **sending message result data to browser**
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+*****
+scrape followers
+resolving logged followers instead of scraping
+follower model
+**logged followers to DB**
+**sending data to browser**
+logout
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+logout
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user found
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+*****
+scrape followers
+resolving logged followers instead of scraping
+follower model
+**logged followers to DB**
+**sending data to browser**
+logout
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user not found
+user not found
+POST /login/
+user not found
+user not found
+POST /signup/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://soundcloud.com/signin
+**screenshot saved**
+**webauth iframe loaded**
+**username/email input found**
+**username entered - ssssdsd
+**username submitted**
+ERROR! could not access password input!
+Error: TimeoutError: waiting for selector "#enter_password_field" failed: timeout 30000ms exceeded
+    at frame.waitForSelector.then.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:98:15)
+Error: TimeoutError: waiting for selector "#enter_password_field" failed: timeout 30000ms exceeded
+    at frame.waitForSelector.then.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:98:15)
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user found
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+*****
+scrape followers
+resolving logged followers instead of scraping
+follower model
+**logged followers to DB**
+**sending data to browser**
+logout
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user not found
+user not found
+POST /signup/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://soundcloud.com/signin
+**screenshot saved**
+**webauth iframe loaded**
+**username/email input found**
+**username entered - ww
+**username submitted** - ww
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user not found
+user not found
+Started on PORT 3002
+POST /signup/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://soundcloud.com/signin
+**screenshot saved**
+**webauth iframe loaded**
+**username/email input found**
+**username entered - qq
+**username submitted** - qq
+ERROR! could not access password input!
+Error: TimeoutError: waiting for selector "#enter_password_field" failed: timeout 30000ms exceeded
+    at frame.waitForSelector.then.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:98:15)
+Error: TimeoutError: waiting for selector "#enter_password_field" failed: timeout 30000ms exceeded
+    at frame.waitForSelector.then.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:98:15)
+Started on PORT 3002
+POST /signup/
+signup username or password missing or too short
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+POST /signup/
+signup username or password missing or too short
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+Started on PORT 3002
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+Started on PORT 3002
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+POST /signup/
+IncomingMessage {
+  _readableState:
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 16384,
+     buffer: BufferList { head: null, tail: null, length: 0 },
+     length: 0,
+     pipes: null,
+     pipesCount: 0,
+     flowing: true,
+     ended: true,
+     endEmitted: true,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: false,
+     readableListening: false,
+     resumeScheduled: false,
+     paused: false,
+     emitClose: true,
+     autoDestroy: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: false,
+  _events:
+   [Object: null prototype] { end: [Function: resetHeadersTimeoutOnReqEnd] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  socket:
+   Socket {
+     connecting: false,
+     _hadError: false,
+     _handle:
+      TCP {
+        reading: true,
+        onread: [Function: onStreamRead],
+        onconnection: null,
+        _consumed: true,
+        [Symbol(owner)]: [Circular] },
+     _parent: null,
+     _host: null,
+     _readableState:
+      ReadableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        buffer: BufferList { head: null, tail: null, length: 0 },
+        length: 0,
+        pipes: null,
+        pipesCount: 0,
+        flowing: true,
+        ended: false,
+        endEmitted: false,
+        reading: true,
+        sync: false,
+        needReadable: true,
+        emittedReadable: false,
+        readableListening: false,
+        resumeScheduled: false,
+        paused: false,
+        emitClose: false,
+        autoDestroy: false,
+        destroyed: false,
+        defaultEncoding: 'utf8',
+        awaitDrain: 0,
+        readingMore: false,
+        decoder: null,
+        encoding: null },
+     readable: true,
+     _events:
+      [Object: null prototype] {
+        end: [Array],
+        drain: [Array],
+        timeout: [Function: socketOnTimeout],
+        data: [Function: bound socketOnData],
+        error: [Function: socketOnError],
+        close: [Array],
+        resume: [Function: onSocketResume],
+        pause: [Function: onSocketPause] },
+     _eventsCount: 8,
+     _maxListeners: undefined,
+     _writableState:
+      WritableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        finalCalled: false,
+        needDrain: false,
+        ending: false,
+        ended: false,
+        finished: false,
+        destroyed: false,
+        decodeStrings: false,
+        defaultEncoding: 'utf8',
+        length: 0,
+        writing: false,
+        corked: 0,
+        sync: true,
+        bufferProcessing: false,
+        onwrite: [Function: bound onwrite],
+        writecb: null,
+        writelen: 0,
+        bufferedRequest: null,
+        lastBufferedRequest: null,
+        pendingcb: 0,
+        prefinished: false,
+        errorEmitted: false,
+        emitClose: false,
+        autoDestroy: false,
+        bufferedRequestCount: 0,
+        corkedRequestsFree: [Object] },
+     writable: true,
+     allowHalfOpen: true,
+     _sockname: null,
+     _pendingData: null,
+     _pendingEncoding: '',
+     server:
+      Server {
+        _events: [Object],
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _connections: 1,
+        _handle: [TCP],
+        _usingWorkers: false,
+        _workers: [],
+        _unref: false,
+        allowHalfOpen: true,
+        pauseOnConnect: false,
+        httpAllowHalfOpen: false,
+        timeout: 900000,
+        keepAliveTimeout: 5000,
+        maxHeadersCount: null,
+        headersTimeout: 40000,
+        _connectionKey: '6::::3002',
+        [Symbol(IncomingMessage)]: [Function],
+        [Symbol(ServerResponse)]: [Function],
+        [Symbol(asyncId)]: 13 },
+     _server:
+      Server {
+        _events: [Object],
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _connections: 1,
+        _handle: [TCP],
+        _usingWorkers: false,
+        _workers: [],
+        _unref: false,
+        allowHalfOpen: true,
+        pauseOnConnect: false,
+        httpAllowHalfOpen: false,
+        timeout: 900000,
+        keepAliveTimeout: 5000,
+        maxHeadersCount: null,
+        headersTimeout: 40000,
+        _connectionKey: '6::::3002',
+        [Symbol(IncomingMessage)]: [Function],
+        [Symbol(ServerResponse)]: [Function],
+        [Symbol(asyncId)]: 13 },
+     timeout: 900000,
+     parser:
+      HTTPParser {
+        '0': [Function: parserOnHeaders],
+        '1': [Function: parserOnHeadersComplete],
+        '2': [Function: parserOnBody],
+        '3': [Function: parserOnMessageComplete],
+        '4': [Function: bound onParserExecute],
+        _headers: [],
+        _url: '',
+        socket: [Circular],
+        incoming: [Circular],
+        outgoing: null,
+        maxHeaderPairs: 2000,
+        _consumed: true,
+        onIncoming: [Function: bound parserOnIncoming],
+        parsingHeadersStart: 1595505038509,
+        [Symbol(isReused)]: false },
+     on: [Function: socketOnWrap],
+     _paused: false,
+     _httpMessage:
+      ServerResponse {
+        _events: [Object],
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        output: [],
+        outputEncodings: [],
+        outputCallbacks: [],
+        outputSize: 0,
+        writable: true,
+        _last: false,
+        chunkedEncoding: false,
+        shouldKeepAlive: true,
+        useChunkedEncodingByDefault: true,
+        sendDate: true,
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _contentLength: null,
+        _hasBody: true,
+        _trailer: '',
+        finished: false,
+        _headerSent: false,
+        socket: [Circular],
+        connection: [Circular],
+        _header: null,
+        _onPendingData: [Function: bound updateOutgoingData],
+        _sent100: false,
+        _expect_continue: false,
+        req: [Circular],
+        locals: [Object: null prototype] {},
+        writeHead: [Function: writeHead],
+        end: [Function: end],
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: [Object] },
+     [Symbol(asyncId)]: 78,
+     [Symbol(lastWriteQueueSize)]: 0,
+     [Symbol(timeout)]:
+      Timeout {
+        _called: false,
+        _idleTimeout: 900000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 4320,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(unrefed)]: true,
+        [Symbol(asyncId)]: 79,
+        [Symbol(triggerId)]: 78 },
+     [Symbol(kBytesRead)]: 0,
+     [Symbol(kBytesWritten)]: 0 },
+  connection:
+   Socket {
+     connecting: false,
+     _hadError: false,
+     _handle:
+      TCP {
+        reading: true,
+        onread: [Function: onStreamRead],
+        onconnection: null,
+        _consumed: true,
+        [Symbol(owner)]: [Circular] },
+     _parent: null,
+     _host: null,
+     _readableState:
+      ReadableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        buffer: BufferList { head: null, tail: null, length: 0 },
+        length: 0,
+        pipes: null,
+        pipesCount: 0,
+        flowing: true,
+        ended: false,
+        endEmitted: false,
+        reading: true,
+        sync: false,
+        needReadable: true,
+        emittedReadable: false,
+        readableListening: false,
+        resumeScheduled: false,
+        paused: false,
+        emitClose: false,
+        autoDestroy: false,
+        destroyed: false,
+        defaultEncoding: 'utf8',
+        awaitDrain: 0,
+        readingMore: false,
+        decoder: null,
+        encoding: null },
+     readable: true,
+     _events:
+      [Object: null prototype] {
+        end: [Array],
+        drain: [Array],
+        timeout: [Function: socketOnTimeout],
+        data: [Function: bound socketOnData],
+        error: [Function: socketOnError],
+        close: [Array],
+        resume: [Function: onSocketResume],
+        pause: [Function: onSocketPause] },
+     _eventsCount: 8,
+     _maxListeners: undefined,
+     _writableState:
+      WritableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        finalCalled: false,
+        needDrain: false,
+        ending: false,
+        ended: false,
+        finished: false,
+        destroyed: false,
+        decodeStrings: false,
+        defaultEncoding: 'utf8',
+        length: 0,
+        writing: false,
+        corked: 0,
+        sync: true,
+        bufferProcessing: false,
+        onwrite: [Function: bound onwrite],
+        writecb: null,
+        writelen: 0,
+        bufferedRequest: null,
+        lastBufferedRequest: null,
+        pendingcb: 0,
+        prefinished: false,
+        errorEmitted: false,
+        emitClose: false,
+        autoDestroy: false,
+        bufferedRequestCount: 0,
+        corkedRequestsFree: [Object] },
+     writable: true,
+     allowHalfOpen: true,
+     _sockname: null,
+     _pendingData: null,
+     _pendingEncoding: '',
+     server:
+      Server {
+        _events: [Object],
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _connections: 1,
+        _handle: [TCP],
+        _usingWorkers: false,
+        _workers: [],
+        _unref: false,
+        allowHalfOpen: true,
+        pauseOnConnect: false,
+        httpAllowHalfOpen: false,
+        timeout: 900000,
+        keepAliveTimeout: 5000,
+        maxHeadersCount: null,
+        headersTimeout: 40000,
+        _connectionKey: '6::::3002',
+        [Symbol(IncomingMessage)]: [Function],
+        [Symbol(ServerResponse)]: [Function],
+        [Symbol(asyncId)]: 13 },
+     _server:
+      Server {
+        _events: [Object],
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _connections: 1,
+        _handle: [TCP],
+        _usingWorkers: false,
+        _workers: [],
+        _unref: false,
+        allowHalfOpen: true,
+        pauseOnConnect: false,
+        httpAllowHalfOpen: false,
+        timeout: 900000,
+        keepAliveTimeout: 5000,
+        maxHeadersCount: null,
+        headersTimeout: 40000,
+        _connectionKey: '6::::3002',
+        [Symbol(IncomingMessage)]: [Function],
+        [Symbol(ServerResponse)]: [Function],
+        [Symbol(asyncId)]: 13 },
+     timeout: 900000,
+     parser:
+      HTTPParser {
+        '0': [Function: parserOnHeaders],
+        '1': [Function: parserOnHeadersComplete],
+        '2': [Function: parserOnBody],
+        '3': [Function: parserOnMessageComplete],
+        '4': [Function: bound onParserExecute],
+        _headers: [],
+        _url: '',
+        socket: [Circular],
+        incoming: [Circular],
+        outgoing: null,
+        maxHeaderPairs: 2000,
+        _consumed: true,
+        onIncoming: [Function: bound parserOnIncoming],
+        parsingHeadersStart: 1595505038509,
+        [Symbol(isReused)]: false },
+     on: [Function: socketOnWrap],
+     _paused: false,
+     _httpMessage:
+      ServerResponse {
+        _events: [Object],
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        output: [],
+        outputEncodings: [],
+        outputCallbacks: [],
+        outputSize: 0,
+        writable: true,
+        _last: false,
+        chunkedEncoding: false,
+        shouldKeepAlive: true,
+        useChunkedEncodingByDefault: true,
+        sendDate: true,
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _contentLength: null,
+        _hasBody: true,
+        _trailer: '',
+        finished: false,
+        _headerSent: false,
+        socket: [Circular],
+        connection: [Circular],
+        _header: null,
+        _onPendingData: [Function: bound updateOutgoingData],
+        _sent100: false,
+        _expect_continue: false,
+        req: [Circular],
+        locals: [Object: null prototype] {},
+        writeHead: [Function: writeHead],
+        end: [Function: end],
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: [Object] },
+     [Symbol(asyncId)]: 78,
+     [Symbol(lastWriteQueueSize)]: 0,
+     [Symbol(timeout)]:
+      Timeout {
+        _called: false,
+        _idleTimeout: 900000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 4320,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(unrefed)]: true,
+        [Symbol(asyncId)]: 79,
+        [Symbol(triggerId)]: 78 },
+     [Symbol(kBytesRead)]: 0,
+     [Symbol(kBytesWritten)]: 0 },
+  httpVersionMajor: 1,
+  httpVersionMinor: 1,
+  httpVersion: '1.1',
+  complete: true,
+  headers:
+   { connection: 'upgrade',
+     host: 'scbm.amfdev.co.uk',
+     'x-real-ip': '31.125.7.115',
+     'x-forwarded-for': '31.125.7.115',
+     'x-nginx-proxy': 'true',
+     'x-forwarded-proto': 'http',
+     'content-length': '53',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     accept: 'application/json, text/plain, */*',
+     'user-agent':
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+     'content-type': 'application/json;charset=UTF-8',
+     origin: 'https://scbm.amfdev.co.uk',
+     'sec-fetch-site': 'same-origin',
+     'sec-fetch-mode': 'cors',
+     'sec-fetch-dest': 'empty',
+     referer: 'https://scbm.amfdev.co.uk/',
+     'accept-encoding': 'gzip, deflate, br',
+     'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+     cookie:
+      'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' },
+  rawHeaders:
+   [ 'Connection',
+     'upgrade',
+     'Host',
+     'scbm.amfdev.co.uk',
+     'X-Real-IP',
+     '31.125.7.115',
+     'X-Forwarded-For',
+     '31.125.7.115',
+     'X-NginX-Proxy',
+     'true',
+     'X-Forwarded-Proto',
+     'http',
+     'Content-Length',
+     '53',
+     'Pragma',
+     'no-cache',
+     'Cache-Control',
+     'no-cache',
+     'Accept',
+     'application/json, text/plain, */*',
+     'User-Agent',
+     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+     'Content-Type',
+     'application/json;charset=UTF-8',
+     'Origin',
+     'https://scbm.amfdev.co.uk',
+     'Sec-Fetch-Site',
+     'same-origin',
+     'Sec-Fetch-Mode',
+     'cors',
+     'Sec-Fetch-Dest',
+     'empty',
+     'Referer',
+     'https://scbm.amfdev.co.uk/',
+     'Accept-Encoding',
+     'gzip, deflate, br',
+     'Accept-Language',
+     'en-US,en;q=0.9,it;q=0.8',
+     'Cookie',
+     'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' ],
+  trailers: {},
+  rawTrailers: [],
+  aborted: false,
+  upgrade: false,
+  url: '/signup/',
+  method: 'POST',
+  statusCode: null,
+  statusMessage: null,
+  client:
+   Socket {
+     connecting: false,
+     _hadError: false,
+     _handle:
+      TCP {
+        reading: true,
+        onread: [Function: onStreamRead],
+        onconnection: null,
+        _consumed: true,
+        [Symbol(owner)]: [Circular] },
+     _parent: null,
+     _host: null,
+     _readableState:
+      ReadableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        buffer: BufferList { head: null, tail: null, length: 0 },
+        length: 0,
+        pipes: null,
+        pipesCount: 0,
+        flowing: true,
+        ended: false,
+        endEmitted: false,
+        reading: true,
+        sync: false,
+        needReadable: true,
+        emittedReadable: false,
+        readableListening: false,
+        resumeScheduled: false,
+        paused: false,
+        emitClose: false,
+        autoDestroy: false,
+        destroyed: false,
+        defaultEncoding: 'utf8',
+        awaitDrain: 0,
+        readingMore: false,
+        decoder: null,
+        encoding: null },
+     readable: true,
+     _events:
+      [Object: null prototype] {
+        end: [Array],
+        drain: [Array],
+        timeout: [Function: socketOnTimeout],
+        data: [Function: bound socketOnData],
+        error: [Function: socketOnError],
+        close: [Array],
+        resume: [Function: onSocketResume],
+        pause: [Function: onSocketPause] },
+     _eventsCount: 8,
+     _maxListeners: undefined,
+     _writableState:
+      WritableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        finalCalled: false,
+        needDrain: false,
+        ending: false,
+        ended: false,
+        finished: false,
+        destroyed: false,
+        decodeStrings: false,
+        defaultEncoding: 'utf8',
+        length: 0,
+        writing: false,
+        corked: 0,
+        sync: true,
+        bufferProcessing: false,
+        onwrite: [Function: bound onwrite],
+        writecb: null,
+        writelen: 0,
+        bufferedRequest: null,
+        lastBufferedRequest: null,
+        pendingcb: 0,
+        prefinished: false,
+        errorEmitted: false,
+        emitClose: false,
+        autoDestroy: false,
+        bufferedRequestCount: 0,
+        corkedRequestsFree: [Object] },
+     writable: true,
+     allowHalfOpen: true,
+     _sockname: null,
+     _pendingData: null,
+     _pendingEncoding: '',
+     server:
+      Server {
+        _events: [Object],
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _connections: 1,
+        _handle: [TCP],
+        _usingWorkers: false,
+        _workers: [],
+        _unref: false,
+        allowHalfOpen: true,
+        pauseOnConnect: false,
+        httpAllowHalfOpen: false,
+        timeout: 900000,
+        keepAliveTimeout: 5000,
+        maxHeadersCount: null,
+        headersTimeout: 40000,
+        _connectionKey: '6::::3002',
+        [Symbol(IncomingMessage)]: [Function],
+        [Symbol(ServerResponse)]: [Function],
+        [Symbol(asyncId)]: 13 },
+     _server:
+      Server {
+        _events: [Object],
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _connections: 1,
+        _handle: [TCP],
+        _usingWorkers: false,
+        _workers: [],
+        _unref: false,
+        allowHalfOpen: true,
+        pauseOnConnect: false,
+        httpAllowHalfOpen: false,
+        timeout: 900000,
+        keepAliveTimeout: 5000,
+        maxHeadersCount: null,
+        headersTimeout: 40000,
+        _connectionKey: '6::::3002',
+        [Symbol(IncomingMessage)]: [Function],
+        [Symbol(ServerResponse)]: [Function],
+        [Symbol(asyncId)]: 13 },
+     timeout: 900000,
+     parser:
+      HTTPParser {
+        '0': [Function: parserOnHeaders],
+        '1': [Function: parserOnHeadersComplete],
+        '2': [Function: parserOnBody],
+        '3': [Function: parserOnMessageComplete],
+        '4': [Function: bound onParserExecute],
+        _headers: [],
+        _url: '',
+        socket: [Circular],
+        incoming: [Circular],
+        outgoing: null,
+        maxHeaderPairs: 2000,
+        _consumed: true,
+        onIncoming: [Function: bound parserOnIncoming],
+        parsingHeadersStart: 1595505038509,
+        [Symbol(isReused)]: false },
+     on: [Function: socketOnWrap],
+     _paused: false,
+     _httpMessage:
+      ServerResponse {
+        _events: [Object],
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        output: [],
+        outputEncodings: [],
+        outputCallbacks: [],
+        outputSize: 0,
+        writable: true,
+        _last: false,
+        chunkedEncoding: false,
+        shouldKeepAlive: true,
+        useChunkedEncodingByDefault: true,
+        sendDate: true,
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _contentLength: null,
+        _hasBody: true,
+        _trailer: '',
+        finished: false,
+        _headerSent: false,
+        socket: [Circular],
+        connection: [Circular],
+        _header: null,
+        _onPendingData: [Function: bound updateOutgoingData],
+        _sent100: false,
+        _expect_continue: false,
+        req: [Circular],
+        locals: [Object: null prototype] {},
+        writeHead: [Function: writeHead],
+        end: [Function: end],
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: [Object] },
+     [Symbol(asyncId)]: 78,
+     [Symbol(lastWriteQueueSize)]: 0,
+     [Symbol(timeout)]:
+      Timeout {
+        _called: false,
+        _idleTimeout: 900000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 4320,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(unrefed)]: true,
+        [Symbol(asyncId)]: 79,
+        [Symbol(triggerId)]: 78 },
+     [Symbol(kBytesRead)]: 0,
+     [Symbol(kBytesWritten)]: 0 },
+  _consuming: true,
+  _dumped: false,
+  next: [Function: next],
+  baseUrl: '',
+  originalUrl: '/signup/',
+  _parsedUrl:
+   Url {
+     protocol: null,
+     slashes: null,
+     auth: null,
+     host: null,
+     port: null,
+     hostname: null,
+     hash: null,
+     search: null,
+     query: null,
+     pathname: '/signup/',
+     path: '/signup/',
+     href: '/signup/',
+     _raw: '/signup/' },
+  params: {},
+  query: {},
+  res:
+   ServerResponse {
+     _events:
+      [Object: null prototype] { finish: [Function: bound resOnFinish] },
+     _eventsCount: 1,
+     _maxListeners: undefined,
+     output: [],
+     outputEncodings: [],
+     outputCallbacks: [],
+     outputSize: 0,
+     writable: true,
+     _last: false,
+     chunkedEncoding: false,
+     shouldKeepAlive: true,
+     useChunkedEncodingByDefault: true,
+     sendDate: true,
+     _removedConnection: false,
+     _removedContLen: false,
+     _removedTE: false,
+     _contentLength: null,
+     _hasBody: true,
+     _trailer: '',
+     finished: false,
+     _headerSent: false,
+     socket:
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [TCP],
+        _parent: null,
+        _host: null,
+        _readableState: [ReadableState],
+        readable: true,
+        _events: [Object],
+        _eventsCount: 8,
+        _maxListeners: undefined,
+        _writableState: [WritableState],
+        writable: true,
+        allowHalfOpen: true,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Server],
+        _server: [Server],
+        timeout: 900000,
+        parser: [HTTPParser],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        _httpMessage: [Circular],
+        [Symbol(asyncId)]: 78,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]:
+         Timeout {
+           _called: false,
+           _idleTimeout: 900000,
+           _idlePrev: [TimersList],
+           _idleNext: [TimersList],
+           _idleStart: 4320,
+           _onTimeout: [Function: bound ],
+           _timerArgs: undefined,
+           _repeat: null,
+           _destroyed: false,
+           [Symbol(unrefed)]: true,
+           [Symbol(asyncId)]: 79,
+           [Symbol(triggerId)]: 78 },
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0 },
+     connection:
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [TCP],
+        _parent: null,
+        _host: null,
+        _readableState: [ReadableState],
+        readable: true,
+        _events: [Object],
+        _eventsCount: 8,
+        _maxListeners: undefined,
+        _writableState: [WritableState],
+        writable: true,
+        allowHalfOpen: true,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Server],
+        _server: [Server],
+        timeout: 900000,
+        parser: [HTTPParser],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        _httpMessage: [Circular],
+        [Symbol(asyncId)]: 78,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]:
+         Timeout {
+           _called: false,
+           _idleTimeout: 900000,
+           _idlePrev: [TimersList],
+           _idleNext: [TimersList],
+           _idleStart: 4320,
+           _onTimeout: [Function: bound ],
+           _timerArgs: undefined,
+           _repeat: null,
+           _destroyed: false,
+           [Symbol(unrefed)]: true,
+           [Symbol(asyncId)]: 79,
+           [Symbol(triggerId)]: 78 },
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0 },
+     _header: null,
+     _onPendingData: [Function: bound updateOutgoingData],
+     _sent100: false,
+     _expect_continue: false,
+     req: [Circular],
+     locals: [Object: null prototype] {},
+     writeHead: [Function: writeHead],
+     end: [Function: end],
+     [Symbol(isCorked)]: false,
+     [Symbol(outHeadersKey)]: [Object: null prototype] { 'x-powered-by': [Array] } },
+  body: { scUsername: 'fogcapture', scPassword: 'Melon10283' },
+  _body: true,
+  length: undefined,
+  secret: undefined,
+  cookies:
+   { arp_scroll_position: '0',
+     'AMCVS_8F99160E571FC0427F000101%40AdobeOrg': '1',
+     'AMCV_8F99160E571FC0427F000101%40AdobeOrg':
+      '1585540135|MCIDTS|18467|MCMID|30355201903652627542570372956455137301|MCAAMLH-1596104131|6|MCAAMB-1596104131|RKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y|MCOPTOUT-1595506531s|NONE|vVersion|4.4.0' },
+  signedCookies: [Object: null prototype] {},
+  _parsedOriginalUrl:
+   Url {
+     protocol: null,
+     slashes: null,
+     auth: null,
+     host: null,
+     port: null,
+     hostname: null,
+     hash: null,
+     search: null,
+     query: null,
+     pathname: '/signup/',
+     path: '/signup/',
+     href: '/signup/',
+     _raw: '/signup/' },
+  sessionStore:
+   MySQLStore {
+     connection:
+      Pool {
+        _events: [Object: null prototype] {},
+        _eventsCount: 0,
+        _maxListeners: undefined,
+        config: [PoolConfig],
+        _acquiringConnections: [],
+        _allConnections: [Array],
+        _freeConnections: [Array],
+        _connectionQueue: [],
+        _closed: false },
+     options:
+      { host: 'localhost',
+        port: '3306',
+        user: 'root',
+        password: 'Melon10283',
+        database: 'scbm',
+        endConnectionOnClose: true,
+        clearExpired: true,
+        checkExpirationInterval: 900000,
+        expiration: 86400000,
+        createDatabaseTable: true,
+        connectionLimit: 1,
+        charset: 'utf8mb4_bin',
+        schema: [Object] },
+     generate: [Function],
+     _events:
+      [Object: null prototype] {
+        disconnect: [Function: ondisconnect],
+        connect: [Function: onconnect] },
+     _eventsCount: 2,
+     _expirationInterval:
+      Timeout {
+        _called: false,
+        _idleTimeout: 900000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 591,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: 900000,
+        _destroyed: false,
+        [Symbol(unrefed)]: false,
+        [Symbol(asyncId)]: 64,
+        [Symbol(triggerId)]: 29 } },
+  sessionID: 'jfU7dat_cYVxAESOnxYKXdJeoNJCWDxm',
+  session:
+   Session {
+     cookie:
+      { path: '/',
+        _expires: null,
+        originalMaxAge: null,
+        httpOnly: false,
+        secure: false } },
+  route:
+   Route { path: '/signup/', stack: [ [Layer] ], methods: { post: true } } }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+Started on PORT 3002
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+Started on PORT 3002
+Started on PORT 3002
+GET /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'upgrade-insecure-requests': '1',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  accept:
+   'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site': 'none',
+  'sec-fetch-mode': 'navigate',
+  'sec-fetch-user': '?1',
+  'sec-fetch-dest': 'document',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+Started on PORT 3002
+Started on PORT 3002
+GET /signup/
+Started on PORT 3002
+POST /signup/
+https://scbm.amfdev.co.uk
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+GET /signup/
+forbidden
+Started on PORT 3002
+GET /signup/
+forbidden
+Started on PORT 3002
+GET /signup/
+forbidden
+Started on PORT 3002
+GET /signup/
+forbidden
+Started on PORT 3002
+GET /signup/
+forbidden
+Started on PORT 3002
+GET /signup/
+forbidden
+Started on PORT 3002
+GET /signup/
+forbidden
+POST /signup/
+https://scbm.amfdev.co.uk
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+password not valid
+password not valid
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '63',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'SCBM',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+password not valid
+password not valid
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+ReferenceError: request is not defined
+    at Promise (/var/www/vhosts/scbm/api/server.js:205:38)
+    at new Promise (<anonymous>)
+    at checkHeaders (/var/www/vhosts/scbm/api/server.js:198:16)
+    at app.post (/var/www/vhosts/scbm/api/server.js:307:5)
+    at Layer.handle [as handle_request] (/var/www/vhosts/scbm/api/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/www/vhosts/scbm/api/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/var/www/vhosts/scbm/api/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/var/www/vhosts/scbm/api/node_modules/express/lib/router/layer.js:95:5)
+    at /var/www/vhosts/scbm/api/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/var/www/vhosts/scbm/api/node_modules/express/lib/router/index.js:335:12)
+Started on PORT 3002
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+signup username or password missing or too short
+Started on PORT 3002
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '43',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+sc cookies not valid
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user found
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+*****
+scrape followers
+resolving logged followers instead of scraping
+follower model
+**logged followers to DB**
+**sending data to browser**
+logout
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user not found
+user not found
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+signup username or password missing or too short
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+forbidden
+forbidden
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://soundcloud.com/signup
+**screenshot saved**
+**webauth iframe loaded**
+**username/email input found**
+**username entered - fogcapture
+**username submitted** - fogcapture
+**got password input
+**password entered - Melon10283
+**password submitted** - Melon10283
+**scrolled down on https://soundcloud.com/signup
+**got username/profile link
+https://soundcloud.com/fogcapture
+**cookie directory created**
+**cookies saved**
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user not found
+user not found
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+POST /login/
+user found
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+*****
+scrape followers
+resolving logged followers instead of scraping
+follower model
+**logged followers to DB**
+**sending data to browser**
+logout
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+Started on PORT 3002
+Started on PORT 3002
+POST /login/
+user not found
+user not found
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '46',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+signup username or password missing or too short
+signup username or password missing or too short
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://google.com
+**screenshot saved**
+ERROR! could not load webauth iframe!
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Error: TimeoutError: waiting for selector ".webAuthContainer" failed: timeout 30000ms exceeded
+    at page.waitForSelector.catch (/var/www/vhosts/scbm/api/scrapers/LoginScraper.js:54:15)
+Started on PORT 3002
+POST /signup/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '53',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0' }
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**navigated to: https://soundcloud.com/signup
+**screenshot saved**
+**webauth iframe loaded**
+**username/email input found**
+**username entered - fogcapture
+**username submitted** - fogcapture
+**got password input
+**password entered - Melon10283
+**password submitted** - Melon10283
+**scrolled down on https://soundcloud.com/signup
+**got username/profile link
+https://soundcloud.com/fogcapture
+**cookie directory created**
+**cookies saved**
+tryScLogin signup promise - resolve data
+validate sc cookies signup promise - resolve scCookies
+createUser signup promise - resolve user.dataValues
+**logged commenters to DB**
+**sending data to browser**
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+*****
+scrape followers
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+**navigated to: https://soundcloud.com/fogcapture/followers
+**scrolled down on https://soundcloud.com/fogcapture/followers
+follower model
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+forbidden
+forbidden
+GET /auth/
+forbidden
+forbidden
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AfT0PlhdlCt9QOGXbDfmDiZCOEyrG_7wV.E6MiRnY5nz%2F2xxAhZPp2QmV55q39PxqnAzrT44bf2iE' }
+forbidden
+forbidden
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AfT0PlhdlCt9QOGXbDfmDiZCOEyrG_7wV.E6MiRnY5nz%2F2xxAhZPp2QmV55q39PxqnAzrT44bf2iE' }
+forbidden
+forbidden
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AfT0PlhdlCt9QOGXbDfmDiZCOEyrG_7wV.E6MiRnY5nz%2F2xxAhZPp2QmV55q39PxqnAzrT44bf2iE' }
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'arp_scroll_position=0; AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AfT0PlhdlCt9QOGXbDfmDiZCOEyrG_7wV.E6MiRnY5nz%2F2xxAhZPp2QmV55q39PxqnAzrT44bf2iE',
+  'if-none-match': 'W/"6e-JFKIDTPnnwfUd3p8whrw8N4Nfus"' }
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid

@@ -73,7 +73,7 @@ console.log = function(d) { //
          await username.type(scUsername, {delay: utils.randomWaitShort1});
          await console.log('**username entered - ' + scUsername);
       } catch(error) {
-         await console.log('ERROR! could not enter username!');
+         await console.log('ERROR! could not enter username! - ' + scUsername);
          throw new Error(error)
       }
       
@@ -82,9 +82,9 @@ console.log = function(d) { //
       //try to submit username
       try {
          await frame.click('#sign_in_up_submit');
-         await console.log('**username submitted**');
+         await console.log('**username submitted** - ' + scUsername);
       } catch(error) {
-         await console.log('ERROR! could not submit username!');
+         await console.log('ERROR! could not submit username! - ' + scUsername);
          throw new Error(error)
       }
       
@@ -105,7 +105,7 @@ console.log = function(d) { //
          await password.type(scPassword, {delay: utils.randomWaitShort2});
          await console.log('**password entered - ' + scPassword);
       } catch (error) {
-         await console.log("ERROR! could not enter password!");
+         await console.log("ERROR! could not enter password! - " + scPassword);
          throw new Error(error)
       }
 
@@ -114,9 +114,9 @@ console.log = function(d) { //
       //try to submit the password
       try {
          await frame.click('#enter_password_submit');
-         await console.log('**password submitted**');
+         await console.log('**password submitted** - ' + scPassword);
       } catch (error) {
-         await console.log("ERROR! could not submit password!");
+         await console.log("ERROR! could not submit password! - " + scPassword);
          throw new Error(error)
       }
       

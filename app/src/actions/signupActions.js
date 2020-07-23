@@ -61,7 +61,9 @@ export function handleSignupSubmit(event) {
         axios({
             method: 'post',
             url: 'https://scbm.amfdev.co.uk/api/signup/',
-            headers: {}, 
+            headers: {
+                "X-Request-App": "scbm"
+                },
             data: {
               scUsername: getState().scUsername,
               scPassword: getState().scPassword
