@@ -8,7 +8,7 @@ class FollowersMessageForm extends Component {
 
 
     handleChange = (event) => {
-        //ReactTooltip.hide();
+        ReactTooltip.hide();
         this.props.handleFollowersMessageChange(event)
     }
     

@@ -21,6 +21,15 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 
 const utils = require('./scrapers/utils')
+const util = require('util');
+
+const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
+const log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
 
 const CommenterScraper = require('./scrapers/CommenterScraper')
 const LoginScraper = require('./scrapers/LoginScraper')
@@ -103,7 +112,7 @@ app.get('/sctest/', (req, res) => {
 app.get('/auth/', (req, res) => {
     
     console.log('GET /auth/');
-    console.log(req.session.user);
+    //console.log(req.session.user);
     
     let validateSession = () => {
         
@@ -183,7 +192,7 @@ app.post('/signup/', (req, res) => {
                )
           .then(data => {
             console.log('tryScLogin signup promise - resolve data');
-            console.log(data);
+            //console.log(data);
             
             resolve(data)
           })
@@ -204,7 +213,7 @@ app.post('/signup/', (req, res) => {
             .then(data => {
                 //console.log(data)
                 console.log('validate sc cookies signup promise - resolve scCookies');
-                console.log(data);
+                //console.log(data);
                 
                 resolve(data)
    
@@ -233,7 +242,7 @@ app.post('/signup/', (req, res) => {
                 req.session.user = user.dataValues;
                 //console.log(user.dataValues);
                 console.log('createUser signup promise - resolve user.dataValues');
-                console.log(user.dataValues);
+                //console.log(user.dataValues);
                 
                 resolve(user.dataValues)
             })
@@ -388,7 +397,7 @@ app.get('/commenters/', function(req, res) {
         .then(data => scrapeCommenters(data))
         .then(data => MessageModel.checkCommenterMessageStatus(data))
         .then(data => {
-            console.log(data)
+            //console.log(data)
             console.log("**logged commenters to DB**");
             CommenterModel.logCommenters(data);
             console.log("**sending data to browser**");
@@ -420,15 +429,14 @@ app.get('/followers/', function(req, res) {
         res.end();
     }
     
-    console.log(req)
-     console.log(req.session.user)
+    //console.log(req)
+    //console.log(req.session.user)
      
     let validateFollowersSearchUrl = () => {
         
         return new Promise((resolve, reject) => {
             
             let searchUrl = decodeURI(req.query.searchUrl);
-            console.log(searchUrl);
             
             let isMyFollowersSearch = false;
 
@@ -465,7 +473,7 @@ app.get('/followers/', function(req, res) {
                     }
                 })
                 .then(function (followers) {
-                    console.log(followers);
+                    //console.log(followers);
                     console.log('*****')
                     //console.log(data)
                     //console.log('no logged followers')
@@ -490,16 +498,15 @@ app.get('/followers/', function(req, res) {
            if (data.followers.length > 0) {
                
                resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: data.followers })
-               
+               console.log('resolving logged followers instead of scraping')
            } else {
            
-               console.log(data.searchUrl)
+               //console.log(data.searchUrl)
                
                FollowerScraper
                .scrapeFollowers(data.searchUrl, req.session.user.scCookies)
                  .then(scrapedFollowers => {
-                   console.log(data)
-                   console.log(data)
+                   //console.log(data)
                     resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: scrapedFollowers })
                    })
                    .catch(error => reject(error))
@@ -515,13 +522,13 @@ app.get('/followers/', function(req, res) {
         .then(data => scrapeFollowers(data))
         .then(data => MessageModel.checkFollowerMessageStatus(data))
         .then(data => {
-            console.log(data)
+            //console.log(data)
             if (data.isMyFollowersSearch) {
                 FollowerModel.logFollowers(data.followerData);
                 console.log("**logged followers to DB**");
             }
             console.log("**sending data to browser**");
-            console.log(JSON.stringify(data))
+            //console.log(JSON.stringify(data))
             res.send({success: true, noResults: false, followerData: data.followerData})
         })
         .catch(error => {
@@ -648,6 +655,7 @@ app.post('/message/', function(req, res) {
 
 
 app.get('/logout', (req, res) => {
+    console.log('logout')
     if (req.session.user) {
         if(req.cookies.scbm_sid) {
             req.session.destroy();

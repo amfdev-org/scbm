@@ -1,0 +1,9 @@
+{
+  "script": "npm",
+  "args" : "start",
+            "watch": true,
+  "watch_options": {
+    "followSymlinks": false
+  },
+    "name": "app"
+}

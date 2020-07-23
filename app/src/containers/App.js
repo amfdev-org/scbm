@@ -121,14 +121,16 @@ class App extends Component {
     
     return (
       
-          <>
+      <>
    
       <Header
         showLoggedInInfo={this.props.showLoggedInInfo}
+        loggedInInfoText={this.props.loggedInInfoText}
         showLogoutSubmitButton={this.props.showLogoutSubmitButton}
+        handleLogoutSubmit={this.props.handleLogoutSubmit}
         />
                 
-      <Container>
+      <Container className="main-container">
           <Row>
           <Col>
 
@@ -156,6 +158,7 @@ class App extends Component {
             dismissInfoAlert={this.dismissInfoAlert}
            />
                
+        <Container className="login-container">
         
           <h3 className="main" style={showLoginForm}>Login</h3>
             
@@ -184,9 +187,10 @@ class App extends Component {
               enableSignupSubmitButton={this.props.enableSignupSubmitButton}
               showSignupSubmitButton={this.props.showSignupSubmitButton}
               showSignupSubmitLoadingButton={this.props.showSignupSubmitLoadingButton} />
-              
-   
-            <Accordion className="main-accordion" style={showMainAccordion}>
+         
+         </Container>
+         
+            <Accordion defaultActiveKey="0" className="main-accordion" style={showMainAccordion}>
             
                 <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -194,29 +198,28 @@ class App extends Component {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
-    
-        
-                          <MyFollowersTable className="myFollowersDataTable"
-                          myFollowerData={this.props.myFollowerData}
-                          showMyFollowersTable={this.props.showMyFollowersTable}
-                          handleMyFollowersSelectedRowsChange={this.props.handleMyFollowersSelectedRowsChange}
-  
-                          showMyFollowersLoadingIcon={this.props.showMyFollowersLoadingIcon}
-                          selectedMyFollowers={this.props.selectedMyFollowers}
-                          />
-                      
-                          <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
-                      
-                          <MyFollowersMessageForm
-                            myFollowersMessage={this.props.myFollowersMessage}
-                            showMyFollowersMessageForm={this.props.showMyFollowersMessageForm}
-                            handleMyFollowersMessageChange={this.props.handleMyFollowersMessageChange}
-                            handleMyFollowersMessageSubmit={this.props.handleMyFollowersMessageSubmit}
-                            enableMyFollowersMessageInput={this.props.enableMyFollowersMessageInput}
-                            enableMyFollowersMessageSubmitButton={this.props.enableMyFollowersMessageSubmitButton}
-                            showMyFollowersMessageSubmitButton = {this.props.showMyFollowersMessageSubmitButton}
-                            showMyFollowersMessageSubmitLoadingButton = {this.props.showMyFollowersMessageSubmitLoadingButton}
-                          />
+
+                       <MyFollowersTable className="myFollowersDataTable"
+                       myFollowerData={this.props.myFollowerData}
+                       showMyFollowersTable={this.props.showMyFollowersTable}
+                       handleMyFollowersSelectedRowsChange={this.props.handleMyFollowersSelectedRowsChange}
+                       showMyFollowersLoadingIcon={this.props.showMyFollowersLoadingIcon}
+                       selectedMyFollowers={this.props.selectedMyFollowers}
+                       toggledClearRows={this.props.toggledClearRows}
+                       />
+                   
+                       <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
+                   
+                       <MyFollowersMessageForm
+                         myFollowersMessage={this.props.myFollowersMessage}
+                         showMyFollowersMessageForm={this.props.showMyFollowersMessageForm}
+                         handleMyFollowersMessageChange={this.props.handleMyFollowersMessageChange}
+                         handleMyFollowersMessageSubmit={this.props.handleMyFollowersMessageSubmit}
+                         enableMyFollowersMessageInput={this.props.enableMyFollowersMessageInput}
+                         enableMyFollowersMessageSubmitButton={this.props.enableMyFollowersMessageSubmitButton}
+                         showMyFollowersMessageSubmitButton = {this.props.showMyFollowersMessageSubmitButton}
+                         showMyFollowersMessageSubmitLoadingButton = {this.props.showMyFollowersMessageSubmitLoadingButton}
+                       />
                           
                   </Card.Body>
                 </Accordion.Collapse>
@@ -294,7 +297,6 @@ class App extends Component {
                           followerData={this.props.followerData}
                           showFollowersTable={this.props.showFollowersTable}
                           handleFollowersSelectedRowsChange={this.props.handleFollowersSelectedRowsChange}
-  
                           showFollowersSubmitButton={this.props.showFollowersSubmitButton}
                           showFollowersSubmitLoadingButton={this.props.showFollowersSubmitLoadingButton}
                           selectedFollowers={this.props.selectedFollowers}
@@ -323,18 +325,16 @@ class App extends Component {
           </Row>
         </Container>
  
-                
-                     <Footer />
-                     
-                     </>
+    
+         <Footer />
+         
+         </>
              
-
                
       )
   }
   
   
-
 }
 
 //export default App
@@ -431,7 +431,6 @@ function mapStateToProps(state) {
       }
       
 }
-
 
 
 //basically, functions...

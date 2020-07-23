@@ -101,7 +101,7 @@ export default function commentersMessageReducer(state, action) {
         toggledClearRows: true,
         showMessageSubmitButton: true,
         showMessageSubmitLoadingButton: false,
-        enableMessageInput: true,
+        enableCommentersMessageInput: true,
         enableCommentersSearchSubmitButton: true,
         enableCommentersSearchInput: true,
         commenterData: action.commenterData

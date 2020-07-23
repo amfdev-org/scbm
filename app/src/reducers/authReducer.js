@@ -21,7 +21,7 @@ export default function authReducer(state, action) {
       return {
         ...state,
         showInfoAlert: false,
-        errorAlertText: "HTTP or unknown error. Please try again later.",
+        errorAlertText: "API or unknown error. Please try again later.",
         showErrorAlert: true   
       };
 
@@ -58,10 +58,10 @@ export default function authReducer(state, action) {
         showLogoutSubmitButton: true,
         loggedInInfoText: "Logged in as " + action.userData.scUsername,
         showMainAccordion: true,
-        showCommentersSearchForm: true,
-        showCommentersSearchSubmitButton: true,
-        enableCommentersSearchSubmitButton: false, 
-        enableCommentersSearchInput: true,
+        //showCommentersSearchForm: true,
+        //showCommentersSearchSubmitButton: true,
+        //enableCommentersSearchSubmitButton: false, 
+        //enableCommentersSearchInput: true,
         scProfile: action.userData.scProfile
                     
       };

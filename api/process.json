@@ -1,0 +1,9 @@
+{
+  "script": "server.js",
+  "watch": true,
+  "ignore_watch" : ["user_data", "logs", "screenshots"],
+  "watch_options": {
+    "followSymlinks": false
+  },
+    "name": "api"
+}

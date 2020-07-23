@@ -72,7 +72,7 @@ let checkCommenterMessageStatus = (commentersArray) => {
             let profileUrl = commentersArray[i].profileUrl;
             let profileName = commentersArray[i].profileName;
             
-            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"} })
+            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]] })
             .then(message => {
     
                 if (message) {
@@ -100,7 +100,7 @@ let checkFollowerMessageStatus = (data) => {
  
     console.log('follower model');
     //console.log(profileUrlArray);
-    console.log(data)
+    //console.log(data)
     return new Promise((resolve, reject) => {
     
     /*const profileUrlArray = [
@@ -119,7 +119,7 @@ let checkFollowerMessageStatus = (data) => {
             let profileUrl = data.followers[i].profileUrl;
             let profileName = data.followers[i].profileName;
             
-            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"} })
+            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]] })
             .then(message => {
     
                 if (message) {

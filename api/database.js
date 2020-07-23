@@ -1,6 +1,17 @@
 const dotenv = require('dotenv').config()
+const fs = require('fs');
+const utils = require('./scrapers/utils');    
 
 const { Sequelize, DataTypes, Op } = require('sequelize');
+
+const util = require('util');
+const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
+const log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
 
 /*const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   host: process.env.DB_HOST,
@@ -12,14 +23,12 @@ const { Sequelize, DataTypes, Op } = require('sequelize');
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
     host: "localhost",
     dialect: "mysql",
-    logging: function () {},
+    logging: false,
+    //logging: console.log,
     pool: {
         max: 5,
         min: 0,
         idle: 10000
-    },
-    dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock"
     },
     define: {
         paranoid: false

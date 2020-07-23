@@ -99,7 +99,7 @@ export default function myFollowersMessageReducer(state, action) {
         toggledClearRows: true,
         showMyFollowersMessageSubmitButton: true,
         showMyFollowersMessageSubmitLoadingButton: false,
-        enableMyMessageInput: true,
+        enableMyFollowersMessageInput: true,
         enableMyFollowersSearchSubmitButton: true,
         enableMyFollowersSearchInput: true,
         myFollowerData: action.myFollowerData

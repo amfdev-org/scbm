@@ -14,6 +14,14 @@ const connection = require('./connection')
     });
     */
 
+const util = require('util');
+const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
+const log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
 
     const scrapeFollowers = async (searchUrl, scCookies) => {
         
@@ -67,8 +75,7 @@ const connection = require('./connection')
                 console.log(error)
    
         }
-        
-        
+     
         
         //await page.waitFor(utils.randomWait2);
         
@@ -87,9 +94,7 @@ const connection = require('./connection')
         })
         
         let followerProfileUrlsUnique = Array.from(new Set(followerProfileUrlsRaw));
-        
-        console.log(followerProfileUrlsUnique);
-    
+
         let followerProfileUrls = [];
         //var jsonObj = {};
         for (var i = 0 ; i < followerProfileUrlsUnique.length; i++) {

@@ -13,30 +13,25 @@ class FollowersTable extends Component {
     
     render() {
         
-        const followerData = this.props.followerData
-  
         const showFollowersTable = this.props.showFollowersTable ? {display: 'block'} : {display: 'none'};
-        
-        const toggledClearRows = this.props.toggledClearRows;
-        
+
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', sortable: true },
             { name: 'Profile URL', selector: 'profileUrl', sortable: true, hide: "sm" },
             { name: 'Messaged', selector: 'messaged', sortable: true }
             ];
-      
-          
+               
         return (
           
           <Form className="followersDataTable">
               <DataTable style={showFollowersTable}
                 columns={columns}
-                data={followerData}
+                data={this.props.followerData}
                 defaultSortField="profileName"
                 selectableRows
                 onSelectedRowsChange={this.handleChange}
                 highlightOnHover
-                clearSelectedRows={toggledClearRows}
+                clearSelectedRows={this.props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />

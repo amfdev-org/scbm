@@ -1,9 +1,19 @@
 const fs = require('fs').promises;
+const fs_ = require('fs');
 const path = require('path');
 const utils = require('./utils');    
 const connection = require('./connection')
 //const ProxyChain = require('proxy-chain');
 //const randomUseragent = require('random-useragent');
+
+const util = require('util');
+const log_file = fs_.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
+const log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
 
    const login = async (url, scUsername, scPassword, sanitizedUsername) => {
           
@@ -27,6 +37,14 @@ const connection = require('./connection')
          throw new Error(error)
       }
       
+      try {
+        await page.screenshot({path: utils.screenshotPath + '/login/screenshot-after-navigate.png'});
+        await console.log('**screenshot saved**');
+     } catch(error) {
+        console.log(error)
+        await console.log('ERROR! screenshot could not be saved!');
+     }
+            
       //await page.waitFor(utils.randomWait1);
       
       //check for the webauthcontainer iframe

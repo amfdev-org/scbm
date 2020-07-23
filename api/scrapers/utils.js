@@ -5,6 +5,7 @@ const rootPath = '/var/www/vhosts/scbm';
 const apiPath = rootPath + "/api"
 const screenshotPath = apiPath + "/screenshots";
 const userDataPath = apiPath  + "/user_data";
+const logPath = apiPath  + "/logs";
 
 const scUsername = "phattunes1983@gmail.com";
 const scPassword = "Melon10283";
@@ -157,6 +158,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                 apiPath,
                 screenshotPath,
                 userDataPath,
+                logPath,
                 scUsername,
                 scPassword,
                 randomWait1,

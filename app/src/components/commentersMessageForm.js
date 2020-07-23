@@ -8,7 +8,7 @@ class CommentersMessageForm extends Component {
 
 
     handleChange = (event) => {
-        //ReactTooltip.hide();
+        ReactTooltip.hide();
         this.props.handleCommentersMessageChange(event)
     }
     

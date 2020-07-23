@@ -1,8 +1,7 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunkMiddleware from 'redux-thunk'
 import rootReducer from '../reducers/rootReducer';
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const initialState = {
         //main UI
         showMainAccordion: false,
@@ -36,7 +35,7 @@ export const initialState = {
         showCommentersSearchForm: false,
         showCommentersTable: false,
         
-        //commenter smessages
+        //commenters messages
         showCommentersMessageForm: false,
         commentersMessage : 'Hi <<profileName>>,',
         enableCommentersMessageSubmitButton: false,
@@ -56,7 +55,7 @@ export const initialState = {
         showFollowersSearchForm: false,
         showFollowersTable: false,
         
-        //followers smessages
+        //followers messages
         showFollowersMessageForm: false,
         followersMessage : 'Hi <<profileName>>,',
         enableFollowersMessageSubmitButton: false,
@@ -80,7 +79,9 @@ export const initialState = {
         showMyFollowersTable: false,
         showMyFollowersSubmitButton: true,
         showMyFollowersSubmitLoadingButton: false,
-        selectedMyFollowers: [],
+        selectedMyFollowers: [],   
+        showMyFollowersLoadingIcon: true,
+        scProfile: '',
         
         //my followers messages
         myFollowersMessage : 'Hi <<profileName>>,',
@@ -89,10 +90,7 @@ export const initialState = {
         enableMyFollowersMessageSubmitButton: false,
         showMyFollowersMessageSubmitButton: true,
         showMyFollowersMessageSubmitLoadingButton: false,
-        
-        showMyFollowersLoadingIcon: true,
-        
-        scProfile: ''
+
 };
 
 
@@ -100,7 +98,7 @@ export default function configureStore(preloadedState) {
   const store = createStore(
     rootReducer,
     initialState,
-    composeEnhancer(applyMiddleware(thunkMiddleware))
+    composeEnhancers(applyMiddleware(thunkMiddleware))
   );
 
   /*if (module.hot) {

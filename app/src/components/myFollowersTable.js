@@ -14,13 +14,8 @@ class MyFollowersTable extends Component {
     
     render() {
         
-        const myFollowerData = this.props.myFollowerData
-  
         const showMyFollowersTable = this.props.showMyFollowersTable ? {display: 'block'} : {display: 'none'};
         const showMyFollowersLoadingIcon = this.props.showMyFollowersLoadingIcon ? {display: 'block'} : {display: 'none'};
-        
-        
-        const toggledClearRows = this.props.toggledClearRows;
         
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', sortable: true },
@@ -29,7 +24,7 @@ class MyFollowersTable extends Component {
             ];
       
           
-        return (
+      return (
           
       <div id="my-followers-table-container">
       
@@ -40,12 +35,12 @@ class MyFollowersTable extends Component {
           <Form className="myFollowersDataTable">
               <DataTable style={showMyFollowersTable}
                 columns={columns}
-                data={myFollowerData}
+                data={this.props.myFollowerData}
                 defaultSortField="profileName"
                 selectableRows
                 onSelectedRowsChange={this.handleChange}
                 highlightOnHover
-                clearSelectedRows={toggledClearRows}
+                clearSelectedRows={this.props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />

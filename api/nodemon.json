@@ -1,3 +1,4 @@
 {
-  "ignore": ["user_data/*"]
+  "ignore": ["user_data/*"],
+  "ignore": ["logs/*"]
 }

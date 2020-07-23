@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+import {
+  fetchMyFollowers
+  } from '../actions/myFollowersSearchActions'
+  
 export const SIGNUP_USERNAME_CHANGE = 'SIGNUP_USERNAME_CHANGE'
 export const SIGNUP_PASSWORD_CHANGE = 'SIGNUP_PASSWORD_CHANGE'
 export const SIGNUP_SUBMIT_ENABLE = 'SIGNUP_SUBMIT_ENABLE'
@@ -67,6 +71,7 @@ export function handleSignupSubmit(event) {
             .then(json => catchSignupCookieError(json, dispatch))
             .then(json => catchSignupUserCreatedError(json, dispatch))
             .then(json => doSignupSuccess(json, dispatch))
+            .then(json => dispatch(fetchMyFollowers()))
             .catch(error => {
 
                 if (error.response) {   
@@ -124,7 +129,6 @@ function catchSignupUserCreatedError(json, dispatch) {
 
 function doSignupSuccess(json, dispatch) {
     //console.log('doSignupSuccess')
- 
         dispatch({
                 type: SIGNUP_SUCCESS,
                 userData: json.userData

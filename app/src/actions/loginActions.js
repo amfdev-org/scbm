@@ -1,8 +1,12 @@
+import axios from 'axios';
+
 import { initialState } from '../store/configureStore';
 import { fetchAuth } from '../actions/authActions'
 
-import axios from 'axios';
-
+import {
+  fetchMyFollowers
+  } from '../actions/myFollowersSearchActions'
+  
 export const LOGIN_HTTP_ERROR = 'LOGIN_HTTP_ERROR'
 export const LOGIN_USERNAME_CHANGE = 'LOGIN_USERNAME_CHANGE'
 export const LOGIN_PASSWORD_CHANGE = 'LOGIN_PASSWORD_CHANGE'
@@ -14,6 +18,7 @@ export const LOGIN_UNKNOWN_ERROR = 'LOGIN_UNKNOWN_ERROR'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const LOGIN_SWITCH_TO_SIGNUP = 'LOGIN_SWITCH_TO_SIGNUP'
+export const LOGIN_SUBMITTED = 'LOGIN_SUBMITTED'
 
 
 export function handleLoginChange(event) {
@@ -54,6 +59,8 @@ export function handleLoginSubmit(event) {
     
     return (dispatch, getState) => {
 
+        dispatch({type: LOGIN_SUBMITTED});
+        
         axios({
             method: 'post',
             url: 'https://scbm.amfdev.co.uk/api/login/',
@@ -66,6 +73,7 @@ export function handleLoginSubmit(event) {
             .then(json => catchLoginUserNotFoundError(json.data, dispatch))
             .then(json => catchLoginCookieError(json, dispatch))
             .then(json => doLoginSuccess(json, dispatch))
+            .then(json => dispatch(fetchMyFollowers()))
              .catch(error => {
 
                 if (error.response) {   
@@ -132,6 +140,7 @@ function doLoginSuccess(json, dispatch) {
 
 export function handleLogoutSubmit(event) {
     
+    console.log('logout')
     return (dispatch, getState) => {
 
         axios({
@@ -147,11 +156,11 @@ export function handleLogoutSubmit(event) {
 
 
 function doLogout(json, dispatch) {
-    //console.log('doLogout')
+  
     if (json.logoutSuccess) {
         dispatch({
                 type: LOGOUT_SUCCESS,
-                initialState: initialState[0]
+                initialState: initialState
               })
     } else {
         throw Error("Logout error");

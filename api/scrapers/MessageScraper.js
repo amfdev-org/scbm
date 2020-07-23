@@ -5,6 +5,15 @@ const connection = require('./connection')
 //const ProxyChain = require('proxy-chain');
 //const randomUseragent = require('random-useragent');
 
+const util = require('util');
+const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
+const log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+
    const sendMessageOnProfile = async (scCookies, commenters, message, searchUrl) => {
             
       let sendMessageResult = [];
@@ -60,7 +69,7 @@ const connection = require('./connection')
             await page.waitFor(randomWaitLong);
             
             try {
-               await page.screenshot({path: utils.screenshotPath + '/screenshot-after-navigate.png'});
+               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-navigate.png'});
                await console.log('**screenshot saved**');
             } catch(error) {
                console.log(error)
@@ -95,7 +104,7 @@ const connection = require('./connection')
             }
             
             try {
-               await page.screenshot({path: utils.screenshotPath + '/screenshot-after-click-open-messages.png'});
+               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-click-open-messages.png'});
                await console.log('**screenshot saved**');
             } catch(error) {
                console.log(error)
@@ -123,13 +132,14 @@ const connection = require('./connection')
                //return;
             })
             
-            await page.waitFor(randomWaitLong);
+            //await page.waitFor(randomWaitLong);
             
             const textarea = await page.$('.textfield__inputWrapper > textarea');
             
-            //try to fill out the password
+            //try to fill out the message!
             try {
-               await textarea.type(messageWithName, {delay: randomWaitShort});
+               //await textarea.type(messageWithName, {delay: randomWaitShort}); // WITH DELAY IF NEEDED
+               await textarea.type(messageWithName);
                await console.log('**message entered**');
             } catch (error) {
                await console.log("ERROR! could not enter message!");
@@ -140,17 +150,16 @@ const connection = require('./connection')
             }
             
             try {
-               await page.screenshot({path: utils.screenshotPath + '/screenshot-after-message-enter.png'});
+               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-message-enter.png'});
                await console.log('**screenshot saved**');
             } catch(error) {
                console.log(error)
                await console.log('ERROR! screenshot could not be saved!');
             }
             
-            //await page.waitFor(randomWait);
+            await page.waitFor(randomWaitShort);
             
-            
-              /*
+   
             //try to send the message!
             try {
                await page.click('.composeMessage__sendButton');
@@ -162,27 +171,17 @@ const connection = require('./connection')
                //return;
             }
             
-            await page.waitFor(utils.randomWaitVeryLong);
-            
+            await page.waitFor(randomWaitLong);          
                       
             try {
-               await page.screenshot({path: utils.screenshotPath + '/screenshot-after-message-send.png'});
+               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-message-send.png'});
                await console.log('**screenshot saved**');
             } catch(error) {
                console.log(error)
                await console.log('ERROR! screenshot could not be saved!');
             }
-            
-            //try to take the final screenshot
-            //try {
-            //   await page.screenshot({path: utils.screenshotPath + '/screenshot'+i+'.png'});
-            //   await console.log('**screenshot saved**');
-            //} catch(error) {
-            //   console.log(error)
-            //   await console.log('ERROR! screenshot could not be saved!');
-           // }
+    
          
-         */
             sendMessageResult.push({profileUrl : profileUrl,
                                       message: messageWithName,
                                       searchUrl: searchUrl,
