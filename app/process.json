@@ -1,9 +1,11 @@
 {
   "script": "npm",
   "args" : "start",
-            "watch": true,
+  "watch": true,
   "watch_options": {
-    "followSymlinks": false
+    "followSymlinks": false,
+    "usePolling": true
   },
-    "name": "app"
+    "name": "app",
+    "restart_delay": 500,
 }

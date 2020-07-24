@@ -19,7 +19,7 @@ class infoAlert extends Component {
                 className="info-alert alert-fixed"
                 style={showInfoAlert}
                 variant='info'
-                onClose={() => this.props.this.handleChange("INFO", "HIDE")()}
+                onClose={() => this.handleChange("INFO", "HIDE")()}
                 dismissible
                 >
                 <Alert.Heading>{this.props.infoAlertTextHeading}</Alert.Heading>

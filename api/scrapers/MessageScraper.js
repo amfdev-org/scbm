@@ -64,9 +64,8 @@ console.log = function(d) { //
                return true;
                //return Promise.reject(new Error('ERROR! could not navigate to url ' + profileUrl));
             }
-            
-            
-            await page.waitFor(randomWaitLong);
+               
+            //await page.waitFor(randomWaitLong);
             
             try {
                await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-navigate.png'});
@@ -88,8 +87,7 @@ console.log = function(d) { //
               //return;
             })
 
-            
-            await page.waitFor(randomWaitLong);
+            //await page.waitFor(randomWaitLong);
             
             //try to click open message form button
             try {
@@ -157,7 +155,7 @@ console.log = function(d) { //
                await console.log('ERROR! screenshot could not be saved!');
             }
             
-            await page.waitFor(randomWaitShort);
+            //await page.waitFor(randomWaitShort);
             
    
             //try to send the message!
@@ -171,7 +169,7 @@ console.log = function(d) { //
                //return;
             }
             
-            await page.waitFor(randomWaitLong);          
+            //await page.waitFor(randomWaitLong);          
                       
             try {
                await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-message-send.png'});

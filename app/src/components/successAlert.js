@@ -20,7 +20,7 @@ class successAlert extends Component {
                 className="success-alert alert-fixed"
                 style={showSuccessAlert}
                 variant='success'
-                onClose={() => this.props.this.handleChange("SUCCESS", "HIDE")}
+                onClose={() => this.handleChange("SUCCESS", "HIDE")}
                 dismissible>
               <Alert.Heading>Success!</Alert.Heading>
                  {this.props.successAlertText}

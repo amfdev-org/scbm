@@ -34,7 +34,11 @@ const Commenter = sequelize.define("commenter", {
     
 let logCommenters = (data) => {
 
-    for (const commenter of data) {
+    Commenter.bulkCreate(data, {
+            ignoreDuplicates: true 
+    });
+
+    /*for (const commenter of data) {
             
             const findOrCreate = Commenter.findOrCreate({
                 where: {
@@ -42,7 +46,7 @@ let logCommenters = (data) => {
                   profileUrl:      commenter.profileUrl   
                 }})
 
-    }
+    }*/
 
 }
 

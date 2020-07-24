@@ -27,22 +27,27 @@ const randomWaitShort3 = Math.floor((Math.random() * 100) + 9);
 const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
 
     async function autoScrollDown(page) {
+      
       await page.evaluate(async () => {
           await new Promise((resolve, reject) => {
-              var totalHeight = 0;
-              var distance = 100;
-              var timer = setInterval(() => {
-                  var scrollHeight = document.body.scrollHeight;
-                  window.scrollBy(0, distance);
-                  totalHeight += distance;
-  
-                  if(totalHeight >= scrollHeight){
+                  startT = new Date().getTime();
+                  const distance = 100;
+                  const delay = 400;
+                  const timer = setInterval(() => {
+                    now = new Date().getTime();
+                    console.log('diff' + now - startT)
+                    document.scrollingElement.scrollBy(0, distance);
+                    if ((document.scrollingElement.scrollTop + window.innerHeight >= document.scrollingElement.scrollHeight)
+                        ||
+                        ((now - startT) > 180000) //3 MIN LIMIT
+                        ) {
                       clearInterval(timer);
                       resolve();
-                  }
-              }, 200);
+                    }
+                  }, delay);
           });
       });
+  
     }
     
     async function autoScrollUp(page) {

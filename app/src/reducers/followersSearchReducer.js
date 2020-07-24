@@ -59,7 +59,7 @@ export default function followersSearchReducer(state, action) {
         showErrorAlert: true,
         showFollowersSearchSubmitButton: true,
         showFollowersSearchSubmitLoadingButton: false,
-        enableFollowersSearchFormInputs : true,
+        enableFollowersSearchInput : true,
         enableFollowersSearchSubmitButton: true, 
         showFollowersTable: true,
         successAlertText: "But there were no followers found for this track."
@@ -75,7 +75,7 @@ export default function followersSearchReducer(state, action) {
         errorAlertText: "Something went wrong. Please try again, or contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
-        enableFollowersSearchFormInputs : true,
+        enableFollowersSearchInput : true,
         enableFollowersSearchSubmitButton: true, 
         showFollowersSearchSubmitButton: true,
         showFollowersSearchSubmitLoadingButton: false

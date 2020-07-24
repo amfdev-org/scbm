@@ -34,7 +34,7 @@ console.log = function(d) { //
         const page = await browser.newPage();
        
         //await page.setExtraHTTPHeaders({Referer: 'https://soundcloud.com/'});
-        await page.setDefaultNavigationTimeout(0);
+        //await page.setDefaultNavigationTimeout(0);
         await console.log("**browser and page instantiated**");
             
         // evaluate document + apply stealth preoad
@@ -61,8 +61,7 @@ console.log = function(d) { //
         }
   
          //await page.waitFor(utils.randomWait1);
-        
-        
+         
         try {
             await page.waitForSelector('.lazyLoadingList__list > li > div > div > a', {
             timeout: 6000
@@ -71,12 +70,9 @@ console.log = function(d) { //
             //  console.log('ERROR! could not access span.commentItem__username > a!');
             //})
         } catch(error) {
-  
                 console.log(error)
-   
         }
-     
-        
+           
         //await page.waitFor(utils.randomWait2);
         
         try {
@@ -86,12 +82,22 @@ console.log = function(d) { //
             await console.log("ERROR! could not scroll down on " + searchedProfileFollowersPage);
          }
     
+          try {
+            await page.screenshot({path: utils.screenshotPath + '/followers/screenshot-after-scroll-down.png'});
+            await console.log('**screenshot saved**');
+         } catch(error) {
+            console.log(error)
+            await console.log('ERROR! screenshot could not be saved!');
+         }
+     
          //await page.waitFor(utils.randomWait3);
     
         const followerProfileUrlsRaw = await page.evaluate(() => {
             const links = Array.from(document.querySelectorAll('.lazyLoadingList__list > li > div > div.userBadgeListItem__title > a'))
             return links.map(link => link.href + '^' + link.innerHTML.replace(/^\s+|\s+$/g, '').trim())
         })
+        
+        //await console.log(followerProfileUrlsRaw);
         
         let followerProfileUrlsUnique = Array.from(new Set(followerProfileUrlsRaw));
 

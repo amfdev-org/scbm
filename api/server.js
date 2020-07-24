@@ -521,13 +521,13 @@ app.get('/followers/', function(req, res) {
                 where: {
                       searchUrl: data.searchUrl,
                       createdAt: {
-                        [Op.gte]: moment().subtract(1, 'days').toDate()
+                        [Op.gte]: moment().subtract(7, 'days').toDate() // only scrape if logged followers older than 7 days
                       }
                     }
                 })
                 .then(function (followers) {
                     //console.log(followers);
-                    console.log('*****')
+                    console.log('check for logged followers then block')
                     //console.log(data)
                     //console.log('no logged followers')
                     //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
@@ -576,10 +576,10 @@ app.get('/followers/', function(req, res) {
         .then(data => MessageModel.checkFollowerMessageStatus(data))
         .then(data => {
             //console.log(data)
-            if (data.isMyFollowersSearch) {
+            //if (data.isMyFollowersSearch) { // STORE ALL FOLLOWERS FOR NOW
                 FollowerModel.logFollowers(data.followerData);
                 console.log("**logged followers to DB**");
-            }
+            //}
             console.log("**sending data to browser**");
             //console.log(JSON.stringify(data))
             res.send({success: true, noResults: false, followerData: data.followerData})

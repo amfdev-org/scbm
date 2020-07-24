@@ -43,7 +43,7 @@ const Follower = sequelize.define("follower", {
     
 let logFollowers = (data) => {
 
-    for (const follower of data) {
+    /*for (const follower of data) {
             
             const findOrCreate = Follower.findOrCreate({
                 where: {
@@ -52,7 +52,12 @@ let logFollowers = (data) => {
                   profileUrl: follower.profileUrl   
                 }})
 
-    }
+    }*/
+    
+    Follower.bulkCreate(data, {
+            ignoreDuplicates: true 
+    });
+
 
 }
 
