@@ -5,31 +5,35 @@ const Op = database.Op
 
 const Commenter = sequelize.define("commenter", {
     
-    id: {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
         },
     searchUrl: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
         },
     profileUrl: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: false
+        },
+    profileName: {
+        type: DataTypes.STRING,
         allowNull: true,
+        unique: false
+        },
+    searchUrlProfileUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
         unique: true
         },
     messaged: {
         type: DataTypes.STRING,
         allowNull: true
-        },
-    messageIds: {
-        type: DataTypes.STRING,
-        allowNull: true
         }
-  
 });
-
 
     
 let logCommenters = (data) => {

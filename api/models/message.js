@@ -48,7 +48,7 @@ let logMessages = (data) => {
     
 }
 
-let checkCommenterMessageStatus = (commentersArray) => {
+let checkCommentersMessageStatus = (data) => {
     
     //console.log('commenter model');
     //console.log(profileUrlArray);
@@ -62,26 +62,34 @@ let checkCommenterMessageStatus = (commentersArray) => {
         { profileUrl: 'https://soundcloud.com/matcatmusic' }
       ];*/
     
-    let commentersArrayLength = commentersArray.length;
-    
     let compositeArray = [];
     
-    for (var i = 0 ; i < commentersArrayLength; i++) {
+    for (var i = 0 ; i < data.commenters.length; i++) {
         
-            let searchUrl = commentersArray[i].searchUrl;
-            let profileUrl = commentersArray[i].profileUrl;
-            let profileName = commentersArray[i].profileName;
+            let searchUrl = data.commenters[i].searchUrl;
+            let profileUrl = data.commenters[i].profileUrl;
+            let profileName = data.commenters[i].profileName;
             
             const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]] })
             .then(message => {
     
                 if (message) {
-                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                    compositeArray.push({
+                        searchUrl: searchUrl,
+                        profileUrl: profileUrl,
+                        profileName: profileName,
+                        searchUrlProfileUrl : searchUrl + '^' + profileUrl,
+                        messaged : moment(message.createdAt).format("DD/MM/YYYY")});
                 } else {
-                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
+                    compositeArray.push({
+                        searchUrl: searchUrl,
+                        profileUrl: profileUrl,
+                        profileName: profileName,
+                        searchUrlProfileUrl : searchUrl + '^' + profileUrl,
+                        messaged : "Never"});
                 }
                  //console.log(compositeArray);
-                 if (compositeArray.length == commentersArrayLength) {
+                 if (compositeArray.length == data.commenters.length) {
                     resolve(compositeArray);
                  }
                  
@@ -96,7 +104,7 @@ let checkCommenterMessageStatus = (commentersArray) => {
 
 }
 
-let checkFollowerMessageStatus = (data) => {
+let checkFollowersMessageStatus = (data) => {
  
     console.log('follower model');
     //console.log(profileUrlArray);
@@ -123,9 +131,19 @@ let checkFollowerMessageStatus = (data) => {
             .then(message => {
     
                 if (message) {
-                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                    compositeArray.push({
+                        searchUrl: searchUrl,
+                        profileUrl: profileUrl,
+                        profileName: profileName,
+                        searchUrlProfileUrl : searchUrl + '^' + profileUrl,
+                        messaged : moment(message.createdAt).format("DD/MM/YYYY")});
                 } else {
-                    compositeArray.push({ searchUrl: searchUrl, profileUrl: profileUrl, profileName: profileName, messaged : "Never"});
+                    compositeArray.push({
+                        searchUrl: searchUrl,
+                        profileUrl: profileUrl,
+                        profileName: profileName,
+                        searchUrlProfileUrl : searchUrl + '^' + profileUrl,
+                        messaged : "Never"});
                 }
                  //console.log(compositeArray);
                  if (compositeArray.length == data.followers.length) {
@@ -145,4 +163,8 @@ let checkFollowerMessageStatus = (data) => {
 
 //Message.sync({ force: true });
 
-module.exports = { Message, logMessages, checkCommenterMessageStatus, checkFollowerMessageStatus };
+module.exports = { Message,
+                logMessages,
+                checkCommentersMessageStatus,
+                checkFollowersMessageStatus
+                };

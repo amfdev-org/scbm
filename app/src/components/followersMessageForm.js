@@ -28,7 +28,7 @@ class FollowersMessageForm extends Component {
         <Form className="messageForm" style={showFollowersMessageForm}>
 
         <Form.Control as="textarea"
-          data-tip="Must be at least 10 characters long. Include a full song URL too if you like!"
+data-tip="Must be at least 10 characters long. You can include a full song URL. <<profileName>> will be automatically converted."
           rows="8"
           name="followersMessage"
           value={this.props.followersMessage}

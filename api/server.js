@@ -423,32 +423,77 @@ app.get('/commenters/', function(req, res) {
                 reject("Search URL does not contain 'soundcloud'");
                 //res.send(JSON.stringify({errorMessage : "Server says: could not get commenters!"}))
             } else {
-                resolve(searchUrl);
+                resolve({searchUrl: searchUrl});
             }
         })
         
     }
 
+    let checkForLoggedCommenters = (data) => {
+        
+        return new Promise((resolve, reject) => {
+            console.log("checkForLoggedCommenters")
+            CommenterModel.Commenter.findAll({
+                where: {
+                      searchUrl: data.searchUrl,
+                      createdAt: {
+                        [Op.gte]: moment().subtract(7, 'days').toDate() // only scrape if logged commenters older than 7 days
+                      }
+                    }
+                })
+                .then(function (commenters) {
+                    //console.log(commenters);
+                    console.log('check for logged commenters then block')
+                    //console.log(data)
+                    if (commenters.length === 0) {
+                        console.log('no logged commenters')
+                    }
+                    
+                    //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
+                    resolve({ searchUrl: data.searchUrl, commenters: commenters })
+                
+        
+                }).catch(error => {
+                   console.log(error)
+                   reject(error)
+                });
+        
+        })
     
-    let scrapeCommenters = (searchUrl) => {
+    }
+      
+           
+
+    let scrapeCommenters = (data) => {
             
         return new Promise((resolve, reject) => {
-            
-        CommenterScraper
-        .scrapeCommenters(searchUrl, req.session.user.scCookies)
-          .then(data => {
-            //console.log(data)
-            resolve(data)
-          })
-          .catch(error => reject(error))
-         })
-    }
-        
+            console.log('scrape commenters')
+           if (data.commenters.length > 0) {
+               
+               resolve({ searchUrl: data.searchUrl, commenters: data.commenters })
+               console.log('resolving logged commenters instead of scraping')
+           } else {
            
+               //console.log(data.searchUrl)
+               
+               CommenterScraper
+               .scrapeCommenters(data.searchUrl, req.session.user.scCookies)
+                 .then(scrapedCommenters => {
+                   //console.log(scrapedCommenters)
+                    resolve({ searchUrl: data.searchUrl, commenters: scrapedCommenters })
+                   })
+                   .catch(error => reject(error))
+           
+           }
+        })
+    }
+    
+            
         // run the promises!
         validateCommentersSearchUrl()
+        .then(data => checkForLoggedCommenters(data))
         .then(data => scrapeCommenters(data))
-        .then(data => MessageModel.checkCommenterMessageStatus(data))
+        .then(data => MessageModel.checkCommentersMessageStatus(data))
         .then(data => {
             //console.log(data)
             console.log("**logged commenters to DB**");
@@ -529,7 +574,10 @@ app.get('/followers/', function(req, res) {
                     //console.log(followers);
                     console.log('check for logged followers then block')
                     //console.log(data)
-                    //console.log('no logged followers')
+                    if (followers.length === 0) {
+                        console.log('no logged followers')
+                    }
+                    
                     //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
                     resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: followers })
                 
@@ -573,7 +621,7 @@ app.get('/followers/', function(req, res) {
         validateFollowersSearchUrl()
         .then(data => checkForLoggedFollowers(data))
         .then(data => scrapeFollowers(data))
-        .then(data => MessageModel.checkFollowerMessageStatus(data))
+        .then(data => MessageModel.checkFollowersMessageStatus(data))
         .then(data => {
             //console.log(data)
             //if (data.isMyFollowersSearch) { // STORE ALL FOLLOWERS FOR NOW

@@ -109,7 +109,8 @@ console.log = function(d) { //
                 followerProfileUrls.push({
                                 searchUrl: searchUrl,
                                  profileUrl : followerProfileUrl,
-                                 profileName : followerProfileName
+                                 profileName : followerProfileName,
+                                 searchUrlProfileUrl : searchUrl + '^' + followerProfileUrl
                                  });
         }
 

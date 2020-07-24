@@ -57,6 +57,30 @@ console.log = function(d) { //
            return Promise.reject(new Error('ERROR! could not navigate to url ' + searchUrl));
         }
   
+        const html = await page.content();
+        //await console.log(html);
+            
+        await page.waitForSelector('div.callout__bubble > div.callout__button > button')
+            .then(() => console.log('**got callout button'))
+            .catch ((error) => {
+             console.log('ERROR! could not get callout button!');
+            })
+            
+        try {
+            await page.click('div.callout__bubble > div.callout__button > button');
+            await console.log('**clicked modal dismiss')
+        } catch(error) {
+            await console.log('**could not click modal dismiss')
+        }
+            
+        try {
+            await page.screenshot({path: utils.screenshotPath + '/commenters/screenshot-after-navigate.png'});
+            await console.log('**screenshot saved**');
+         } catch(error) {
+            console.log(error)
+            await console.log('ERROR! screenshot could not be saved!');
+         }
+         
          //await page.waitFor(utils.randomWait1);
         
         try {
@@ -84,7 +108,7 @@ console.log = function(d) { //
                 } 
    
         }
-        
+    
     
         //await page.waitFor(utils.randomWait2);
         
@@ -95,6 +119,15 @@ console.log = function(d) { //
             await console.log("ERROR! could not scroll down on " + searchUrl);
          }
     
+        
+         try {
+            await page.screenshot({path: utils.screenshotPath + '/commenters/screenshot-after-scroll-down.png'});
+            await console.log('**screenshot saved**');
+         } catch(error) {
+            console.log(error)
+            await console.log('ERROR! screenshot could not be saved!');
+         }
+         
          //await page.waitFor(utils.randomWait3);
     
         const profileUrlsRaw = await page.evaluate(() => {
@@ -102,6 +135,7 @@ console.log = function(d) { //
             return links.map(link => link.href + '^' + link.innerHTML)
         })
         
+
         profileUrlsRawUnique = Array.from(new Set(profileUrlsRaw));
         
         profileUrls = []
@@ -111,11 +145,16 @@ console.log = function(d) { //
                 //var profileUrlRelative = profileUrl.replace("https://soundcloud.com", "");
                 profileUrls.push({searchUrl: searchUrl,
                                  profileUrl : profileUrl,
-                                 profileName : profileName
+                                 profileName : profileName,
+                                 searchUrlProfileUrl : searchUrl + '^' + profileUrl
                                  });
         }
-
-        await browser.close()
+        
+        //await console.log(profileUrls);
+        
+         return profileUrls
+         
+         await browser.close()
     
         /*profileUrls = [ { searchUrl: searchUrl, profileUrl: 'https://soundcloud.com/ocmoon', profileName: "OC Moon" },
                         { searchUrl: searchUrl, profileUrl: 'https://soundcloud.com/fogcapture', profileName: "fogcapture"  },
@@ -123,7 +162,7 @@ console.log = function(d) { //
         
         //await console.log(profileUrls);
 
-        return profileUrls
+       
     }
 
 
