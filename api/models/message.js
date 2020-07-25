@@ -27,6 +27,10 @@ const Message = sequelize.define("message", {
         type: DataTypes.STRING,
         allowNull: true
         },
+    sender: {
+        type: DataTypes.STRING,
+        allowNull: true
+        },    
     messageResult: {
         type: DataTypes.STRING,
         allowNull: true

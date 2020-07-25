@@ -24,7 +24,7 @@ export default function uiReducer(state, action) {
     case "ERROR_ALERT_SET_TEXT":
          return {
         ...state,
-        errorAlertText: action.errorAlertText  
+        errorAlertText: action.text  
       };
     
     case "SUCCESS_ALERT_SHOW": 
@@ -42,7 +42,7 @@ export default function uiReducer(state, action) {
     case "SUCCESS_ALERT_SET_TEXT":
          return {
         ...state,
-        successAlertText: action.successAlertText  
+        successAlertText: action.text  
       };
             
     case "INFO_ALERT_SHOW":
@@ -60,7 +60,7 @@ export default function uiReducer(state, action) {
     case "INFO_ALERT_SET_TEXT_HEADING":
          return {
         ...state,
-        infoAlertTextHeading: action.infoAlertTextHeading  
+        infoAlertTextHeading: action.textHeading  
       };
       
     case "INFO_ALERT_SET_TEXT":

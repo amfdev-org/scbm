@@ -14,7 +14,7 @@ console.log = function(d) { //
   log_stdout.write(util.format(d) + '\n');
 };
 
-   const sendMessageOnProfile = async (scCookies, commenters, message, searchUrl) => {
+   const sendMessageOnProfile = async (scCookies, commenters, message, searchUrl, sender) => {
             
       let sendMessageResult = [];
       
@@ -42,6 +42,7 @@ console.log = function(d) { //
        }
        
       let i = 0;
+      //for(i = 0; i < commenters.length; i++) {
       for (const commenter of commenters) {
          
             const randomWaitShort = Math.floor((Math.random() * 100) + 3)
@@ -61,7 +62,12 @@ console.log = function(d) { //
             } catch(error) {
                await console.log('ERROR! could not navigate to url ' + profileUrl);
                console.log(error)
-               return true;
+                        sendMessageResult.push({profileUrl : profileUrl,
+                                      message: messageWithName,
+                                      searchUrl: searchUrl,
+                                      sender: sender,
+                                      messageResult: "Failure"});
+               continue;
                //return Promise.reject(new Error('ERROR! could not navigate to url ' + profileUrl));
             }
                
@@ -77,15 +83,34 @@ console.log = function(d) { //
     
             //check for the open message form button, if this is missing, log in failed
             //TO DO - if failed here, do login
-            await page.waitForSelector('.sc-button-message')
+            /*await page.waitForSelector('.sc-button-message')
             .then(() => console.log('**got send message button'))
             .catch ((error) => {
               console.log('ERROR! could not access send message button!');
               console.log(error)
-              sendMessageResult.push({messageFailed : profileUrl});
-              return true;
+
+                sendMessageResult.push({profileUrl : profileUrl,
+                                      message: messageWithName,
+                                      searchUrl: searchUrl,
+                                      messageResult: "Failure"});
+              continue;
               //return;
-            })
+            })*/
+            
+            try {
+               await page.waitForSelector('.sc-button-message')
+               await console.log('**got send message button')
+            } catch(error) {
+                  console.log('ERROR! could not access send message button!');
+
+                  sendMessageResult.push({profileUrl : profileUrl,
+                                        message: messageWithName,
+                                        searchUrl: searchUrl,
+                                        sender: sender,
+                                        messageResult: "Failure"});
+                  
+                  continue;
+            }
 
             //await page.waitFor(randomWaitLong);
             
@@ -96,8 +121,12 @@ console.log = function(d) { //
             } catch(error) {
                await console.log('ERROR! could not click open message form button!');
                 console.log(error)
-               sendMessageResult.push({messageFailed : profileUrl});
-               return true;
+                          sendMessageResult.push({profileUrl : profileUrl,
+                                      message: messageWithName,
+                                      searchUrl: searchUrl,
+                                      sender: sender,
+                                      messageResult: "Failure"});
+               continue;
                //return;
             }
             
@@ -119,16 +148,59 @@ console.log = function(d) { //
              //  await console.log('ERROR! screenshot could not be saved!');
             //}
             
+            //const html = await page.content();
+            //await console.log(html);
+        
             //check for the message textarea
-            await page.waitForSelector('.textfield__inputWrapper > textarea')
+            /*await page.waitForSelector('.textfield__inputWrapper > textarea66')
             .then(() => console.log('**got message textarea'))
             .catch ((error) => {
              console.log('ERROR! could not access message textarea!');
                console.log(error)
-              sendMessageResult.push({messageFailed : profileUrl});
-               return true;
+                         sendMessageResult.push({profileUrl : profileUrl,
+                                      message: messageWithName,
+                                      searchUrl: searchUrl,
+                                      messageResult: "Failure"});
+               continue;
                //return;
-            })
+            })*/
+            
+            //DISMISS MODAL
+   
+            try {
+              let messageFrame = await page.frames().find(frame => frame.name().includes('sp_message_iframe'));
+               await console.log('got message popup / iframe')
+               await messageFrame.waitForSelector('div.message-component > button.message-button');
+               await console.log('**got message-component button in frame')
+               await messageFrame.click('div.message-component > button.message-button');
+               await console.log('**clicked modal dismiss')
+            } catch(error) {
+               await console.log('ERROR! could not dismiss message popup / iframe!!')
+            }
+               
+        
+            try {
+               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-dismiss-modal.png'});
+               await console.log('**screenshot saved**');
+            } catch(error) {
+               console.log(error)
+               await console.log('ERROR! screenshot could not be saved!');
+            }
+            
+            
+            try {
+               await page.waitForSelector('.textfield__inputWrapper > textarea')
+               await console.log('**got message textarea')
+            } catch(error) {
+                    console.log('ERROR! could not access message textarea!');
+
+                     sendMessageResult.push({profileUrl : profileUrl,
+                                  message: messageWithName,
+                                  searchUrl: searchUrl,
+                                  sender: sender,
+                                  messageResult: "Failure"});
+               continue;
+            }
             
             //await page.waitFor(randomWaitLong);
             
@@ -142,8 +214,12 @@ console.log = function(d) { //
             } catch (error) {
                await console.log("ERROR! could not enter message!");
                 console.log(error)
-               sendMessageResult.push({messageFailed : profileUrl});
-               return true;
+                         sendMessageResult.push({profileUrl : profileUrl,
+                                      message: messageWithName,
+                                      searchUrl: searchUrl,
+                                      sender: sender,
+                                      messageResult: "Failure"});
+               continue;
                //return;
             }
             
@@ -159,15 +235,19 @@ console.log = function(d) { //
             
    
             //try to send the message!
-            try {
+            /*try {
                await page.click('.composeMessage__sendButton');
                await console.log('**Message sent to ' + profileUrl);
             } catch(error) {
                await console.log('ERROR! could not send message to ' + profileUrl);
-               sendMessageResult.push({messageFailed : profileUrl});
-               return true;
+                          sendMessageResult.push({profileUrl : profileUrl,
+                                      message: messageWithName,
+                                      searchUrl: searchUrl,
+                                      sender: sender,
+                                      messageResult: "Failure"});
+               continue;
                //return;
-            }
+            }*/
             
             //await page.waitFor(randomWaitLong);          
                       
@@ -183,6 +263,7 @@ console.log = function(d) { //
             sendMessageResult.push({profileUrl : profileUrl,
                                       message: messageWithName,
                                       searchUrl: searchUrl,
+                                      sender: sender,
                                       messageResult: "Success"});
             
             i++;

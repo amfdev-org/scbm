@@ -647,6 +647,56 @@ app.get('/followers/', function(req, res) {
     
 })
     
+app.get('/message/', function(req, res) {
+    
+    if (!req.session.user) {
+        console.log('no session')
+        res.end();
+    }
+    
+    let checkForLoggedMessages = (data) => {
+        
+        return new Promise((resolve, reject) => {
+            console.log("checkForLoggedMessages")
+            MessageModel.Message.findAll({
+                where: {
+                      sender: req.session.user.scUsername
+                    }
+                })
+                .then(function (messages) {
+                    console.log(messages);
+                    console.log('check for logged messages then block')
+                    //console.log(data)
+                    if (messages.length === 0) {
+                        console.log('no logged messages')
+                    }
+                    
+                    //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
+                    resolve({ messages: messages })
+                
+        
+                }).catch(error => {
+                   console.log(error)
+                   reject(error)
+                });
+        
+        })
+    
+    }
+    
+          // run the promises!
+        checkForLoggedMessages()
+        .then(data => {
+          //console.log(data)
+            console.log("**sending message result data to browser**");
+            res.send({error: null, result: data })
+        })
+        .catch(e => {
+          console.log(e);
+          res.send({error : error, result: null})
+        })
+    
+});
 
 app.post('/message/', function(req, res) {
     
@@ -714,9 +764,10 @@ app.post('/message/', function(req, res) {
                                   req.session.user.scCookies,
                                   req.body.selectedProfiles,
                                   req.body.message,
-                                  decodeURI(req.body.searchUrl))
+                                  decodeURI(req.body.searchUrl),
+                                  req.session.user.scUsername)
               .then(data => {
-                //console.log(data)
+                console.log(data)
                 resolve(data)
               })
               .catch(err => reject(err))

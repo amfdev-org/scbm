@@ -9,9 +9,7 @@ export const MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE = 'MY_FOLLOWERS_MESSAGE_SUBMIT_
 export const MY_FOLLOWERS_MESSAGE_SUBMITTED = 'MY_FOLLOWERS_MESSAGE_SUBMITTED'
 export const MY_FOLLOWERS_MESSAGE_ERROR = 'MY_FOLLOWERS_MESSAGE_ERROR'
 export const MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR = 'MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR'
-export const MY_FOLLOWERS_MESSAGE_SUCCESS = 'MY_FOLLOWERS_MESSAGE_SUCCESS'
-export const MY_FOLLOWERS_MESSAGE_SUCCESS_SEND_COUNT = 'MY_FOLLOWERS_MESSAGE_SUCCESS_SEND_COUNT'
-
+export const MY_FOLLOWERS_MESSAGE_RESULT = 'MY_FOLLOWERS_MESSAGE_RESULT'
 
 export function handleMyFollowersMessageChange(event) {
     
@@ -104,7 +102,7 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
                         //await console.log(newArray);
                        
                            dispatch({
-                             type: MY_FOLLOWERS_MESSAGE_SUCCESS,
+                             type: MY_FOLLOWERS_MESSAGE_RESULT,
                              myFollowerData: newArray
                            })
                                
@@ -112,22 +110,32 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
                           if (sendResult.messageResult === 'Success') {
                              successArray.push(sendResult.profileUrl);
                           }
-                          
-              
+                                 
                    
                 }
-    
-                dispatch({
-                 type: MY_FOLLOWERS_MESSAGE_SUCCESS_SEND_COUNT,
-                 sendCount: successArray.length
-               });
-                             
-                dispatch({ type: "SUCCESS_ALERT_SHOW" });
-                
-                window.setTimeout(()=>{ 
-                dispatch({ type: "SUCCESS_ALERT_HIDE" });
-                },4000)
+              
+                        
+                if(successArray.length > 0) {
                     
+                    dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message sent to " + successArray.length + " users." });
+                
+                    dispatch({ type: "SUCCESS_ALERT_SHOW" });
+                    
+                    window.setTimeout(()=>{ 
+                    dispatch({ type: "SUCCESS_ALERT_HIDE" });
+                    },4000)
+                    
+                } else {
+           
+                    dispatch({ type: "ERROR_ALERT_SET_TEXT", text: "Message not sent! Something went wrong." });
+                
+                    dispatch({ type: "ERROR_ALERT_SHOW" });
+                    
+                    window.setTimeout(()=>{ 
+                    dispatch({ type: "ERROR_ALERT_HIDE" });
+                    },4000)
+                  
+                }
                 //return { newArray, successArray };
      
     }

@@ -9,9 +9,7 @@ export const COMMENTERS_MESSAGE_SUBMIT_DISABLE = 'COMMENTERS_MESSAGE_SUBMIT_DISA
 export const COMMENTERS_MESSAGE_SUBMITTED = 'COMMENTERS_MESSAGE_SUBMITTED'
 export const COMMENTERS_MESSAGE_ERROR = 'COMMENTERS_MESSAGE_ERROR'
 export const COMMENTERS_MESSAGE_UNKNOWN_ERROR = 'COMMENTERS_MESSAGE_UNKNOWN_ERROR'
-export const COMMENTERS_MESSAGE_SUCCESS = 'COMMENTERS_MESSAGE_SUCCESS'
-export const COMMENTERS_MESSAGE_SUCCESS_SEND_COUNT = 'COMMENTERS_MESSAGE_SUCCESS_SEND_COUNT'
-
+export const COMMENTERS_MESSAGE_RESULT = 'COMMENTERS_MESSAGE_RESULT'
 
 export function handleCommentersMessageChange(event) {
     
@@ -106,7 +104,7 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
                         //await console.log(newArray);
                        
                            dispatch({
-                             type: COMMENTERS_MESSAGE_SUCCESS,
+                             type: COMMENTERS_MESSAGE_RESULT,
                              commenterData: newArray
                            })
                                
@@ -119,16 +117,28 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
                    
                 }
     
-                dispatch({
-                 type: COMMENTERS_MESSAGE_SUCCESS_SEND_COUNT,
-                 sendCount: successArray.length
-               });
-                             
-                dispatch({ type: "SUCCESS_ALERT_SHOW" });
+                        
+                if(successArray.length > 0) {
+                    
+                    dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message sent to " + successArray.length + " users." });
                 
-                window.setTimeout(()=>{ 
-                dispatch({ type: "SUCCESS_ALERT_HIDE" });
-                },4000)
+                    dispatch({ type: "SUCCESS_ALERT_SHOW" });
+                    
+                    window.setTimeout(()=>{ 
+                    dispatch({ type: "SUCCESS_ALERT_HIDE" });
+                    },4000)
+                    
+                } else {
+           
+                    dispatch({ type: "ERROR_ALERT_SET_TEXT", text: "Message not sent! Something went wrong." });
+                
+                    dispatch({ type: "ERROR_ALERT_SHOW" });
+                    
+                    window.setTimeout(()=>{ 
+                    dispatch({ type: "ERROR_ALERT_HIDE" });
+                    },4000)
+                  
+                }
                     
                 //return { newArray, successArray };
      

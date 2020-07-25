@@ -9,8 +9,7 @@ import {
   COMMENTERS_MESSAGE_SUBMIT_ENABLE,
   COMMENTERS_MESSAGE_SUBMIT_DISABLE,
   COMMENTERS_MESSAGE_ERROR,
-  COMMENTERS_MESSAGE_SUCCESS,
-  COMMENTERS_MESSAGE_SUCCESS_SEND_COUNT,
+  COMMENTERS_MESSAGE_RESULT,
   COMMENTERS_MESSAGE_SUBMITTED,
   COMMENTERS_MESSAGE_UNKNOWN_ERROR
 
@@ -95,7 +94,7 @@ export default function commentersMessageReducer(state, action) {
               
       };
           
-    case COMMENTERS_MESSAGE_SUCCESS:
+    case COMMENTERS_MESSAGE_RESULT:
       return {
         ...state,
         toggledClearRows: true,
@@ -107,13 +106,6 @@ export default function commentersMessageReducer(state, action) {
         commenterData: action.commenterData
       };
     
-    
-      case COMMENTERS_MESSAGE_SUCCESS_SEND_COUNT:
-      return {
-        ...state,
-        successAlertText: "Message sent to " + action.sendCount + " users.",
-      };
-      
     
     default:
       // ALWAYS have a default case in a reducer

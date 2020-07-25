@@ -9,8 +9,9 @@ import {
   MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE,
   MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE,
   MY_FOLLOWERS_MESSAGE_ERROR,
-  MY_FOLLOWERS_MESSAGE_SUCCESS,
+  MY_FOLLOWERS_MESSAGE_RESULT,
   MY_FOLLOWERS_MESSAGE_SUCCESS_SEND_COUNT,
+  MY_FOLLOWERS_MESSAGE_FAILURE,
   MY_FOLLOWERS_MESSAGE_SUBMITTED,
   MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR
 
@@ -93,7 +94,7 @@ export default function myFollowersMessageReducer(state, action) {
               
       };
           
-    case MY_FOLLOWERS_MESSAGE_SUCCESS:
+    case MY_FOLLOWERS_MESSAGE_RESULT:
       return {
         ...state,
         toggledClearRows: true,
@@ -105,13 +106,6 @@ export default function myFollowersMessageReducer(state, action) {
         myFollowerData: action.myFollowerData
       };
     
-    
-      case MY_FOLLOWERS_MESSAGE_SUCCESS_SEND_COUNT:
-      return {
-        ...state,
-        successAlertText: "Message sent to " + action.sendCount + " users.",
-      };
-      
     
     default:
       // ALWAYS have a default case in a reducer
