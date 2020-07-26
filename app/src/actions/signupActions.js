@@ -3,6 +3,10 @@ import axios from 'axios';
 import {
   fetchMyFollowers
   } from '../actions/myFollowersSearchActions'
+ 
+import {
+  fetchSentMessages
+  } from '../actions/sentMessagesSearchActions'
   
 export const SIGNUP_USERNAME_CHANGE = 'SIGNUP_USERNAME_CHANGE'
 export const SIGNUP_PASSWORD_CHANGE = 'SIGNUP_PASSWORD_CHANGE'
@@ -74,6 +78,7 @@ export function handleSignupSubmit(event) {
             .then(json => catchSignupUserCreatedError(json, dispatch))
             .then(json => doSignupSuccess(json, dispatch))
             .then(json => dispatch(fetchMyFollowers()))
+            .then(json => dispatch(fetchSentMessages()))
             .catch(error => {
 
                 if (error.response) {   

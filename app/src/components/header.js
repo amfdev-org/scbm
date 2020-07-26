@@ -10,7 +10,6 @@ class Header extends Component {
     
     render() {
         
-        console.log(this.props)
         const showLoggedInInfo = this.props.showLoggedInInfo ? {display: 'block'} : {display: 'none'};
         const showLogoutSubmitButton = this.props.showLogoutSubmitButton ? {display: 'block'} : {display: 'none'};
                  

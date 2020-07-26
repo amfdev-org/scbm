@@ -45,8 +45,8 @@ export function fetchMyFollowers() {
 }
 
 function catchMyFollowersSearchNoResults(json, dispatch) {
-    console.log('catchMyFollowersSearchNoResults')
-    console.log(json);
+    //console.log('catchMyFollowersSearchNoResults')
+    //console.log(json);
     if (json.noResults) {
         dispatch({
                 type: MY_FOLLOWERS_SEARCH_NO_RESULTS
@@ -66,7 +66,7 @@ function catchMyFollowersSearchNoResults(json, dispatch) {
 
 
 function catchMyFollowersSearchOtherError(json, dispatch) {
-    console.log('catchMyFollowersSearchOtherError')
+    //console.log('catchMyFollowersSearchOtherError')
     if (!json.success) {
         dispatch({
                 type: MY_FOLLOWERS_SEARCH_OTHER_ERROR
@@ -79,7 +79,7 @@ function catchMyFollowersSearchOtherError(json, dispatch) {
 
 
 function doMyFollowersSearchSuccess(json, dispatch) {
-    console.log('doFollowersSearchSuccess')
+    //console.log('doFollowersSearchSuccess')
  
         dispatch({
                 type: MY_FOLLOWERS_SEARCH_SUCCESS,
@@ -98,7 +98,7 @@ function doMyFollowersSearchSuccess(json, dispatch) {
 
 export function handleMyFollowersSelectedRowsChange(selectedMyFollowers) {
     
-    console.log(selectedMyFollowers);
+    //console.log(selectedMyFollowers);
     
     return (dispatch, getState) => {
   
@@ -109,7 +109,7 @@ export function handleMyFollowersSelectedRowsChange(selectedMyFollowers) {
             })
        
         if(getState().selectedMyFollowers && getState().selectedMyFollowers.length > 0) {
-            console.log('yes selected followers more than 0')
+            //console.log('yes selected followers more than 0')
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
                 type: MY_FOLLOWERS_MESSAGE_FORM_SHOW

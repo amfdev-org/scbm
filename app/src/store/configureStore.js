@@ -90,6 +90,23 @@ export const initialState = {
         enableMyFollowersMessageSubmitButton: false,
         showMyFollowersMessageSubmitButton: true,
         showMyFollowersMessageSubmitLoadingButton: false,
+        
+        //sent messages
+        sentMessageData: [],
+        showSentMessagesTable: false,
+        showSentMessagesSubmitButton: true,
+        showSentMessagesSubmitLoadingButton: false,
+        selectedSentMessages: [],   
+        showSentMessagesLoadingIcon: true,
+        
+        //sent messages message
+        sentMessagesMessage : 'Hi <<profileName>>,',
+        showSentMessagesMessageForm: false,
+        enableSentMessagesMessageInput: true,
+        enableSentMessagesMessageSubmitButton: false,
+        showSentMessagesMessageSubmitButton: true,
+        showSentMessagesMessageSubmitLoadingButton: false,
+
 
 };
 

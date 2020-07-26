@@ -15,11 +15,11 @@ const Message = sequelize.define("message", {
         type: DataTypes.STRING,
         allowNull: true
         },
-    message: {
+    profileName: {
         type: DataTypes.STRING,
         allowNull: true
         },
-    commenterId: {
+    message: {
         type: DataTypes.STRING,
         allowNull: true
         },
@@ -140,7 +140,7 @@ let checkFollowersMessageStatus = (data) => {
                         profileUrl: profileUrl,
                         profileName: profileName,
                         searchUrlProfileUrl : searchUrl + '^' + profileUrl,
-                        messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                        messaged : moment(message.createdAt).format("LLL")});
                 } else {
                     compositeArray.push({
                         searchUrl: searchUrl,

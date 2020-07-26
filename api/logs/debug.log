@@ -26230,3 +26230,4107 @@ checkForLoggedMessages
     isNewRecord: false } ]
 check for logged messages then block
 **sending message result data to browser**
+Started on PORT 3002
+Started on PORT 3002
+POST /message/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+randomWaitShort 20
+**iterating array: profile https://soundcloud.com/sylph_music
+**navigated to: https://soundcloud.com/sylph_music
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+randomWaitShort 85
+**iterating array: profile https://soundcloud.com/josue-santana-613966913
+**navigated to: https://soundcloud.com/josue-santana-613966913
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+randomWaitShort 6
+**iterating array: profile https://soundcloud.com/analogstoy
+**navigated to: https://soundcloud.com/analogstoy
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+randomWaitShort 97
+**iterating array: profile https://soundcloud.com/alexmaelstrom
+**navigated to: https://soundcloud.com/alexmaelstrom
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+randomWaitShort 78
+**iterating array: profile https://soundcloud.com/friedlandercollective
+**navigated to: https://soundcloud.com/friedlandercollective
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+[ { profileUrl: 'https://soundcloud.com/sylph_music',
+    profileName: 'Sylph',
+    message:
+     'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' },
+  { profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+    profileName: 'Kevin Santana',
+    message:
+     'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' },
+  { profileUrl: 'https://soundcloud.com/analogstoy',
+    profileName: 'analogstoy',
+    message:
+     'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' },
+  { profileUrl: 'https://soundcloud.com/alexmaelstrom',
+    profileName: 'Alex Maelstrom',
+    message:
+     'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' },
+  { profileUrl: 'https://soundcloud.com/friedlandercollective',
+    profileName: 'Friedlander Collective',
+    message:
+     'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' } ]
+**logging message result to db**
+**sending message result data to browser**
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=133.3333282470703',
+  'if-none-match': 'W/"6e-JFKIDTPnnwfUd3p8whrw8N4Nfus"' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=133.3333282470703',
+  'if-none-match': 'W/"20e-Ctt6tjEms3bpvlnueaMZFGHCWrY"' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=133.3333282470703',
+  'if-none-match': 'W/"20e-Ctt6tjEms3bpvlnueaMZFGHCWrY"' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+Search URL does not contain 'soundcloud'
+Search URL does not contain 'soundcloud'
+undefined
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=133.3333282470703',
+  'if-none-match': 'W/"20e-Ctt6tjEms3bpvlnueaMZFGHCWrY"' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=133.3333282470703',
+  'if-none-match': 'W/"20e-Ctt6tjEms3bpvlnueaMZFGHCWrY"' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=133.3333282470703' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=0' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '31.125.7.115',
+  'x-forwarded-for': '31.125.7.115',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  pragma: 'no-cache',
+  'cache-control': 'no-cache',
+  accept: 'application/json, text/plain, */*',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  'x-request-app': 'scbm',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18467%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1596104131%7C6%7CMCAAMB-1596104131%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1595506531s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AbFcISOdD8qo7e4lV7uob3POGoGEU1xM-.WK7Bo2eSVmrARv8hW1GvjmW3Sm3H90cG6W%2BsXYsrWa0; arp_scroll_position=0' }
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+[ message {
+    dataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 1,
+       profileUrl: 'https://soundcloud.com/sylph_music',
+       profileName: 'Sylph',
+       message:
+        'Hi Sylph,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 2,
+       profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+       profileName: 'Kevin Santana',
+       message:
+        'Hi Kevin Santana,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 3,
+       profileUrl: 'https://soundcloud.com/analogstoy',
+       profileName: 'analogstoy',
+       message:
+        'Hi analogstoy,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 4,
+       profileUrl: 'https://soundcloud.com/alexmaelstrom',
+       profileName: 'Alex Maelstrom',
+       message:
+        'Hi Alex Maelstrom,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false },
+  message {
+    dataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _previousDataValues:
+     { id: 5,
+       profileUrl: 'https://soundcloud.com/friedlandercollective',
+       profileName: 'Friedlander Collective',
+       message:
+        'Hi Friedlander Collective,\n\nLove your new tune\n\nKeep me posted with labels\n\nAndy',
+       searchUrl: 'https://soundcloud.com/cloaked-music',
+       sender: 'cloaked-music',
+       messageResult: 'Success',
+       createdAt: 2020-07-25T16:50:02.000Z,
+       updatedAt: 2020-07-25T16:50:02.000Z },
+    _changed: Set {},
+    _options:
+     { isNewRecord: false,
+       _schema: null,
+       _schemaDelimiter: '',
+       raw: true,
+       attributes: [Array] },
+    isNewRecord: false } ]
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+check for logged messages then block
+**sending message result data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+POST /message/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+randomWaitShort 102
+**iterating array: profile https://soundcloud.com/alexmaelstrom
+**navigated to: https://soundcloud.com/alexmaelstrom
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+[ { profileUrl: 'https://soundcloud.com/alexmaelstrom',
+    profileName: 'Alex Maelstrom',
+    message: 'sssssssssssss',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' } ]
+**logging message result to db**
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+POST /message/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+randomWaitShort 14
+**iterating array: profile https://soundcloud.com/josue-santana-613966913
+**navigated to: https://soundcloud.com/josue-santana-613966913
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+[ { profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+    profileName: 'Kevin Santana',
+    message: 'Hi Kevin Santana,\n\nHey  mate',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' } ]
+**logging message result to db**
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+POST /message/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+randomWaitShort 14
+**iterating array: profile https://soundcloud.com/josue-santana-613966913
+**navigated to: https://soundcloud.com/josue-santana-613966913
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+[ { profileUrl: 'https://soundcloud.com/josue-santana-613966913',
+    profileName: 'Kevin Santana',
+    message: 'Hi Kevin Santana,\n\nTest',
+    searchUrl: 'https://soundcloud.com/cloaked-music',
+    sender: 'cloaked-music',
+    messageResult: 'Success' } ]
+**logging message result to db**
+**sending message result data to browser**
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user found
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /message/
+checkForLoggedMessages
+check for logged messages then block
+no logged messages
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+no logged messages
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /message/
+checkForLoggedMessages
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged messages then block
+no logged messages
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+POST /message/
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+randomWaitShort 9
+**iterating array: profile https://soundcloud.com/cloaked-music
+**navigated to: https://soundcloud.com/cloaked-music
+**screenshot saved**
+**got send message button
+**open message form button clicked**
+**screenshot saved**
+got message popup / iframe
+ERROR! could not dismiss message popup / iframe!!
+**screenshot saved**
+**got message textarea
+**message entered**
+**screenshot saved**
+**screenshot saved**
+[ { profileUrl: 'https://soundcloud.com/cloaked-music',
+    profileName: 'Cloaked',
+    message: 'Hi Cloaked,\n\nLoving the tunes!!',
+    searchUrl: 'https://soundcloud.com/fogcapture',
+    sender: 'fogcapture',
+    messageResult: 'Success' } ]
+**logging message result to db**
+**sending message result data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /message/
+checkForLoggedMessages
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged messages then block
+**sending message result data to browser**
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /followers/
+Search URL does not contain 'soundcloud'
+Search URL does not contain 'soundcloud'
+undefined
+GET /followers/
+Search URL does not contain 'soundcloud'
+Search URL does not contain 'soundcloud'
+undefined
+GET /followers/
+Search URL does not contain 'soundcloud'
+Search URL does not contain 'soundcloud'
+undefined
+GET /followers/
+Search URL does not contain 'soundcloud'
+Search URL does not contain 'soundcloud'
+undefined
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /message/
+checkForLoggedMessages
+check for logged followers then block
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+**sending message result data to browser**
+follower model log followers
+**logged followers to DB**
+**sending data to browser**

@@ -11,6 +11,8 @@
     "bootstrap-sass": "^3.4.1",
     "cross-fetch": "^3.0.5",
     "font-awesome": "^4.7.0",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",

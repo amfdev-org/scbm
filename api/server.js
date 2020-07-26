@@ -112,7 +112,7 @@ app.get('/sctest/', (req, res) => {
 app.get('/auth/', (req, res) => {
     
     console.log('GET /auth/');
-    console.log(req.headers);
+    //console.log(req.headers);
     
     let validateHeaders = () => {
         
@@ -649,6 +649,8 @@ app.get('/followers/', function(req, res) {
     
 app.get('/message/', function(req, res) {
     
+    console.log('GET /message/');
+    
     if (!req.session.user) {
         console.log('no session')
         res.end();
@@ -660,11 +662,15 @@ app.get('/message/', function(req, res) {
             console.log("checkForLoggedMessages")
             MessageModel.Message.findAll({
                 where: {
-                      sender: req.session.user.scUsername
-                    }
+                      sender: req.session.user.scUsername,
+                      messageResult: "Success"
+                    },
+                    order: [
+                    ['createdAt', 'DESC']
+                    ],
                 })
                 .then(function (messages) {
-                    console.log(messages);
+                    //console.log(messages);
                     console.log('check for logged messages then block')
                     //console.log(data)
                     if (messages.length === 0) {
@@ -672,7 +678,7 @@ app.get('/message/', function(req, res) {
                     }
                     
                     //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
-                    resolve({ messages: messages })
+                    resolve(messages)
                 
         
                 }).catch(error => {
@@ -689,14 +695,22 @@ app.get('/message/', function(req, res) {
         .then(data => {
           //console.log(data)
             console.log("**sending message result data to browser**");
-            res.send({error: null, result: data })
+            res.send({success: true, noResults: false, messageData: data})
         })
-        .catch(e => {
-          console.log(e);
-          res.send({error : error, result: null})
+        .catch(error => {
+          console.log(error);
+          console.log(error.error);
+            //emptyArr = [];
+            if (error.error === "no messages") {
+                //console.log('yes');
+                    res.send({success: true, noResults: true, messageData: "no messages"})
+            } else {
+                    res.send({success: false, noResults: false, messageData: null})
+            }
         })
     
 });
+
 
 app.post('/message/', function(req, res) {
     

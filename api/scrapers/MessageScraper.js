@@ -63,6 +63,7 @@ console.log = function(d) { //
                await console.log('ERROR! could not navigate to url ' + profileUrl);
                console.log(error)
                         sendMessageResult.push({profileUrl : profileUrl,
+                                               profileName: profileName,
                                       message: messageWithName,
                                       searchUrl: searchUrl,
                                       sender: sender,
@@ -104,6 +105,7 @@ console.log = function(d) { //
                   console.log('ERROR! could not access send message button!');
 
                   sendMessageResult.push({profileUrl : profileUrl,
+                                         profileName: profileName,
                                         message: messageWithName,
                                         searchUrl: searchUrl,
                                         sender: sender,
@@ -122,6 +124,7 @@ console.log = function(d) { //
                await console.log('ERROR! could not click open message form button!');
                 console.log(error)
                           sendMessageResult.push({profileUrl : profileUrl,
+                                                 profileName: profileName,
                                       message: messageWithName,
                                       searchUrl: searchUrl,
                                       sender: sender,
@@ -195,6 +198,7 @@ console.log = function(d) { //
                     console.log('ERROR! could not access message textarea!');
 
                      sendMessageResult.push({profileUrl : profileUrl,
+                                            profileName: profileName,
                                   message: messageWithName,
                                   searchUrl: searchUrl,
                                   sender: sender,
@@ -215,6 +219,7 @@ console.log = function(d) { //
                await console.log("ERROR! could not enter message!");
                 console.log(error)
                          sendMessageResult.push({profileUrl : profileUrl,
+                                                profileName: profileName,
                                       message: messageWithName,
                                       searchUrl: searchUrl,
                                       sender: sender,
@@ -261,6 +266,7 @@ console.log = function(d) { //
     
          
             sendMessageResult.push({profileUrl : profileUrl,
+                                   profileName: profileName,
                                       message: messageWithName,
                                       searchUrl: searchUrl,
                                       sender: sender,

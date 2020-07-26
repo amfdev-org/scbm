@@ -3,6 +3,10 @@ import axios from 'axios';
 import {
   fetchMyFollowers
   } from '../actions/myFollowersSearchActions'
+    
+import {
+  fetchSentMessages
+  } from '../actions/sentMessagesSearchActions'
   
 export const AUTH_HTTP_ERROR = 'AUTH_HTTP_ERROR'
 export const AUTH_SESSION_ERROR = 'AUTH_SESSION_ERROR'
@@ -21,6 +25,7 @@ export function fetchAuth() {
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))
       .then(json => dispatch(fetchMyFollowers()))
+      .then(json => dispatch(fetchSentMessages()))
       .catch(error => {
 
                 if (error.response) {   
