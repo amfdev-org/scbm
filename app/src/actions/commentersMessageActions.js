@@ -96,8 +96,8 @@ function catchCommentersMessageError(json, dispatch) {
 
 function doCommentersMessageSuccess(json, dispatch, getState) {
     
-    console.log('doCommentersMessageSuccess')
-    console.log(json);
+    //console.log('doCommentersMessageSuccess')
+    //console.log(json);
     
     return (dispatch, getState) => {
         
@@ -130,7 +130,7 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
                 }
     
                 dispatch(fetchSentMessages());
-                dispatch(fetchMyFollowers());
+                //dispatch(fetchMyFollowers());
                 
                           
                 if(successArray.length > 0) {

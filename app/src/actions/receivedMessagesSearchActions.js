@@ -8,9 +8,9 @@ export const RECEIVED_MESSAGES_SEARCH_NO_RESULTS = 'RECEIVED_MESSAGES_SEARCH_NO_
 export const RECEIVED_MESSAGES_SEARCH_RESULT = 'RECEIVED_MESSAGES_SEARCH_RESULT'
 export const RECEIVED_MESSAGES_MESSAGE_FORM_SHOW = 'RECEIVED_MESSAGES_MESSAGE_FORM_SHOW'
 export const RECEIVED_MESSAGES_MESSAGE_FORM_HIDE = 'RECEIVED_MESSAGES_MESSAGE_FORM_HIDE'
+export const RECEIVED_MESSAGES_SEARCH_REFRESH = 'RECEIVED_MESSAGES_SEARCH_REFRESH'
 
-
-export function fetchReceivedMessages() {
+export function fetchReceivedMessages(forceRefresh = false) {
 
     return (dispatch, getState) => {
 
@@ -18,7 +18,7 @@ export function fetchReceivedMessages() {
     
         //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/received-messages/')
+        axios.get('https://scbm.amfdev.co.uk/api/received-messages/', {params: {forceRefresh: forceRefresh}})
         .then(json => catchReceivedMessagesSearchNoResults(json.data, dispatch))
         .then(json => catchReceivedMessagesSearchOtherError(json, dispatch))
         .then(json => doReceivedMessagesSearchSuccess(json, dispatch))
@@ -85,7 +85,7 @@ function doReceivedMessagesSearchSuccess(json, dispatch) {
 
 export function handleReceivedMessagesSelectedRowsChange(selectedReceivedMessages) {
     
-    console.log(selectedReceivedMessages);
+    //console.log(selectedReceivedMessages);
     
     return (dispatch, getState) => {
   
@@ -110,4 +110,16 @@ export function handleReceivedMessagesSelectedRowsChange(selectedReceivedMessage
         
     }
            
+}
+
+
+export function handleReceivedMessagesRefresh() {
+      
+      return (dispatch, getState) => {
+            
+            dispatch({type: RECEIVED_MESSAGES_SEARCH_REFRESH});
+            
+            dispatch(fetchReceivedMessages(true));
+      
+      }
 }

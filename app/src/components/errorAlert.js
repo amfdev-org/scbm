@@ -14,6 +14,8 @@ class errorAlert extends Component {
     render() {
 
         const showErrorAlert = this.props.showErrorAlert ? {display: 'block'} : {display: 'none'};   
+        const showErrorAlertSwitchToSignup = this.props.showErrorAlertSwitchToSignup ? {display: 'block'} : {display: 'none'}; 
+        const showErrorAlertSwitchToLogin = this.props.showErrorAlertSwitchToLogin ? {display: 'block'} : {display: 'none'}; 
      
      
         return (
@@ -26,7 +28,10 @@ class errorAlert extends Component {
                 >
                 <Alert.Heading>Uh oh!</Alert.Heading>
                     {this.props.errorAlertText}
-                <Alert.Link href="#" onClick={this.props.handleLoginSwitchToSignup}>{this.props.errorAlertLinkText}</Alert.Link>
+                    
+                <Alert.Link style={showErrorAlertSwitchToSignup} href="#" onClick={this.props.handleLoginSwitchToSignup}>{this.props.errorAlertLinkText}</Alert.Link>
+                <Alert.Link style={showErrorAlertSwitchToLogin} href="#" onClick={this.props.handleSignupSwitchToLogin}>{this.props.errorAlertLinkText}</Alert.Link>
+           
             </Alert>
               
           

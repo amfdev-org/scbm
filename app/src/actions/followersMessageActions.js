@@ -125,7 +125,7 @@ function doFollowersMessageSuccess(json, dispatch, getState) {
                 }
     
                 dispatch(fetchSentMessages());
-                dispatch(fetchMyFollowers());
+                //dispatch(fetchMyFollowers());
                 
                 if(successArray.length > 0) {
                     

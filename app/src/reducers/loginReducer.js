@@ -59,8 +59,10 @@ export default function loginReducer(state, action) {
          console.log('reducer user not found error')
       return {
         ...state,
-            errorAlertText: 'User not found. Please try again, or ',
-            errorAlertLinkText: 'sign up instead?',
+            errorAlertText: 'User not found.',
+            errorAlertLinkText: 'Sign up instead?',
+            showErrorAlertSwitchToLogin: false,
+            showErrorAlertSwitchToSignup: true,
             showErrorAlert: true,
             showLoginSubmitButton: true,
             showLoginSubmitLoadingButton: false

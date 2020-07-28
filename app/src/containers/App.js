@@ -16,7 +16,8 @@ import {
 
 import {
   handleSignupChange,
-  handleSignupSubmit
+  handleSignupSubmit,
+  handleSignupSwitchToLogin
   } from '../actions/signupActions'
   
 import {
@@ -63,7 +64,8 @@ import {
   
 import {
   fetchReceivedMessages,
-  handleReceivedMessagesSelectedRowsChange
+  handleReceivedMessagesSelectedRowsChange,
+  handleReceivedMessagesRefresh
   } from '../actions/receivedMessagesSearchActions'
  
 import {
@@ -83,6 +85,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
+import Button from 'react-bootstrap/Button'
 
 //COMPONENTS
 //forms
@@ -127,6 +130,15 @@ class App extends Component {
 
   }
 
+    handleRefresh = (event) => {
+
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
+        
+        this.props.handleReceivedMessagesRefresh(event)
+
+    }
+    
   
   render() {
          
@@ -165,7 +177,10 @@ class App extends Component {
             showErrorAlert={this.props.showErrorAlert}
             errorAlertText={this.props.errorAlertText}
             errorAlertLinkText={this.props.errorAlertLinkText}
+            showErrorAlertSwitchToSignup={this.props.showErrorAlertSwitchToSignup}
+            showErrorAlertSwitchToLogin={this.props.showErrorAlertSwitchToLogin}
             handleLoginSwitchToSignup={this.props.handleLoginSwitchToSignup}
+            handleSignupSwitchToLogin={this.props.handleSignupSwitchToLogin}
             dismissErrorAlert={this.dismissErrorAlert}
            />
            
@@ -221,6 +236,18 @@ class App extends Component {
                 <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
                   Recent Messages
+                  
+                    <Button
+                      className="data-refresh-button"
+                      name="receivedMessages"
+                        type="submit"
+                        value="Submit"
+                        size="sm"
+                        onClick={this.handleRefresh}
+                        >
+                        Refresh
+                    </Button>
+            
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
@@ -480,6 +507,8 @@ function mapStateToProps(state) {
       showErrorAlert: state.showErrorAlert,
       showSuccessAlert: state.showSuccessAlert,
       successAlertText: state.successAlertText,
+      showErrorAlertSwitchToSignup: state.showErrorAlertSwitchToSignup,
+      showErrorAlertSwitchToLogin: state.showErrorAlertSwitchToLogin,
       
       //commenters messages
       showCommentersMessageForm: state.showCommentersMessageForm,
@@ -565,6 +594,7 @@ const mapDispatchToProps = {
       handleLoginSubmit,
       handleLogoutSubmit,
       handleLoginSwitchToSignup,
+      handleSignupSwitchToLogin,
       handleSignupChange,
       handleSignupSubmit,
       handleCommentersSearchChange,
@@ -589,7 +619,8 @@ const mapDispatchToProps = {
       fetchReceivedMessages,
       handleReceivedMessagesSelectedRowsChange,
       handleReceivedMessagesMessageChange,
-      handleReceivedMessagesMessageSubmit
+      handleReceivedMessagesMessageSubmit,
+      handleReceivedMessagesRefresh
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

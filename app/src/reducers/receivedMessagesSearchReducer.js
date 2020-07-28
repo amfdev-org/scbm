@@ -3,7 +3,8 @@ import {
     RECEIVED_MESSAGES_SEARCH_OTHER_ERROR,
     RECEIVED_MESSAGES_SEARCH_RESULT,
     RECEIVED_MESSAGES_SELECTED_ROWS_CHANGE,
-    RECEIVED_MESSAGES_SEARCH_UNKNOWN_ERROR
+    RECEIVED_MESSAGES_SEARCH_UNKNOWN_ERROR,
+    RECEIVED_MESSAGES_SEARCH_REFRESH
 
 } from '../actions/receivedMessagesSearchActions';
 
@@ -74,6 +75,17 @@ export default function receivedMessagesSearchReducer(state, action) {
         ...state,
         selectedReceivedMessages: action.selectedReceivedMessages
     
+      };
+      
+      
+    case RECEIVED_MESSAGES_SEARCH_REFRESH:
+        //console.log("sc login error - reducer");
+        //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
+      return {
+        ...state,
+        showReceivedMessagesTable: false,
+        showReceivedMessagesLoadingIcon: true
+        
       };
     
     default:

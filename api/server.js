@@ -174,7 +174,33 @@ app.post('/signup/', (req, res) => {
     
      }
      
-     
+    let retrieveUser = () => {
+       
+       return new Promise((resolve, reject) => {
+           
+           UserModel.findOne({ where: { scUsername: req.body.scUsername } })
+               .then(function (user) {
+                   
+               if (user) {
+                   
+                       console.log('user already exists')
+                       res.send(JSON.stringify({ signupSuccess: false, userAlreadyExists: true, scLoginSuccess: null, scCookiesValid: null, userCreated: null, error: "user already exists", userData: null}));
+                       reject('user already exists')
+                   
+                   } else {
+                        resolve()
+                   }
+                   
+               }).catch(error => {
+                  console.log(error)
+                  reject(error)
+               });
+           
+       });
+    
+    }
+    
+        
     let tryScLogin = () => {
         
         return new Promise((resolve, reject) => {
@@ -183,7 +209,7 @@ app.post('/signup/', (req, res) => {
       //needs to do a login
             console.log('signup username or password missing or too short')
             reject('signup username or password missing or too short')
-            res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: null, scCookiesValid: null, userCreated: null, error: "signup username or password missing or too short", userData: null}));
+            res.send(JSON.stringify({ signupSuccess: false, userAlreadyExists: false, scLoginSuccess: null, scCookiesValid: null, userCreated: null, error: "signup username or password missing or too short", userData: null}));
         
         } else {
             
@@ -201,7 +227,7 @@ app.post('/signup/', (req, res) => {
               })
               .catch(error => {
                     console.log(error)
-                    res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: false, scCookiesValid: null, userCreated: false, error: "service login failed", userData: null}));
+                    res.send(JSON.stringify({ signupSuccess: false, userAlreadyExists: false, scLoginSuccess: false, scCookiesValid: null, userCreated: false, error: "service login failed", userData: null}));
                     reject(error)
                     
                 })
@@ -226,7 +252,7 @@ app.post('/signup/', (req, res) => {
             })
             .catch(error => {
                 //console.log(scCookies + ' cookies not valid')
-                res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: false, userCreated: false, error: "cookies not valid", userData: null}));
+                res.send(JSON.stringify({ signupSuccess: false, userAlreadyExists: false, scLoginSuccess: true, scCookiesValid: false, userCreated: false, error: "cookies not valid", userData: null}));
                 reject("sc cookies not valid")
                 
             })
@@ -254,7 +280,7 @@ app.post('/signup/', (req, res) => {
             })
             .catch(error => {
                 //console.log(error)
-                res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: true, userCreated: false, error: "user could not be created", userData: null}));
+                res.send(JSON.stringify({ signupSuccess: false, userAlreadyExists: false, scLoginSuccess: true, scCookiesValid: true, userCreated: false, error: "user could not be created", userData: null}));
                 reject(error)
                 
             });
@@ -264,13 +290,14 @@ app.post('/signup/', (req, res) => {
               
         // run the promises!
     validateHeaders()
+        .then(data => retrieveUser())
         .then(data => tryScLogin())
         .then(data => validateScCookies(data))
         .then(data => createUser(data))
         .then(data => {
             console.log("**logged commenters to DB**");
             console.log("**sending data to browser**");
-            res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: true, userCreated: true, error: null, userData: data}));
+            res.send(JSON.stringify({ signupSuccess: true, userAlreadyExists: false, scLoginSuccess: true, scCookiesValid: true, userCreated: true, error: null, userData: data}));
         })
         .catch(error => {
             
@@ -393,7 +420,7 @@ app.get('/commenters/', function(req, res) {
                 where: {
                       searchUrl: data.searchUrl,
                       updatedAt: {
-                          [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 5 MINUTE')
+                          [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 12 HOUR')
                       }
                     }
                 })
@@ -521,11 +548,18 @@ app.get('/followers/', function(req, res) {
         
         return new Promise((resolve, reject) => {
             console.log("checkForLoggedFollowers")
+            
+            if (data.isMyFollowersSearch) {
+                var cutoff = 'NOW() - INTERVAL 12 HOUR';
+            } else {
+                var cutoff = 'NOW() - INTERVAL 1 WEEK';
+            }
+            
             FollowerModel.Follower.findAll({
                 where: {
                       searchUrl: data.searchUrl,
                       updatedAt: {
-                          [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 5 MINUTE')
+                          [Op.gte]: db.sequelize.literal(cutoff)
                       }
                     }
                 })
@@ -685,11 +719,15 @@ app.get('/received-messages/', function(req, res) {
     
     let checkForLoggedMessages = (data) => {
         
-
         return new Promise((resolve, reject) => {
           
             console.log("checkForLoggedMessages")
 
+            if (req.query.forceRefresh === "true") {
+                console.log('force refresh');
+                resolve({messages: null, hasRecentLoggedMessages: false})
+            }
+             
             hasRecentLoggedMessages = false;
              
             MessageModel.Message.findAll({
@@ -697,7 +735,7 @@ app.get('/received-messages/', function(req, res) {
                       recipient: req.session.user.scUsername,
                       messageResult: "Success",
                       updatedAt: {
-                        [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 5 MINUTE')
+                        [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 1 HOUR')
                       },
                     },
                     order: [
@@ -732,7 +770,7 @@ app.get('/received-messages/', function(req, res) {
             
         return new Promise((resolve, reject) => {
                              
-            if (data.messages.length > 0) {
+            if (data.messages && data.messages.length > 0) {
                
                resolve({messages: data.messages, hasRecentLoggedMessages: true})
                //console.log('resolving logged followers instead of scraping')
@@ -757,6 +795,7 @@ app.get('/received-messages/', function(req, res) {
     }
     
 
+    
         // run the promises!
       checkForLoggedMessages()
       .then(data => scrapeReceivedMessages(data))

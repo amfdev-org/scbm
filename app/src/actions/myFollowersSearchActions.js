@@ -5,7 +5,7 @@ export const MY_FOLLOWERS_SEARCH_OTHER_ERROR = 'MY_FOLLOWERS_SEARCH_OTHER_ERROR'
 export const MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR = 'MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR'
 export const MY_FOLLOWERS_SELECTED_ROWS_CHANGE = 'MY_FOLLOWERS_SELECTED_ROWS_CHANGE'
 export const MY_FOLLOWERS_SEARCH_NO_RESULTS = 'MY_FOLLOWERS_SEARCH_NO_RESULTS'
-export const MY_FOLLOWERS_SEARCH_SUCCESS = 'MY_FOLLOWERS_SEARCH_SUCCESS'
+export const MY_FOLLOWERS_SEARCH_RESULT = 'MY_FOLLOWERS_SEARCH_RESULT'
 export const MY_FOLLOWERS_MESSAGE_FORM_SHOW = 'MY_FOLLOWERS_MESSAGE_FORM_SHOW'
 export const MY_FOLLOWERS_MESSAGE_FORM_HIDE = 'MY_FOLLOWERS_MESSAGE_FORM_HIDE'
 
@@ -82,7 +82,7 @@ function doMyFollowersSearchSuccess(json, dispatch) {
     //console.log('doFollowersSearchSuccess')
  
         dispatch({
-                type: MY_FOLLOWERS_SEARCH_SUCCESS,
+                type: MY_FOLLOWERS_SEARCH_RESULT,
                 myFollowerData: json.followerData
               })
           

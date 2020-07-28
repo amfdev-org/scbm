@@ -2,7 +2,7 @@ import {
     MY_FOLLOWERS_SEARCH_SUBMITTED,
     MY_FOLLOWERS_SEARCH_NO_RESULTS,
     MY_FOLLOWERS_SEARCH_OTHER_ERROR,
-    MY_FOLLOWERS_SEARCH_SUCCESS,
+    MY_FOLLOWERS_SEARCH_RESULT,
     MY_FOLLOWERS_SELECTED_ROWS_CHANGE,
     MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR
 
@@ -17,6 +17,7 @@ export default function myFollowersSearchReducer(state, action) {
     case MY_FOLLOWERS_SEARCH_SUBMITTED:
       return {
         ...state,
+            showMyFollowersLoadingIcon: true,
             showMyFollowersTable: false,
             showErrorAlert: false,
             showSuccessAlert: false,
@@ -53,7 +54,7 @@ export default function myFollowersSearchReducer(state, action) {
       };
       
       
-    case MY_FOLLOWERS_SEARCH_SUCCESS:
+    case MY_FOLLOWERS_SEARCH_RESULT:
          //console.log("sc myFollowersSearch success - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {

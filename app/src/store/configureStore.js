@@ -73,6 +73,8 @@ export const initialState = {
         infoAlertTextHeading: '',
         errorAlertLink: '',
         errorAlertLinkText: '',
+        showErrorAlertSwitchToSignup: false,
+        showErrorAlertSwitchToLogin: false,
          
         //my followers
         myFollowerData: [],

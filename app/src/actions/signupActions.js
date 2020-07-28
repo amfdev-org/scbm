@@ -21,8 +21,9 @@ export const SIGNUP_SC_LOGIN_ERROR = 'SIGNUP_SC_LOGIN_ERROR'
 export const SIGNUP_COOKIE_ERROR = 'SIGNUP_COOKIE_ERROR'
 export const SIGNUP_UNKNOWN_ERROR = 'SIGNUP_UNKNOWN_ERROR'
 export const SIGNUP_USER_CREATED_ERROR = 'SIGNUP_USER_CREATED_ERROR'
+export const SIGNUP_USER_ALREADY_EXISTS = 'SIGNUP_USER_ALREADY_EXISTS'
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
-
+export const SIGNUP_SWITCH_TO_LOGIN = 'SIGNUP_SWITCH_TO_LOGIN'
 
 export function handleSignupChange(event) {
     
@@ -77,7 +78,8 @@ export function handleSignupSubmit(event) {
               scPassword: getState().scPassword
             }
             })
-            .then(json => catchSignupScLoginError(json.data, dispatch))
+            .then(json => catchSignupUserAlreadyExists(json.data, dispatch))
+            .then(json => catchSignupScLoginError(json, dispatch))
             .then(json => catchSignupCookieError(json, dispatch))
             .then(json => catchSignupUserCreatedError(json, dispatch))
             .then(json => doSignupSuccess(json, dispatch))
@@ -98,7 +100,19 @@ export function handleSignupSubmit(event) {
 }
 
 
-//res.send(JSON.stringify({ signupSuccess: false, scLoginSuccess: true, scCookiesValid: true, userCreated: true, signupError: null, userData: data}));
+function catchSignupUserAlreadyExists(json, dispatch) {
+    console.log('catchSignupScLoginError')
+    console.log(json)
+    if (json.userAlreadyExists) {
+        dispatch({
+                type: SIGNUP_USER_ALREADY_EXISTS
+              })
+        throw Error(json.error);
+    }
+    
+  return json;
+}
+
 
 function catchSignupScLoginError(json, dispatch) {
     //console.log('catchSignupScLoginError')
@@ -149,121 +163,14 @@ function doSignupSuccess(json, dispatch) {
 }
 
 
-  /*
-
-handleSignupChange = (event) => {
-
-      this.setState({showErrorAlert: false});
-      
-      const { name, value } = event.target
-  
-      this.setState({[name]: value},()=> {
-        //console.log(this.state);
+export function handleSignupSwitchToLogin(event) {
+    console.log(event)
+     return (dispatch) => {
         
-          if (this.state.scUsername.length > 0 && this.state.scPassword.length > 0) {
-            this.setState({enableSignupSubmitButton: true}, () => {   
-              //console.log(this.state);
-            })
-          } else {
-             this.setState({enableSignupSubmitButton: false}, () => {   
-              //console.log(this.state);
-            })
-          }
-          
-      });
-                  
-  }
-  
-  
-  
-
-    handleSignupSubmit = () => {
-
-        this.setState({ showErrorAlert: false })
-        this.setState({ showSuccessAlert: false })
-        this.setState({ showInfoAlert: false })
-        this.setState({ showSignupSubmitButton: false })
-        this.setState({ showSignupSubmitLoadingButton: true })
-        this.setState({ enableSignupFormInputs: false })
-              
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({scUsername: this.state.scUsername,
-                                 scPassword: this.state.scPassword})
-        };
-        fetch('https://scbm.amfdev.co.uk/api/signup/', requestOptions)
-              .then(async response => {
-                
-                if (!response.ok) {
-                   //throw Error(response.statusText);
-                    this.setState({errorAlertText: "Something went wrong. Please try again later."});
-                    this.setState({errorAlertLink: ''});
-                     this.setState({errorAlertLinkText: ''});
-                    this.setState({showErrorAlert: true}); 
-                    this.setState({showErrorAlert: true});
-            
-                }
-                
-                const jsonResponse = await response.json();
-                console.log(jsonResponse);
-                // check for error response
-                    
-                if (jsonResponse.signupSuccess) {
-                  
-                        this.setState({showErrorAlert: false});
-                        this.setState({showSignupForm: false});
-                        this.setState({showCommentersSearchForm: true});
-                        this.setState({showLogoutSubmitButton: true});
-    
-                        this.setState({showLoggedInInfo: true});
-                        this.setState({loggedInInfoText: "Logged in as " + jsonResponse.userData.scUsername});
-                        this.setState({showLogoutSubmitButton: true});
-                        
-                        this.setState({showInfoAlert: false});
-                        this.setState({showErrorAlert: false});
-                         
-                        this.setState({successAlertText: "You're now logged in!" });
-                    
-                          this.setState({showSuccessAlert: true}, () => {
-                          window.setTimeout(()=>{
-                            this.setState({showSuccessAlert: false})
-                          },4000)
-                        });
-                          
-                } else if (!jsonResponse.signupSuccess ) {
-                  
-                        if (jsonResponse.scCookiesValid === false) {
-                          
-                              this.setState({showLoginForm: false});
-                              this.setState({errorAlertText: "Credentials invalid. Please contact support." });
-                              this.setState({errorAlertLinkText: ''})
-                              this.setState({showErrorAlert: true});
-                              
-                        } else {
-                            
-                            this.setState({errorAlertText: 'Something went wrong. Are you sure those details are correct?'});
-                            this.setState({errorAlertLinkText: ''})
-                            this.setState({showInfoAlert: false});
-                            this.setState({showSuccessAlert: false});
-                            this.setState({showErrorAlert: true});
-                            
-                            this.setState({ showSignupSubmitButton: true });
-                            this.setState({ showSignupSubmitLoadingButton: false });
-                            
-                            this.setState({ enableSignupFormInputs: true })
-                      
-                        }
-
-                }
-            
+        dispatch({
+                type: SIGNUP_SWITCH_TO_LOGIN
+        })
         
-            })
-            .catch(error => {
-                //this.setState({ errorMessage: error.toString() });
-                console.error('There was an error!', error);
-                this.setState({ showSignupSubmitButton: true })
-                this.setState({ showSignupSubmitLoadingButton: false })
-                        
-            });
-            */
+     }
+  
+}

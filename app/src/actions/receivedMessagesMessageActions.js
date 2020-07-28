@@ -127,7 +127,6 @@ function doReceivedMessagesMessageSuccess(json, dispatch, getState) {
                 dispatch(fetchSentMessages());
                 dispatch(fetchMyFollowers());
                 
-                
                 if(successArray.length > 0) {
                     
                     dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message received to " + successArray.length + " users." });

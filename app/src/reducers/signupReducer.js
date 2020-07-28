@@ -8,7 +8,9 @@ import {
     SIGNUP_COOKIE_ERROR,
     SIGNUP_USER_CREATED_ERROR,
     SIGNUP_UNKNOWN_ERROR,
-    SIGNUP_SUCCESS
+    SIGNUP_SUCCESS,
+    SIGNUP_USER_ALREADY_EXISTS,
+    SIGNUP_SWITCH_TO_LOGIN
 
 } from '../actions/signupActions';
 
@@ -52,6 +54,22 @@ export default function signupReducer(state, action) {
         enableSignupFormInputs: false,
         showSignupSubmitButton: false,
         showSignupSubmitLoadingButton: true
+      };
+      
+            
+    case SIGNUP_USER_ALREADY_EXISTS:
+        //console.log("sc login error - reducer");
+      return {
+        ...state,
+        errorAlertText: 'User already exists. ',
+        errorAlertLinkText: 'Login instead?',
+        showErrorAlert: true,
+        showErrorAlertSwitchToLogin: true,
+        showErrorAlertSwitchToSignup: false,
+        showSignupSubmitButton: true,
+        showSignupSubmitLoadingButton: false,
+        enableSignupFormInputs: true,
+        enableSignupSubmitButton: true
       };
       
     case SIGNUP_SC_LOGIN_ERROR:
@@ -131,7 +149,21 @@ export default function signupReducer(state, action) {
         //successAlertText: "You're now logged in!"
       };
       
-    
+    case SIGNUP_SWITCH_TO_LOGIN:
+    //console.log('login success reducer');
+      return {
+        ...state,
+            showLoginForm: true,
+            showSignupForm: false,
+            showLoginSubmitButton: true,
+            enableLoginSubmitButton: true,
+            showErrorAlert: false,
+            infoAlertTextHeading: "OK then!",
+            infoAlertText: "Please login below.",
+            //showInfoAlert: true
+
+      };
+      
     default:
       // ALWAYS have a default case in a reducer
       return state;

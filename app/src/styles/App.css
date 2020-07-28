@@ -183,3 +183,7 @@ h6 {
   z-index: 999;
   
 }
+
+.data-refresh-button {
+  float: right;
+}

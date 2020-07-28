@@ -55,12 +55,9 @@ export default function commentersSearchReducer(state, action) {
         ...state,
         errorAlertText: '',
         errorAlertLinkText: '',
-        showInfoAlert: false,
-        showSuccessAlert: true,
-        showErrorAlert: true,
         showCommentersSearchSubmitButton: true,
         showCommentersSearchSubmitLoadingButton: false,
-        enableCommentersSearchFormInputs : true,
+        enableCommentersSearchInput : true,
         enableCommentersSearchSubmitButton: true, 
         showCommentersTable: true,
         successAlertText: "But there were no commenters found for this track."
@@ -76,7 +73,7 @@ export default function commentersSearchReducer(state, action) {
         errorAlertText: "Something went wrong. Please try again, or contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
-        enableCommentersSearchFormInputs : true,
+        enableCommentersSearchInput : true,
         enableCommentersSearchSubmitButton: true, 
         showCommentersSearchSubmitButton: true,
         showCommentersSearchSubmitLoadingButton: false
