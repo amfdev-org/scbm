@@ -96,8 +96,8 @@ export default function followersMessageReducer(state, action) {
       return {
         ...state,
         toggledClearRows: true,
-        showMessageSubmitButton: true,
-        showMessageSubmitLoadingButton: false,
+        showFollowersMessageSubmitButton: true,
+        showFollowersMessageSubmitLoadingButton: false,
         enableFollowersMessageInput: true,
         enableFollowersSearchSubmitButton: true,
         enableFollowersSearchInput: true,

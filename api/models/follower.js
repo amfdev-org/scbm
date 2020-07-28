@@ -12,21 +12,19 @@ const Follower = sequelize.define("follower", {
         },
     searchUrl: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     profileUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: false
+        allowNull: true
         },
     profileName: {
         type: DataTypes.STRING,
-        allowNull: true,
-        unique: false
+        allowNull: true
         },
     searchUrlProfileUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true
         },
     messaged: {
@@ -40,7 +38,7 @@ const Follower = sequelize.define("follower", {
     
 let logFollowers = (data) => {
 
-    console.log("follower model log followers");
+    //console.log("follower model log followers");
     //console.log(data);
     /*for (const follower of data) {
             
@@ -54,7 +52,7 @@ let logFollowers = (data) => {
     }*/
     
     Follower.bulkCreate(data, {
-        ignoreDuplicates: true
+        updateOnDuplicate: ['updatedAt']
     });
 
 }

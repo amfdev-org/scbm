@@ -11,6 +11,11 @@ import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
+import {
+  fetchReceivedMessages
+  } from '../actions/receivedMessagesSearchActions'
+  
+  
 export const LOGIN_HTTP_ERROR = 'LOGIN_HTTP_ERROR'
 export const LOGIN_USERNAME_CHANGE = 'LOGIN_USERNAME_CHANGE'
 export const LOGIN_PASSWORD_CHANGE = 'LOGIN_PASSWORD_CHANGE'
@@ -77,8 +82,9 @@ export function handleLoginSubmit(event) {
             .then(json => catchLoginUserNotFoundError(json.data, dispatch))
             .then(json => catchLoginCookieError(json, dispatch))
             .then(json => doLoginSuccess(json, dispatch))
-            .then(json => dispatch(fetchMyFollowers()))
+            .then(json => dispatch(fetchReceivedMessages()))
             .then(json => dispatch(fetchSentMessages()))
+            .then(json => dispatch(fetchMyFollowers()))
              .catch(error => {
 
                 if (error.response) {   

@@ -62,7 +62,7 @@ export default function myFollowersSearchReducer(state, action) {
         showErrorAlert: false,
         myFollowerData: action.myFollowerData,
         showMyFollowersTable: true,
-        successAlertText: "Followers sucessfully loaded.",
+        //successAlertText: "Followers sucessfully loaded.",
         showMyFollowersLoadingIcon: false
     
       };

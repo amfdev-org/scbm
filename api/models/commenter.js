@@ -12,17 +12,15 @@ const Commenter = sequelize.define("commenter", {
         },
     searchUrl: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
         },
     profileUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: false
+        allowNull: true
         },
     profileName: {
         type: DataTypes.STRING,
-        allowNull: true,
-        unique: false
+        allowNull: true
         },
     searchUrlProfileUrl: {
         type: DataTypes.STRING,
@@ -39,7 +37,7 @@ const Commenter = sequelize.define("commenter", {
 let logCommenters = (data) => {
 
     Commenter.bulkCreate(data, {
-            ignoreDuplicates: true 
+            updateOnDuplicate: ['updatedAt']
     });
 
     /*for (const commenter of data) {

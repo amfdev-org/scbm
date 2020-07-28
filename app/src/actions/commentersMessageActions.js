@@ -3,6 +3,14 @@
 
 import axios from 'axios';
 
+import {
+  fetchMyFollowers
+  } from '../actions/myFollowersSearchActions'
+    
+import {
+  fetchSentMessages
+  } from '../actions/sentMessagesSearchActions'
+  
 export const COMMENTERS_MESSAGE_CHANGE = 'COMMENTERS_MESSAGE_CHANGE'
 export const COMMENTERS_MESSAGE_SUBMIT_ENABLE = 'COMMENTERS_MESSAGE_SUBMIT_ENABLE'
 export const COMMENTERS_MESSAGE_SUBMIT_DISABLE = 'COMMENTERS_MESSAGE_SUBMIT_DISABLE'
@@ -51,6 +59,7 @@ export function handleCommentersMessageSubmit(event) {
         url: 'https://scbm.amfdev.co.uk/api/message/',
         headers: {}, 
         data: {
+            messageType: "sent",
             selectedProfiles: getState().selectedCommenters,
             message: getState().commentersMessage,
             searchUrl: getState().commentersSearchUrl                     
@@ -87,19 +96,22 @@ function catchCommentersMessageError(json, dispatch) {
 
 function doCommentersMessageSuccess(json, dispatch, getState) {
     
+    console.log('doCommentersMessageSuccess')
+    console.log(json);
+    
     return (dispatch, getState) => {
         
             let successArray = [];
             
                 for (let sendResult of json.result) {
          
-                  const elementsIndex = getState().commenterData.findIndex(element => element.profileUrl === sendResult.profileUrl );
+                  const elementsIndex = getState().commenterData.findIndex(element => element.profileUrl === sendResult.recipientProfileUrl );
                    
                    let newArray = [...getState().commenterData]
                   
                     newArray[elementsIndex] = {...newArray[elementsIndex], messaged: sendResult.messageResult}
                   
-                   console.log(newArray);
+                   //console.log(newArray);
                    
                         //await console.log(newArray);
                        
@@ -110,14 +122,17 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
                                
                         
                           if (sendResult.messageResult === 'Success') {
-                             successArray.push(sendResult.profileUrl);
+                             successArray.push(sendResult.recipientProfileUrl);
                           }
                           
               
                    
                 }
     
-                        
+                dispatch(fetchSentMessages());
+                dispatch(fetchMyFollowers());
+                
+                          
                 if(successArray.length > 0) {
                     
                     dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message sent to " + successArray.length + " users." });

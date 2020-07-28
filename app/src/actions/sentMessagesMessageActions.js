@@ -4,6 +4,10 @@
 import axios from 'axios';
 
 import {
+  fetchMyFollowers
+  } from '../actions/myFollowersSearchActions'
+    
+import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
@@ -56,6 +60,7 @@ export function handleSentMessagesMessageSubmit(event) {
         url: 'https://scbm.amfdev.co.uk/api/message/',
         headers: {}, 
         data: {
+            messageType: "sent",
             selectedProfiles: getState().selectedSentMessages,
             message: getState().sentMessagesMessage,
             searchUrl: getState().scProfile                     
@@ -119,6 +124,8 @@ function doSentMessagesMessageSuccess(json, dispatch, getState) {
                    
                 }
               
+                dispatch(fetchMyFollowers());
+                
                 dispatch(fetchSentMessages());
                         
                 if(successArray.length > 0) {

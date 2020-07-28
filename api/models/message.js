@@ -11,19 +11,19 @@ const Message = sequelize.define("message", {
         autoIncrement: true,
         primaryKey: true
         },
-    profileUrl: {
+    recipientProfileUrl: {
         type: DataTypes.STRING,
         allowNull: true
         },
-    profileName: {
+    recipient: {
         type: DataTypes.STRING,
         allowNull: true
         },
     message: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
         allowNull: true
         },
-    searchUrl: {
+    senderProfileUrl: {
         type: DataTypes.STRING,
         allowNull: true
         },
@@ -34,21 +34,25 @@ const Message = sequelize.define("message", {
     messageResult: {
         type: DataTypes.STRING,
         allowNull: true
-    }  
+    },
+    scMessageTime: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    uniqueIndex: {
+        type: DataTypes.STRING(256),
+        allowNull: true,
+        unique: true
+    }
   
 });
 
 
 let logMessages = (data) => {
-
-   const insert = 
-    Message.bulkCreate(data)
-    .then(result => {
-        //console.log(result);
-        // you can now access the newly ChatMessage task via the variable message
-    }).catch(err => {
-        console.log(err)
-    })
+    
+    Message.bulkCreate(data, {
+        updateOnDuplicate: ['updatedAt']
+    });
     
 }
 
@@ -74,7 +78,10 @@ let checkCommentersMessageStatus = (data) => {
             let profileUrl = data.commenters[i].profileUrl;
             let profileName = data.commenters[i].profileName;
             
-            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]] })
+            const message = Message.findOne({ where: {
+                recipientProfileUrl: profileUrl,
+                messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]]
+                })
             .then(message => {
     
                 if (message) {
@@ -83,7 +90,8 @@ let checkCommentersMessageStatus = (data) => {
                         profileUrl: profileUrl,
                         profileName: profileName,
                         searchUrlProfileUrl : searchUrl + '^' + profileUrl,
-                        messaged : moment(message.createdAt).format("DD/MM/YYYY")});
+                        messaged : moment(message.createdAt).format("LLL")
+                        });
                 } else {
                     compositeArray.push({
                         searchUrl: searchUrl,
@@ -94,7 +102,7 @@ let checkCommentersMessageStatus = (data) => {
                 }
                  //console.log(compositeArray);
                  if (compositeArray.length == data.commenters.length) {
-                    resolve(compositeArray);
+                    resolve({ hasRecentLoggedCommenters: data.hasRecentLoggedCommenters, commenters: compositeArray });
                  }
                  
             }).catch(err => {
@@ -131,7 +139,7 @@ let checkFollowersMessageStatus = (data) => {
             let profileUrl = data.followers[i].profileUrl;
             let profileName = data.followers[i].profileName;
             
-            const message = Message.findOne({ where: { profileUrl: profileUrl, messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]] })
+            const message = Message.findOne({ where: { recipientProfileUrl: profileUrl, messageResult: "Success"}, order: [ [ 'createdAt', 'DESC' ]] })
             .then(message => {
     
                 if (message) {
@@ -151,7 +159,7 @@ let checkFollowersMessageStatus = (data) => {
                 }
                  //console.log(compositeArray);
                  if (compositeArray.length == data.followers.length) {
-                    resolve({followerData: compositeArray, isMyFollowersSearch: data.isMyFollowersSearch});
+                    resolve({followerData: compositeArray, isMyFollowersSearch: data.isMyFollowersSearch, hasRecentLoggedFollowers: data.hasRecentLoggedFollowers});
                  }
                  
             }).catch(err => {

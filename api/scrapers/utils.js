@@ -29,13 +29,16 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
     async function autoScrollDown(page) {
       
       await page.evaluate(async () => {
+        
+         await console.log('auto scroll down page evaluate')
+         
           await new Promise((resolve, reject) => {
                   startT = new Date().getTime();
                   const distance = 100;
                   const delay = 400;
                   const timer = setInterval(() => {
                     now = new Date().getTime();
-                    console.log('diff' + now - startT)
+                    //console.log('diff' + now - startT)
                     document.scrollingElement.scrollBy(0, distance);
                     if ((document.scrollingElement.scrollTop + window.innerHeight >= document.scrollingElement.scrollHeight)
                         ||
@@ -50,6 +53,30 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
   
     }
     
+    async function autoScrollDownElement(page) {
+      
+      await page.evaluate(async () => {
+
+          await new Promise((resolve, reject) => {
+            
+            startT = new Date().getTime();              
+            const distance = 100;
+              const delay = 400;
+              const timer = setInterval(() => {
+                now = new Date().getTime();
+                scrollableSection = document.querySelector('.g-scrollable-inner');
+                scrollableSection.scrollBy(0, distance);
+                //console.log(now - startT)
+                if ((now - startT) > 5000) {
+                  clearInterval(timer);
+                   resolve();
+                }
+              }, delay);
+              });
+          });
+  
+    }
+    
     async function autoScrollUp(page) {
         await page.evaluate(_ => {
         window.scrollTo(0, 0);
@@ -57,6 +84,32 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
     }
     
     
+    async function joinObjects() {
+      var idMap = {};
+      // Iterate over arguments
+      for(var i = 0; i < arguments.length; i++) { 
+        // Iterate over individual argument arrays (aka json1, json2)
+        for(var j = 0; j < arguments[i].length; j++) {
+           var currentID = arguments[i][j]['idx'];
+           if(!idMap[currentID]) {
+              idMap[currentID] = {};
+            }
+           // Iterate over properties of objects in arrays (aka id, name, etc.)
+          for(key in arguments[i][j]) {
+              idMap[currentID][key] = arguments[i][j][key];
+          }
+        }
+      }
+    
+      // push properties of idMap into an array
+      var newArray = [];
+      for(property in idMap) {
+        newArray.push(idMap[property]);
+      }
+      return newArray;
+    }
+
+
     async function validateScCookies(data) {
                 
             try {
@@ -153,7 +206,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
     async function loadCookies(page) {          
         const cookiesString = await fs.readFile(userDataPath + '/cookies.json');
         const cookies = JSON.parse(cookiesString);
-        await console.log(cookies);
+        //await console.log(cookies);
         await page.setCookie(...cookies);
     }
     
@@ -180,5 +233,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                 autoScrollUp,
                 getRandomLink,
                 saveCookies,
-                validateScCookies
+                validateScCookies,
+                autoScrollDownElement,
+                joinObjects
                 };

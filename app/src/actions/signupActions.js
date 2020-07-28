@@ -8,6 +8,10 @@ import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
+import {
+  fetchReceivedMessages
+  } from '../actions/receivedMessagesSearchActions'
+  
 export const SIGNUP_USERNAME_CHANGE = 'SIGNUP_USERNAME_CHANGE'
 export const SIGNUP_PASSWORD_CHANGE = 'SIGNUP_PASSWORD_CHANGE'
 export const SIGNUP_SUBMIT_ENABLE = 'SIGNUP_SUBMIT_ENABLE'
@@ -77,8 +81,9 @@ export function handleSignupSubmit(event) {
             .then(json => catchSignupCookieError(json, dispatch))
             .then(json => catchSignupUserCreatedError(json, dispatch))
             .then(json => doSignupSuccess(json, dispatch))
-            .then(json => dispatch(fetchMyFollowers()))
+            .then(json => dispatch(fetchReceivedMessages()))
             .then(json => dispatch(fetchSentMessages()))
+            .then(json => dispatch(fetchMyFollowers()))
             .catch(error => {
 
                 if (error.response) {   

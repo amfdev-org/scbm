@@ -106,6 +106,22 @@ export const initialState = {
         enableSentMessagesMessageSubmitButton: false,
         showSentMessagesMessageSubmitButton: true,
         showSentMessagesMessageSubmitLoadingButton: false,
+        
+        //received messages
+        receivedMessageData: [],
+        showReceivedMessagesTable: false,
+        showReceivedMessagesSubmitButton: true,
+        showReceivedMessagesSubmitLoadingButton: false,
+        selectedReceivedMessages: [],   
+        showReceivedMessagesLoadingIcon: true,
+        
+        //received messages message
+        receivedMessagesMessage : 'Hi <<profileName>>,',
+        showReceivedMessagesMessageForm: false,
+        enableReceivedMessagesMessageInput: true,
+        enableReceivedMessagesMessageSubmitButton: false,
+        showReceivedMessagesMessageSubmitButton: true,
+        showReceivedMessagesMessageSubmitLoadingButton: false,
 
 
 };

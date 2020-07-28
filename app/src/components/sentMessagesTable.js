@@ -17,8 +17,8 @@ class SentMessagesTable extends Component {
         const showSentMessagesTable = this.props.showSentMessagesTable ? {display: 'block'} : {display: 'none'};
 
         const columns =  [
-            { name: 'Recipient', selector: 'profileName', sortable: true },
-            { name: 'Date', selector: 'createdAt', sortable: true, format: row => moment(row.createdAt).format('LLL')},
+            { name: 'Recipient', selector: 'recipient', sortable: true, wrap: true },
+            { name: 'Date', selector: 'createdAt', sortable: true, wrap: true, format: row => moment(row.createdAt).format('LLL')},
             { name: 'Message', selector: 'message', sortable: true, wrap: true }
             ];
                
@@ -29,8 +29,7 @@ class SentMessagesTable extends Component {
                 columns={columns}
                 data={this.props.sentMessageData}
                 defaultSortField="createdAt"
-                defaultSortAsc="false"
-                sortServer="true"
+                 defaultSortAsc={false}
                 selectableRows
                 onSelectedRowsChange={this.handleChange}
                 highlightOnHover

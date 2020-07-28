@@ -61,6 +61,16 @@ import {
   handleSentMessagesMessageSubmit
   } from '../actions/sentMessagesMessageActions' 
   
+import {
+  fetchReceivedMessages,
+  handleReceivedMessagesSelectedRowsChange
+  } from '../actions/receivedMessagesSearchActions'
+ 
+import {
+  handleReceivedMessagesMessageChange,
+  handleReceivedMessagesMessageSubmit
+  } from '../actions/receivedMessagesMessageActions' 
+  
   
 import {
   handleAlertChange
@@ -81,6 +91,14 @@ import Footer from '../components/footer';
 //import LoggedInInfo from '../components/loggedInInfo';
 import LoginForm from '../components/loginForm';
 import SignupForm from '../components/signupForm';
+
+//tables/grids
+import CommentersTable from '../components/commentersTable';
+import FollowersTable from '../components/followersTable';
+import MyFollowersTable from '../components/myFollowersTable';
+import SentMessagesTable from '../components/sentMessagesTable';
+import ReceivedMessagesTable from '../components/receivedMessagesTable';
+
 //message forms
 import CommentersSearchForm from '../components/commentersSearchForm';
 import FollowersSearchForm from '../components/followersSearchForm';
@@ -88,12 +106,7 @@ import CommentersMessageForm from '../components/commentersMessageForm';
 import FollowersMessageForm from '../components/followersMessageForm';
 import MyFollowersMessageForm from '../components/myFollowersMessageForm';
 import SentMessagesMessageForm from '../components/sentMessagesMessageForm';
-
-//tables/grids
-import CommentersTable from '../components/commentersTable';
-import FollowersTable from '../components/followersTable';
-import MyFollowersTable from '../components/myFollowersTable';
-import SentMessagesTable from '../components/sentMessagesTable';
+import ReceivedMessagesMessageForm from '../components/receivedMessagesMessageForm';
 
 //alerts
 import ErrorAlert from '../components/errorAlert';
@@ -203,35 +216,35 @@ class App extends Component {
          
          </Container>
          
-            <Accordion className="main-accordion" style={showMainAccordion}>
+            <Accordion className="main-accordion" defaultActiveKey="0" style={showMainAccordion}>
             
                 <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
-                  My Followers
+                  Recent Messages
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
 
-                       <MyFollowersTable className="myFollowersDataTable"
-                       myFollowerData={this.props.myFollowerData}
-                       showMyFollowersTable={this.props.showMyFollowersTable}
-                       handleMyFollowersSelectedRowsChange={this.props.handleMyFollowersSelectedRowsChange}
-                       showMyFollowersLoadingIcon={this.props.showMyFollowersLoadingIcon}
-                       selectedMyFollowers={this.props.selectedMyFollowers}
+                       <ReceivedMessagesTable className="receivedMessagesDataTable"
+                       receivedMessageData={this.props.receivedMessageData}
+                       showReceivedMessagesTable={this.props.showReceivedMessagesTable}
+                       handleReceivedMessagesSelectedRowsChange={this.props.handleReceivedMessagesSelectedRowsChange}
+                       showReceivedMessagesLoadingIcon={this.props.showReceivedMessagesLoadingIcon}
+                       selectedReceivedMessages={this.props.selectedReceivedMessages}
                        toggledClearRows={this.props.toggledClearRows}
                        />
                    
                        <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
                    
-                       <MyFollowersMessageForm
-                         myFollowersMessage={this.props.myFollowersMessage}
-                         showMyFollowersMessageForm={this.props.showMyFollowersMessageForm}
-                         handleMyFollowersMessageChange={this.props.handleMyFollowersMessageChange}
-                         handleMyFollowersMessageSubmit={this.props.handleMyFollowersMessageSubmit}
-                         enableMyFollowersMessageInput={this.props.enableMyFollowersMessageInput}
-                         enableMyFollowersMessageSubmitButton={this.props.enableMyFollowersMessageSubmitButton}
-                         showMyFollowersMessageSubmitButton = {this.props.showMyFollowersMessageSubmitButton}
-                         showMyFollowersMessageSubmitLoadingButton = {this.props.showMyFollowersMessageSubmitLoadingButton}
+                        <ReceivedMessagesMessageForm
+                         receivedMessagesMessage={this.props.receivedMessagesMessage}
+                         showReceivedMessagesMessageForm={this.props.showReceivedMessagesMessageForm}
+                         handleReceivedMessagesMessageChange={this.props.handleReceivedMessagesMessageChange}
+                         handleReceivedMessagesMessageSubmit={this.props.handleReceivedMessagesMessageSubmit}
+                         enableReceivedMessagesMessageInput={this.props.enableReceivedMessagesMessageInput}
+                         enableReceivedMessagesMessageSubmitButton={this.props.enableReceivedMessagesMessageSubmitButton}
+                         showReceivedMessagesMessageSubmitButton = {this.props.showReceivedMessagesMessageSubmitButton}
+                         showReceivedMessagesMessageSubmitLoadingButton = {this.props.showReceivedMessagesMessageSubmitLoadingButton}
                        />
                           
                   </Card.Body>
@@ -271,12 +284,46 @@ class App extends Component {
                 </Accordion.Collapse>
               </Card>
               
-              <Card>
+                <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="2">
+                  My Followers
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="2">
+                  <Card.Body>
+
+                       <MyFollowersTable className="myFollowersDataTable"
+                       myFollowerData={this.props.myFollowerData}
+                       showMyFollowersTable={this.props.showMyFollowersTable}
+                       handleMyFollowersSelectedRowsChange={this.props.handleMyFollowersSelectedRowsChange}
+                       showMyFollowersLoadingIcon={this.props.showMyFollowersLoadingIcon}
+                       selectedMyFollowers={this.props.selectedMyFollowers}
+                       toggledClearRows={this.props.toggledClearRows}
+                       />
+                   
+                       <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
+                   
+                       <MyFollowersMessageForm
+                         myFollowersMessage={this.props.myFollowersMessage}
+                         showMyFollowersMessageForm={this.props.showMyFollowersMessageForm}
+                         handleMyFollowersMessageChange={this.props.handleMyFollowersMessageChange}
+                         handleMyFollowersMessageSubmit={this.props.handleMyFollowersMessageSubmit}
+                         enableMyFollowersMessageInput={this.props.enableMyFollowersMessageInput}
+                         enableMyFollowersMessageSubmitButton={this.props.enableMyFollowersMessageSubmitButton}
+                         showMyFollowersMessageSubmitButton = {this.props.showMyFollowersMessageSubmitButton}
+                         showMyFollowersMessageSubmitLoadingButton = {this.props.showMyFollowersMessageSubmitLoadingButton}
+                       />
+                          
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+                      
+              
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="3">
                   Find Commenters
                 </Accordion.Toggle>
                 
-                <Accordion.Collapse eventKey="2">
+                <Accordion.Collapse eventKey="3">
                   <Card.Body>
                   
                       <h6 className="main">Song URL</h6>
@@ -321,10 +368,10 @@ class App extends Component {
               </Card>
               
               <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="3">
+                <Accordion.Toggle as={Card.Header} eventKey="4">
                   Find Followers
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey="3">
+                <Accordion.Collapse eventKey="4">
                   <Card.Body>
                   
                     <h6 className="main">Profile URL</h6>
@@ -489,6 +536,23 @@ function mapStateToProps(state) {
       enableSentMessagesMessageSubmitButton: state.enableSentMessagesMessageSubmitButton,
       showSentMessagesMessageSubmitButton: state.showSentMessagesMessageSubmitButton,
       showSentMessagesMessageSubmitLoadingButton: state.showSentMessagesMessageSubmitLoadingButton,
+      
+      //received messages
+      receivedMessageData: state.receivedMessageData,
+      showReceivedMessagesTable: state.showReceivedMessagesTable,
+      showReceivedMessagesSubmitButton: state.showReceivedMessagesSubmitButton,
+      showReceivedMessagesSubmitLoadingButton: state.showReceivedMessagesSubmitLoadingButton,
+      selectedReceivedMessages: state.selectedReceivedMessages,   
+      showReceivedMessagesLoadingIcon: state.showReceivedMessagesLoadingIcon,
+      
+      //received messages message
+      receivedMessagesMessage: state.receivedMessagesMessage,
+      showReceivedMessagesMessageForm: state.showReceivedMessagesMessageForm,
+      enableReceivedMessagesMessageInput: state.enableReceivedMessagesMessageInput,
+      enableReceivedMessagesMessageSubmitButton: state.enableReceivedMessagesMessageSubmitButton,
+      showReceivedMessagesMessageSubmitButton: state.showReceivedMessagesMessageSubmitButton,
+      showReceivedMessagesMessageSubmitLoadingButton: state.showReceivedMessagesMessageSubmitLoadingButton,
+      
       }
       
 }
@@ -522,6 +586,10 @@ const mapDispatchToProps = {
       handleSentMessagesSelectedRowsChange,
       handleSentMessagesMessageChange,
       handleSentMessagesMessageSubmit,
+      fetchReceivedMessages,
+      handleReceivedMessagesSelectedRowsChange,
+      handleReceivedMessagesMessageChange,
+      handleReceivedMessagesMessageSubmit
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

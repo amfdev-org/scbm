@@ -11,6 +11,8 @@ import myFollowersSearchReducer from "./myFollowersSearchReducer";
 import myFollowersMessageReducer from "./myFollowersMessageReducer";
 import sentMessagesSearchReducer from "./sentMessagesSearchReducer";
 import sentMessagesMessageReducer from "./sentMessagesMessageReducer";
+import receivedMessagesSearchReducer from "./receivedMessagesSearchReducer";
+import receivedMessagesMessageReducer from "./receivedMessagesMessageReducer";
 import uiReducer from "./uiReducer";
 //export default combineReducers({
 //  authReducer: authReducer
@@ -29,4 +31,6 @@ export default reduceReducers(
                               myFollowersMessageReducer,
                               sentMessagesSearchReducer,
                               sentMessagesMessageReducer,
+                              receivedMessagesSearchReducer,
+                              receivedMessagesMessageReducer,
                               uiReducer);

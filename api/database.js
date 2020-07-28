@@ -25,6 +25,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: "mysql",
     logging: false,
     //logging: console.log,
+    timezone: "Europe/London",
     pool: {
         max: 10,
         min: 0,
@@ -33,8 +34,8 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     },
     define: {
         paranoid: false,
-        charset: 'utf8',
-        collate: 'utf8_general_ci',
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_unicode_ci',
         timestamps: true
     }
 });

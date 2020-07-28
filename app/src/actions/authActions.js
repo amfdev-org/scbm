@@ -3,6 +3,10 @@ import axios from 'axios';
 import {
   fetchMyFollowers
   } from '../actions/myFollowersSearchActions'
+
+import {
+  fetchReceivedMessages
+  } from '../actions/receivedMessagesSearchActions'
     
 import {
   fetchSentMessages
@@ -24,8 +28,9 @@ export function fetchAuth() {
       .then(json => catchAuthSessionError(json.data, dispatch))
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))
-      .then(json => dispatch(fetchMyFollowers()))
+      .then(json => dispatch(fetchReceivedMessages()))
       .then(json => dispatch(fetchSentMessages()))
+      .then(json => dispatch(fetchMyFollowers()))
       .catch(error => {
 
                 if (error.response) {   

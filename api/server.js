@@ -62,52 +62,6 @@ app.use(session({
     }
 }))
 
-/*
-app.get('/test/', (req, res) => {
-    
-    //just loads the URL in the params as a test
-    var query = Object.keys(req.query); 
-    
-    if (query.length == 0) {
-        url = "soundcloud.com";
-    } else {
-        url = query;
-    }
-    
-    console.log('test GET query: ' + url);
-    
-    const scrapeTest = new Promise((resolve, reject) => {
-    LoginScraper
-    .scrapeTest("https://"+url, false)
-      .then(result => {
-        resolve(result)
-        //console.log(result);
-          res.sendFile(utils.screenshotPath + '/screenshot.png');
-      })
-      .catch(err => res.status(500).send(err))
-     })
-    
-})
-
-
-app.get('/sctest/', (req, res) => {
-    
-    console.log('test GET query: sc test');
-    
-    const scrapeTestSc = new Promise((resolve, reject) => {
-    LoadTest
-    .scrapeTestSc("https://soundcloud.com")
-      .then(result => {
-        resolve(result)
-        //console.log(result);
-          res.sendFile(utils.screenshotPath + '/screenshot.png');
-      })
-      .catch(err => res.status(500).send(err))
-     })
-    
-})
-
-*/
 
 app.get('/auth/', (req, res) => {
     
@@ -429,15 +383,17 @@ app.get('/commenters/', function(req, res) {
         
     }
 
+    hasRecentLoggedCommenters = false;
     let checkForLoggedCommenters = (data) => {
         
         return new Promise((resolve, reject) => {
             console.log("checkForLoggedCommenters")
+      
             CommenterModel.Commenter.findAll({
                 where: {
                       searchUrl: data.searchUrl,
-                      createdAt: {
-                        [Op.gte]: moment().subtract(7, 'days').toDate() // only scrape if logged commenters older than 7 days
+                      updatedAt: {
+                          [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 5 MINUTE')
                       }
                     }
                 })
@@ -445,12 +401,13 @@ app.get('/commenters/', function(req, res) {
                     //console.log(commenters);
                     console.log('check for logged commenters then block')
                     //console.log(data)
-                    if (commenters.length === 0) {
-                        console.log('no logged commenters')
+                    if (commenters.length > 0) {
+                        console.log('found recent logged commenters!!')
+                        hasRecentLoggedCommenters = true;
                     }
                     
                     //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
-                    resolve({ searchUrl: data.searchUrl, commenters: commenters })
+                    resolve({ searchUrl: data.searchUrl, commenters: commenters, hasRecentLoggedCommenters: hasRecentLoggedCommenters })
                 
         
                 }).catch(error => {
@@ -470,7 +427,7 @@ app.get('/commenters/', function(req, res) {
             console.log('scrape commenters')
            if (data.commenters.length > 0) {
                
-               resolve({ searchUrl: data.searchUrl, commenters: data.commenters })
+               resolve({ searchUrl: data.searchUrl, commenters: data.commenters, hasRecentLoggedCommenters: true })
                console.log('resolving logged commenters instead of scraping')
            } else {
            
@@ -480,7 +437,7 @@ app.get('/commenters/', function(req, res) {
                .scrapeCommenters(data.searchUrl, req.session.user.scCookies)
                  .then(scrapedCommenters => {
                    //console.log(scrapedCommenters)
-                    resolve({ searchUrl: data.searchUrl, commenters: scrapedCommenters })
+                    resolve({ searchUrl: data.searchUrl, commenters: scrapedCommenters, hasRecentLoggedCommenters: false })
                    })
                    .catch(error => reject(error))
            
@@ -496,11 +453,14 @@ app.get('/commenters/', function(req, res) {
         .then(data => MessageModel.checkCommentersMessageStatus(data))
         .then(data => {
             //console.log(data)
-            console.log("**logged commenters to DB**");
-            CommenterModel.logCommenters(data);
+            if (!data.hasRecentLoggedCommenters) {
+                    console.log("**logged commenters to DB**");
+                    CommenterModel.logCommenters(data.commenters);
+            }
+           
             console.log("**sending data to browser**");
             //console.log(JSON.stringify(data))
-            res.send({success: true, noResults: false, commenterData: data})
+            res.send({success: true, noResults: false, commenterData: data.commenters})
         })
         .catch(error => {
           console.log(error);
@@ -520,7 +480,7 @@ app.get('/commenters/', function(req, res) {
         
 app.get('/followers/', function(req, res) {
       
-    console.log('GET /followers/');
+    //console.log('GET /followers/');
     
     if (!req.session.user) {
         console.log('no session')
@@ -539,18 +499,16 @@ app.get('/followers/', function(req, res) {
             let isMyFollowersSearch = false;
 
             if (!searchUrl.includes("soundcloud")) {
-                 console.log("Search URL does not contain 'soundcloud'")
+                 //console.log("Search URL does not contain 'soundcloud'")
                 reject("Search URL does not contain 'soundcloud'");
                 //res.send(JSON.stringify({errorMessage : "Server says: could not get followers!"}))
             } else if (searchUrl === req.session.user.scProfile) {
-                console.log('is my follower search')
-
+                //console.log('is my follower search')
                 //console.log(isMyFollowersSearch)
                 resolve({searchUrl: searchUrl, isMyFollowersSearch: true});
             } else {
       
-                console.log('is my follower search')
-
+                //console.log('is my follower search')
                 //console.log(isMyFollowersSearch)
                 resolve({searchUrl: searchUrl, isMyFollowersSearch: false});
             }
@@ -558,6 +516,7 @@ app.get('/followers/', function(req, res) {
         
     }
     
+    hasRecentLoggedFollowers = false;
       let checkForLoggedFollowers = (data) => {
         
         return new Promise((resolve, reject) => {
@@ -565,8 +524,8 @@ app.get('/followers/', function(req, res) {
             FollowerModel.Follower.findAll({
                 where: {
                       searchUrl: data.searchUrl,
-                      createdAt: {
-                        [Op.gte]: moment().subtract(7, 'days').toDate() // only scrape if logged followers older than 7 days
+                      updatedAt: {
+                          [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 5 MINUTE')
                       }
                     }
                 })
@@ -574,12 +533,13 @@ app.get('/followers/', function(req, res) {
                     //console.log(followers);
                     console.log('check for logged followers then block')
                     //console.log(data)
-                    if (followers.length === 0) {
-                        console.log('no logged followers')
+                    if (followers.length > 0) {
+                        hasRecentLoggedFollowers = true;
+                        console.log('FOUND logged followers!')
                     }
                     
                     //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
-                    resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: followers })
+                    resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: followers, hasRecentLoggedFollowers: hasRecentLoggedFollowers })
                 
         
                 }).catch(error => {
@@ -598,7 +558,7 @@ app.get('/followers/', function(req, res) {
             console.log('scrape followers')
            if (data.followers.length > 0) {
                
-               resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: data.followers })
+               resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: data.followers, hasRecentLoggedFollowers: true })
                console.log('resolving logged followers instead of scraping')
            } else {
            
@@ -608,7 +568,7 @@ app.get('/followers/', function(req, res) {
                .scrapeFollowers(data.searchUrl, req.session.user.scCookies)
                  .then(scrapedFollowers => {
                    //console.log(data)
-                    resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: scrapedFollowers })
+                    resolve({ searchUrl: data.searchUrl, isMyFollowersSearch: data.isMyFollowersSearch, followers: scrapedFollowers, hasRecentLoggedFollowers: false })
                    })
                    .catch(error => reject(error))
            
@@ -624,12 +584,11 @@ app.get('/followers/', function(req, res) {
         .then(data => MessageModel.checkFollowersMessageStatus(data))
         .then(data => {
             //console.log(data)
-            //if (data.isMyFollowersSearch) { // STORE ALL FOLLOWERS FOR NOW
+            if (!data.hasRecentLoggedFollowers) {
+                console.log('writing followers to DB');
                 FollowerModel.logFollowers(data.followerData);
-                console.log("**logged followers to DB**");
-            //}
-            console.log("**sending data to browser**");
-            //console.log(JSON.stringify(data))
+            }
+     
             res.send({success: true, noResults: false, followerData: data.followerData})
         })
         .catch(error => {
@@ -647,9 +606,10 @@ app.get('/followers/', function(req, res) {
     
 })
     
-app.get('/message/', function(req, res) {
+
+app.get('/sent-messages/', function(req, res) {
     
-    console.log('GET /message/');
+    //console.log('GET /sent-message/');
     
     if (!req.session.user) {
         console.log('no session')
@@ -659,7 +619,7 @@ app.get('/message/', function(req, res) {
     let checkForLoggedMessages = (data) => {
         
         return new Promise((resolve, reject) => {
-            console.log("checkForLoggedMessages")
+            //console.log("checkForLoggedMessages")
             MessageModel.Message.findAll({
                 where: {
                       sender: req.session.user.scUsername,
@@ -671,10 +631,10 @@ app.get('/message/', function(req, res) {
                 })
                 .then(function (messages) {
                     //console.log(messages);
-                    console.log('check for logged messages then block')
+                    //console.log('check for logged messages then block')
                     //console.log(data)
                     if (messages.length === 0) {
-                        console.log('no logged messages')
+                        //console.log('no logged messages')
                     }
                     
                     //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
@@ -689,28 +649,140 @@ app.get('/message/', function(req, res) {
         })
     
     }
+
+     
+        // run the promises!
+      checkForLoggedMessages()
+      .then(data => {
+        //console.log(data)
+          //console.log("**sending message result data to browser**");
+          res.send({success: true, noResults: false, messageData: data})
+      })
+      .catch(error => {
+        console.log(error);
+        console.log(error.error);
+          //emptyArr = [];
+          if (error.error === "no messages") {
+              //console.log('yes');
+                  res.send({success: true, noResults: true, messageData: "no messages"})
+          } else {
+                  res.send({success: false, noResults: false, messageData: null})
+          }
+      })       
     
-          // run the promises!
-        checkForLoggedMessages()
-        .then(data => {
-          //console.log(data)
-            console.log("**sending message result data to browser**");
-            res.send({success: true, noResults: false, messageData: data})
-        })
-        .catch(error => {
-          console.log(error);
-          console.log(error.error);
-            //emptyArr = [];
-            if (error.error === "no messages") {
-                //console.log('yes');
-                    res.send({success: true, noResults: true, messageData: "no messages"})
-            } else {
-                    res.send({success: false, noResults: false, messageData: null})
-            }
-        })
     
 });
 
+
+app.get('/received-messages/', function(req, res) {
+    
+    console.log('GET /received message/');
+    
+    if (!req.session.user) {
+        console.log('no session')
+        res.end();
+    }
+    
+    let checkForLoggedMessages = (data) => {
+        
+
+        return new Promise((resolve, reject) => {
+          
+            console.log("checkForLoggedMessages")
+
+            hasRecentLoggedMessages = false;
+             
+            MessageModel.Message.findAll({
+                where: {
+                      recipient: req.session.user.scUsername,
+                      messageResult: "Success",
+                      updatedAt: {
+                        [Op.gte]: db.sequelize.literal('NOW() - INTERVAL 5 MINUTE')
+                      },
+                    },
+                    order: [
+                    ['createdAt', 'DESC']
+                    ],
+                })
+                .then(function (messages) {
+                    //console.log(messages);
+                    console.log('check for logged messages then block')
+                    //console.log(data)
+                   
+                    if (messages.length > 0) {
+                        console.log('has recent logged messages!');
+                        hasRecentLoggedMessages = true;
+                    } 
+                    
+                    //res.send(JSON.stringify({loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null}));
+                    resolve({messages: messages, hasRecentLoggedMessages: hasRecentLoggedMessages})
+                
+        
+                }).catch(error => {
+                   console.log(error)
+                   reject(error)
+                });
+        
+        })
+    
+    }
+    
+    
+    let scrapeReceivedMessages = (data) => {
+            
+        return new Promise((resolve, reject) => {
+                             
+            if (data.messages.length > 0) {
+               
+               resolve({messages: data.messages, hasRecentLoggedMessages: true})
+               //console.log('resolving logged followers instead of scraping')
+               
+           } else {
+           
+               //console.log(data.searchUrl)
+                               
+                console.log('scrape inbox')
+                   //console.log(data.searchUrl)            
+                   MessageScraper
+                   .scrapeNewMessages("https://soundcloud.com", req.session.user.scCookies, req.session.user.scUsername, req.session.user.scProfile)
+                     .then(scrapedMessages => {
+                       //console.log(scrapedMessages)
+                        resolve({messages: scrapedMessages, hasRecentLoggedMessages: false})
+                       })
+                       .catch(error => reject(error))
+            }
+           
+           
+        })
+    }
+    
+
+        // run the promises!
+      checkForLoggedMessages()
+      .then(data => scrapeReceivedMessages(data))
+      .then(data => {
+        //console.log(data)
+            if (!data.hasRecentLoggedMessages) {
+              MessageModel.logMessages(data.messages);
+            } 
+          //console.log("**sending message result data to browser**");
+          res.send({success: true, noResults: false, messageData: data.messages})
+      })
+      .catch(error => {
+        console.log(error);
+        console.log(error.error);
+          //emptyArr = [];
+          if (error.error === "no messages") {
+              //console.log('yes');
+                  res.send({success: true, noResults: true, messageData: "no messages"})
+          } else {
+                  res.send({success: false, noResults: false, messageData: null})
+          }
+      })
+        
+            
+    
+});
 
 app.post('/message/', function(req, res) {
     
@@ -718,6 +790,8 @@ app.post('/message/', function(req, res) {
         console.log('no session')
         res.end();
     }
+    
+    //console.log(req.body)
     
     console.log('POST /message/');
 
@@ -778,10 +852,11 @@ app.post('/message/', function(req, res) {
                                   req.session.user.scCookies,
                                   req.body.selectedProfiles,
                                   req.body.message,
-                                  decodeURI(req.body.searchUrl),
-                                  req.session.user.scUsername)
+                                  req.session.user.scUsername,
+                                  req.session.user.scProfile,
+                                  req.body.messageType)
               .then(data => {
-                console.log(data)
+                ///console.log(data)
                 resolve(data)
               })
               .catch(err => reject(err))
@@ -794,9 +869,9 @@ app.post('/message/', function(req, res) {
         .then(data => sendMessageOnProfile())
         .then(data => {
           //console.log(data)
-            console.log("**logging message result to db**");
+            //console.log("**logging message result to db**");
             MessageModel.logMessages(data);
-            console.log("**sending message result data to browser**");
+            //console.log("**sending message result data to browser**");
             res.send({success: true, error: null, result: data })
         })
         .catch(e => {

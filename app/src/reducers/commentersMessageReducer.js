@@ -95,11 +95,12 @@ export default function commentersMessageReducer(state, action) {
       };
           
     case COMMENTERS_MESSAGE_RESULT:
+      console.log(action.commenterData)
       return {
         ...state,
         toggledClearRows: true,
-        showMessageSubmitButton: true,
-        showMessageSubmitLoadingButton: false,
+        showCommentersMessageSubmitButton: true,
+        showCommentersMessageSubmitLoadingButton: false,
         enableCommentersMessageInput: true,
         enableCommentersSearchSubmitButton: true,
         enableCommentersSearchInput: true,

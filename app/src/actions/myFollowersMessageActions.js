@@ -3,6 +3,14 @@
 
 import axios from 'axios';
 
+import {
+  fetchMyFollowers
+  } from '../actions/myFollowersSearchActions'
+    
+import {
+  fetchSentMessages
+  } from '../actions/sentMessagesSearchActions'
+  
 export const MY_FOLLOWERS_MESSAGE_CHANGE = 'MY_FOLLOWERS_MESSAGE_CHANGE'
 export const MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE = 'MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE'
 export const MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE = 'MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE'
@@ -51,6 +59,7 @@ export function handleMyFollowersMessageSubmit(event) {
         url: 'https://scbm.amfdev.co.uk/api/message/',
         headers: {}, 
         data: {
+            messageType: "sent",
             selectedProfiles: getState().selectedMyFollowers,
             message: getState().myFollowersMessage,
             searchUrl: getState().scProfile                     
@@ -60,7 +69,8 @@ export function handleMyFollowersMessageSubmit(event) {
         .then(json => dispatch(doMyFollowersMessageSuccess(json, dispatch, getState)))
         .catch(error => {
 
-                if (error.response) {   
+                if (error.response) {
+                    console.log('catch catch error.response in my followers messageactions')
                       dispatch({
                           type: MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR
                       })  
@@ -73,7 +83,7 @@ export function handleMyFollowersMessageSubmit(event) {
 
 
 function catchMyFollowersMessageError(json, dispatch) {
-    //console.log('catchFollowersMessageError')
+    console.log('catch catchMyFollowersMessageError')
     if (!json.success) {
         dispatch({
                 type: MY_FOLLOWERS_MESSAGE_ERROR
@@ -93,7 +103,7 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
             
                 for (let sendResult of json.result) {
          
-                  const elementsIndex = getState().myFollowerData.findIndex(element => element.profileUrl === sendResult.profileUrl );
+                  const elementsIndex = getState().myFollowerData.findIndex(element => element.profileUrl === sendResult.recipientProfileUrl );
                    
                    let newArray = [...getState().myFollowerData]
                   
@@ -108,12 +118,14 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
                                
                         
                           if (sendResult.messageResult === 'Success') {
-                             successArray.push(sendResult.profileUrl);
+                             successArray.push(sendResult.recipientProfileUrl);
                           }
                                  
                    
                 }
               
+                dispatch(fetchSentMessages());
+                dispatch(fetchMyFollowers());
                         
                 if(successArray.length > 0) {
                     
@@ -141,130 +153,3 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
     }
     
 }
-
-
-/*
-handleMessageChange = (changeEvent) => {
-      
-      //console.log(changeEvent.target.value);
-    
-        this.setState({message: changeEvent.target.value}, () => {
-        
-          if (this.state.message.length > 10) {
-            this.setState({enableMessageSubmitButton: true}, () => {   
-              //console.log(this.state);
-            })
-          } else {
-             this.setState({enableMessageSubmitButton: false}, () => {   
-              //console.log(this.state);
-            })
-          }
-          
-        })
-                  
-  }
-  
-  
-  handleMessageSubmit = async () => {
-    
-    this.setState({ showMessageSubmitButton: false })
-    this.setState({ enableMessageInput: false })
-    this.setState({ showMessageSubmitLoadingButton: true })
-    
-    this.setState({ enableFollowersSearchSubmitButton: false})
-    this.setState({ enableFollowersSearchInput: false})
-
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({selectedFollowers: this.state.selectedFollowers,
-                             message: this.state.message,
-                             searchUrl: this.state.searchUrl})
-    };
-    fetch('https://scbm.amfdev.co.uk/api/message/', requestOptions)
-          .then(async response => {
-            
-            if (!response.ok) {
-               //throw Error(response.statusText);
-                this.setState({errorAlertText: "Something went wrong. Please try again later."});
-                this.setState({showErrorAlert: true}); 
-            }
-                
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            // check for error response
-            if (jsonResponse.errorMessage) {
-                // get error message from body or default to response status
-                //const error = (myFollowerData && myFollowerData.message) || response.status;
-                await console.log(jsonResponse.errorMessage);
-                return Promise.reject(jsonResponse.errorMessage);
-                
-            } else {
-                          
-              let successArray = [];
-              
-              for (let sendResult of jsonResponse) {
-                //console.log(sendResult)
-      
-                const elementsIndex = await this.state.myFollowerData.findIndex(element => element.profileUrl === sendResult.profileUrl );
-                 
-                 let newArray = await [...this.state.myFollowerData]
-                 
-                  newArray[elementsIndex] = await {...newArray[elementsIndex], messaged: sendResult.messageResult}
-                
-                      //await console.log(newArray);
-                      
-                      await this.setState({
-                      myFollowerData: newArray,
-                      });
-                      
-                        if (sendResult.messageResult === 'Success') {
-                           await successArray.push(sendResult.profileUrl);
-                        }
-                 
-              }
-          
-              
-              this.setState({successAlertText: "Message sent to " + successArray.length + " users." });
-              
-                this.setState({showSuccessAlert: true},()=>{
-                    window.setTimeout(()=>{
-                      this.setState({showSuccessAlert: false})
-                    },4000)
-                  });
-               
-               
-              this.setState({ toggledClearRows: true })
-              this.setState({ showMessageSubmitButton: true })
-              this.setState({ showMessageSubmitLoadingButton: false })
-               this.setState({ enableMessageInput: true })
-    
-              this.setState({ enableFollowersSearchSubmitButton: true})
-              this.setState({ enableFollowersSearchInput: true})
-                      
-            }
-        })
-        .catch(error => {
-            //this.setState({ errorMessage: error.toString() });
-            console.error('There was an error!', error);
-            this.setState({ showMessageSubmitButton: true })
-            this.setState({ showMessageSubmitLoadingButton: false })
-            this.setState({ enableMessageInput: true })
-             
-            this.setState({ enableFollowersSearchSubmitButton: true})
-            this.setState({ enableFollowersSearchInput: true})
-              
-            this.setState({errorAlertText: "Something went wrong."});
-              
-              
-              this.setState({showErrorAlert: true},()=>{
-                window.setTimeout(()=>{
-                  this.setState({showErrorAlert: false})
-                },4000)
-              });
-                    
-        });
-                
-        
-  }
-  */

@@ -1,5 +1,4 @@
 import {
-    SENT_MESSAGES_SEARCH_SUBMITTED,
     SENT_MESSAGES_SEARCH_NO_RESULTS,
     SENT_MESSAGES_SEARCH_OTHER_ERROR,
     SENT_MESSAGES_SEARCH_RESULT,
@@ -52,7 +51,7 @@ export default function sentMessagesSearchReducer(state, action) {
         showErrorAlert: false,
         sentMessageData: action.sentMessageData,
         showSentMessagesTable: true,
-        successAlertText: "Messages sucessfully loaded.",
+        //successAlertText: "Messages sucessfully loaded.",
         showSentMessagesLoadingIcon: false
     
       };

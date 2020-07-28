@@ -16,9 +16,9 @@ class CommentersTable extends Component {
         const showCommentersTable = this.props.showCommentersTable ? {display: 'block'} : {display: 'none'};
         
         const columns =  [
-            { name: 'Profile Name', selector: 'profileName', sortable: true },
-            { name: 'Profile URL', selector: 'profileUrl', sortable: true, hide: "sm" },
-            { name: 'Messaged', selector: 'messaged', sortable: true }
+            { name: 'Profile Name', selector: 'profileName', wrap: true, sortable: true },
+            { name: 'Profile URL', selector: 'profileUrl', wrap: true, sortable: true, hide: "sm" },
+            { name: 'Messaged', selector: 'messaged', wrap: true, sortable: true }
             ];
                
         return (
