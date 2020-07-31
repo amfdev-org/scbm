@@ -14,7 +14,7 @@ export function fetchReceivedMessages(forceRefresh = false) {
 
     return (dispatch, getState) => {
 
-    console.log('fetch received messages');
+    //console.log('fetch received messages');
     
         //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
         
@@ -37,8 +37,8 @@ export function fetchReceivedMessages(forceRefresh = false) {
 }
 
 function catchReceivedMessagesSearchNoResults(json, dispatch) {
-    console.log('catchReceivedMessagesSearchNoResults')
-    console.log(json);
+    //console.log('catchReceivedMessagesSearchNoResults')
+    //console.log(json);
     if (json.noResults) {
         dispatch({
                 type: RECEIVED_MESSAGES_SEARCH_NO_RESULTS
@@ -53,7 +53,7 @@ function catchReceivedMessagesSearchNoResults(json, dispatch) {
 
 
 function catchReceivedMessagesSearchOtherError(json, dispatch) {
-    console.log('catchReceivedMessagesSearchOtherError')
+    //console.log('catchReceivedMessagesSearchOtherError')
     if (!json.success) {
         dispatch({
                 type: RECEIVED_MESSAGES_SEARCH_OTHER_ERROR
@@ -66,8 +66,8 @@ function catchReceivedMessagesSearchOtherError(json, dispatch) {
 
 
 function doReceivedMessagesSearchSuccess(json, dispatch) {
-    console.log('doReceivedMessagesSearchSuccess')
- console.log(json)
+    //console.log('doReceivedMessagesSearchSuccess')
+      //console.log(json)
         dispatch({
                 type: RECEIVED_MESSAGES_SEARCH_RESULT,
                 receivedMessageData: json.messageData

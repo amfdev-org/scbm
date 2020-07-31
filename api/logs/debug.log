@@ -1,0 +1,11 @@
+2020-07-31T14:57:38.552Z Started on PORT 3002
+2020-07-31T14:57:38.552Z download logs
+2020-07-31T14:58:25.598Z Started on PORT 3002
+2020-07-31T14:58:29.831Z Started on PORT 3002
+2020-07-31T14:58:29.831Z logout
+2020-07-31T14:58:29.831Z GET /auth/
+2020-07-31T14:58:29.831Z not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+2020-07-31T14:58:29.831Z session invalid
+2020-07-31T14:58:29.831Z GET /auth/
+2020-07-31T14:58:29.831Z not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+2020-07-31T14:58:29.831Z session invalid

@@ -1,18 +1,22 @@
 const dotenv = require('dotenv').config()
 const fs = require('fs');
 const utils = require('./scrapers/utils');    
+const moment = require('moment')
 
 const { Sequelize, DataTypes, Op } = require('sequelize');
 
 const util = require('util');
+const offset = new Date().getTimezoneOffset();
+const timestamp = moment().subtract(offset, "minutes").toISOString();
+
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
-require('log-timestamp');
 console.log = function(d) { //
-  log_file.write(util.format(d) + '\n');
-  log_stdout.write(util.format(d) + '\n');
+  log_file.write(timestamp + ' ' + util.format(d) + '\n');
+  log_stdout.write(timestamp + ' ' + util.format(d) + '\n');
 };
+
 
 /*const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   host: process.env.DB_HOST,

@@ -458,11 +458,8 @@ class App extends Component {
   
 }
 
-//export default App
-
 function mapStateToProps(state) {
  
- //console.log(state)
     return {
       
       //main UI

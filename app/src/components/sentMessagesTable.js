@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
 import moment from 'moment'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+library.add(faExclamationTriangle)
+
 
 class SentMessagesTable extends Component {
 
@@ -41,7 +46,9 @@ class SentMessagesTable extends Component {
                        
           </Form>
           
-          <span className="below-grid-info"><em>Only messages sent with SCBM will be shown here.</em></span>
+            <span className="below-grid-info">  <FontAwesomeIcon className="grid-exclamation-icon" icon={faExclamationTriangle}/>
+            <em>Only messages sent with SCBM will be shown here</em>
+            </span>
             </>
         )
     }

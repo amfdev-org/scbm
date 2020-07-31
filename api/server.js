@@ -23,13 +23,15 @@ const bodyParser = require('body-parser');
 const utils = require('./scrapers/utils')
 const util = require('util');
 
-require('log-timestamp');
+const offset = new Date().getTimezoneOffset();
+const timestamp = moment().subtract(offset, "minutes").toISOString();
+
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
 console.log = function(d) { //
-  log_file.write(util.format(d) + '\n');
-  log_stdout.write(util.format(d) + '\n');
+  log_file.write(timestamp + ' ' + util.format(d) + '\n');
+  log_stdout.write(timestamp + ' ' + util.format(d) + '\n');
 };
 
 const CommenterScraper = require('./scrapers/CommenterScraper')

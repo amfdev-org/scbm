@@ -1,10 +1,3 @@
-/*const initialState = {
-  authErrorMessage: null,
-  errorAlertText: null,
-  showErrorAlert: false
-};*/
-
-
 export default function uiReducer(state, action) {
   
   switch(action.type) {
@@ -70,7 +63,7 @@ export default function uiReducer(state, action) {
       };
       
       case "CONFIG_MODAL_SHOW":
-        console.log("reducer CONFIG_MODAL_SHOW")
+        //console.log("reducer CONFIG_MODAL_SHOW")
          return {
         ...state,
         showConfigModal: true 
@@ -83,14 +76,14 @@ export default function uiReducer(state, action) {
       };
       
       case "TEST_MODE_DISABLE":
-        console.log("TEST_MODE_DISABLE")
+        //console.log("TEST_MODE_DISABLE")
          return {
         ...state,
         isTestMode: false 
       };
       
          case "TEST_MODE_ENABLE":
-        console.log("TEST_MODE_ENABLE")
+        //console.log("TEST_MODE_ENABLE")
          return {
         ...state,
         isTestMode: true 

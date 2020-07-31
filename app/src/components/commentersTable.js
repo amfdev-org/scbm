@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+library.add(faExclamationTriangle)
 
 class CommentersTable extends Component {
 
@@ -39,7 +43,11 @@ class CommentersTable extends Component {
                        
           </Form>
           
-          <span className="below-grid-info"><em>Search may take a while and a limit of 1200 commmenters will be shown.</em></span>
+            <span className="below-grid-info">
+            <FontAwesomeIcon className="grid-exclamation-icon" icon={faExclamationTriangle}/>
+            <em>Search may take a while and a limit of 1200 commenters will be shown</em>
+            </span>
+            
             </>
         )
     }

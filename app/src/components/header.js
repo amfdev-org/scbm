@@ -46,7 +46,7 @@ class Header extends Component {
                    />
                    
                   <Nav.Link eventKey="1">
-                <Button
+                    <Button
                     className="logged-in-info logout-button"
                     size="sm"
                       type="submit"
