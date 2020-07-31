@@ -75,7 +75,11 @@ import {
   
   
 import {
-  handleAlertChange
+  handleAlertChange,
+  handleToggleConfigModal,
+  handleCloseConfigModal,
+  handleTestModeChange,
+  handleDownloadLogs
   } from '../actions/uiActions' 
   
   
@@ -91,7 +95,7 @@ import Button from 'react-bootstrap/Button'
 //forms
 import Header from '../components/header';
 import Footer from '../components/footer';
-//import LoggedInInfo from '../components/loggedInInfo';
+import ConfigModal from '../components/configModal';
 import LoginForm from '../components/loginForm';
 import SignupForm from '../components/signupForm';
 
@@ -118,12 +122,6 @@ import InfoAlert from '../components/infoAlert';
 
 class App extends Component {
   
-  /*constructor() {
-    
-      super();
-      
-  }*/
-  
   componentDidMount = () => {
 
     this.props.fetchAuth()
@@ -144,19 +142,15 @@ class App extends Component {
          
     const showLoginForm = this.props.showLoginForm ? {display: 'block'} : {display: 'none'};
     const showMainAccordion = this.props.showMainAccordion ? {display: 'block'} : {display: 'none'};
-    
-    const showCommentersMessageForm = this.props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'};
-    
     const showSignupForm = this.props.showSignupForm ? {display: 'block'} : {display: 'none'};
     
+    const showReceivedMessagesMessageForm = this.props.showReceivedMessagesMessageForm ? {display: 'block'} : {display: 'none'};
+    const showSentMessagesMessageForm = this.props.showSentMessagesMessageForm ? {display: 'block'} : {display: 'none'};
+    const showMyFollowersMessageForm = this.props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'};
+    const showCommentersMessageForm = this.props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'};
     const showFollowersMessageForm = this.props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'};
-    const showMyFollowersMessageForm = this.props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'}; 
-    /*
-    const showCommentersSearchForm = this.state.showCommentersSearchForm ? {display: 'block'} : {display: 'none'};
-    //const showCommentersTable = this.state.showCommentersTable ? {display: 'block'} : {display: 'none'};
-    const showMessageForm = this.state.showMessageForm ? {display: 'block'} : {display: 'none'};
-*/
-    
+
+  
     return (
       
       <>
@@ -166,6 +160,17 @@ class App extends Component {
         loggedInInfoText={this.props.loggedInInfoText}
         showLogoutSubmitButton={this.props.showLogoutSubmitButton}
         handleLogoutSubmit={this.props.handleLogoutSubmit}
+        showConfigModal={this.props.showConfigModal}
+        handleToggleConfigModal={this.props.handleToggleConfigModal}
+        handleCloseConfigModal={this.props.handleCloseConfigModal}
+        />
+        
+        <ConfigModal
+        showConfigModal={this.props.showConfigModal}
+        handleCloseConfigModal={this.props.handleCloseConfigModal}
+        isTestMode={this.props.isTestMode}
+        handleTestModeChange={this.props.handleTestModeChange}
+        handleDownloadLogs={this.props.handleDownloadLogs}
         />
                 
       <Container className="main-container">
@@ -261,7 +266,7 @@ class App extends Component {
                        toggledClearRows={this.props.toggledClearRows}
                        />
                    
-                       <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
+                       <h6 style={showReceivedMessagesMessageForm} className="messageForm">Message</h6>
                    
                         <ReceivedMessagesMessageForm
                          receivedMessagesMessage={this.props.receivedMessagesMessage}
@@ -294,7 +299,7 @@ class App extends Component {
                        toggledClearRows={this.props.toggledClearRows}
                        />
                    
-                       <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
+                       <h6 style={showSentMessagesMessageForm} className="messageForm">Message</h6>
                    
                         <SentMessagesMessageForm
                          sentMessagesMessage={this.props.sentMessagesMessage}
@@ -343,8 +348,7 @@ class App extends Component {
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
-                      
-              
+                                   
               <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="3">
                   Find Commenters
@@ -363,8 +367,7 @@ class App extends Component {
                           enableCommentersSearchInput={this.props.enableCommentersSearchInput}
                           enableCommentersSearchSubmitButton={this.props.enableCommentersSearchSubmitButton}
                           showCommentersSearchSubmitButton={this.props.showCommentersSearchSubmitButton}
-                          showCommentersSearchSubmitLoadingButton={this.props.showCommentersSearchSubmitLoadingButton} />
-                  
+                          showCommentersSearchSubmitLoadingButton={this.props.showCommentersSearchSubmitLoadingButton} />                
         
                       <CommentersTable className="commentersDataTable"
                           commenterData={this.props.commenterData}
@@ -444,12 +447,10 @@ class App extends Component {
            </Col>
           </Row>
         </Container>
- 
-    
+   
          <Footer />
          
-         </>
-             
+         </>          
                
       )
   }
@@ -581,7 +582,8 @@ function mapStateToProps(state) {
       enableReceivedMessagesMessageSubmitButton: state.enableReceivedMessagesMessageSubmitButton,
       showReceivedMessagesMessageSubmitButton: state.showReceivedMessagesMessageSubmitButton,
       showReceivedMessagesMessageSubmitLoadingButton: state.showReceivedMessagesMessageSubmitLoadingButton,
-      
+      showConfigModal: state.showConfigModal,
+      isTestMode: state.isTestMode
       }
       
 }
@@ -620,7 +622,11 @@ const mapDispatchToProps = {
       handleReceivedMessagesSelectedRowsChange,
       handleReceivedMessagesMessageChange,
       handleReceivedMessagesMessageSubmit,
-      handleReceivedMessagesRefresh
+      handleReceivedMessagesRefresh,
+      handleToggleConfigModal,
+      handleCloseConfigModal,
+      handleTestModeChange,
+      handleDownloadLogs
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

@@ -23,6 +23,7 @@ class FollowersTable extends Component {
                
         return (
           
+          <>
           <Form className="followersDataTable">
               <DataTable style={showFollowersTable}
                 columns={columns}
@@ -37,6 +38,9 @@ class FollowersTable extends Component {
               />
                        
           </Form>
+          
+          <span className="below-grid-info"><em>Search may take a while and a limit of 1200 followers will be shown.</em></span>
+            </>
         )
     }
 

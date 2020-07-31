@@ -62,7 +62,8 @@ export function handleCommentersMessageSubmit(event) {
             messageType: "sent",
             selectedProfiles: getState().selectedCommenters,
             message: getState().commentersMessage,
-            searchUrl: getState().commentersSearchUrl                     
+            searchUrl: getState().commentersSearchUrl,
+            isTestMode: getState().isTestMode
         }
         })    
         .then(json => catchCommentersMessageError(json.data, dispatch))
@@ -130,7 +131,7 @@ function doCommentersMessageSuccess(json, dispatch, getState) {
                 }
     
                 dispatch(fetchSentMessages());
-                //dispatch(fetchMyFollowers());
+                dispatch(fetchMyFollowers());
                 
                           
                 if(successArray.length > 0) {

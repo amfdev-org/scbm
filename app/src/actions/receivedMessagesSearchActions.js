@@ -96,7 +96,7 @@ export function handleReceivedMessagesSelectedRowsChange(selectedReceivedMessage
             })
        
         if(getState().selectedReceivedMessages && getState().selectedReceivedMessages.length > 0) {
-            console.log('yes selected messages more than 0')
+            //console.log('yes selected messages more than 0')
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
                 type: RECEIVED_MESSAGES_MESSAGE_FORM_SHOW

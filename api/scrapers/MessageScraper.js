@@ -10,13 +10,14 @@ const util = require('util');
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
+require('log-timestamp');
 console.log = function(d) { //
   log_file.write(util.format(d) + '\n');
   log_stdout.write(util.format(d) + '\n');
 };
 
 
-   const sendMessageOnProfile = async (scCookies, recipients, message, sender, senderProfileUrl, messageType) => {
+   const sendMessageOnProfile = async (scCookies, recipients, message, sender, senderProfileUrl, messageType, isTestMode) => {
       
       //console.log(recipients)
       let sendMessageResult = [];
@@ -219,24 +220,33 @@ console.log = function(d) { //
             }
             
             //await page.waitFor(randomWaitShort);
+         
+            if (isTestMode) {
+               
+               await console.log('IS Test Mode so will not actually send the message...');
+           
+            } else if (!isTestMode) {
+               
+               await console.log('IS NOT Test Mode so about to send message!');
             
-   
-            //try to send the message!
-            try {
-               await page.click('.composeMessage__sendButton');
-               await console.log('**Message sent to ' + recipientProfileUrl);
-            } catch(error) {
-               await console.log('ERROR! could not send message to ' + recipientProfileUrl);
-                          
-                     sendMessageResult.push({recipientProfileUrl : recipientProfileUrl,
-                       recipient: recipient,
-                         message: messageWithName,
-                         senderProfileUrl: senderProfileUrl,
-                         sender: sender,
-                         messageResult: "Failure",
-                         uniqueIndex : recipient + '^' + sender + '^' + localTime});
-               continue;
-               //return;
+               //try to send the message!
+               try {
+                  await page.click('.composeMessage__sendButton');
+                  await console.log('**Message sent to ' + recipientProfileUrl);
+               } catch(error) {
+                  await console.log('ERROR! could not send message to ' + recipientProfileUrl);
+                             
+                        sendMessageResult.push({recipientProfileUrl : recipientProfileUrl,
+                          recipient: recipient,
+                            message: messageWithName,
+                            senderProfileUrl: senderProfileUrl,
+                            sender: sender,
+                            messageResult: "Failure",
+                            uniqueIndex : recipient + '^' + sender + '^' + localTime});
+                  continue;
+                  //return;
+               }
+            
             }
             
             //await page.waitFor(randomWaitLong);          

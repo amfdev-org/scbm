@@ -43,7 +43,7 @@ export default function sentMessagesSearchReducer(state, action) {
       
       
     case SENT_MESSAGES_SEARCH_RESULT:
-        console.log("sc myMessagesSearch result - reducer");
+        //console.log("sc myMessagesSearch result - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
         ...state,

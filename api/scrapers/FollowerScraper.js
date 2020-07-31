@@ -13,7 +13,7 @@ const connection = require('./connection')
     await browser.close();
     });
     */
-
+require('log-timestamp');
 const util = require('util');
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;

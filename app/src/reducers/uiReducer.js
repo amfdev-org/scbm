@@ -69,6 +69,34 @@ export default function uiReducer(state, action) {
         infoAlertText: action.text  
       };
       
+      case "CONFIG_MODAL_SHOW":
+        console.log("reducer CONFIG_MODAL_SHOW")
+         return {
+        ...state,
+        showConfigModal: true 
+      };
+      
+      case "CONFIG_MODAL_HIDE":
+         return {
+        ...state,
+        showConfigModal: false 
+      };
+      
+      case "TEST_MODE_DISABLE":
+        console.log("TEST_MODE_DISABLE")
+         return {
+        ...state,
+        isTestMode: false 
+      };
+      
+         case "TEST_MODE_ENABLE":
+        console.log("TEST_MODE_ENABLE")
+         return {
+        ...state,
+        isTestMode: true 
+      };
+      
+      
     default:
       // ALWAYS have a default case in a reducer
       return state;

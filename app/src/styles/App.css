@@ -95,6 +95,7 @@
 .logged-in-info {
   float: left;
   font-weight: 500;
+  cursor: default;
 }
 
 .main {
@@ -186,4 +187,18 @@ h6 {
 
 .data-refresh-button {
   float: right;
+}
+
+.header-config-link {
+  font-size: xx-large;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+   cursor: pointer;
+}
+
+.below-grid-info {
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

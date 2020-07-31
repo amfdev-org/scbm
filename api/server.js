@@ -23,6 +23,7 @@ const bodyParser = require('body-parser');
 const utils = require('./scrapers/utils')
 const util = require('util');
 
+require('log-timestamp');
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
@@ -893,7 +894,9 @@ app.post('/message/', function(req, res) {
                                   req.body.message,
                                   req.session.user.scUsername,
                                   req.session.user.scProfile,
-                                  req.body.messageType)
+                                  req.body.messageType,
+                                  req.body.isTestMode
+                                  )
               .then(data => {
                 ///console.log(data)
                 resolve(data)
@@ -944,6 +947,12 @@ app.get('/logout', (req, res) => {
             res.send(JSON.stringify({logoutSuccess: true}))
         }
     }
+});
+
+app.get('/download-logs/', function(req, res){
+console.log('download logs')
+  const file = utils.logPath + "/debug.log";
+  res.download(file); // Set disposition and send it.
 });
 
 

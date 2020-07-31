@@ -5,6 +5,10 @@ import Button from 'react-bootstrap/Button'
 //import Spinner from 'react-bootstrap/Spinner'
 //import ReactTooltip from "react-tooltip";
 import { Nav, Navbar } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+library.add(faCog)
 
 class Header extends Component {
     
@@ -31,7 +35,16 @@ class Header extends Component {
                 <Nav className="nav-logged-in-info">
                   <Nav.Link className="logged-in-info" style={showLoggedInInfo}>
                   {this.props.loggedInInfoText}
+                 
                   </Nav.Link>
+                  
+                   <FontAwesomeIcon
+                   className="header-config-link"
+                   icon={faCog}
+                   style={showLoggedInInfo}
+                   onClick={this.props.handleToggleConfigModal}
+                   />
+                   
                   <Nav.Link eventKey="1">
                 <Button
                     className="logged-in-info logout-button"

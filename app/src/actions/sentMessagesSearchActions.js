@@ -96,7 +96,7 @@ export function handleSentMessagesSelectedRowsChange(selectedSentMessages) {
             })
        
         if(getState().selectedSentMessages && getState().selectedSentMessages.length > 0) {
-            console.log('yes selected messages more than 0')
+            //console.log('yes selected messages more than 0')
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
                 type: SENT_MESSAGES_MESSAGE_FORM_SHOW

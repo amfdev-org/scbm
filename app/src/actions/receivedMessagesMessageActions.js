@@ -63,7 +63,8 @@ export function handleReceivedMessagesMessageSubmit(event) {
           messageType: "received",
             selectedProfiles: getState().selectedReceivedMessages,
             message: getState().receivedMessagesMessage,
-            searchUrl: getState().scProfile                     
+            searchUrl: getState().scProfile,
+            isTestMode: getState().isTestMode
         }
         })    
         .then(json => catchReceivedMessagesMessageError(json.data, dispatch))
@@ -129,7 +130,7 @@ function doReceivedMessagesMessageSuccess(json, dispatch, getState) {
                 
                 if(successArray.length > 0) {
                     
-                    dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message received to " + successArray.length + " users." });
+                    dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message sent to " + successArray.length + " users." });
                 
                     dispatch({ type: "SUCCESS_ALERT_SHOW" });
                     

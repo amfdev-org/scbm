@@ -62,7 +62,8 @@ export function handleFollowersMessageSubmit(event) {
             messageType: "sent",
             selectedProfiles: getState().selectedFollowers,
             message: getState().followersMessage,
-            searchUrl: getState().followersSearchUrl                     
+            searchUrl: getState().followersSearchUrl,
+            isTestMode: getState().isTestMode
         }
         })    
         .then(json => catchFollowersMessageError(json.data, dispatch))
@@ -125,7 +126,7 @@ function doFollowersMessageSuccess(json, dispatch, getState) {
                 }
     
                 dispatch(fetchSentMessages());
-                //dispatch(fetchMyFollowers());
+                dispatch(fetchMyFollowers());
                 
                 if(successArray.length > 0) {
                     

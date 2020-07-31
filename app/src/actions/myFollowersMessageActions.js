@@ -4,10 +4,6 @@
 import axios from 'axios';
 
 import {
-  fetchMyFollowers
-  } from '../actions/myFollowersSearchActions'
-    
-import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
@@ -62,7 +58,8 @@ export function handleMyFollowersMessageSubmit(event) {
             messageType: "sent",
             selectedProfiles: getState().selectedMyFollowers,
             message: getState().myFollowersMessage,
-            searchUrl: getState().scProfile                     
+            searchUrl: getState().scProfile,
+            isTestMode: getState().isTestMode
         }
         })    
         .then(json => catchMyFollowersMessageError(json.data, dispatch))

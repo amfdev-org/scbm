@@ -23,6 +23,7 @@ class CommentersTable extends Component {
                
         return (
           
+          <>
           <Form className="commentersDataTable">
               <DataTable style={showCommentersTable}
                 columns={columns}
@@ -37,6 +38,9 @@ class CommentersTable extends Component {
               />
                        
           </Form>
+          
+          <span className="below-grid-info"><em>Search may take a while and a limit of 1200 commmenters will be shown.</em></span>
+            </>
         )
     }
 

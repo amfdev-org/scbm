@@ -24,6 +24,7 @@ class SentMessagesTable extends Component {
                
         return (
           
+          <>
           <Form className="messagesDataTable">
               <DataTable style={showSentMessagesTable}
                 columns={columns}
@@ -39,6 +40,9 @@ class SentMessagesTable extends Component {
               />
                        
           </Form>
+          
+          <span className="below-grid-info"><em>Only messages sent with SCBM will be shown here.</em></span>
+            </>
         )
     }
 
