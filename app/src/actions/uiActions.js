@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+import {
+  fetchSentMessages
+  } from '../actions/sentMessagesSearchActions'
+  
 export function handleAlertChange(alertType, alertAction) {
     //console.log(alertType+'_ALERT_'+alertAction);
     return (dispatch, getState) => {
@@ -9,7 +13,7 @@ export function handleAlertChange(alertType, alertAction) {
 }
 
 export function handleToggleConfigModal() {
-    console.log('handleToggleConfigModal')
+    //console.log('handleToggleConfigModal')
     return (dispatch, getState) => {
         dispatch({type: "CONFIG_MODAL_SHOW"})
     }
@@ -24,14 +28,85 @@ export function handleCloseConfigModal() {
     
 }
 
-export function handleTestModeChange(event) {
-
+export function handleTestModeChange(checked) {
+    
     return (dispatch, getState) => {
-        if(event.target.checked) {         
-            dispatch({type: "TEST_MODE_ENABLE"})
+        
+        //console.log('uiActions handleTestModeChange function called');
+        
+        var dispatchType;
+        var alertShowType;
+        var alertHideType;
+        var alertTextType;
+        var alertText;
+        var alertTextHeadingType;
+        var alertTextHeading;
+        
+        //console.log('uiActions handleTestModeChange "checked" variable is: '+checked);
+        if(checked) {         
+            dispatchType = "TEST_MODE_ENABLE"
+            alertShowType = "SUCCESS_ALERT_SHOW";
+            alertHideType = "SUCCESS_ALERT_HIDE";
+            alertTextType = "SUCCESS_ALERT_SET_TEXT";
+            alertTextHeadingType = "";
+            alertTextHeading = "";
+            alertText = "Test Mode enabled."
         } else {
-            dispatch({type: "TEST_MODE_DISABLE"})
+            dispatchType = "TEST_MODE_DISABLE";
+            alertShowType = "INFO_ALERT_SHOW";
+            alertHideType = "INFO_ALERT_HIDE";
+            alertTextType = "INFO_ALERT_SET_TEXT";
+            alertTextHeadingType = "INFO_ALERT_SET_TEXT_HEADING";
+            alertTextHeading = "Warning!";
+            alertText = "Test Mode disabled! Messages will now be sent - please be responsible."
+            
         }
+        
+        //console.log('uiActions handleTestModeChange {isTestMode: checked.toString()}:');
+        //console.log({isTestMode: checked.toString()})
+        
+        axios({
+        method: 'post',
+        url: 'https://scbm.amfdev.co.uk/api/user/',
+        headers: { "X-Request-App": "scbm" }, 
+        data: {
+            userSettings: {isTestMode: checked.toString()}
+        }
+        })    
+        .then(json => {
+                //console.log('uiActions handleTestModeChange json result: ');
+                //console.log(json);
+                
+                dispatch({type: alertTextType, text: alertText});
+                dispatch({type: alertTextHeadingType, textHeading: alertTextHeading});
+                dispatch({type: alertShowType});
+                
+                dispatch({type: dispatchType})
+                
+                window.setTimeout(()=>{ 
+                dispatch({ type: alertHideType });
+                },4000);
+                
+                dispatch(fetchSentMessages());
+                                           
+        })
+        .catch(error => {
+                //console.log('uiActions handleTestModeChange error: ');
+                //console.log(error);
+                if (error.response) {
+                        dispatch({type: alertTextType, text: alertText});
+                        dispatch({type: alertShowType});
+                        
+                        
+                        window.setTimeout(()=>{ 
+                        dispatch({ type: alertHideType });
+                        },4000);
+                }
+                
+        
+        });
+        
+        
     }
 }
 

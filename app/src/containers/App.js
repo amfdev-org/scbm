@@ -90,7 +90,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
-
+import ReactTooltip from "react-tooltip";
 //COMPONENTS
 //forms
 import Header from '../components/header';
@@ -129,9 +129,10 @@ class App extends Component {
   }
 
     handleRefresh = (event) => {
-
+     
         event.stopPropagation();
         event.nativeEvent.stopImmediatePropagation();
+        ReactTooltip.hide();
         
         this.props.handleReceivedMessagesRefresh(event)
 
@@ -244,11 +245,13 @@ class App extends Component {
                   
                     <Button
                       className="data-refresh-button"
+                       data-tip="Get latest message threads"
                       name="receivedMessages"
                         type="submit"
                         value="Submit"
                         size="sm"
                         onClick={this.handleRefresh}
+                        disabled={!this.props.enableReceivedMessagesRefresh}
                         >
                         Refresh
                     </Button>
@@ -571,6 +574,7 @@ function mapStateToProps(state) {
       showReceivedMessagesSubmitLoadingButton: state.showReceivedMessagesSubmitLoadingButton,
       selectedReceivedMessages: state.selectedReceivedMessages,   
       showReceivedMessagesLoadingIcon: state.showReceivedMessagesLoadingIcon,
+      enableReceivedMessagesRefresh: state.enableReceivedMessagesRefresh,
       
       //received messages message
       receivedMessagesMessage: state.receivedMessagesMessage,

@@ -49,7 +49,8 @@ export default function authReducer(state, action) {
       };
       
       case AUTH_SUCCESS:
-
+      //console.log("authReducer AUTH_SUCCESS - action.userSettings.isTestMode: "+action.userSettings.isTestMode)
+      //console.log("authReducer AUTH_SUCCESS - action.userSettings.isTestMode === 'true': "+action.userSettings.isTestMode === "true")
       return {
         ...state,
         errorAlertText: null,
@@ -62,7 +63,8 @@ export default function authReducer(state, action) {
         //showCommentersSearchSubmitButton: true,
         //enableCommentersSearchSubmitButton: false, 
         //enableCommentersSearchInput: true,
-        scProfile: action.userData.scProfile
+        scProfile: action.userData.scProfile,
+        isTestMode: action.userSettings.isTestMode === "true"
                     
       };
       

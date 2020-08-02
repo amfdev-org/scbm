@@ -14,7 +14,7 @@ export function fetchSentMessages() {
 
     return (dispatch, getState) => {
 
-    //console.log('fetch sent messages');
+      //console.log('fetch sent messages');
     
         //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
         

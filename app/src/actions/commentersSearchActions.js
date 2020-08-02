@@ -73,8 +73,8 @@ export function handleCommentersSearchSubmit(event) {
 //res.send({success: false, commenterData: "no commenters"})
 
 function catchCommentersSearchNoResults(json, dispatch) {
-    console.log('catchCommentersSearchNoResults')
-    console.log(json);
+    //console.log('catchCommentersSearchNoResults')
+    //console.log(json);
     if (json.noResults) {
         dispatch({
                 type: COMMENTERS_SEARCH_NO_RESULTS
@@ -94,7 +94,7 @@ function catchCommentersSearchNoResults(json, dispatch) {
 
 
 function catchCommentersSearchOtherError(json, dispatch) {
-    console.log('catchCommentersSearchOtherError')
+    //console.log('catchCommentersSearchOtherError')
     if (!json.success) {
         dispatch({
                 type: COMMENTERS_SEARCH_OTHER_ERROR
@@ -107,7 +107,7 @@ function catchCommentersSearchOtherError(json, dispatch) {
 
 
 function doCommentersSearchSuccess(json, dispatch) {
-    console.log('doCommentersSearchSuccess')
+    //console.log('doCommentersSearchSuccess')
  
         dispatch({
                 type: COMMENTERS_SEARCH_SUCCESS,
@@ -126,7 +126,7 @@ function doCommentersSearchSuccess(json, dispatch) {
 
 export function handleCommentersSelectedRowsChange(selectedCommenters) {
     
-    console.log(selectedCommenters);
+    //console.log(selectedCommenters);
     
     return (dispatch, getState) => {
   

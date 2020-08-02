@@ -47,7 +47,7 @@ class SentMessagesTable extends Component {
           </Form>
           
             <span className="below-grid-info">  <FontAwesomeIcon className="grid-exclamation-icon" icon={faExclamationTriangle}/>
-            <em>Only messages sent with SCBM will be shown here</em>
+            <em>Only messages sent via SCBM will be shown.</em>
             </span>
             </>
         )

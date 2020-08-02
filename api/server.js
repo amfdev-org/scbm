@@ -30,8 +30,8 @@ const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'
 const log_stdout = process.stdout;
 
 console.log = function(d) { //
-  log_file.write(timestamp + ' ' + util.format(d) + '\n');
-  log_stdout.write(timestamp + ' ' + util.format(d) + '\n');
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
 };
 
 const CommenterScraper = require('./scrapers/CommenterScraper')
@@ -69,18 +69,19 @@ app.use(session({
 app.get('/auth/', (req, res) => {
     
     console.log('GET /auth/');
-    //console.log(req.headers);
+    //console.log(req.session);
     
     let validateHeaders = () => {
         
         return new Promise((resolve, reject) => {
-            
+                            
              if (req.headers['x-request-app'] !== 'scbm') {
-                   console.log('forbidden')
+                   console.log('ERROR! x-request-app header not validated')
                     reject('forbidden')
                     res.sendStatus(403)  
                 
             } else {
+                console.log('x-request-app header validated')
                 resolve()
             }
             
@@ -99,7 +100,13 @@ app.get('/auth/', (req, res) => {
                 console.log('not authd - req.sesssion.user && req.cookies.scbm_sid are invalid')
              
                 //res.send(JSON.stringify({authResult: false}));
-                res.send(JSON.stringify({authSuccess: false, sessionValid: false, scCookiesValid: null, authError: "session invalid", userData: null}));
+                res.send(JSON.stringify({
+                    authSuccess: false,
+                    sessionValid: false,
+                    scCookiesValid: null,
+                    authError: "session invalid",
+                    userData: null
+                    }));
                 reject('session invalid')
             }
         
@@ -130,13 +137,45 @@ app.get('/auth/', (req, res) => {
                        
     }
     
+    let retrieveUser = () => {
+            
+            return new Promise((resolve, reject) => {
+                
+                UserModel.findOne({ where: { scUsername: req.session.user.scUsername } })
+                    .then(function (user) {
+                        
+                    if (!user) {
+                        
+                            console.log('user not found')
+                            //res.send({ loginSuccess: false, userFound: false, scCookiesValid: null, loginError: "user not valid", userData: null });
+                            reject('user not found')
+                        
+                        } else {
+                            console.log('user found')
+                            resolve(user.dataValues)
+                        }
+                    }).catch(error => {
+                       console.log(error)
+                       reject(error)
+                    });
+                
+            });
+        
+    }
         
     // run the promises!
     validateHeaders()
         .then(data => validateSession())
         .then(data => validateScCookies())
+        .then(data => retrieveUser())
         .then(data => {
-            res.send(JSON.stringify({authSuccess: true, sessionValid: true, scCookiesValid: true, authError: null, userData: req.session.user}));
+            res.send(JSON.stringify({
+                authSuccess: true,
+                sessionValid: true,
+                scCookiesValid: true,
+                authError: null,
+                userData: data
+                }));
         })
         .catch(error => {
                  
@@ -160,12 +199,12 @@ app.post('/signup/', (req, res) => {
         return new Promise((resolve, reject) => {
             
             if (req.headers['origin'] !== 'https://scbm.amfdev.co.uk') {
-                    console.log('forbidden')
+                   console.log('ERROR! origin is not https://scbm.amfdev.co.uk')
                     reject('forbidden')
                     res.sendStatus(403)
         
             } else if (req.headers['x-request-app'] !== 'scbm') {
-                   console.log('forbidden')
+                   console.log('ERROR! x-request-app header not validated')
                     reject('forbidden')
                     res.sendStatus(403)  
                 
@@ -272,7 +311,8 @@ app.post('/signup/', (req, res) => {
                 scUsername: req.body.scUsername,
                 scPassword: req.body.scPassword,
                 scCookies: data.scCookies,
-                scProfile: data.scProfile
+                scProfile: data.scProfile,
+                userSettings: JSON.stringify({"isTestMode":"true"})
             }).then(user => {
                 req.session.user = user.dataValues;
                 //console.log(user.dataValues);
@@ -555,7 +595,7 @@ app.get('/followers/', function(req, res) {
             if (data.isMyFollowersSearch) {
                 var cutoff = 'NOW() - INTERVAL 12 HOUR';
             } else {
-                var cutoff = 'NOW() - INTERVAL 1 WEEK';
+                var cutoff = 'NOW() - INTERVAL 1 MONTH';
             }
             
             FollowerModel.Follower.findAll({
@@ -646,7 +686,7 @@ app.get('/followers/', function(req, res) {
 
 app.get('/sent-messages/', function(req, res) {
     
-    //console.log('GET /sent-message/');
+    console.log('GET /sent-message/');
     
     if (!req.session.user) {
         console.log('no session')
@@ -656,11 +696,21 @@ app.get('/sent-messages/', function(req, res) {
     let checkForLoggedMessages = (data) => {
         
         return new Promise((resolve, reject) => {
-            //console.log("checkForLoggedMessages")
+            
+            let userSettings = JSON.parse(req.session.user.userSettings);
+      
+            var messageStatus;
+            if (userSettings.isTestMode === "true") {
+                console.log('GET sent-messages - test mode');
+                var messageStatus = "Success - Test";
+            } else {
+                var messageStatus = "Success";
+            }
+            
             MessageModel.Message.findAll({
                 where: {
                       sender: req.session.user.scUsername,
-                      messageResult: "Success"
+                      messageResult: messageStatus
                     },
                     order: [
                     ['createdAt', 'DESC']
@@ -936,6 +986,102 @@ app.post('/message/', function(req, res) {
     
 })
 
+app.post('/user/', (req, res) => {
+
+    console.log('POST /user/');
+    console.log(req.headers);
+    console.log('POST /user/ req.body.userSettings:');
+    console.log(req.body.userSettings);
+    
+    let validateHeaders = () => {
+        
+        return new Promise((resolve, reject) => {
+            
+            if (req.headers['origin'] !== 'https://scbm.amfdev.co.uk') {
+                   console.log('ERROR! origin is not https://scbm.amfdev.co.uk')
+                    reject('forbidden')
+                    res.sendStatus(403)
+        
+            } else if (req.headers['x-request-app'] !== 'scbm') {
+                   console.log('ERROR! x-request-app header not validated')
+                    reject('forbidden')
+                    res.sendStatus(403)  
+                
+            } else {
+                console.log('origin and x-request-app header are validated');
+                resolve()
+            }
+            
+        })
+    
+     }
+     
+    let validateSession = () => {
+        
+        return new Promise((resolve, reject) => {
+            
+            if (req.session.user && req.cookies.scbm_sid) {
+                console.log('authd - req.sesssion.user && req.cookies.scbm_sid are valid')
+                resolve()
+            } else {
+                console.log('not authd - req.sesssion.user && req.cookies.scbm_sid are invalid')
+             
+                //res.send(JSON.stringify({authResult: false}));
+                res.send({userUpdateSuccess: false})
+                reject('session invalid')
+            }
+        
+        });
+                       
+    }
+    
+         
+    let updateUser = () => {
+       
+       console.log('POST /user/ updateUser function called');
+       return new Promise((resolve, reject) => {
+            console.log('POST /user/ updateUser promise opened, querying users with req.session.user.scUsername');
+           UserModel.findOne({ where: { scUsername: req.session.user.scUsername } })
+               .then(function (user) {
+                   
+               if (user) {
+                     console.log('POST /user/ updateUser - query result - user '+ req.session.user.scUsername+' found');
+                    user.update({
+                        userSettings: JSON.stringify(req.body.userSettings)
+                    })
+                    .then(function() {
+                           console.log('POST /user/ updateUser user settings updated: '+JSON.stringify(req.body.userSettings))
+                           req.session.user = user.dataValues;
+                           res.send({ userUpdateSuccess: true });
+                    })
+                    
+               } else {
+                 console.log('ERROR! POST /user/ updateUser - query result - user '+ req.session.user.scUsername+' not found!');
+                   
+               }
+               
+            }).catch(error => {
+               console.log(error)
+               console.log('ERROR! user settings not updated')
+               res.send({userUpdateSuccess: false})
+            });
+           
+       });
+    
+    }
+    
+        // run the promises!
+        validateHeaders()
+        .then(data => validateSession())
+        .then(data => updateUser())
+        .catch(e => {
+          console.log(e);
+          //res.send({userUpdateSuccess: false})
+        })
+    
+    
+    
+});
 
 app.get('/logout', (req, res) => {
     console.log('logout')
@@ -952,9 +1098,15 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/download-logs/', function(req, res){
-console.log('download logs')
-  const file = utils.logPath + "/debug.log";
-  res.download(file); // Set disposition and send it.
+    if (req.session.user) {
+        console.log('download logs')
+        const file = utils.logPath + "/debug.log";
+        res.download(file); // Set disposition and send it.
+    } else {
+        console.log('forbidden')
+        reject('forbidden')
+        res.sendStatus(403) 
+    }
 });
 
 

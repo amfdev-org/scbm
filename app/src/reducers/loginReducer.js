@@ -99,7 +99,8 @@ export default function loginReducer(state, action) {
             //showCommentersSearchSubmitButton: true,
             //enableCommentersSearchSubmitButton: true, 
             //enableCommentersSearchInput: true,
-            scProfile: action.userData.scProfile
+            scProfile: action.userData.scProfile,
+            isTestMode: action.userSettings.isTestMode === "true"
             
       };
     

@@ -134,6 +134,7 @@ export default function signupReducer(state, action) {
          //console.log("sc signup success - reducer");
       return {
         ...state,
+        errorAlertLinkText: '',
         showSignupForm: false,
         showLogoutSubmitButton: true,
         showLoggedInInfo: true,
@@ -144,7 +145,8 @@ export default function signupReducer(state, action) {
         showCommentersSearchSubmitButton: true,
         enableCommentersSearchSubmitButton: true, 
         enableCommentersSearchInput: true,
-        scProfile: action.userData.scProfile
+        scProfile: action.userData.scProfile,
+        isTestMode: action.userSettings.isTestMode === "true"
 
         //successAlertText: "You're now logged in!"
       };

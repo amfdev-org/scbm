@@ -4,7 +4,8 @@ import {
     RECEIVED_MESSAGES_SEARCH_RESULT,
     RECEIVED_MESSAGES_SELECTED_ROWS_CHANGE,
     RECEIVED_MESSAGES_SEARCH_UNKNOWN_ERROR,
-    RECEIVED_MESSAGES_SEARCH_REFRESH
+    RECEIVED_MESSAGES_SEARCH_REFRESH,
+    RECEIVED_MESSAGES_SEARCH_SUBMITTED
 
 } from '../actions/receivedMessagesSearchActions';
 
@@ -13,7 +14,13 @@ export default function receivedMessagesSearchReducer(state, action) {
   
   switch(action.type) {
 
-    
+    case RECEIVED_MESSAGES_SEARCH_SUBMITTED:
+      return {
+        ...state,
+            enableReceivedMessagesRefresh: false
+        
+      };
+      
     case RECEIVED_MESSAGES_SEARCH_NO_RESULTS:
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
@@ -26,7 +33,8 @@ export default function receivedMessagesSearchReducer(state, action) {
         showErrorAlert: true,
         showReceivedMessagesTable: true,
         successAlertText: "But it looks like you have no messages.",
-        showReceivedMessagesLoadingIcon: false
+        showReceivedMessagesLoadingIcon: false,
+        enableReceivedMessagesRefresh: true
         
       };
       
@@ -39,7 +47,8 @@ export default function receivedMessagesSearchReducer(state, action) {
         errorAlertText: "Something went wrong. Please try again, or contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
-        showReceivedMessagesLoadingIcon: false
+        showReceivedMessagesLoadingIcon: false,
+        enableReceivedMessagesRefresh: true
       };
       
       
@@ -53,7 +62,8 @@ export default function receivedMessagesSearchReducer(state, action) {
         receivedMessageData: action.receivedMessageData,
         showReceivedMessagesTable: true,
         //successAlertText: "Messages sucessfully loaded.",
-        showReceivedMessagesLoadingIcon: false
+        showReceivedMessagesLoadingIcon: false,
+        enableReceivedMessagesRefresh: true
     
       };
       
@@ -63,7 +73,8 @@ export default function receivedMessagesSearchReducer(state, action) {
         ...state,
           showErrorAlert: true,
           errorAlertText: "Something went wrong. Please contact support.",
-          showReceivedMessagesLoadingIcon: false
+          showReceivedMessagesLoadingIcon: false,
+          enableReceivedMessagesRefresh: true
               
       };
       

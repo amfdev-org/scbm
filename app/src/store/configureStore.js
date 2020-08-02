@@ -4,7 +4,7 @@ import rootReducer from '../reducers/rootReducer';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const initialState = {
         //main UI
-        isTestMode: true,
+        isTestMode: false,
         showMainAccordion: false,
         showConfigModal: false,
         //signup
@@ -126,6 +126,7 @@ export const initialState = {
         enableReceivedMessagesMessageSubmitButton: false,
         showReceivedMessagesMessageSubmitButton: true,
         showReceivedMessagesMessageSubmitLoadingButton: false,
+        enableReceivedMessagesRefresh: true
 
 
 };

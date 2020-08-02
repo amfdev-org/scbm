@@ -30,6 +30,10 @@ const User = sequelize.define('users', {
     scProfile: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    userSettings: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     hooks: {

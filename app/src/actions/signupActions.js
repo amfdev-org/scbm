@@ -157,7 +157,8 @@ function doSignupSuccess(json, dispatch) {
     //console.log('doSignupSuccess')
         dispatch({
                 type: SIGNUP_SUCCESS,
-                userData: json.userData
+                userData: json.userData,
+                userSettings: JSON.parse(json.userData.userSettings)
               })
   return json;
 }

@@ -72,14 +72,14 @@ function catchAuthCookieError(json, dispatch) {
 
 
 function doAuthSuccess(json, dispatch) {
-   //console.log('authSuccess')
+  //console.log("authActions doAuthSuccess - JSON.parse(json.userData.userSettings): ")
+  //console.log(JSON.parse(json.userData.userSettings))
     if (json.authSuccess) {
         dispatch({
           type: AUTH_SUCCESS,
-          userData: json.userData
+          userData: json.userData,
+          userSettings: JSON.parse(json.userData.userSettings)
         })
-        
-        fetchMyFollowers()
             
     }
     

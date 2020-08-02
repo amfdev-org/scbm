@@ -21,7 +21,7 @@ class FollowersTable extends Component {
 
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', wrap: true, sortable: true },
-            { name: 'Profile URL', selector: 'profileUrl', wrap: true, sortable: true, hide: "sm" },
+            { name: 'Profile URL', selector: 'profileUrl', format: row => <a target="_blank" href={row.profileUrl}>{row.profileUrl}</a>, wrap: true, sortable: true, hide: "sm" },
             { name: 'Messaged', selector: 'messaged', wrap: true, sortable: true }
             ];
                
@@ -45,7 +45,7 @@ class FollowersTable extends Component {
 
             <span className="below-grid-info">
             <FontAwesomeIcon className="grid-exclamation-icon" icon={faExclamationTriangle}/>
-            <em>Search may take a while and a limit of 1200 followers will be shown</em>
+            <em>Search may take a while. Max. 1200 results.</em>
             </span>
             
             </>

@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux';
-import Form from 'react-bootstrap/Form'
+//import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-
+import Switch from "react-switch";
 
 class ConfigModal extends Component {
     
+    constructor() {
+        super();
+    
+        this.handleChange = this.handleChange.bind(this);
+    }
+      
     handleDownloadLogs = (event) => {
 
         event.preventDefault();
@@ -17,31 +23,37 @@ class ConfigModal extends Component {
 
     }
     
+    handleChange(checked) {
+        //console.log('configmodal handlechange "checked" variable is: '+checked);
+        this.props.handleTestModeChange(checked);
+    }
+    
     
     render() {
                      
         return (
-                               
+         <>                      
         <Modal show={this.props.showConfigModal} onHide={this.props.handleCloseConfigModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Options</Modal.Title>
+            <Modal.Title>Settings</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form.Group controlId="formBasicCheckbox">
-            <Form.Check
-            type="checkbox"
-            label="Test Mode (do not actually send messages)"
-            defaultChecked={this.props.isTestMode}
-            onChange={ e => this.props.handleTestModeChange(e) }
-            />
-          </Form.Group>
+ 
           
-            <a href="!#"
+            <h6>Test Mode (do not actually send messages)</h6>
+            <Switch onChange={this.handleChange} checked={this.props.isTestMode} />
+
+      
+            <br/> <br/>
+            <h6>Download Server Logs</h6>
+            <Button variant="secondary"
+            size="sm"
+            type="submit"
               value="download-logs"
               onClick={ this.handleDownloadLogs }
               >
-              Download Server Logs
-            </a>
+              Go
+            </Button>
                   
           </Modal.Body>
           <Modal.Footer>
@@ -51,7 +63,7 @@ class ConfigModal extends Component {
           </Modal.Footer>
         </Modal>
 
-            
+            </>
         );
     }
 

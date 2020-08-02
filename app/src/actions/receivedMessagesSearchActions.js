@@ -16,6 +16,8 @@ export function fetchReceivedMessages(forceRefresh = false) {
 
     //console.log('fetch received messages');
     
+        dispatch({type: RECEIVED_MESSAGES_SEARCH_SUBMITTED});
+            
         //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
         
         axios.get('https://scbm.amfdev.co.uk/api/received-messages/', {params: {forceRefresh: forceRefresh}})

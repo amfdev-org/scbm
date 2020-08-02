@@ -6,16 +6,12 @@ const connection = require('./connection')
 //const randomUseragent = require('random-useragent');
 const moment = require('moment')
 
-const util = require('util');
-const offset = new Date().getTimezoneOffset();
-const timestamp = moment().subtract(offset, "minutes").toISOString();
-
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
 console.log = function(d) { //
-  log_file.write(timestamp + ' ' + util.format(d) + '\n');
-  log_stdout.write(timestamp + ' ' + util.format(d) + '\n');
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
 };
 
 
@@ -77,7 +73,17 @@ console.log = function(d) { //
             let messageWithName = message.replace("<<profileName>>", recipient);
             await console.log("**iterating array: profile " + recipientProfileUrl);
          
-         
+            var successText;
+            var failureText;
+            
+            if (isTestMode) {
+               var successText = "Success - Test";
+               var failureText = "Error - Test";
+            } else {
+               var successText = "Success";
+               var failureText = "Error";
+            }
+            
             //try to load the profile page
             try {
                await page.goto(recipientProfileUrl, {waitUntil: 'networkidle0'});
@@ -90,7 +96,7 @@ console.log = function(d) { //
                                                 message: messageWithName,
                                                 sender: sender,
                                                 senderProfileUrl: senderProfileUrl,
-                                                messageResult: "Failure",
+                                                messageResult: failureText,
                                                 uniqueIndex : recipient + '^' + sender + '^' + localTime});
                continue;
                //return Promise.reject(new Error('ERROR! could not navigate to url ' + profileUrl));
@@ -117,7 +123,7 @@ console.log = function(d) { //
                                                 message: messageWithName,
                                                 sender: sender,
                                                 senderProfileUrl: senderProfileUrl,
-                                                messageResult: "Failure",
+                                                messageResult: failureText,
                                                 uniqueIndex : recipient + '^' + sender + '^' + localTime});
                   
                   continue;
@@ -137,7 +143,7 @@ console.log = function(d) { //
                                                 message: messageWithName,
                                                 senderProfileUrl: senderProfileUrl,
                                                 sender: sender,
-                                                messageResult: "Failure",
+                                                messageResult: failureText,
                                                 uniqueIndex : recipient + '^' + sender + '^' + localTime});
                continue;
                //return;
@@ -185,7 +191,7 @@ console.log = function(d) { //
                                                 message: messageWithName,
                                                 senderProfileUrl: senderProfileUrl,
                                                 sender: sender,
-                                                messageResult: "Failure",
+                                                messageResult: failureText,
                                                 uniqueIndex : recipient + '^' + sender + '^' + localTime});
                continue;
             }
@@ -207,7 +213,7 @@ console.log = function(d) { //
                                                 message: messageWithName,
                                                 senderProfileUrl: senderProfileUrl,
                                                 sender: sender,
-                                                messageResult: "Failure",
+                                                messageResult: failureText,
                                                 uniqueIndex : recipient + '^' + sender + '^' + localTime});
                continue;
                //return;
@@ -243,7 +249,7 @@ console.log = function(d) { //
                             message: messageWithName,
                             senderProfileUrl: senderProfileUrl,
                             sender: sender,
-                            messageResult: "Failure",
+                            messageResult: failureText,
                             uniqueIndex : recipient + '^' + sender + '^' + localTime});
                   continue;
                   //return;
@@ -267,7 +273,7 @@ console.log = function(d) { //
                                       message: messageWithName,
                                       senderProfileUrl: senderProfileUrl,
                                       sender: sender,
-                                      messageResult: "Success",
+                                      messageResult: successText,
                                       uniqueIndex : recipient + '^' + sender + '^' + localTime});
             
          

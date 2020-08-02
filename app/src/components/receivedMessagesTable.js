@@ -21,7 +21,7 @@ class ReceivedMessagesTable extends Component {
         const columns =  [
             { name: 'Who With', selector: 'sender', sortable: true, wrap: true },
             { name: 'Date', selector: 'scMessageTime', sortable: true, wrap: true, format: row => moment(row.scMessageTime).format('LLL')},
-            { name: 'Message', selector: 'message', sortable: true, wrap: true }
+            { name: 'Last Message', selector: 'message', sortable: true, wrap: true }
             ];
                
         return (

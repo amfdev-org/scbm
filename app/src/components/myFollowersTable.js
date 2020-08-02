@@ -19,9 +19,11 @@ class MyFollowersTable extends Component {
         
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', wrap: true, sortable: true },
-            { name: 'Profile URL', selector: 'profileUrl', wrap: true, sortable: true, hide: "sm" },
+            { name: 'Profile URL', selector: 'profileUrl', wrap: true, format: row => <a target="_blank" href={row.profileUrl}>{row.profileUrl}</a>, sortable: true, hide: "sm" },
             { name: 'Messaged', selector: 'messaged', wrap: true, sortable: true }
             ];
+        
+        
       
           
       return (

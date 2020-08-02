@@ -20,10 +20,10 @@ export default function sentMessagesSearchReducer(state, action) {
         ...state,
         errorAlertText: '',
         errorAlertLinkText: '',
-        showInfoAlert: false,
+        //showInfoAlert: false,
         showSuccessAlert: true,
         showErrorAlert: true,
-        showSentMessagesTable: true,
+        showSentMessagesTable: false,
         successAlertText: "But it looks like you have no messages.",
         showSentMessagesLoadingIcon: false
         
@@ -33,7 +33,7 @@ export default function sentMessagesSearchReducer(state, action) {
          //console.log("sc cookie error - reducer");
       return {
         ...state,
-        showInfoAlert: false,
+        //showInfoAlert: false,
         showLoginForm: false,
         errorAlertText: "Something went wrong. Please try again, or contact support.",
         errorAlertLinkText: '',
@@ -47,7 +47,7 @@ export default function sentMessagesSearchReducer(state, action) {
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
         ...state,
-        showInfoAlert: false,
+        //showInfoAlert: false,
         showErrorAlert: false,
         sentMessageData: action.sentMessageData,
         showSentMessagesTable: true,

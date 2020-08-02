@@ -5,18 +5,13 @@ const utils = require('./utils');
 const connection = require('./connection')
 //const ProxyChain = require('proxy-chain');
 //const randomUseragent = require('random-useragent');
-const moment = require('moment')
-
-const util = require('util');
-const offset = new Date().getTimezoneOffset();
-const timestamp = moment().subtract(offset, "minutes").toISOString();
 
 const log_file = fs_.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
 console.log = function(d) { //
-  log_file.write(timestamp + ' ' + util.format(d) + '\n');
-  log_stdout.write(timestamp + ' ' + util.format(d) + '\n');
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
 };
 
    const login = async (url, scUsername, scPassword, sanitizedUsername) => {

@@ -2,7 +2,6 @@ const fs = require('fs');
 
 const utils = require('./utils');    
 const connection = require('./connection')
-const moment = require('moment')
     /*puppeteer.launch({args: ['--no-sandbox']}).then(async browser => {
     const page = await browser.newPage();
     await page.goto('https://www.soundcloud.com');
@@ -14,15 +13,12 @@ const moment = require('moment')
     });
     */
 
-const offset = new Date().getTimezoneOffset();
-const timestamp = moment().subtract(offset, "minutes").toISOString();
-
 const log_file = fs.createWriteStream(utils.logPath + '/debug.log', {flags : 'a'});
 const log_stdout = process.stdout;
 
 console.log = function(d) { //
-  log_file.write(timestamp + ' ' + util.format(d) + '\n');
-  log_stdout.write(timestamp + ' ' + util.format(d) + '\n');
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
 };
 
     const scrapeFollowers = async (searchUrl, scCookies) => {

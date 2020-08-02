@@ -96,15 +96,28 @@
   float: left;
   font-weight: 500;
   cursor: default;
+  pointer-events: none;
+  color: white!important;
 }
 
 .main {
   /*margin-top:0px;*/
 }
 
-.logout-button {
-  margin-left:10px;
-  margin-top:-5px;
+@media screen and (min-width: 800px) {
+  .logout-button {
+    margin-left:10px;
+    margin-top:-5px;
+  }
+  
+}
+
+@media screen and (max-width: 799px) {
+   .logout-button {
+    margin-left:0px;
+    margin-top:5px;
+    margin-bottom: -5px;
+  }
 }
 
 .rdt_TableHeader {
@@ -171,10 +184,6 @@ h6 {
   font-size: small;
 }
 
-.logged-in-info {
-  color: white!important;
-}
-
 .navbar-brand {
   font-weight: 500;
   font-size: xx-large;
@@ -192,13 +201,39 @@ h6 {
 .header-config-link {
   font-size: xx-large;
   color: white;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 8px;
+  margin-right: 8px;
    cursor: pointer;
 }
 
-.below-grid-info {
-  float: left;
-  margin-top: 20px;
-  margin-bottom: 20px;
+@media screen and (max-width: 799px) {
+    .below-grid-info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: small;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+    .below-grid-info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+.grid-exclamation-icon {
+  margin-right: 5px;
+}
+
+.logo {
+  pointer-events: none;
+  cursor: default;
 }
