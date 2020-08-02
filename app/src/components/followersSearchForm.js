@@ -32,7 +32,7 @@ class FollowersSearchForm extends Component {
           <Form inline onSubmit={this.handleSubmit}>
             <Form.Group>
                 <Form.Control
-                    data-tip="Must include http or https. WILL FIND UP TO 1500 FOLLOWERS."
+                    data-tip="Must include http or https"
                     type="text"
                     name="searchUrl"
                     value={this.props.followersSearchUrl}
