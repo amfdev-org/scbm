@@ -14,6 +14,14 @@ import {
 import {
   fetchReceivedMessages
   } from '../actions/receivedMessagesSearchActions'
+
+import {
+  fetchRecentCommentersSearches
+  } from '../actions/commentersSearchActions'
+
+import {
+  fetchRecentFollowersSearches
+  } from '../actions/followersSearchActions'
   
   
 export const LOGIN_HTTP_ERROR = 'LOGIN_HTTP_ERROR'
@@ -85,6 +93,8 @@ export function handleLoginSubmit(event) {
             .then(json => dispatch(fetchReceivedMessages()))
             .then(json => dispatch(fetchSentMessages()))
             .then(json => dispatch(fetchMyFollowers()))
+            .then(json => dispatch(fetchRecentCommentersSearches()))
+            .then(json => dispatch(fetchRecentFollowersSearches()))
              .catch(error => {
 
                 if (error.response) {   

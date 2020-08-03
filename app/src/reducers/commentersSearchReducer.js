@@ -7,8 +7,10 @@ import {
     COMMENTERS_SEARCH_OTHER_ERROR,
     COMMENTERS_SEARCH_SUCCESS,
     COMMENTERS_SELECTED_ROWS_CHANGE,
-    COMMENTERS_SEARCH_UNKNOWN_ERROR
-
+    COMMENTERS_SEARCH_UNKNOWN_ERROR,
+    //COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR,
+    COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT
+    
 } from '../actions/commentersSearchActions';
 
 
@@ -70,7 +72,7 @@ export default function commentersSearchReducer(state, action) {
         ...state,
         showInfoAlert: false,
         showLoginForm: false,
-        errorAlertText: "Something went wrong. Please try again, or contact support.",
+        errorAlertText: "Something went wrong. Please check the search term and try again, or contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
         enableCommentersSearchInput : true,
@@ -118,6 +120,19 @@ export default function commentersSearchReducer(state, action) {
         selectedCommenters: action.selectedCommenters
     
       };
+    
+    case COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT:
+         //console.log("COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT - reducer");
+         //console.log(action.data)
+         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
+      return {
+        ...state,
+        recentCommentersSearches: action.data,
+        showCommentersRecentSearchContainer: true
+    
+      };
+      
+    
     
     default:
       // ALWAYS have a default case in a reducer

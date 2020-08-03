@@ -23,7 +23,8 @@ import {
 import {
   handleCommentersSearchChange,
   handleCommentersSearchSubmit,
-  handleCommentersSelectedRowsChange
+  handleCommentersSelectedRowsChange,
+  handleCommentersRecentSearchSubmit
   } from '../actions/commentersSearchActions'
  
 import {
@@ -34,7 +35,8 @@ import {
 import {
   handleFollowersSearchChange,
   handleFollowersSearchSubmit,
-  handleFollowersSelectedRowsChange
+  handleFollowersSelectedRowsChange,
+  handleFollowersRecentSearchSubmit
   } from '../actions/followersSearchActions'
   
 import {
@@ -364,7 +366,7 @@ class App extends Component {
                       
                         <CommentersSearchForm
                           className="main"
-                          searchUrl={this.props.commentersSearchUrl}
+                          commentersSearchUrl={this.props.commentersSearchUrl}
                           handleCommentersSearchChange={this.props.handleCommentersSearchChange}
                           handleCommentersSearchSubmit={this.props.handleCommentersSearchSubmit}
                           enableCommentersSearchInput={this.props.enableCommentersSearchInput}
@@ -381,6 +383,9 @@ class App extends Component {
                           showCommentersSubmitLoadingButton={this.props.showCommentersSubmitLoadingButton}
                           selectedCommenters={this.props.selectedCommenters}
                           toggledClearRows={this.props.toggledClearRows}
+                          recentCommentersSearches={this.props.recentCommentersSearches}
+                          handleCommentersRecentSearchSubmit={this.props.handleCommentersRecentSearchSubmit}
+                          showCommentersRecentSearchContainer={this.props.showCommentersRecentSearchContainer}
                           />
                       
                       <h6 style={showCommentersMessageForm} className="messageForm">Message</h6>
@@ -411,7 +416,7 @@ class App extends Component {
                         
                         <FollowersSearchForm
                           className="main"
-                          searchUrl={this.props.followersSearchUrl}
+                          followersSearchUrl={this.props.followersSearchUrl}
                           handleFollowersSearchChange={this.props.handleFollowersSearchChange}
                           handleFollowersSearchSubmit={this.props.handleFollowersSearchSubmit}
                           enableFollowersSearchInput={this.props.enableFollowersSearchInput}
@@ -427,6 +432,9 @@ class App extends Component {
                           showFollowersSubmitLoadingButton={this.props.showFollowersSubmitLoadingButton}
                           selectedFollowers={this.props.selectedFollowers}
                           toggledClearRows={this.props.toggledClearRows}
+                          recentFollowersSearches={this.props.recentFollowersSearches}
+                          handleFollowersRecentSearchSubmit={this.props.handleFollowersRecentSearchSubmit}
+                          showFollowersRecentSearchContainer={this.props.showFollowersRecentSearchContainer}
                           />
                       
                           <h6 style={showFollowersMessageForm} className="messageForm">Message</h6>
@@ -474,6 +482,7 @@ function mapStateToProps(state) {
       loggedInInfoText: state.loggedInInfoText,
       
       //commenters search
+      commentersSearchUrl: state.commentersSearchUrl,
       showCommentersSearchSubmitButton: state.showCommentersSearchSubmitButton,
       enableCommentersSearchSubmitButton: state.enableCommentersSearchSubmitButton,
       showCommentersSearchSubmitLoadingButton: state.showCommentersSearchSubmitLoadingButton,
@@ -520,6 +529,7 @@ function mapStateToProps(state) {
       enableCommentersMessageInput: state.enableCommentersMessageInput,
       
       //followers search
+      followersSearchUrl: state.followersSearchUrl,
       showFollowersSearchSubmitButton: state.showFollowersSearchSubmitButton,
       enableFollowersSearchSubmitButton: state.enableFollowersSearchSubmitButton,
       showFollowersSearchSubmitLoadingButton: state.showFollowersSearchSubmitLoadingButton,
@@ -584,7 +594,11 @@ function mapStateToProps(state) {
       showReceivedMessagesMessageSubmitButton: state.showReceivedMessagesMessageSubmitButton,
       showReceivedMessagesMessageSubmitLoadingButton: state.showReceivedMessagesMessageSubmitLoadingButton,
       showConfigModal: state.showConfigModal,
-      isTestMode: state.isTestMode
+      isTestMode: state.isTestMode,
+      recentCommentersSearches: state.recentCommentersSearches,
+      recentFollowersSearches: state.recentFollowersSearches,
+      showCommentersRecentSearchContainer: state.showCommentersRecentSearchContainer,
+      showFollowersRecentSearchContainer: state.showFollowersRecentSearchContainer
       }
       
 }
@@ -627,7 +641,9 @@ const mapDispatchToProps = {
       handleToggleConfigModal,
       handleCloseConfigModal,
       handleTestModeChange,
-      handleDownloadLogs
+      handleDownloadLogs,
+      handleCommentersRecentSearchSubmit,
+      handleFollowersRecentSearchSubmit
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

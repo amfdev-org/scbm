@@ -56,7 +56,7 @@ export default function loginReducer(state, action) {
       };
       
     case LOGIN_USER_NOT_FOUND_ERROR:
-         console.log('reducer user not found error')
+         //console.log('reducer user not found error')
       return {
         ...state,
             errorAlertText: 'User not found.',

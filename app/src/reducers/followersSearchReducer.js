@@ -7,7 +7,9 @@ import {
     FOLLOWERS_SEARCH_OTHER_ERROR,
     FOLLOWERS_SEARCH_SUCCESS,
     FOLLOWERS_SELECTED_ROWS_CHANGE,
-    FOLLOWERS_SEARCH_UNKNOWN_ERROR
+    FOLLOWERS_SEARCH_UNKNOWN_ERROR,
+    //FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR,
+    FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT
 
 } from '../actions/followersSearchActions';
 
@@ -72,7 +74,7 @@ export default function followersSearchReducer(state, action) {
         ...state,
         showInfoAlert: false,
         showLoginForm: false,
-        errorAlertText: "Something went wrong. Please try again, or contact support.",
+        errorAlertText: "Something went wrong. Please check the search term and try again, or contact support.",
         errorAlertLinkText: '',
         showErrorAlert: true,
         enableFollowersSearchInput : true,
@@ -119,6 +121,16 @@ export default function followersSearchReducer(state, action) {
         ...state,
         selectedFollowers: action.selectedFollowers
     
+      };
+      
+    case FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT:
+         //console.log("FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT - reducer");
+         //console.log(action.data)
+         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
+      return {
+        ...state,
+        recentFollowersSearches: action.data,
+        showFollowersRecentSearchContainer: true
       };
     
     default:

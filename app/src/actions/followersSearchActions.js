@@ -14,7 +14,85 @@ export const FOLLOWERS_SELECTED_ROWS_CHANGE = 'FOLLOWERS_SELECTED_ROWS_CHANGE'
 export const FOLLOWERS_MESSAGE_FORM_SHOW = 'FOLLOWERS_MESSAGE_FORM_SHOW'
 export const FOLLOWERS_MESSAGE_FORM_HIDE = 'FOLLOWERS_MESSAGE_FORM_HIDE'
 export const FOLLOWERS_SEARCH_UNKNOWN_ERROR = 'FOLLOWERS_SEARCH_UNKNOWN_ERROR'
+export const FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED = 'FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED'
+export const FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR = 'FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR'
+export const FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT = 'FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT'
 
+export function fetchRecentFollowersSearches() {
+
+    return (dispatch, getState) => {
+
+    //console.log('fetch received messages');
+    
+        dispatch({type: FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED});
+            
+        //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
+        
+        axios.get('https://scbm.amfdev.co.uk/api/searches/', {params: {type: "follower"} })
+        .then(json => doRecentFollowersSearchesResult(json, dispatch))
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR
+                      })  
+                }
+        });
+                  
+    }
+    
+
+}
+
+function doRecentFollowersSearchesResult(json, dispatch) {
+        //console.log('doRecentFollowersSearchesSuccess')
+        //console.log(json.data)
+        if (json.data && json.data.length > 0) {
+               dispatch({
+                type: FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT,
+                data: json.data
+              })
+        }  
+          
+               
+  return json;
+}
+
+
+
+export function handleFollowersRecentSearchSubmit(searchUrl) {
+    
+    return (dispatch, getState) => {
+
+    dispatch({
+         type: FOLLOWERS_SEARCH_URL_CHANGE,
+         followersSearchUrl: searchUrl
+       });
+    
+    dispatch({
+         type: FOLLOWERS_SEARCH_SUBMITTED
+       });
+           
+        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+         params: {
+           searchUrl: encodeURI(searchUrl)
+         }
+         })
+        .then(json => catchFollowersSearchNoResults(json.data, dispatch))
+        .then(json => catchFollowersSearchOtherError(json, dispatch))
+        .then(json => doFollowersSearchSuccess(json, dispatch))
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: FOLLOWERS_SEARCH_UNKNOWN_ERROR
+                      })  
+                }
+        });
+                  
+    }
+    
+}
 
 export function handleFollowersSearchChange(event) {
     
@@ -59,6 +137,7 @@ export function handleFollowersSearchSubmit(event) {
         .then(json => catchFollowersSearchNoResults(json.data, dispatch))
         .then(json => catchFollowersSearchOtherError(json, dispatch))
         .then(json => doFollowersSearchSuccess(json, dispatch))
+        .then(json => dispatch(fetchRecentFollowersSearches()))
         .catch(error => {
 
                 if (error.response) {   
@@ -75,8 +154,8 @@ export function handleFollowersSearchSubmit(event) {
 //res.send({success: false, followerData: "no followers"})
 
 function catchFollowersSearchNoResults(json, dispatch) {
-    console.log('catchFollowersSearchNoResults')
-    console.log(json);
+    //console.log('catchFollowersSearchNoResults')
+    //console.log(json);
     if (json.noResults) {
         dispatch({
                 type: FOLLOWERS_SEARCH_NO_RESULTS
@@ -96,7 +175,7 @@ function catchFollowersSearchNoResults(json, dispatch) {
 
 
 function catchFollowersSearchOtherError(json, dispatch) {
-    console.log('catchFollowersSearchOtherError')
+    //console.log('catchFollowersSearchOtherError')
     if (!json.success) {
         dispatch({
                 type: FOLLOWERS_SEARCH_OTHER_ERROR
@@ -109,7 +188,7 @@ function catchFollowersSearchOtherError(json, dispatch) {
 
 
 function doFollowersSearchSuccess(json, dispatch) {
-    console.log('doFollowersSearchSuccess')
+    //console.log('doFollowersSearchSuccess')
  
         dispatch({
                 type: FOLLOWERS_SEARCH_SUCCESS,
@@ -154,161 +233,3 @@ export function handleFollowersSelectedRowsChange(selectedFollowers) {
     }
            
 }
-
-/*
- handleFollowersSearchChange = event => {
-    
-    console.log(event);
-     
-     const { name, value } = event.target
-  
-      this.setState({[name]: value, followersSearchUrl: value}, () => {   
-          if (this.state.followersSearchUrl.length > 10 && this.state.followersSearchUrl.includes("http")) {
-            this.setState({enableFollowersSearchSubmitButton: true}, () => {   
-              //console.log(this.state);
-            })
-          } else {
-            this.setState({enableFollowersSearchSubmitButton: false}, () => {   
-              //console.log(this.state);
-            })
-          }
-      })
-        
-  }
-    
-    
-  handleFollowersSearchSubmit = () => {
-  
-    this.setState({ showFollowersTable: false })
-    this.setState({ showFollowersSearchSubmitButton: false })
-    this.setState({ showFollowersSearchSubmitLoadingButton: true })
-    this.setState({ enableFollowersSearchInput: false })
-    this.setState({ showErrorAlert: false })
-    this.setState({ showSuccessAlert: false })
-    this.setState({ showInfoAlert: false })
-    
-      var myHeaders = new Headers();
-        myHeaders.set('Accept', 'application/json');
-        myHeaders.set('Content-Type', 'application/json');
-        //myHeaders.set('Authorization', 'Token token=' + String(token));
-        myHeaders.set('Cache-Control', 'no-cache');
-        myHeaders.set('Pragma', 'no-cache');
-        myHeaders.set('Expires', '0');
-    
-    fetch('https://scbm.amfdev.co.uk/api/followers/?followersSearchUrl='+encodeURI((this.state.followersSearchUrl)), {
-            method: 'GET',
-            headers: myHeaders
-        })
-    .then(async response => {
-      
-            if (!response.ok) {
-               //throw Error(response.statusText);
-                this.setState({errorAlertText: "Something went wrong. Please try again later."});
-                this.setState({showErrorAlert: true});
-                
-                this.setState({ showFollowersSearchSubmitButton: true })
-                this.setState({ showFollowersSearchSubmitLoadingButton: false })
-            }
-            //console.log(response);
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-                
-            if (jsonResponse.success) {
-                  
-                this.setState({ followerData: jsonResponse.followerData })
-                this.setState({ showFollowersTable: true })
-                document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
-  
-                this.setState({successAlertText: "Found " + jsonResponse.followerData.length + ' followers.'});
-                
-                  this.setState({showSuccessAlert: true},()=>{
-                  window.setTimeout(()=>{
-                    this.setState({showSuccessAlert: false})
-                  },4000)
-                  
-              });
-                
-                  this.setState({ enableFollowersSearchInput: true })
-                  this.setState({ showFollowersSearchSubmitButton: true })
-                  this.setState({ showFollowersSearchSubmitLoadingButton: false })
-                  
-            
-            } else if (!jsonResponse.success) {
-              
-                  if (jsonResponse.followerData === "no followers") {
-                    
-                        this.setState({ showFollowersTable: true })
-                        document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
-          
-                        this.setState({successAlertText: "But there were no followers found for this track."});
-                        
-                          this.setState({showSuccessAlert: true},()=>{
-                          window.setTimeout(()=>{
-                            this.setState({showSuccessAlert: false})
-                          },4000)
-                          
-                      });
-                      
-                          this.setState({ enableFollowersSearchInput: true })
-                          this.setState({ showFollowersSearchSubmitButton: true })
-                          this.setState({ showFollowersSearchSubmitLoadingButton: false })
-                          
-                  } else {
-                    
-                        // get error message from body or default to response status
-                         //const error = (followerData && followerData.message) || response.status;
-                         //console.log(jsonResponse.errorMessage);
-                         //return Promise.reject(jsonResponse.errorMessage);
-                         this.setState({errorAlertText: "Something went wrong. Please try again later."});
-                         this.setState({showErrorAlert: true});
-                         
-                         this.setState({ showFollowersSearchSubmitButton: true })
-                         this.setState({ showFollowersSearchSubmitLoadingButton: false })
-                         this.setState({ enableFollowersSearchInput: true })
-  
-                  }
-           
-                  
-            }
-            
-        })
-        .catch(error => {
-            //this.setState({ errorMessage: error.toString() });
-            console.error('There was an error!', error);
-            
-             this.setState({ enableFollowersSearchInput: true })
-            this.setState({ showFollowersSearchSubmitButton: true })
-            this.setState({ showFollowersSearchSubmitLoadingButton: false })
-            
-              this.setState({showErrorAlert: true},()=>{
-              window.setTimeout(()=>{
-                this.setState({showErrorAlert: false})
-              },4000)
-            });
-              
-        });
-      
-    
-      /*
-        const followerData = [
-            {profileUrl: "https://soundcloud.com/cloaked-music", messagedBefore: "No"},
-            {profileUrl: "https://srewrewr.com", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/patrickxtaylor", messagedBefore: "Yes"},
-            {profileUrl: "https://soundcloud.com/alvonmars", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/upukrecords", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/user-355158966-477119345", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/deftsoulmusique1995", messagedBefore: "No"},
-            {profileUrl: "https://soundcloud.com/ocmoon", messagedBefore: "Yes"}
-            ];
-        
-        
-            this.setState({ followerData: followerData })
-            this.setState({ showFollowersTable: true })
-            
-            this.setState({ showSearchSubmitButton: true })
-            this.setState({ showSearchSubmitLoadingButton: false })
-            
- 
-  }
-  */
-  

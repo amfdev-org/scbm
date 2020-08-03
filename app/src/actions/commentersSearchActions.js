@@ -14,6 +14,116 @@ export const COMMENTERS_SELECTED_ROWS_CHANGE = 'COMMENTERS_SELECTED_ROWS_CHANGE'
 export const COMMENTERS_MESSAGE_FORM_SHOW = 'COMMENTERS_MESSAGE_FORM_SHOW'
 export const COMMENTERS_MESSAGE_FORM_HIDE = 'COMMENTERS_MESSAGE_FORM_HIDE'
 export const COMMENTERS_SEARCH_UNKNOWN_ERROR = 'COMMENTERS_SEARCH_UNKNOWN_ERROR'
+export const COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED = 'COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED'
+export const COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR = 'COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR'
+export const COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT = 'COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT'
+
+export function fetchRecentCommentersSearches() {
+
+    return (dispatch, getState) => {
+
+    //console.log('fetch received messages');
+    
+        dispatch({type: COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED});
+            
+        //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
+        
+        axios.get('https://scbm.amfdev.co.uk/api/searches/', {params: {type: "commenter"} })
+        .then(json => doRecentCommentersSearchesResult(json, dispatch))
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR
+                      })  
+                }
+        });
+                  
+    }
+    
+
+}
+
+function doRecentCommentersSearchesResult(json, dispatch) {
+        //console.log('doRecentCommentersSearchesSuccess')
+        //console.log(json.data)
+        if (json.data && json.data.length > 0) {
+               dispatch({
+                type: COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT,
+                data: json.data
+              })
+        }  
+          
+               
+  return json;
+}
+
+
+
+export function handleCommentersRecentSearchSubmit(searchUrl) {
+    
+    return (dispatch, getState) => {
+
+    dispatch({
+         type: COMMENTERS_SEARCH_URL_CHANGE,
+         commentersSearchUrl: searchUrl
+       });
+    
+    dispatch({
+         type: COMMENTERS_SEARCH_SUBMITTED
+       });
+           
+        axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
+         params: {
+           searchUrl: encodeURI(searchUrl)
+         }
+         })
+        .then(json => catchCommentersSearchNoResults(json.data, dispatch))
+        .then(json => catchCommentersSearchOtherError(json, dispatch))
+        .then(json => doCommentersSearchSuccess(json, dispatch))
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: COMMENTERS_SEARCH_UNKNOWN_ERROR
+                      })  
+                }
+        });
+                  
+    }
+    
+}
+
+export function handleCommentersSearchSubmit(event) {
+    
+    return (dispatch, getState) => {
+
+    dispatch({
+         type: COMMENTERS_SEARCH_SUBMITTED
+       });
+           
+        axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
+         params: {
+           searchUrl: encodeURI(getState().commentersSearchUrl)
+         }
+         })
+        .then(json => catchCommentersSearchNoResults(json.data, dispatch))
+        .then(json => catchCommentersSearchOtherError(json, dispatch))
+        .then(json => doCommentersSearchSuccess(json, dispatch))
+        .then(json => dispatch(fetchRecentCommentersSearches()))
+        .catch(error => {
+
+                if (error.response) {   
+                      dispatch({
+                          type: COMMENTERS_SEARCH_UNKNOWN_ERROR
+                      })  
+                }
+        });
+                  
+    }
+    
+}
+
 
 
 export function handleCommentersSearchChange(event) {
@@ -41,34 +151,6 @@ export function handleCommentersSearchChange(event) {
 }
 
 
-export function handleCommentersSearchSubmit(event) {
-    
-    return (dispatch, getState) => {
-
-    dispatch({
-         type: COMMENTERS_SEARCH_SUBMITTED
-       });
-           
-        axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
-         params: {
-           searchUrl: encodeURI(getState().commentersSearchUrl)
-         }
-         })
-        .then(json => catchCommentersSearchNoResults(json.data, dispatch))
-        .then(json => catchCommentersSearchOtherError(json, dispatch))
-        .then(json => doCommentersSearchSuccess(json, dispatch))
-        .catch(error => {
-
-                if (error.response) {   
-                      dispatch({
-                          type: COMMENTERS_SEARCH_UNKNOWN_ERROR
-                      })  
-                }
-        });
-                  
-    }
-    
-}
 
 //res.send({success: false, commenterData: "no commenters"})
 
@@ -113,6 +195,7 @@ function doCommentersSearchSuccess(json, dispatch) {
                 type: COMMENTERS_SEARCH_SUCCESS,
                 commenterData: json.commenterData
               })
+          
           
             dispatch({ type: "SUCCESS_ALERT_SHOW" });
             

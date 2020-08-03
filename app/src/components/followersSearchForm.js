@@ -34,7 +34,8 @@ class FollowersSearchForm extends Component {
                 <Form.Control
                     data-tip="Must include http or https"
                     type="text"
-                    name="searchUrl"
+                    name="followerSearchUrl"
+                    placeholder="e.g. https://soundloud.com/artist"
                     value={this.props.followersSearchUrl}
                     disabled={!this.props.enableFollowersSearchInput}
                     onChange={this.handleChange} />

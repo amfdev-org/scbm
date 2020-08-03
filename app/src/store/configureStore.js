@@ -36,6 +36,8 @@ export const initialState = {
         enableCommentersSearchInput: true,
         showCommentersSearchForm: false,
         showCommentersTable: false,
+        recentCommentersSearches: [],
+        showCommentersRecentSearchContainer: false,
         
         //commenters messages
         showCommentersMessageForm: false,
@@ -56,6 +58,8 @@ export const initialState = {
         enableFollowersSearchInput: true,
         showFollowersSearchForm: false,
         showFollowersTable: false,
+        recentFollowersSearches: [],
+        showFollowersRecentSearchContainer: false,
         
         //followers messages
         showFollowersMessageForm: false,

@@ -11,6 +11,14 @@ import {
 import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
+
+import {
+  fetchRecentCommentersSearches
+  } from '../actions/commentersSearchActions'
+
+import {
+  fetchRecentFollowersSearches
+  } from '../actions/followersSearchActions'
   
 export const AUTH_HTTP_ERROR = 'AUTH_HTTP_ERROR'
 export const AUTH_SESSION_ERROR = 'AUTH_SESSION_ERROR'
@@ -31,6 +39,8 @@ export function fetchAuth() {
       .then(json => dispatch(fetchReceivedMessages()))
       .then(json => dispatch(fetchSentMessages()))
       .then(json => dispatch(fetchMyFollowers()))
+      .then(json => dispatch(fetchRecentCommentersSearches()))
+      .then(json => dispatch(fetchRecentFollowersSearches()))
       .catch(error => {
 
                 if (error.response) {   

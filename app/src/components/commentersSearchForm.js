@@ -11,6 +11,7 @@ class CommentersSearchForm extends Component {
           
         ReactTooltip.hide();
         this.props.handleCommentersSearchChange(changeEvent)
+        //this.forceUpdate()
         
     }
     
@@ -21,7 +22,6 @@ class CommentersSearchForm extends Component {
     }
     
     render() {
-        
         //const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
     
         const showCommentersSearchSubmitButton = this.props.showCommentersSearchSubmitButton ? {display: 'block'} : {display: 'none'};
@@ -34,7 +34,8 @@ class CommentersSearchForm extends Component {
                 <Form.Control
                     data-tip="Must include http or https"
                     type="text"
-                    name="searchUrl"
+                    name="commentersSearchUrl"
+                    placeholder="e.g. https://soundloud.com/artist/track"
                     value={this.props.commentersSearchUrl}
                     disabled={!this.props.enableCommentersSearchInput}
                     onChange={this.handleChange} />

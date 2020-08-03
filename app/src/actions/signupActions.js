@@ -11,6 +11,14 @@ import {
 import {
   fetchReceivedMessages
   } from '../actions/receivedMessagesSearchActions'
+
+import {
+  fetchRecentCommentersSearches
+  } from '../actions/commentersSearchActions'
+
+import {
+  fetchRecentFollowersSearches
+  } from '../actions/followersSearchActions'
   
 export const SIGNUP_USERNAME_CHANGE = 'SIGNUP_USERNAME_CHANGE'
 export const SIGNUP_PASSWORD_CHANGE = 'SIGNUP_PASSWORD_CHANGE'
@@ -86,6 +94,8 @@ export function handleSignupSubmit(event) {
             .then(json => dispatch(fetchReceivedMessages()))
             .then(json => dispatch(fetchSentMessages()))
             .then(json => dispatch(fetchMyFollowers()))
+            .then(json => dispatch(fetchRecentCommentersSearches()))
+            .then(json => dispatch(fetchRecentFollowersSearches()))
             .catch(error => {
 
                 if (error.response) {   
@@ -101,8 +111,8 @@ export function handleSignupSubmit(event) {
 
 
 function catchSignupUserAlreadyExists(json, dispatch) {
-    console.log('catchSignupScLoginError')
-    console.log(json)
+    //console.log('catchSignupScLoginError')
+    //console.log(json)
     if (json.userAlreadyExists) {
         dispatch({
                 type: SIGNUP_USER_ALREADY_EXISTS
