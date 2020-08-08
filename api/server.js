@@ -82,7 +82,7 @@ app.get('/received-messages/', function(req, res) {
 });
 
 app.post('/message/', function(req, res) {
-    MessageController.postMessages(req, res); 
+    MessageController.postMessage(req, res); 
 });
 
 app.post('/user/', (req, res) => {
