@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class FollowersMessageForm extends Component {
+function FollowersMessageForm(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
         ReactTooltip.hide();
-        this.props.handleFollowersMessageChange(event)
+        props.handleFollowersMessageChange(event)
     }
     
-    handleSubmit = () => {
-        this.props.handleFollowersMessageSubmit()
+    const handleSubmit = () => {
+        props.handleFollowersMessageSubmit()
     }
     
-    
-    render() {
-        
-        const showFollowersMessageForm = this.props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'}
-        const showFollowersMessageSubmitButton = this.props.showFollowersMessageSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showFollowersMessageSubmitLoadingButton = this.props.showFollowersMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+
+        const showFollowersMessageForm = props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'}
+        const showFollowersMessageSubmitButton = props.showFollowersMessageSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showFollowersMessageSubmitLoadingButton = props.showFollowersMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         
         return (
           
@@ -31,16 +29,16 @@ class FollowersMessageForm extends Component {
 data-tip="Must be at least 10 characters long. You can include a full song URL. <<profileName>> will be automatically converted."
           rows="8"
           name="followersMessage"
-          value={this.props.followersMessage}
-          disabled={!this.props.enableFollowersMessageInput}
-          onChange={this.handleChange} />
+          value={props.followersMessage}
+          disabled={!props.enableFollowersMessageInput}
+          onChange={handleChange} />
         <ReactTooltip delayShow={400}/>
           
             <Button
                 type="submit"
                 value="Send Message!"
-                disabled={!this.props.enableFollowersMessageSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableFollowersMessageSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showFollowersMessageSubmitButton}>
                 Submit
             </Button>
@@ -57,7 +55,7 @@ data-tip="Must be at least 10 characters long. You can include a full song URL. 
               </Button>
           </Form>
         )
-    }
+
 
 }
 

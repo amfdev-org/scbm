@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 //import { connect } from 'react-redux';
 import Alert from 'react-bootstrap/Alert'
 
-class errorAlert extends Component {
+function errorAlert(props) {
     
-    handleChange = (alertType, alertAction) => {
+    const handleChange = (alertType, alertAction) => {
  
         //ReactTooltip.hide();
-        this.props.handleAlertChange(alertType, alertAction)
+        props.handleAlertChange(alertType, alertAction)
         
     }
     
-    render() {
 
-        const showErrorAlert = this.props.showErrorAlert ? {display: 'block'} : {display: 'none'};   
-        const showErrorAlertSwitchToSignup = this.props.showErrorAlertSwitchToSignup ? {display: 'block'} : {display: 'none'}; 
-        const showErrorAlertSwitchToLogin = this.props.showErrorAlertSwitchToLogin ? {display: 'block'} : {display: 'none'}; 
+        const showErrorAlert = props.showErrorAlert ? {display: 'block'} : {display: 'none'};   
+        const showErrorAlertSwitchToSignup = props.showErrorAlertSwitchToSignup ? {display: 'block'} : {display: 'none'}; 
+        const showErrorAlertSwitchToLogin = props.showErrorAlertSwitchToLogin ? {display: 'block'} : {display: 'none'}; 
      
      
         return (
@@ -24,37 +23,22 @@ class errorAlert extends Component {
                 className="error-alert alert-fixed"
                 style={showErrorAlert}
                 variant='danger'
-                onClose={() => this.handleChange("ERROR", "HIDE")} dismissible
+                onClose={() => handleChange("ERROR", "HIDE")} dismissible
                 >
                 <Alert.Heading>Uh oh!</Alert.Heading>
-                    {this.props.errorAlertText}
+                    {props.errorAlertText}
                     
-                <Alert.Link style={showErrorAlertSwitchToSignup} href="#" onClick={this.props.handleLoginSwitchToSignup}>{this.props.errorAlertLinkText}</Alert.Link>
-                <Alert.Link style={showErrorAlertSwitchToLogin} href="#" onClick={this.props.handleSignupSwitchToLogin}>{this.props.errorAlertLinkText}</Alert.Link>
+                <Alert.Link style={showErrorAlertSwitchToSignup} href="#" onClick={props.handleLoginSwitchToSignup}>{props.errorAlertLinkText}</Alert.Link>
+                <Alert.Link style={showErrorAlertSwitchToLogin} href="#" onClick={props.handleSignupSwitchToLogin}>{props.errorAlertLinkText}</Alert.Link>
            
             </Alert>
               
           
         );
-    }
+    
 
 }
 
 
 
 export default errorAlert;
-
-
-/*function mapStateToProps(state) {
- 
-    return {
-
-        errorAlertText: state.errorAlertText,
-        errorAlertLinkText: state.errorAlertLinkText,
-        showErrorAlert: state.showErrorAlert
-    }
-      
-      
-}
-
-export default connect(mapStateToProps)(errorAlert);*/

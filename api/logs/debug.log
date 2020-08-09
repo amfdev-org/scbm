@@ -2912,3 +2912,871 @@ GET /auth/
 x-request-app header validated
 not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
 session invalid
+GET /auth/
+x-request-app header validated
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+GET /auth/
+x-request-app header validated
+not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
+session invalid
+POST /login/
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+scrape inbox
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+**navigated to: https://soundcloud.com
+got .notificationIcon
+**clicked header__userNavMessagesButton **
+got .dropdownContent__list
+**screenshot saved**
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /followers/
+is my follower search
+GET /sent-message/
+GET sent-messages - test mode
+checkForLoggedFollowers
+GET /searches/ - commenter
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /received message/
+checkForLoggedMessages
+GET /followers/
+is my follower search
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - commenter
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+POST /user/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '79.35.87.180',
+  'x-forwarded-for': '79.35.87.180',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '39',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18482%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1597400876%7C6%7CMCAAMB-1597400876%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1596803276s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AJJ_UAT0CGj1az5UVA49w0MBq3QDIMWqb.O1yZom4%2BiV%2FZFulXihHjz0NUAjJUYDr8HBwPpvt5G1k' }
+POST /user/ req.body.userSettings:
+{ isTestMode: 'false' }
+origin and x-request-app header are validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+POST /user/ updateUser function called
+POST /user/ updateUser promise opened, querying users with req.session.user.scUsername
+POST /user/ updateUser - query result - user cloaked-music found
+POST /user/ updateUser user settings updated: {"isTestMode":"false"}
+GET /sent-message/
+no logged messages
+POST /user/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '79.35.87.180',
+  'x-forwarded-for': '79.35.87.180',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '38',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18482%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1597400876%7C6%7CMCAAMB-1597400876%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1596803276s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AJJ_UAT0CGj1az5UVA49w0MBq3QDIMWqb.O1yZom4%2BiV%2FZFulXihHjz0NUAjJUYDr8HBwPpvt5G1k' }
+POST /user/ req.body.userSettings:
+{ isTestMode: 'true' }
+origin and x-request-app header are validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+POST /user/ updateUser function called
+POST /user/ updateUser promise opened, querying users with req.session.user.scUsername
+POST /user/ updateUser - query result - user cloaked-music found
+POST /user/ updateUser user settings updated: {"isTestMode":"true"}
+GET /sent-message/
+GET sent-messages - test mode
+POST /user/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '79.35.87.180',
+  'x-forwarded-for': '79.35.87.180',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '39',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18482%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1597400876%7C6%7CMCAAMB-1597400876%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1596803276s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AJJ_UAT0CGj1az5UVA49w0MBq3QDIMWqb.O1yZom4%2BiV%2FZFulXihHjz0NUAjJUYDr8HBwPpvt5G1k' }
+POST /user/ req.body.userSettings:
+POST /user/ updateUser function called
+{ isTestMode: 'false' }
+origin and x-request-app header are validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+POST /user/ updateUser promise opened, querying users with req.session.user.scUsername
+POST /user/ updateUser - query result - user cloaked-music found
+POST /user/ updateUser user settings updated: {"isTestMode":"false"}
+GET /sent-message/
+no logged messages
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+x-request-app header validated
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - commenter
+GET /sent-message/
+no logged messages
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+POST /user/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '79.35.87.180',
+  'x-forwarded-for': '79.35.87.180',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '38',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18482%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1597400876%7C6%7CMCAAMB-1597400876%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1596803276s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AJJ_UAT0CGj1az5UVA49w0MBq3QDIMWqb.O1yZom4%2BiV%2FZFulXihHjz0NUAjJUYDr8HBwPpvt5G1k' }
+POST /user/ req.body.userSettings:
+{ isTestMode: 'true' }
+origin and x-request-app header are validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+POST /user/ updateUser function called
+POST /user/ updateUser promise opened, querying users with req.session.user.scUsername
+POST /user/ updateUser - query result - user cloaked-music found
+POST /user/ updateUser user settings updated: {"isTestMode":"true"}
+GET /sent-message/
+GET sent-messages - test mode
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+POST /user/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '79.35.87.180',
+  'x-forwarded-for': '79.35.87.180',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '39',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18482%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1597400876%7C6%7CMCAAMB-1597400876%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1596803276s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AJJ_UAT0CGj1az5UVA49w0MBq3QDIMWqb.O1yZom4%2BiV%2FZFulXihHjz0NUAjJUYDr8HBwPpvt5G1k' }
+POST /user/ req.body.userSettings:
+{ isTestMode: 'false' }
+origin and x-request-app header are validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+POST /user/ updateUser function called
+POST /user/ updateUser promise opened, querying users with req.session.user.scUsername
+POST /user/ updateUser - query result - user cloaked-music found
+POST /user/ updateUser user settings updated: {"isTestMode":"false"}
+GET /sent-message/
+no logged messages
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+no logged messages
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+GET /received message/
+checkForLoggedMessages
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - follower
+POST /user/
+{ connection: 'upgrade',
+  host: 'scbm.amfdev.co.uk',
+  'x-real-ip': '79.35.87.180',
+  'x-forwarded-for': '79.35.87.180',
+  'x-nginx-proxy': 'true',
+  'x-forwarded-proto': 'http',
+  'content-length': '38',
+  accept: 'application/json, text/plain, */*',
+  'x-request-app': 'scbm',
+  'user-agent':
+   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+  'content-type': 'application/json;charset=UTF-8',
+  origin: 'https://scbm.amfdev.co.uk',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  referer: 'https://scbm.amfdev.co.uk/',
+  'accept-encoding': 'gzip, deflate, br',
+  'accept-language': 'en-US,en;q=0.9,it;q=0.8',
+  cookie:
+   'AMCVS_8F99160E571FC0427F000101%40AdobeOrg=1; AMCV_8F99160E571FC0427F000101%40AdobeOrg=1585540135%7CMCIDTS%7C18482%7CMCMID%7C30355201903652627542570372956455137301%7CMCAAMLH-1597400876%7C6%7CMCAAMB-1597400876%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1596803276s%7CNONE%7CvVersion%7C4.4.0; scbm_sid=s%3AJJ_UAT0CGj1az5UVA49w0MBq3QDIMWqb.O1yZom4%2BiV%2FZFulXihHjz0NUAjJUYDr8HBwPpvt5G1k' }
+POST /user/ req.body.userSettings:
+{ isTestMode: 'true' }
+origin and x-request-app header are validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+POST /user/ updateUser function called
+POST /user/ updateUser promise opened, querying users with req.session.user.scUsername
+POST /user/ updateUser - query result - user cloaked-music found
+POST /user/ updateUser user settings updated: {"isTestMode":"true"}
+GET /sent-message/
+GET sent-messages - test mode
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+GET /received message/
+checkForLoggedMessages
+check for logged followers then block
+follower model
+GET /searches/ - follower
+check for logged messages then block
+has recent logged messages!
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+GET /searches/ - follower
+check for logged followers then block
+follower model
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /followers/
+is my follower search
+GET /sent-message/
+GET sent-messages - test mode
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
+x-request-app header validated
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+GET /received message/
+checkForLoggedMessages
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - commenter
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - follower
+x-request-app header validated
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - follower
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+GET /sent-message/
+GET sent-messages - test mode
+checkForLoggedFollowers
+GET /searches/ - commenter
+check for logged messages then block
+has recent logged messages!
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /auth/
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+x-request-app header validated
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+GET /searches/ - follower
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+checkForLoggedFollowers
+check for logged messages then block
+has recent logged messages!
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+GET /searches/ - follower
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET sent-messages - test mode
+GET /sent-message/
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+GET /searches/ - follower
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+checkForLoggedFollowers
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - commenter
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+GET /searches/ - commenter
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+GET /searches/ - follower
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+GET /sent-message/
+GET sent-messages - test mode
+checkForLoggedFollowers
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - commenter
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /searches/ - follower
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /followers/
+is my follower search
+GET /sent-message/
+GET sent-messages - test mode
+checkForLoggedFollowers
+GET /received message/
+checkForLoggedMessages
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+check for logged messages then block
+has recent logged messages!
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /searches/ - commenter
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+checkForLoggedFollowers
+check for logged messages then block
+has recent logged messages!
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /followers/
+is my follower search
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /searches/ - commenter
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /received message/
+checkForLoggedMessages
+force refresh
+scrape inbox
+check for logged messages then block
+has recent logged messages!
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+**navigated to: https://soundcloud.com
+got .notificationIcon
+**clicked header__userNavMessagesButton **
+got .dropdownContent__list
+**screenshot saved**
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+checkForLoggedMessages
+GET /received message/
+check for logged messages then block
+has recent logged messages!
+GET /followers/
+is my follower search
+GET /sent-message/
+GET sent-messages - test mode
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET sent-messages - test mode
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+scrape inbox
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+**navigated to: https://soundcloud.com
+got .notificationIcon
+**clicked header__userNavMessagesButton **
+got .dropdownContent__list
+**screenshot saved**

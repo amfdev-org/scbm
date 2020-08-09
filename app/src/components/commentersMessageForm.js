@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class CommentersMessageForm extends Component {
+function CommentersMessageForm(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
         ReactTooltip.hide();
-        this.props.handleCommentersMessageChange(event)
+        props.handleCommentersMessageChange(event)
     }
     
-    handleSubmit = () => {
-        this.props.handleCommentersMessageSubmit()
+   const handleSubmit = () => {
+        props.handleCommentersMessageSubmit()
     }
     
     
-    render() {
-        
-        const showCommentersMessageForm = this.props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'}
-        const showCommentersMessageSubmitButton = this.props.showCommentersMessageSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showCommentersMessageSubmitLoadingButton = this.props.showCommentersMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+        const showCommentersMessageForm = props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'}
+        const showCommentersMessageSubmitButton = props.showCommentersMessageSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showCommentersMessageSubmitLoadingButton = props.showCommentersMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         
         return (
           
@@ -31,16 +29,16 @@ class CommentersMessageForm extends Component {
           data-tip="Must be at least 10 characters long. You can include a full song URL. <<profileName>> will be automatically converted."
           rows="8"
           name="commentersMessage"
-          value={this.props.commentersMessage}
-          disabled={!this.props.enableCommentersMessageInput}
-          onChange={this.handleChange} />
+          value={props.commentersMessage}
+          disabled={!props.enableCommentersMessageInput}
+          onChange={handleChange} />
         <ReactTooltip delayShow={400}/>
           
             <Button
                 type="submit"
                 value="Send Message!"
-                disabled={!this.props.enableCommentersMessageSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableCommentersMessageSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showCommentersMessageSubmitButton}>
                 Submit
             </Button>
@@ -57,7 +55,7 @@ class CommentersMessageForm extends Component {
               </Button>
           </Form>
         )
-    }
+
 
 }
 

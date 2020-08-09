@@ -239,7 +239,7 @@ class App extends Component {
          
          </Container>
          
-            <Accordion className="main-accordion" defaultActiveKey="0" style={showMainAccordion}>
+            <Accordion className="main-accordion" /*defaultActiveKey="0"*/ style={showMainAccordion}>
             
                 <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">

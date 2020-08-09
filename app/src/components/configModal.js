@@ -1,39 +1,32 @@
-import React, { Component } from 'react'
+import React from 'react'
 //import { connect } from 'react-redux';
 //import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Switch from "react-switch";
 
-class ConfigModal extends Component {
+function ConfigModal(props) {
     
-    constructor() {
-        super();
     
-        this.handleChange = this.handleChange.bind(this);
-    }
-      
-    handleDownloadLogs = (event) => {
+    const handleDownloadLogs = (event) => {
 
         event.preventDefault();
         event.nativeEvent.stopImmediatePropagation()
         event.stopPropagation()
         
-        this.props.handleDownloadLogs()
+        props.handleDownloadLogs()
 
     }
     
-    handleChange(checked) {
+    const handleChange = (checked) => {
         //console.log('configmodal handlechange "checked" variable is: '+checked);
-        this.props.handleTestModeChange(checked);
+        props.handleTestModeChange(checked);
     }
     
-    
-    render() {
                      
         return (
          <>                      
-        <Modal show={this.props.showConfigModal} onHide={this.props.handleCloseConfigModal}>
+        <Modal show={props.showConfigModal} onHide={props.handleCloseConfigModal}>
           <Modal.Header closeButton>
             <Modal.Title>Settings</Modal.Title>
           </Modal.Header>
@@ -41,7 +34,7 @@ class ConfigModal extends Component {
  
           
             <h6>Test Mode (do not actually send messages)</h6>
-            <Switch onChange={this.handleChange} checked={this.props.isTestMode} />
+            <Switch onChange={handleChange} checked={props.isTestMode} />
 
       
             <br/> <br/>
@@ -50,14 +43,14 @@ class ConfigModal extends Component {
             size="sm"
             type="submit"
               value="download-logs"
-              onClick={ this.handleDownloadLogs }
+              onClick={ handleDownloadLogs }
               >
               Go
             </Button>
                   
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={this.props.handleCloseConfigModal}>
+            <Button variant="primary" onClick={props.handleCloseConfigModal}>
               Save & Close
             </Button>
           </Modal.Footer>
@@ -65,7 +58,7 @@ class ConfigModal extends Component {
 
             </>
         );
-    }
+
 
 }
 

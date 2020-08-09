@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Badge from 'react-bootstrap/Badge'
 import DataTable from 'react-data-table-component'
@@ -7,23 +7,21 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 library.add(faExclamationTriangle)
 
-class FollowersTable extends Component {
+function FollowersTable(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
       
-          this.props.handleFollowersSelectedRowsChange(event.selectedRows);
+          props.handleFollowersSelectedRowsChange(event.selectedRows);
     }
     
-      handleRecentSearchClick = (searchUrl) => {
+      const handleRecentSearchClick = (searchUrl) => {
 
-      this.props.handleFollowersRecentSearchSubmit(searchUrl);
+      props.handleFollowersRecentSearchSubmit(searchUrl);
     }
-    
-    render() {
-        
-        const showFollowersTable = this.props.showFollowersTable ? {display: 'block'} : {display: 'none'};
-        const showFollowersRecentSearchContainer = this.props.showFollowersRecentSearchContainer ? {display: 'block'} : {display: 'none'};
+
+        const showFollowersTable = props.showFollowersTable ? {display: 'block'} : {display: 'none'};
+        const showFollowersRecentSearchContainer = props.showFollowersRecentSearchContainer ? {display: 'block'} : {display: 'none'};
 
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', wrap: true, sortable: true },
@@ -37,9 +35,9 @@ class FollowersTable extends Component {
           
       <div className="recent-search-container" style={showFollowersRecentSearchContainer}>
           <h6>Recent Searches</h6>  
-            {this.props.recentFollowersSearches.map((item, key) => {
+            {props.recentFollowersSearches.map((item, key) => {
                   return (
-                        <Badge key={key} onClick={() => { this.handleRecentSearchClick(item.search) }} className="recent-search-badge" variant="primary">
+                        <Badge key={key} onClick={() => { handleRecentSearchClick(item.search) }} className="recent-search-badge" variant="primary">
                               {item.search}
                         </Badge>
                    )
@@ -49,12 +47,12 @@ class FollowersTable extends Component {
           <Form className="followersDataTable">
               <DataTable style={showFollowersTable}
                 columns={columns}
-                data={this.props.followerData}
+                data={props.followerData}
                 defaultSortField="profileName"
                 selectableRows
-                onSelectedRowsChange={this.handleChange}
+                onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={this.props.toggledClearRows}
+                clearSelectedRows={props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />
@@ -68,8 +66,7 @@ class FollowersTable extends Component {
             
             </>
         )
-    }
-
+    
 }
 
 export default FollowersTable;

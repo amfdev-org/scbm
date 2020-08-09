@@ -1,27 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class ReceivedMessagesMessageForm extends Component {
+function ReceivedMessagesMessageForm(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
         ReactTooltip.hide();
-        this.props.handleReceivedMessagesMessageChange(event)
+        props.handleReceivedMessagesMessageChange(event)
     }
     
-    handleSubmit = () => {
-        this.props.handleReceivedMessagesMessageSubmit()
+    const handleSubmit = () => {
+        props.handleReceivedMessagesMessageSubmit()
     }
-    
-    
-    render() {
-        
-        const showReceivedMessagesMessageForm = this.props.showReceivedMessagesMessageForm ? {display: 'block'} : {display: 'none'}
-        const showReceivedMessagesMessageSubmitButton = this.props.showReceivedMessagesMessageSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showReceivedMessagesMessageSubmitLoadingButton = this.props.showReceivedMessagesMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+
+        const showReceivedMessagesMessageForm = props.showReceivedMessagesMessageForm ? {display: 'block'} : {display: 'none'}
+        const showReceivedMessagesMessageSubmitButton = props.showReceivedMessagesMessageSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showReceivedMessagesMessageSubmitLoadingButton = props.showReceivedMessagesMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         
         return (
           
@@ -31,16 +28,16 @@ class ReceivedMessagesMessageForm extends Component {
           data-tip="Must be at least 10 characters long. You can include a full song URL. <<profileName>> will be automatically converted."
           rows="8"
           name="receivedMessagesMessage"
-          value={this.props.receivedMessagesMessage}
-          disabled={!this.props.enableReceivedMessagesMessageInput}
-          onChange={this.handleChange} />
+          value={props.receivedMessagesMessage}
+          disabled={!props.enableReceivedMessagesMessageInput}
+          onChange={handleChange} />
         <ReactTooltip delayShow={400}/>
           
             <Button
                 type="submit"
                 value="Send Message!"
-                disabled={!this.props.enableReceivedMessagesMessageSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableReceivedMessagesMessageSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showReceivedMessagesMessageSubmitButton}>
                 Submit
             </Button>
@@ -57,7 +54,6 @@ class ReceivedMessagesMessageForm extends Component {
               </Button>
           </Form>
         )
-    }
 
 }
 

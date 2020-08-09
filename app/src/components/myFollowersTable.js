@@ -1,31 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
 import Spinner from 'react-bootstrap/Spinner'
 
-class MyFollowersTable extends Component {
+function MyFollowersTable(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
       
-          this.props.handleMyFollowersSelectedRowsChange(event.selectedRows);
+          props.handleMyFollowersSelectedRowsChange(event.selectedRows);
     }
+
     
-    
-    render() {
-        
-        const showMyFollowersTable = this.props.showMyFollowersTable ? {display: 'block'} : {display: 'none'};
-        const showMyFollowersLoadingIcon = this.props.showMyFollowersLoadingIcon ? {display: 'block'} : {display: 'none'};
+        const showMyFollowersTable = props.showMyFollowersTable ? {display: 'block'} : {display: 'none'};
+        const showMyFollowersLoadingIcon = props.showMyFollowersLoadingIcon ? {display: 'block'} : {display: 'none'};
         
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', wrap: true, sortable: true },
             { name: 'Profile URL', selector: 'profileUrl', wrap: true, format: row => <a target="_blank" rel="noopener noreferrer" href={row.profileUrl}>{row.profileUrl}</a>, sortable: true, hide: "sm" },
             { name: 'Messaged', selector: 'messaged', wrap: true, sortable: true }
             ];
-        
-        
       
-          
       return (
           
       <div id="my-followers-table-container">
@@ -37,12 +32,12 @@ class MyFollowersTable extends Component {
           <Form className="myFollowersDataTable">
               <DataTable style={showMyFollowersTable}
                 columns={columns}
-                data={this.props.myFollowerData}
+                data={props.myFollowerData}
                 defaultSortField="profileName"
                 selectableRows
-                onSelectedRowsChange={this.handleChange}
+                onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={this.props.toggledClearRows}
+                clearSelectedRows={props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />
@@ -51,8 +46,7 @@ class MyFollowersTable extends Component {
           
       </div>
         )
-    }
-
+    
 }
 
 export default MyFollowersTable;

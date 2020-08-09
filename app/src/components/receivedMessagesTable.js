@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
 import Spinner from 'react-bootstrap/Spinner'
 import moment from 'moment'
 
-class ReceivedMessagesTable extends Component {
+function ReceivedMessagesTable(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
       
-          this.props.handleReceivedMessagesSelectedRowsChange(event.selectedRows);
+          props.handleReceivedMessagesSelectedRowsChange(event.selectedRows);
     }
     
     
-    render() {
-        
-        const showReceivedMessagesTable = this.props.showReceivedMessagesTable ? {display: 'block'} : {display: 'none'};
-        const showReceivedMessagesLoadingIcon = this.props.showReceivedMessagesLoadingIcon ? {display: 'block'} : {display: 'none'};
+        const showReceivedMessagesTable = props.showReceivedMessagesTable ? {display: 'block'} : {display: 'none'};
+        const showReceivedMessagesLoadingIcon = props.showReceivedMessagesLoadingIcon ? {display: 'block'} : {display: 'none'};
         
         const columns =  [
             { name: 'Who With', selector: 'sender', sortable: true, wrap: true },
@@ -35,13 +33,13 @@ class ReceivedMessagesTable extends Component {
           <Form className="messagesDataTable">
               <DataTable style={showReceivedMessagesTable}
                 columns={columns}
-                data={this.props.receivedMessageData}
+                data={props.receivedMessageData}
                 defaultSortField="scMessageTime"
                 defaultSortAsc={false}
                 selectableRows
-                onSelectedRowsChange={this.handleChange}
+                onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={this.props.toggledClearRows}
+                clearSelectedRows={props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />
@@ -49,8 +47,7 @@ class ReceivedMessagesTable extends Component {
           </Form>
           </div>
         )
-    }
-
+    
 }
 
 export default ReceivedMessagesTable;

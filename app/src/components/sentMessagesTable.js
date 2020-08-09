@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
 import moment from 'moment'
@@ -8,18 +8,16 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 library.add(faExclamationTriangle)
 
 
-class SentMessagesTable extends Component {
+function SentMessagesTable(props) {
 
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
       
-          this.props.handleSentMessagesSelectedRowsChange(event.selectedRows);
+          props.handleSentMessagesSelectedRowsChange(event.selectedRows);
     }
     
-    
-    render() {
         
-        const showSentMessagesTable = this.props.showSentMessagesTable ? {display: 'block'} : {display: 'none'};
+        const showSentMessagesTable = props.showSentMessagesTable ? {display: 'block'} : {display: 'none'};
 
         const columns =  [
             { name: 'Recipient', selector: 'recipient', sortable: true, wrap: true },
@@ -33,13 +31,13 @@ class SentMessagesTable extends Component {
           <Form className="messagesDataTable">
               <DataTable style={showSentMessagesTable}
                 columns={columns}
-                data={this.props.sentMessageData}
+                data={props.sentMessageData}
                 defaultSortField="createdAt"
                  defaultSortAsc={false}
                 selectableRows
-                onSelectedRowsChange={this.handleChange}
+                onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={this.props.toggledClearRows}
+                clearSelectedRows={props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />
@@ -51,7 +49,6 @@ class SentMessagesTable extends Component {
             </span>
             </>
         )
-    }
 
 }
 

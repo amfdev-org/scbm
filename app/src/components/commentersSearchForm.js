@@ -1,51 +1,50 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class CommentersSearchForm extends Component {
+function CommentersSearchForm(props) {
     
   
-    handleChange = changeEvent => {
+    const handleChange = changeEvent => {
           
         ReactTooltip.hide();
-        this.props.handleCommentersSearchChange(changeEvent)
-        //this.forceUpdate()
+        props.handleCommentersSearchChange(changeEvent)
+        //forceUpdate()
         
     }
     
-    handleSubmit = () => {
+    const handleSubmit = () => {
 
-        this.props.handleCommentersSearchSubmit()
+        props.handleCommentersSearchSubmit()
 
     }
     
-    render() {
-        //const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
+        //const showSearchForm = props.showSearchForm ? {display: 'block'} : {display: 'none'}
     
-        const showCommentersSearchSubmitButton = this.props.showCommentersSearchSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showCommentersSearchSubmitLoadingButton = this.props.showCommentersSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+        const showCommentersSearchSubmitButton = props.showCommentersSearchSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showCommentersSearchSubmitLoadingButton = props.showCommentersSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
     
         
         return (
-          <Form inline onSubmit={this.handleSubmit}>
+          <Form inline onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Control
                     data-tip="Must include http or https"
                     type="text"
                     name="commentersSearchUrl"
                     placeholder="e.g. https://soundloud.com/artist/track"
-                    value={this.props.commentersSearchUrl}
-                    disabled={!this.props.enableCommentersSearchInput}
-                    onChange={this.handleChange} />
+                    value={props.commentersSearchUrl}
+                    disabled={!props.enableCommentersSearchInput}
+                    onChange={handleChange} />
                     <ReactTooltip delayShow={250}/>
     
             <Button
                 type="submit"
                 value="Submit"
-                disabled={!this.props.enableCommentersSearchSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableCommentersSearchSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showCommentersSearchSubmitButton}>
                 Submit
             </Button>
@@ -66,7 +65,6 @@ class CommentersSearchForm extends Component {
           
           
         );
-    }
 
 }
 

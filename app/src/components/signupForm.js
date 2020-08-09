@@ -1,31 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class SignupForm extends Component {
+function SignupForm(props) {
     
   
-    handleChange = changeEvent => {
+    const handleChange = changeEvent => {
           
         ReactTooltip.hide();
-        this.props.handleSignupChange(changeEvent)
+        props.handleSignupChange(changeEvent)
         
     }
     
-    handleSubmit = () => {
+    const handleSubmit = () => {
 
-        this.props.handleSignupSubmit()
+        props.handleSignupSubmit()
 
     }
     
-    render() {
-      
-        const showSignupForm = this.props.showSignupForm ? {display: 'block'} : {display: 'none'}
+        const showSignupForm = props.showSignupForm ? {display: 'block'} : {display: 'none'}
                 
-        const showSignupSubmitButton = this.props.showSignupSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showSignupSubmitLoadingButton = this.props.showSignupSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+        const showSignupSubmitButton = props.showSignupSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showSignupSubmitLoadingButton = props.showSignupSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         
 
         return (
@@ -36,9 +34,9 @@ class SignupForm extends Component {
                     data-tip="Service Username"
                     type="text"
                     name="scUsername"
-                    disabled={!this.props.enableSignupFormInputs}
-                    value={this.props.scUsername || ""}
-                    onChange={this.handleChange} />
+                    disabled={!props.enableSignupFormInputs}
+                    value={props.scUsername || ""}
+                    onChange={handleChange} />
                     <ReactTooltip delayShow={250}/>
                     
             <Form.Label>Password</Form.Label>
@@ -46,9 +44,9 @@ class SignupForm extends Component {
                     data-tip="Service Password"
                     type="password"
                     name="scPassword"
-                    disabled={!this.props.enableSignupFormInputs}
-                    value={this.props.scPassword || ""}
-                    onChange={this.handleChange} />
+                    disabled={!props.enableSignupFormInputs}
+                    value={props.scPassword || ""}
+                    onChange={handleChange} />
                     <ReactTooltip delayShow={250}/>
               
              </Form.Group>
@@ -56,8 +54,8 @@ class SignupForm extends Component {
             <Button
                 type="submit"
                 value="Submit"
-                disabled={!this.props.enableSignupSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableSignupSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showSignupSubmitButton}>
                 Go
             </Button>
@@ -78,7 +76,6 @@ class SignupForm extends Component {
           
           
         );
-    }
 
 }
 

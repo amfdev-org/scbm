@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
-//import { connect } from 'react-redux';
+import React from 'react'
 import Alert from 'react-bootstrap/Alert'
 
-class infoAlert extends Component {
+function infoAlert(props) {
     
-    handleChange = (alertType, alertAction) => {
+    const handleChange = (alertType, alertAction) => {
         //ReactTooltip.hide();
-        this.props.handleAlertChange(alertType, alertAction) 
+        props.handleAlertChange(alertType, alertAction) 
     }
-    
-    render() {
 
-        const showInfoAlert = this.props.showInfoAlert ? {display: 'block'} : {display: 'none'};
+        const showInfoAlert = props.showInfoAlert ? {display: 'block'} : {display: 'none'};
      
         return (
      
@@ -19,30 +16,16 @@ class infoAlert extends Component {
                 className="info-alert alert-fixed"
                 style={showInfoAlert}
                 variant='info'
-                onClose={() => this.handleChange("INFO", "HIDE")()}
+                onClose={() => handleChange("INFO", "HIDE")()}
                 dismissible
                 >
-                <Alert.Heading>{this.props.infoAlertTextHeading}</Alert.Heading>
-                 {this.props.infoAlertText}
+                <Alert.Heading>{props.infoAlertTextHeading}</Alert.Heading>
+                 {props.infoAlertText}
               </Alert>
           
         );
-    }
 
 }
 
 
 export default infoAlert;
-
-/*function mapStateToProps(state) {
- 
-    return {
-        showInfoAlert: state.showInfoAlert,
-        infoAlertText: state.infoAlertText,
-        infoAlertTextHeading: state.infoAlertTextHeading
-    }
-      
-      
-}
-
-export default connect(mapStateToProps)(infoAlert);*/
