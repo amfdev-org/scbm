@@ -1,57 +1,49 @@
-import {
-  MY_FOLLOWERS_MESSAGE_FORM_SHOW,
-  MY_FOLLOWERS_MESSAGE_FORM_HIDE
+export const initialState = {
+        myFollowersMessage : 'Hi <<profileName>>,',
+        showMyFollowersMessageForm: false,
+        enableMyFollowersMessageInput: true,
+        enableMyFollowersMessageSubmitButton: false,
+        showMyFollowersMessageSubmitButton: true,
+        showMyFollowersMessageSubmitLoadingButton: false
+};
 
-} from '../actions/myFollowersSearchActions';
-
-import {
-  MY_FOLLOWERS_MESSAGE_CHANGE,
-  MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE,
-  MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE,
-  MY_FOLLOWERS_MESSAGE_ERROR,
-  MY_FOLLOWERS_MESSAGE_RESULT,
-  MY_FOLLOWERS_MESSAGE_SUBMITTED,
-  MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR
-
-} from '../actions/myFollowersMessageActions';    
-        
-        
-export default function myFollowersMessageReducer(state, action) {
+       
+export function myFollowersMessageReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case MY_FOLLOWERS_MESSAGE_FORM_SHOW:
+    case "MY_FOLLOWERS_MESSAGE_FORM_SHOW":
         //console.log('show message form - reducer')
       return {
         ...state,
         showMyFollowersMessageForm: true
       };
       
-    case MY_FOLLOWERS_MESSAGE_FORM_HIDE:
+    case "MY_FOLLOWERS_MESSAGE_FORM_HIDE":
       return {
         ...state,
         showMyFollowersMessageForm: false
       };
       
-    case MY_FOLLOWERS_MESSAGE_CHANGE:
+    case "MY_FOLLOWERS_MESSAGE_CHANGE":
       return {
         ...state,
         myFollowersMessage: action.myFollowersMessage
       };
           
-    case MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE:
+    case "MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE":
       return {
         ...state,
         enableMyFollowersMessageSubmitButton: true
       };
                 
-    case MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE:
+    case "MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE":
       return {
         ...state,
           enableMyFollowersMessageSubmitButton: false
       };
       
-    case MY_FOLLOWERS_MESSAGE_SUBMITTED:
+    case "MY_FOLLOWERS_MESSAGE_SUBMITTED":
       return {
         ...state,
         showErrorAlert: false,
@@ -66,7 +58,7 @@ export default function myFollowersMessageReducer(state, action) {
       };
     
           
-    case MY_FOLLOWERS_MESSAGE_ERROR:
+    case "MY_FOLLOWERS_MESSAGE_ERROR":
       return {
         ...state,
           showMyFollowersMessageSubmitButton: true,
@@ -79,7 +71,7 @@ export default function myFollowersMessageReducer(state, action) {
               
       };
     
-      case MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR:
+      case "MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR":
         //console.log('reducer unknoqn error')
       return {
         ...state,
@@ -92,7 +84,7 @@ export default function myFollowersMessageReducer(state, action) {
               
       };
           
-    case MY_FOLLOWERS_MESSAGE_RESULT:
+    case "MY_FOLLOWERS_MESSAGE_RESULT":
       return {
         ...state,
         toggledClearRows: true,

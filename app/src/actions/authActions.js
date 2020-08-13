@@ -20,46 +20,42 @@ import {
   fetchRecentFollowersSearches
   } from '../actions/followersSearchActions'
   
-export const AUTH_HTTP_ERROR = 'AUTH_HTTP_ERROR'
-export const AUTH_SESSION_ERROR = 'AUTH_SESSION_ERROR'
-export const AUTH_COOKIE_ERROR = 'AUTH_COOKIE_ERROR'
-export const AUTH_SUCCESS = 'AUTH_SUCCESS'
-export const AUTH_UNKNOWN_ERROR = 'AUTH_UNKNOWN_ERROR'
 
-
-export function fetchAuth() {
-
-  return dispatch => {
+export function fetchAuth(dispatch) {
     //dispatch(requestAuth())
     
-      axios.get('https://scbm.amfdev.co.uk/api/auth/', { headers: { "X-Request-App": "scbm" } })
+    console.log('fetchAuth')
+      
+        axios.get('https://scbm.amfdev.co.uk/api/auth/', { headers: { "X-Request-App": "scbm" } })
       .then(json => catchAuthSessionError(json.data, dispatch))
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))
-      .then(json => dispatch(fetchReceivedMessages()))
-      .then(json => dispatch(fetchSentMessages()))
-      .then(json => dispatch(fetchMyFollowers()))
-      .then(json => dispatch(fetchRecentCommentersSearches()))
-      .then(json => dispatch(fetchRecentFollowersSearches()))
+      .then(json => fetchReceivedMessages(false, dispatch))
+      .then(json => fetchSentMessages(dispatch))
+      .then(json => fetchMyFollowers(dispatch))
+      .then(json => fetchRecentCommentersSearches(dispatch))
+      .then(json => fetchRecentFollowersSearches(dispatch))
       .catch(error => {
 
                 if (error.response) {   
                       dispatch({
-                          type: AUTH_UNKNOWN_ERROR
+                          type: "AUTH_UNKNOWN_ERROR"
                       })  
                 }
       });
-  }
-
+  
 }
 
 
+
 function catchAuthSessionError(json, dispatch) {
+  //console.log(json)
     //console.log('catchAuthSessionError')
+
     if (!json.sessionValid) {
         
           dispatch({
-                type: AUTH_SESSION_ERROR
+                type: "AUTH_SESSION_ERROR"
               });
           
         throw Error(json.authError);
@@ -72,7 +68,7 @@ function catchAuthCookieError(json, dispatch) {
    //console.log('catchAuthCookieError')
     if (!json.scCookiesValid) {
            dispatch({
-                type: AUTH_COOKIE_ERROR
+                type: "AUTH_COOKIE_ERROR"
               });
         throw Error(json.authError);
     }
@@ -86,7 +82,7 @@ function doAuthSuccess(json, dispatch) {
   //console.log(JSON.parse(json.userData.userSettings))
     if (json.authSuccess) {
         dispatch({
-          type: AUTH_SUCCESS,
+          type: "AUTH_SUCCESS",
           userData: json.userData,
           userSettings: JSON.parse(json.userData.userSettings)
         })

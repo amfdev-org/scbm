@@ -12,47 +12,39 @@ import {
   } from '../actions/sentMessagesSearchActions'
   
   
-export const SENT_MESSAGES_MESSAGE_CHANGE = 'SENT_MESSAGES_MESSAGE_CHANGE'
-export const SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE = 'SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE'
-export const SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE = 'SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE'
-export const SENT_MESSAGES_MESSAGE_SUBMITTED = 'SENT_MESSAGES_MESSAGE_SUBMITTED'
-export const SENT_MESSAGES_MESSAGE_ERROR = 'SENT_MESSAGES_MESSAGE_ERROR'
-export const SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR = 'SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR'
-export const SENT_MESSAGES_MESSAGE_RESULT = 'SENT_MESSAGES_MESSAGE_RESULT'
-
-export function handleSentMessagesMessageChange(event) {
-    
-    return (dispatch, getState) => {
+export function handleSentMessagesMessageChange(event, context) {
+  
+      const dispatch = context.dispatch;
+      const state = context.state;
         
         const { value } = event.target
-  
+        const sentMessagesMessage = value;
+          
             dispatch({
-                type: SENT_MESSAGES_MESSAGE_CHANGE,
-                sentMessagesMessage: value
+                type: "SENT_MESSAGES_MESSAGE_CHANGE",
+                sentMessagesMessage: sentMessagesMessage
             })
        
-        if(getState().sentMessagesMessage && getState().sentMessagesMessage.length > 10) {
+        if(sentMessagesMessage && sentMessagesMessage.length > 10) {
             dispatch({
-                type: SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE
+                type: "SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE"
           })
         } else {
             dispatch({
-                type: SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE
+                type: "SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE"
           })
         }
-
-          
-    }
     
 }
 
 
-export function handleSentMessagesMessageSubmit(event) {
-    
-    return (dispatch, getState) => {
+export function handleSentMessagesMessageSubmit(event, context) {
 
+  const dispatch = context.dispatch;
+    const state = context.state;
+        
     dispatch({
-         type: SENT_MESSAGES_MESSAGE_SUBMITTED
+         type: "SENT_MESSAGES_MESSAGE_SUBMITTED"
        });
            
         axios({
@@ -61,33 +53,32 @@ export function handleSentMessagesMessageSubmit(event) {
         headers: {}, 
         data: {
             messageType: "sent",
-            selectedProfiles: getState().selectedSentMessages,
-            message: getState().sentMessagesMessage,
-            searchUrl: getState().scProfile,
-            isTestMode: getState().isTestMode
+            selectedProfiles: state.selectedSentMessages,
+            message: state.sentMessagesMessage,
+            searchUrl: state.scProfile,
+            isTestMode: state.isTestMode
         }
         })    
         .then(json => catchSentMessagesMessageError(json.data, dispatch))
-        .then(json => dispatch(doSentMessagesMessageSuccess(json, dispatch, getState)))
+        .then(json => doSentMessagesMessageSuccess(json, dispatch, state))
         .catch(error => {
 
                 if (error.response) {   
                       dispatch({
-                          type: SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR
+                          type: "SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
     }
     
-}
 
 
 function catchSentMessagesMessageError(json, dispatch) {
     //console.log('catchFollowersMessageError')
     if (!json.success) {
         dispatch({
-                type: SENT_MESSAGES_MESSAGE_ERROR
+                type: "SENT_MESSAGES_MESSAGE_ERROR"
               })
         throw Error(json.error);
     }
@@ -96,24 +87,22 @@ function catchSentMessagesMessageError(json, dispatch) {
 }
 
 
-function doSentMessagesMessageSuccess(json, dispatch, getState) {
-    
-    return (dispatch, getState) => {
-        
+function doSentMessagesMessageSuccess(json, dispatch, state) {
+
             let successArray = [];
             
                 for (let sendResult of json.result) {
          
-                  const elementsIndex = getState().sentMessageData.findIndex(element => element.profileUrl === sendResult.profileUrl );
+                  const elementsIndex = state.sentMessageData.findIndex(element => element.profileUrl === sendResult.profileUrl );
                    
-                   let newArray = [...getState().sentMessageData]
+                   let newArray = [...state.sentMessageData]
                   
                     newArray[elementsIndex] = {...newArray[elementsIndex], messaged: sendResult.messageResult}
              
                         //await console.log(newArray);
                        
                            dispatch({
-                             type: SENT_MESSAGES_MESSAGE_RESULT,
+                             type: "SENT_MESSAGES_MESSAGE_RESULT",
                              sentMessageData: newArray
                            })
                                
@@ -125,8 +114,8 @@ function doSentMessagesMessageSuccess(json, dispatch, getState) {
                    
                 }
               
-                dispatch(fetchSentMessages());           
-                dispatch(fetchMyFollowers());
+                fetchSentMessages(dispatch);           
+                fetchMyFollowers(dispatch);
                 
                 if(successArray.length > 0) {
                     
@@ -151,6 +140,4 @@ function doSentMessagesMessageSuccess(json, dispatch, getState) {
                 }
                 //return { newArray, successArray };
      
-    }
-    
 }

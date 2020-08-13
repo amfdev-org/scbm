@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Button from 'react-bootstrap/Button'
 import ReactTooltip from "react-tooltip";
 import { Nav, Navbar } from "react-bootstrap";
@@ -7,11 +9,18 @@ import { GiSettingsKnobs } from 'react-icons/gi';
 
 function Header(props) {
     
+    const context = useContext(ContextConsumer);
+    
     const handleLogoutSubmit = () => {
         
         ReactTooltip.hide();
-        props.handleLogoutSubmit()
+        props.handleLogoutSubmit(context)
 
+    }
+    
+    const handleToggleConfigModal = () => {
+        
+        props.handleToggleConfigModal(context);
     }
     
         const showLoggedInInfo = props.showLoggedInInfo ? {display: 'block'} : {display: 'none'};
@@ -42,7 +51,7 @@ function Header(props) {
                     className="header-config-link"
                     data-tip="Settings"
                    style={showLoggedInInfo}
-                   onClick={props.handleToggleConfigModal}
+                   onClick={handleToggleConfigModal}
                     />
                     <ReactTooltip delayShow={250}/>
                    

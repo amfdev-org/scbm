@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
 import Spinner from 'react-bootstrap/Spinner'
@@ -6,10 +8,11 @@ import moment from 'moment'
 
 function ReceivedMessagesTable(props) {
 
-
+      const context = useContext(ContextConsumer);
+      
     const handleChange = (event) => {
       
-          props.handleReceivedMessagesSelectedRowsChange(event.selectedRows);
+          props.handleReceivedMessagesSelectedRowsChange(event.selectedRows, context);
     }
     
     

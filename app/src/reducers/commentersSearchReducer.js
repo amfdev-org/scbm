@@ -1,43 +1,43 @@
-import {
-    COMMENTERS_SEARCH_URL_CHANGE,
-    COMMENTERS_SEARCH_SUBMIT_ENABLE,
-    COMMENTERS_SEARCH_SUBMIT_DISABLE,
-    COMMENTERS_SEARCH_SUBMITTED,
-    COMMENTERS_SEARCH_NO_RESULTS,
-    COMMENTERS_SEARCH_OTHER_ERROR,
-    COMMENTERS_SEARCH_SUCCESS,
-    COMMENTERS_SELECTED_ROWS_CHANGE,
-    COMMENTERS_SEARCH_UNKNOWN_ERROR,
-    //COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR,
-    COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT
-    
-} from '../actions/commentersSearchActions';
-
-
-export default function commentersSearchReducer(state, action) {
+export const initialState = {
+    commentersSearchUrl : '',
+    commenterData : [],
+    selectedCommenters : [],
+    toggledClearRows: false,
+    showCommentersSearchSubmitButton: true,
+    enableCommentersSearchSubmitButton: false,
+    showCommentersSearchSubmitLoadingButton: false,
+    enableCommentersSearchInput: true,
+    showCommentersSearchForm: false,
+    showCommentersTable: false,
+    recentCommentersSearches: [],
+    showCommentersRecentSearchContainer: false
+};     
+      
+      
+export function commentersSearchReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case COMMENTERS_SEARCH_URL_CHANGE:
+    case "COMMENTERS_SEARCH_URL_CHANGE":
       return {
         
         ...state,
         commentersSearchUrl: action.commentersSearchUrl
       };
 
-    case COMMENTERS_SEARCH_SUBMIT_ENABLE:
+    case "COMMENTERS_SEARCH_SUBMIT_ENABLE":
       return {
         ...state,
         enableCommentersSearchSubmitButton: true
       };
       
-    case COMMENTERS_SEARCH_SUBMIT_DISABLE:
+    case "COMMENTERS_SEARCH_SUBMIT_DISABLE":
       return {
         ...state,
         enableCommentersSearchSubmitButton: false
       };
       
-    case COMMENTERS_SEARCH_SUBMITTED:
+    case "COMMENTERS_SEARCH_SUBMITTED":
       return {
         ...state,
             showCommentersTable: false,
@@ -50,7 +50,7 @@ export default function commentersSearchReducer(state, action) {
         
       };
     
-    case COMMENTERS_SEARCH_NO_RESULTS:
+    case "COMMENTERS_SEARCH_NO_RESULTS":
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {
@@ -66,7 +66,7 @@ export default function commentersSearchReducer(state, action) {
         
       };
       
-    case COMMENTERS_SEARCH_OTHER_ERROR:
+    case "COMMENTERS_SEARCH_OTHER_ERROR":
          //console.log("sc cookie error - reducer");
       return {
         ...state,
@@ -82,7 +82,7 @@ export default function commentersSearchReducer(state, action) {
       };
       
       
-    case COMMENTERS_SEARCH_SUCCESS:
+    case "COMMENTERS_SEARCH_SUCCESS":
          //console.log("sc commentersSearch success - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -99,7 +99,7 @@ export default function commentersSearchReducer(state, action) {
     
       };
       
-    case COMMENTERS_SEARCH_UNKNOWN_ERROR:
+    case "COMMENTERS_SEARCH_UNKNOWN_ERROR":
         //console.log('reducer other error')
       return {
         ...state,
@@ -112,7 +112,7 @@ export default function commentersSearchReducer(state, action) {
       };
       
       
-    case COMMENTERS_SELECTED_ROWS_CHANGE:
+    case "COMMENTERS_SELECTED_ROWS_CHANGE":
          //console.log("COMMENTERS_SELECTED_ROWS_CHANGE - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -121,7 +121,7 @@ export default function commentersSearchReducer(state, action) {
     
       };
     
-    case COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT:
+    case "COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT":
          //console.log("COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT - reducer");
          //console.log(action.data)
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'

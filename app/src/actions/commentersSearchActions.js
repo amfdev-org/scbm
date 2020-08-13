@@ -3,30 +3,13 @@
 
 import axios from 'axios';
 
-export const COMMENTERS_SEARCH_URL_CHANGE = 'COMMENTERS_SEARCH_URL_CHANGE'
-export const COMMENTERS_SEARCH_SUBMIT_ENABLE = 'COMMENTERS_SEARCH_SUBMIT_ENABLE'
-export const COMMENTERS_SEARCH_SUBMIT_DISABLE = 'COMMENTERS_SEARCH_SUBMIT_DISABLE'
-export const COMMENTERS_SEARCH_SUBMITTED = 'COMMENTERS_SEARCH_SUBMITTED'
-export const COMMENTERS_SEARCH_NO_RESULTS = 'COMMENTERS_SEARCH_NO_RESULTS'
-export const COMMENTERS_SEARCH_OTHER_ERROR = 'COMMENTERS_SEARCH_OTHER_ERROR'
-export const COMMENTERS_SEARCH_SUCCESS = 'COMMENTERS_SEARCH_SUCCESS'
-export const COMMENTERS_SELECTED_ROWS_CHANGE = 'COMMENTERS_SELECTED_ROWS_CHANGE'
-export const COMMENTERS_MESSAGE_FORM_SHOW = 'COMMENTERS_MESSAGE_FORM_SHOW'
-export const COMMENTERS_MESSAGE_FORM_HIDE = 'COMMENTERS_MESSAGE_FORM_HIDE'
-export const COMMENTERS_SEARCH_UNKNOWN_ERROR = 'COMMENTERS_SEARCH_UNKNOWN_ERROR'
-export const COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED = 'COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED'
-export const COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR = 'COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR'
-export const COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT = 'COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT'
-
-export function fetchRecentCommentersSearches() {
-
-    return (dispatch, getState) => {
+export function fetchRecentCommentersSearches(dispatch) {
 
     //console.log('fetch received messages');
     
-        dispatch({type: COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED});
+        dispatch({type: "COMMENTERS_SEARCH_RECENT_SEARCHES_SUBMITTED"});
             
-        //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
+        //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
         axios.get('https://scbm.amfdev.co.uk/api/searches/', {params: {type: "commenter"} })
         .then(json => doRecentCommentersSearchesResult(json, dispatch))
@@ -34,13 +17,11 @@ export function fetchRecentCommentersSearches() {
 
                 if (error.response) {   
                       dispatch({
-                          type: COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR
+                          type: "COMMENTERS_SEARCH_RECENT_SEARCHES_ERROR"
                       })  
                 }
         });
-                  
-    }
-    
+                
 
 }
 
@@ -49,7 +30,7 @@ function doRecentCommentersSearchesResult(json, dispatch) {
         //console.log(json.data)
         if (json.data && json.data.length > 0) {
                dispatch({
-                type: COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT,
+                type: "COMMENTERS_SEARCH_RECENT_SEARCHES_RESULT",
                 data: json.data
               })
         }  
@@ -60,17 +41,17 @@ function doRecentCommentersSearchesResult(json, dispatch) {
 
 
 
-export function handleCommentersRecentSearchSubmit(searchUrl) {
-    
-    return (dispatch, getState) => {
+export function handleCommentersRecentSearchSubmit(searchUrl, context) {
 
+    const dispatch = context.dispatch;
+    
     dispatch({
-         type: COMMENTERS_SEARCH_URL_CHANGE,
+         type: "COMMENTERS_SEARCH_URL_CHANGE",
          commentersSearchUrl: searchUrl
        });
     
     dispatch({
-         type: COMMENTERS_SEARCH_SUBMITTED
+         type: "COMMENTERS_SEARCH_SUBMITTED"
        });
            
         axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
@@ -85,68 +66,66 @@ export function handleCommentersRecentSearchSubmit(searchUrl) {
 
                 if (error.response) {   
                       dispatch({
-                          type: COMMENTERS_SEARCH_UNKNOWN_ERROR
+                          type: "COMMENTERS_SEARCH_UNKNOWN_ERROR"
                       })  
                 }
         });
-                  
-    }
+                
     
 }
 
-export function handleCommentersSearchSubmit(event) {
-    
-    return (dispatch, getState) => {
+export function handleCommentersSearchSubmit(event, context) {
 
+    const dispatch = context.dispatch;
+    const state = context.state;
+    
     dispatch({
-         type: COMMENTERS_SEARCH_SUBMITTED
+         type: "COMMENTERS_SEARCH_SUBMITTED"
        });
            
         axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
          params: {
-           searchUrl: encodeURI(getState().commentersSearchUrl)
+           searchUrl: encodeURI(state.commentersSearchUrl)
          }
          })
         .then(json => catchCommentersSearchNoResults(json.data, dispatch))
         .then(json => catchCommentersSearchOtherError(json, dispatch))
         .then(json => doCommentersSearchSuccess(json, dispatch))
-        .then(json => dispatch(fetchRecentCommentersSearches()))
+        .then(json => fetchRecentCommentersSearches(dispatch))
         .catch(error => {
 
                 if (error.response) {   
                       dispatch({
-                          type: COMMENTERS_SEARCH_UNKNOWN_ERROR
+                          type: "COMMENTERS_SEARCH_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
-    }
-    
 }
 
 
 
-export function handleCommentersSearchChange(event) {
-    
-    return (dispatch, getState) => {
+export function handleCommentersSearchChange(event, context) {
 
-            dispatch({
-                type: COMMENTERS_SEARCH_URL_CHANGE,
-                commentersSearchUrl: event.target.value
-            })
+    const dispatch = context.dispatch;
+
+    const commentersSearchUrl = event.target.value;
+    
+        dispatch({
+            type: "COMMENTERS_SEARCH_URL_CHANGE",
+            commentersSearchUrl: commentersSearchUrl
+        })
        
-        if(getState().commentersSearchUrl && getState().commentersSearchUrl.length > 0 && getState().commentersSearchUrl.includes("http")) {
+        if(commentersSearchUrl && commentersSearchUrl.length > 0 && commentersSearchUrl.includes("http")) {
             dispatch({
-                type: COMMENTERS_SEARCH_SUBMIT_ENABLE
+                type: "COMMENTERS_SEARCH_SUBMIT_ENABLE"
           })
         } else {
             dispatch({
-                type: COMMENTERS_SEARCH_SUBMIT_DISABLE
+                type: "COMMENTERS_SEARCH_SUBMIT_DISABLE"
           })
         }
 
-          
-    }
     
 }
 
@@ -159,7 +138,7 @@ function catchCommentersSearchNoResults(json, dispatch) {
     //console.log(json);
     if (json.noResults) {
         dispatch({
-                type: COMMENTERS_SEARCH_NO_RESULTS
+                type: "COMMENTERS_SEARCH_NO_RESULTS"
               })
         dispatch({ type: "SUCCESS_ALERT_SHOW" });
         
@@ -179,7 +158,7 @@ function catchCommentersSearchOtherError(json, dispatch) {
     //console.log('catchCommentersSearchOtherError')
     if (!json.success) {
         dispatch({
-                type: COMMENTERS_SEARCH_OTHER_ERROR
+                type: "COMMENTERS_SEARCH_OTHER_ERROR"
               })
         throw Error(json.error);
     }
@@ -192,7 +171,7 @@ function doCommentersSearchSuccess(json, dispatch) {
     //console.log('doCommentersSearchSuccess')
  
         dispatch({
-                type: COMMENTERS_SEARCH_SUCCESS,
+                type: "COMMENTERS_SEARCH_SUCCESS",
                 commenterData: json.commenterData
               })
           
@@ -207,29 +186,27 @@ function doCommentersSearchSuccess(json, dispatch) {
 }
 
 
-export function handleCommentersSelectedRowsChange(selectedCommenters) {
+export function handleCommentersSelectedRowsChange(selectedCommenters, context) {
     
     //console.log(selectedCommenters);
-    
-    return (dispatch, getState) => {
-  
+    const dispatch = context.dispatch;
+
             dispatch({
-                type: COMMENTERS_SELECTED_ROWS_CHANGE,
+                type: "COMMENTERS_SELECTED_ROWS_CHANGE",
                 selectedCommenters: selectedCommenters
             })
        
-        if(getState().selectedCommenters && getState().selectedCommenters.length > 0) {
+        if(selectedCommenters && selectedCommenters.length > 0) {
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
-                type: COMMENTERS_MESSAGE_FORM_SHOW
+                type: "COMMENTERS_MESSAGE_FORM_SHOW"
           })
         } else {
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
             dispatch({
-                type: COMMENTERS_MESSAGE_FORM_HIDE
+                type: "COMMENTERS_MESSAGE_FORM_HIDE"
           })
         }
-        
-    }
+
            
 }

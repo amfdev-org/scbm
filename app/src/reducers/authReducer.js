@@ -1,22 +1,14 @@
-import {
-  AUTH_SESSION_ERROR,
-  AUTH_COOKIE_ERROR,
-  AUTH_SUCCESS,
-  AUTH_UNKNOWN_ERROR
-} from '../actions/authActions';
+export const initialState = {
 
-/*const initialState = {
-  authErrorMessage: null,
-  errorAlertText: null,
-  showErrorAlert: false
-};*/
-
-
-export default function authReducer(state, action) {
+};     
+   
+export function authReducer(state = initialState, action) {
   
+  //console.log(action);
+   
   switch(action.type) {
-
-    case AUTH_UNKNOWN_ERROR:
+   
+    case "AUTH_UNKNOWN_ERROR":
       
       return {
         ...state,
@@ -25,8 +17,10 @@ export default function authReducer(state, action) {
         showErrorAlert: true   
       };
 
-    case AUTH_SESSION_ERROR:
+    case "AUTH_SESSION_ERROR":
 
+    console.log('reducer AUTH_SESSION_ERROR')
+    
       return {
         ...state,
         errorAlertText: "",
@@ -40,17 +34,18 @@ export default function authReducer(state, action) {
                               
       };
       
-    case AUTH_COOKIE_ERROR:
-
+    case "AUTH_COOKIE_ERROR":
+console.log('reducer AUTH_COOKIE_ERROR')
       return {
         ...state,
         errorAlertText: "Auth cookie error. Please contact support.",
         showErrorAlert: true
       };
       
-      case AUTH_SUCCESS:
+    
+    case "AUTH_SUCCESS":
       //console.log("authReducer AUTH_SUCCESS - action.userSettings.isTestMode: "+action.userSettings.isTestMode)
-      //console.log("authReducer AUTH_SUCCESS - action.userSettings.isTestMode === 'true': "+action.userSettings.isTestMode === "true")
+      console.log("authReducer AUTH_SUCCESS");
       return {
         ...state,
         errorAlertText: null,
@@ -71,7 +66,9 @@ export default function authReducer(state, action) {
       
     default:
       // ALWAYS have a default case in a reducer
-      return state;
+      return { ...state };
   }
-}
+  
+};
 
+export default authReducer;

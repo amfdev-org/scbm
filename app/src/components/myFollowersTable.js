@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import DataTable from 'react-data-table-component'
 import Spinner from 'react-bootstrap/Spinner'
 
 function MyFollowersTable(props) {
 
-
+      const context = useContext(ContextConsumer);
+            
     const handleChange = (event) => {
       
-          props.handleMyFollowersSelectedRowsChange(event.selectedRows);
+          props.handleMyFollowersSelectedRowsChange(event.selectedRows, context);
     }
 
     

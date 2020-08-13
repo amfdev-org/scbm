@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
@@ -6,14 +8,15 @@ import ReactTooltip from "react-tooltip";
 
 function MyFollowersMessageForm(props) {
 
+    const context = useContext(ContextConsumer);
 
     const handleChange = (event) => {
         ReactTooltip.hide();
-        props.handleMyFollowersMessageChange(event)
+        props.handleMyFollowersMessageChange(event, context)
     }
     
-    const handleSubmit = () => {
-        props.handleMyFollowersMessageSubmit()
+    const handleSubmit = (event) => {
+        props.handleMyFollowersMessageSubmit(event, context)
     }
     
 

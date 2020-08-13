@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
 //import { connect } from 'react-redux';
 import Alert from 'react-bootstrap/Alert'
 
-function errorAlert(props) {
+function ErrorAlert(props) {
+    
+    const context = useContext(ContextConsumer);
     
     const handleChange = (alertType, alertAction) => {
  
         //ReactTooltip.hide();
-        props.handleAlertChange(alertType, alertAction)
+        props.handleAlertChange(alertType, alertAction, context)
         
     }
     
-
         const showErrorAlert = props.showErrorAlert ? {display: 'block'} : {display: 'none'};   
         const showErrorAlertSwitchToSignup = props.showErrorAlertSwitchToSignup ? {display: 'block'} : {display: 'none'}; 
         const showErrorAlertSwitchToLogin = props.showErrorAlertSwitchToLogin ? {display: 'block'} : {display: 'none'}; 
@@ -41,4 +43,4 @@ function errorAlert(props) {
 
 
 
-export default errorAlert;
+export default ErrorAlert;

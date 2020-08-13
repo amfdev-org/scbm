@@ -4,34 +4,32 @@ import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
-export function handleAlertChange(alertType, alertAction) {
+export function handleAlertChange(alertType, alertAction, context) {
+    
+    const dispatch = context.dispatch;
     //console.log(alertType+'_ALERT_'+alertAction);
-    return (dispatch, getState) => {
         dispatch({type: alertType+'_ALERT_'+alertAction})
-    }
 
 }
 
-export function handleToggleConfigModal() {
+export function handleToggleConfigModal(context) {
+    
+    const dispatch = context.dispatch;
     //console.log('handleToggleConfigModal')
-    return (dispatch, getState) => {
         dispatch({type: "CONFIG_MODAL_SHOW"})
-    }
 }
 
 
-export function handleCloseConfigModal() {
+export function handleCloseConfigModal(context) {
     
-    return (dispatch, getState) => {
+    const dispatch = context.dispatch;
+
         dispatch({type: "CONFIG_MODAL_HIDE"})
-    }
-    
 }
 
-export function handleTestModeChange(checked) {
+export function handleTestModeChange(checked, context) {
     
-    return (dispatch, getState) => {
-        
+    const dispatch = context.dispatch;
         //console.log('uiActions handleTestModeChange function called');
         
         var dispatchType;
@@ -87,7 +85,7 @@ export function handleTestModeChange(checked) {
                 dispatch({ type: alertHideType });
                 },4000);
                 
-                dispatch(fetchSentMessages());
+                fetchSentMessages(dispatch);
                                            
         })
         .catch(error => {
@@ -106,17 +104,12 @@ export function handleTestModeChange(checked) {
         
         });
         
-        
-    }
 }
 
 
-export function handleDownloadLogs(event) {
+export function handleDownloadLogs(event, context) {
     
     //console.log("handleDownloadLogs");
-        
-    return (dispatch) => {
-        
         axios.get("https://scbm.amfdev.co.uk/api/download-logs/", {responseType: 'blob'})
        .then(response => {
           const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -127,7 +120,4 @@ export function handleDownloadLogs(event) {
           link.click();
        });
        
-    
-    }
-    
 }

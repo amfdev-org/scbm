@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-//import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
+import React, { useEffect, useContext } from 'react';
+import connect from "../provider/connect";
+import { ContextConsumer } from "../provider/provider";
 
-//IMPORT REDUX ACTION CREATORS
+//IMPORT ACTION CREATORS
 import {
   fetchAuth
   } from '../actions/authActions'
@@ -122,36 +122,37 @@ import ErrorAlert from '../components/errorAlert';
 import SuccessAlert from '../components/successAlert';
 import InfoAlert from '../components/infoAlert';
 
-class App extends Component {
+function App(props) {
   
-  componentDidMount = () => {
+    const context = useContext(ContextConsumer);
+  
+    useEffect(() => {
+    // Create an scoped async function in the hook
+       //function anyNameFunction() {      
+      props.fetchAuth();
 
-    this.props.fetchAuth()
-
-  }
-
-    handleRefresh = (event) => {
+    }, []);
+    
+    const handleRefresh = (event) => {
      
         event.stopPropagation();
         event.nativeEvent.stopImmediatePropagation();
         ReactTooltip.hide();
         
-        this.props.handleReceivedMessagesRefresh(event)
+        props.handleReceivedMessagesRefresh();
 
     }
     
-  
-  render() {
          
-    const showLoginForm = this.props.showLoginForm ? {display: 'block'} : {display: 'none'};
-    const showMainAccordion = this.props.showMainAccordion ? {display: 'block'} : {display: 'none'};
-    const showSignupForm = this.props.showSignupForm ? {display: 'block'} : {display: 'none'};
+    const showLoginForm = props.showLoginForm ? {display: 'block'} : {display: 'none'};
+    const showMainAccordion = props.showMainAccordion ? {display: 'block'} : {display: 'none'};
+    const showSignupForm = props.showSignupForm ? {display: 'block'} : {display: 'none'};
     
-    const showReceivedMessagesMessageForm = this.props.showReceivedMessagesMessageForm ? {display: 'block'} : {display: 'none'};
-    const showSentMessagesMessageForm = this.props.showSentMessagesMessageForm ? {display: 'block'} : {display: 'none'};
-    const showMyFollowersMessageForm = this.props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'};
-    const showCommentersMessageForm = this.props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'};
-    const showFollowersMessageForm = this.props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'};
+    const showReceivedMessagesMessageForm = props.showReceivedMessagesMessageForm ? {display: 'block'} : {display: 'none'};
+    const showSentMessagesMessageForm = props.showSentMessagesMessageForm ? {display: 'block'} : {display: 'none'};
+    const showMyFollowersMessageForm = props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'};
+    const showCommentersMessageForm = props.showCommentersMessageForm ? {display: 'block'} : {display: 'none'};
+    const showFollowersMessageForm = props.showFollowersMessageForm ? {display: 'block'} : {display: 'none'};
 
   
     return (
@@ -159,21 +160,21 @@ class App extends Component {
       <>
    
       <Header
-        showLoggedInInfo={this.props.showLoggedInInfo}
-        loggedInInfoText={this.props.loggedInInfoText}
-        showLogoutSubmitButton={this.props.showLogoutSubmitButton}
-        handleLogoutSubmit={this.props.handleLogoutSubmit}
-        showConfigModal={this.props.showConfigModal}
-        handleToggleConfigModal={this.props.handleToggleConfigModal}
-        handleCloseConfigModal={this.props.handleCloseConfigModal}
+        showLoggedInInfo={props.showLoggedInInfo}
+        loggedInInfoText={props.loggedInInfoText}
+        showLogoutSubmitButton={props.showLogoutSubmitButton}
+        handleLogoutSubmit={props.handleLogoutSubmit}
+        showConfigModal={props.showConfigModal}
+        handleToggleConfigModal={props.handleToggleConfigModal}
+        handleCloseConfigModal={props.handleCloseConfigModal}
         />
         
         <ConfigModal
-        showConfigModal={this.props.showConfigModal}
-        handleCloseConfigModal={this.props.handleCloseConfigModal}
-        isTestMode={this.props.isTestMode}
-        handleTestModeChange={this.props.handleTestModeChange}
-        handleDownloadLogs={this.props.handleDownloadLogs}
+        showConfigModal={props.showConfigModal}
+        handleCloseConfigModal={props.handleCloseConfigModal}
+        isTestMode={props.isTestMode}
+        handleTestModeChange={props.handleTestModeChange}
+        handleDownloadLogs={props.handleDownloadLogs}
         />
                 
       <Container className="main-container">
@@ -181,30 +182,30 @@ class App extends Component {
           <Col>
 
            <ErrorAlert
-            handleAlertChange={this.props.handleAlertChange}
-            showErrorAlert={this.props.showErrorAlert}
-            errorAlertText={this.props.errorAlertText}
-            errorAlertLinkText={this.props.errorAlertLinkText}
-            showErrorAlertSwitchToSignup={this.props.showErrorAlertSwitchToSignup}
-            showErrorAlertSwitchToLogin={this.props.showErrorAlertSwitchToLogin}
-            handleLoginSwitchToSignup={this.props.handleLoginSwitchToSignup}
-            handleSignupSwitchToLogin={this.props.handleSignupSwitchToLogin}
-            dismissErrorAlert={this.dismissErrorAlert}
+            handleAlertChange={props.handleAlertChange}
+            showErrorAlert={props.showErrorAlert}
+            errorAlertText={props.errorAlertText}
+            errorAlertLinkText={props.errorAlertLinkText}
+            showErrorAlertSwitchToSignup={props.showErrorAlertSwitchToSignup}
+            showErrorAlertSwitchToLogin={props.showErrorAlertSwitchToLogin}
+            handleLoginSwitchToSignup={props.handleLoginSwitchToSignup}
+            handleSignupSwitchToLogin={props.handleSignupSwitchToLogin}
+            dismissErrorAlert={props.dismissErrorAlert}
            />
            
            <SuccessAlert
-            handleAlertChange={this.props.handleAlertChange}
-            showSuccessAlert={this.props.showSuccessAlert}
-            successAlertText={this.props.successAlertText}
-            dismissSuccessAlert={this.dismissSuccessAlert}
+            handleAlertChange={props.handleAlertChange}
+            showSuccessAlert={props.showSuccessAlert}
+            successAlertText={props.successAlertText}
+            dismissSuccessAlert={props.dismissSuccessAlert}
            />
            
            <InfoAlert
-            handleAlertChange={this.props.handleAlertChange}
-           showInfoAlert={this.props.showInfoAlert}
-            infoAlertText={this.props.infoAlertText}
-            infoAlertTextHeading={this.props.infoAlertTextHeading}
-            dismissInfoAlert={this.dismissInfoAlert}
+            handleAlertChange={props.handleAlertChange}
+           showInfoAlert={props.showInfoAlert}
+            infoAlertText={props.infoAlertText}
+            infoAlertTextHeading={props.infoAlertTextHeading}
+            dismissInfoAlert={props.dismissInfoAlert}
            />
                
         <Container className="login-container">
@@ -212,34 +213,34 @@ class App extends Component {
           <h3 className="main" style={showLoginForm}>Login</h3>
             
             <LoginForm className="main"
-              showLoginForm={this.props.showLoginForm}
-              enableLoginSubmitButton={this.props.enableLoginSubmitButton}
-              showLoginSubmitButton={this.props.showLoginSubmitButton}
-              showLoginSubmitLoadingButton={this.props.showLoginSubmitLoadingButton} 
-              scUsername={this.props.scUsername}
-              scPassword={this.props.scPassword}
-              loginButtonText = {this.props.loginHeaderText}
-              handleLoginChange={this.props.handleLoginChange}
-              handleLoginSubmit={this.props.handleLoginSubmit}
+              showLoginForm={props.showLoginForm}
+              enableLoginSubmitButton={props.enableLoginSubmitButton}
+              showLoginSubmitButton={props.showLoginSubmitButton}
+              showLoginSubmitLoadingButton={props.showLoginSubmitLoadingButton} 
+              scUsername={props.scUsername}
+              scPassword={props.scPassword}
+              loginButtonText = {props.loginHeaderText}
+              handleLoginChange={props.handleLoginChange}
+              handleLoginSubmit={props.handleLoginSubmit}
             />
             
              <h3 className="main" style={showSignupForm}>Sign Up</h3>
             
             <SignupForm className="main"
-              showSignupForm={this.props.showSignupForm}
-              scUsername={this.props.scUsername}
-              scPassword={this.props.scPassword}
-              signupButtonText = {this.props.signupHeaderText}
-              enableSignupFormInputs={this.props.enableSignupFormInputs}
-              handleSignupChange={this.props.handleSignupChange}
-              handleSignupSubmit={this.props.handleSignupSubmit}
-              enableSignupSubmitButton={this.props.enableSignupSubmitButton}
-              showSignupSubmitButton={this.props.showSignupSubmitButton}
-              showSignupSubmitLoadingButton={this.props.showSignupSubmitLoadingButton} />
+              showSignupForm={props.showSignupForm}
+              scUsername={props.scUsername}
+              scPassword={props.scPassword}
+              signupButtonText = {props.signupHeaderText}
+              enableSignupFormInputs={props.enableSignupFormInputs}
+              handleSignupChange={props.handleSignupChange}
+              handleSignupSubmit={props.handleSignupSubmit}
+              enableSignupSubmitButton={props.enableSignupSubmitButton}
+              showSignupSubmitButton={props.showSignupSubmitButton}
+              showSignupSubmitLoadingButton={props.showSignupSubmitLoadingButton} />
          
          </Container>
          
-            <Accordion className="main-accordion" /*defaultActiveKey="0"*/ style={showMainAccordion}>
+            <Accordion className="main-accordion" defaultActiveKey="0" style={showMainAccordion}>
             
                 <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -252,8 +253,8 @@ class App extends Component {
                         type="submit"
                         value="Submit"
                         size="sm"
-                        onClick={this.handleRefresh}
-                        disabled={!this.props.enableReceivedMessagesRefresh}
+                        onClick={handleRefresh}
+                        disabled={!props.enableReceivedMessagesRefresh}
                         >
                         Refresh
                     </Button>
@@ -263,25 +264,25 @@ class App extends Component {
                   <Card.Body>
 
                        <ReceivedMessagesTable className="receivedMessagesDataTable"
-                       receivedMessageData={this.props.receivedMessageData}
-                       showReceivedMessagesTable={this.props.showReceivedMessagesTable}
-                       handleReceivedMessagesSelectedRowsChange={this.props.handleReceivedMessagesSelectedRowsChange}
-                       showReceivedMessagesLoadingIcon={this.props.showReceivedMessagesLoadingIcon}
-                       selectedReceivedMessages={this.props.selectedReceivedMessages}
-                       toggledClearRows={this.props.toggledClearRows}
+                       receivedMessageData={props.receivedMessageData}
+                       showReceivedMessagesTable={props.showReceivedMessagesTable}
+                       handleReceivedMessagesSelectedRowsChange={props.handleReceivedMessagesSelectedRowsChange}
+                       showReceivedMessagesLoadingIcon={props.showReceivedMessagesLoadingIcon}
+                       selectedReceivedMessages={props.selectedReceivedMessages}
+                       toggledClearRows={props.toggledClearRows}
                        />
                    
                        <h6 style={showReceivedMessagesMessageForm} className="messageForm">Message</h6>
                    
                         <ReceivedMessagesMessageForm
-                         receivedMessagesMessage={this.props.receivedMessagesMessage}
-                         showReceivedMessagesMessageForm={this.props.showReceivedMessagesMessageForm}
-                         handleReceivedMessagesMessageChange={this.props.handleReceivedMessagesMessageChange}
-                         handleReceivedMessagesMessageSubmit={this.props.handleReceivedMessagesMessageSubmit}
-                         enableReceivedMessagesMessageInput={this.props.enableReceivedMessagesMessageInput}
-                         enableReceivedMessagesMessageSubmitButton={this.props.enableReceivedMessagesMessageSubmitButton}
-                         showReceivedMessagesMessageSubmitButton = {this.props.showReceivedMessagesMessageSubmitButton}
-                         showReceivedMessagesMessageSubmitLoadingButton = {this.props.showReceivedMessagesMessageSubmitLoadingButton}
+                         receivedMessagesMessage={props.receivedMessagesMessage}
+                         showReceivedMessagesMessageForm={props.showReceivedMessagesMessageForm}
+                         handleReceivedMessagesMessageChange={props.handleReceivedMessagesMessageChange}
+                         handleReceivedMessagesMessageSubmit={props.handleReceivedMessagesMessageSubmit}
+                         enableReceivedMessagesMessageInput={props.enableReceivedMessagesMessageInput}
+                         enableReceivedMessagesMessageSubmitButton={props.enableReceivedMessagesMessageSubmitButton}
+                         showReceivedMessagesMessageSubmitButton = {props.showReceivedMessagesMessageSubmitButton}
+                         showReceivedMessagesMessageSubmitLoadingButton = {props.showReceivedMessagesMessageSubmitLoadingButton}
                        />
                           
                   </Card.Body>
@@ -296,25 +297,26 @@ class App extends Component {
                   <Card.Body>
 
                        <SentMessagesTable className="sentMessagesDataTable"
-                       sentMessageData={this.props.sentMessageData}
-                       showSentMessagesTable={this.props.showSentMessagesTable}
-                       handleSentMessagesSelectedRowsChange={this.props.handleSentMessagesSelectedRowsChange}
-                       showSentMessagesLoadingIcon={this.props.showSentMessagesLoadingIcon}
-                       selectedSentMessages={this.props.selectedSentMessages}
-                       toggledClearRows={this.props.toggledClearRows}
+                       sentMessageData={props.sentMessageData}
+                       showSentMessagesTable={props.showSentMessagesTable}
+                       handleSentMessagesSelectedRowsChange={props.handleSentMessagesSelectedRowsChange}
+                       showSentMessagesLoadingIcon={props.showSentMessagesLoadingIcon}
+                       selectedSentMessages={props.selectedSentMessages}
+                       toggledClearRows={props.toggledClearRows}
+                       isTestMode={props.isTestMode}
                        />
                    
                        <h6 style={showSentMessagesMessageForm} className="messageForm">Message</h6>
                    
                         <SentMessagesMessageForm
-                         sentMessagesMessage={this.props.sentMessagesMessage}
-                         showSentMessagesMessageForm={this.props.showSentMessagesMessageForm}
-                         handleSentMessagesMessageChange={this.props.handleSentMessagesMessageChange}
-                         handleSentMessagesMessageSubmit={this.props.handleSentMessagesMessageSubmit}
-                         enableSentMessagesMessageInput={this.props.enableSentMessagesMessageInput}
-                         enableSentMessagesMessageSubmitButton={this.props.enableSentMessagesMessageSubmitButton}
-                         showSentMessagesMessageSubmitButton = {this.props.showSentMessagesMessageSubmitButton}
-                         showSentMessagesMessageSubmitLoadingButton = {this.props.showSentMessagesMessageSubmitLoadingButton}
+                         sentMessagesMessage={props.sentMessagesMessage}
+                         showSentMessagesMessageForm={props.showSentMessagesMessageForm}
+                         handleSentMessagesMessageChange={props.handleSentMessagesMessageChange}
+                         handleSentMessagesMessageSubmit={props.handleSentMessagesMessageSubmit}
+                         enableSentMessagesMessageInput={props.enableSentMessagesMessageInput}
+                         enableSentMessagesMessageSubmitButton={props.enableSentMessagesMessageSubmitButton}
+                         showSentMessagesMessageSubmitButton = {props.showSentMessagesMessageSubmitButton}
+                         showSentMessagesMessageSubmitLoadingButton = {props.showSentMessagesMessageSubmitLoadingButton}
                        />
                           
                   </Card.Body>
@@ -329,25 +331,25 @@ class App extends Component {
                   <Card.Body>
 
                        <MyFollowersTable className="myFollowersDataTable"
-                       myFollowerData={this.props.myFollowerData}
-                       showMyFollowersTable={this.props.showMyFollowersTable}
-                       handleMyFollowersSelectedRowsChange={this.props.handleMyFollowersSelectedRowsChange}
-                       showMyFollowersLoadingIcon={this.props.showMyFollowersLoadingIcon}
-                       selectedMyFollowers={this.props.selectedMyFollowers}
-                       toggledClearRows={this.props.toggledClearRows}
+                       myFollowerData={props.myFollowerData}
+                       showMyFollowersTable={props.showMyFollowersTable}
+                       handleMyFollowersSelectedRowsChange={props.handleMyFollowersSelectedRowsChange}
+                       showMyFollowersLoadingIcon={props.showMyFollowersLoadingIcon}
+                       selectedMyFollowers={props.selectedMyFollowers}
+                       toggledClearRows={props.toggledClearRows}
                        />
                    
                        <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
                    
                        <MyFollowersMessageForm
-                         myFollowersMessage={this.props.myFollowersMessage}
-                         showMyFollowersMessageForm={this.props.showMyFollowersMessageForm}
-                         handleMyFollowersMessageChange={this.props.handleMyFollowersMessageChange}
-                         handleMyFollowersMessageSubmit={this.props.handleMyFollowersMessageSubmit}
-                         enableMyFollowersMessageInput={this.props.enableMyFollowersMessageInput}
-                         enableMyFollowersMessageSubmitButton={this.props.enableMyFollowersMessageSubmitButton}
-                         showMyFollowersMessageSubmitButton = {this.props.showMyFollowersMessageSubmitButton}
-                         showMyFollowersMessageSubmitLoadingButton = {this.props.showMyFollowersMessageSubmitLoadingButton}
+                         myFollowersMessage={props.myFollowersMessage}
+                         showMyFollowersMessageForm={props.showMyFollowersMessageForm}
+                         handleMyFollowersMessageChange={props.handleMyFollowersMessageChange}
+                         handleMyFollowersMessageSubmit={props.handleMyFollowersMessageSubmit}
+                         enableMyFollowersMessageInput={props.enableMyFollowersMessageInput}
+                         enableMyFollowersMessageSubmitButton={props.enableMyFollowersMessageSubmitButton}
+                         showMyFollowersMessageSubmitButton = {props.showMyFollowersMessageSubmitButton}
+                         showMyFollowersMessageSubmitLoadingButton = {props.showMyFollowersMessageSubmitLoadingButton}
                        />
                           
                   </Card.Body>
@@ -366,39 +368,39 @@ class App extends Component {
                       
                         <CommentersSearchForm
                           className="main"
-                          commentersSearchUrl={this.props.commentersSearchUrl}
-                          handleCommentersSearchChange={this.props.handleCommentersSearchChange}
-                          handleCommentersSearchSubmit={this.props.handleCommentersSearchSubmit}
-                          enableCommentersSearchInput={this.props.enableCommentersSearchInput}
-                          enableCommentersSearchSubmitButton={this.props.enableCommentersSearchSubmitButton}
-                          showCommentersSearchSubmitButton={this.props.showCommentersSearchSubmitButton}
-                          showCommentersSearchSubmitLoadingButton={this.props.showCommentersSearchSubmitLoadingButton} />                
+                          commentersSearchUrl={props.commentersSearchUrl}
+                          handleCommentersSearchChange={props.handleCommentersSearchChange}
+                          handleCommentersSearchSubmit={props.handleCommentersSearchSubmit}
+                          enableCommentersSearchInput={props.enableCommentersSearchInput}
+                          enableCommentersSearchSubmitButton={props.enableCommentersSearchSubmitButton}
+                          showCommentersSearchSubmitButton={props.showCommentersSearchSubmitButton}
+                          showCommentersSearchSubmitLoadingButton={props.showCommentersSearchSubmitLoadingButton} />                
         
                       <CommentersTable className="commentersDataTable"
-                          commenterData={this.props.commenterData}
-                          showCommentersTable={this.props.showCommentersTable}
-                          handleCommentersSelectedRowsChange={this.props.handleCommentersSelectedRowsChange}
-                          //handleCommentersSelecSubmit={this.props.handleCommentersSubmit}
-                          showCommentersSubmitButton={this.props.showCommentersSubmitButton}
-                          showCommentersSubmitLoadingButton={this.props.showCommentersSubmitLoadingButton}
-                          selectedCommenters={this.props.selectedCommenters}
-                          toggledClearRows={this.props.toggledClearRows}
-                          recentCommentersSearches={this.props.recentCommentersSearches}
-                          handleCommentersRecentSearchSubmit={this.props.handleCommentersRecentSearchSubmit}
-                          showCommentersRecentSearchContainer={this.props.showCommentersRecentSearchContainer}
+                          commenterData={props.commenterData}
+                          showCommentersTable={props.showCommentersTable}
+                          handleCommentersSelectedRowsChange={props.handleCommentersSelectedRowsChange}
+                          //handleCommentersSelecSubmit={props.handleCommentersSubmit}
+                          showCommentersSubmitButton={props.showCommentersSubmitButton}
+                          showCommentersSubmitLoadingButton={props.showCommentersSubmitLoadingButton}
+                          selectedCommenters={props.selectedCommenters}
+                          toggledClearRows={props.toggledClearRows}
+                          recentCommentersSearches={props.recentCommentersSearches}
+                          handleCommentersRecentSearchSubmit={props.handleCommentersRecentSearchSubmit}
+                          showCommentersRecentSearchContainer={props.showCommentersRecentSearchContainer}
                           />
                       
                       <h6 style={showCommentersMessageForm} className="messageForm">Message</h6>
                       
                       <CommentersMessageForm
-                          commentersMessage={this.props.commentersMessage}
-                          showCommentersMessageForm={this.props.showCommentersMessageForm}
-                          handleCommentersMessageChange={this.props.handleCommentersMessageChange}
-                          handleCommentersMessageSubmit={this.props.handleCommentersMessageSubmit}
-                          enableCommentersMessageInput={this.props.enableCommentersMessageInput}
-                          enableCommentersMessageSubmitButton={this.props.enableCommentersMessageSubmitButton}
-                          showCommentersMessageSubmitButton = {this.props.showCommentersMessageSubmitButton}
-                          showCommentersMessageSubmitLoadingButton = {this.props.showCommentersMessageSubmitLoadingButton}
+                          commentersMessage={props.commentersMessage}
+                          showCommentersMessageForm={props.showCommentersMessageForm}
+                          handleCommentersMessageChange={props.handleCommentersMessageChange}
+                          handleCommentersMessageSubmit={props.handleCommentersMessageSubmit}
+                          enableCommentersMessageInput={props.enableCommentersMessageInput}
+                          enableCommentersMessageSubmitButton={props.enableCommentersMessageSubmitButton}
+                          showCommentersMessageSubmitButton = {props.showCommentersMessageSubmitButton}
+                          showCommentersMessageSubmitLoadingButton = {props.showCommentersMessageSubmitLoadingButton}
                           />
                   
                   </Card.Body>
@@ -416,38 +418,38 @@ class App extends Component {
                         
                         <FollowersSearchForm
                           className="main"
-                          followersSearchUrl={this.props.followersSearchUrl}
-                          handleFollowersSearchChange={this.props.handleFollowersSearchChange}
-                          handleFollowersSearchSubmit={this.props.handleFollowersSearchSubmit}
-                          enableFollowersSearchInput={this.props.enableFollowersSearchInput}
-                          enableFollowersSearchSubmitButton={this.props.enableFollowersSearchSubmitButton}
-                          showFollowersSearchSubmitButton={this.props.showFollowersSearchSubmitButton}
-                          showFollowersSearchSubmitLoadingButton={this.props.showFollowersSearchSubmitLoadingButton} />
+                          followersSearchUrl={props.followersSearchUrl}
+                          handleFollowersSearchChange={props.handleFollowersSearchChange}
+                          handleFollowersSearchSubmit={props.handleFollowersSearchSubmit}
+                          enableFollowersSearchInput={props.enableFollowersSearchInput}
+                          enableFollowersSearchSubmitButton={props.enableFollowersSearchSubmitButton}
+                          showFollowersSearchSubmitButton={props.showFollowersSearchSubmitButton}
+                          showFollowersSearchSubmitLoadingButton={props.showFollowersSearchSubmitLoadingButton} />
             
                           <FollowersTable className="followersDataTable"
-                          followerData={this.props.followerData}
-                          showFollowersTable={this.props.showFollowersTable}
-                          handleFollowersSelectedRowsChange={this.props.handleFollowersSelectedRowsChange}
-                          showFollowersSubmitButton={this.props.showFollowersSubmitButton}
-                          showFollowersSubmitLoadingButton={this.props.showFollowersSubmitLoadingButton}
-                          selectedFollowers={this.props.selectedFollowers}
-                          toggledClearRows={this.props.toggledClearRows}
-                          recentFollowersSearches={this.props.recentFollowersSearches}
-                          handleFollowersRecentSearchSubmit={this.props.handleFollowersRecentSearchSubmit}
-                          showFollowersRecentSearchContainer={this.props.showFollowersRecentSearchContainer}
+                          followerData={props.followerData}
+                          showFollowersTable={props.showFollowersTable}
+                          handleFollowersSelectedRowsChange={props.handleFollowersSelectedRowsChange}
+                          showFollowersSubmitButton={props.showFollowersSubmitButton}
+                          showFollowersSubmitLoadingButton={props.showFollowersSubmitLoadingButton}
+                          selectedFollowers={props.selectedFollowers}
+                          toggledClearRows={props.toggledClearRows}
+                          recentFollowersSearches={props.recentFollowersSearches}
+                          handleFollowersRecentSearchSubmit={props.handleFollowersRecentSearchSubmit}
+                          showFollowersRecentSearchContainer={props.showFollowersRecentSearchContainer}
                           />
                       
                           <h6 style={showFollowersMessageForm} className="messageForm">Message</h6>
                       
                           <FollowersMessageForm
-                            followersMessage={this.props.followersMessage}
-                            showFollowersMessageForm={this.props.showFollowersMessageForm}
-                            handleFollowersMessageChange={this.props.handleFollowersMessageChange}
-                            handleFollowersMessageSubmit={this.props.handleFollowersMessageSubmit}
-                            enableFollowersMessageInput={this.props.enableFollowersMessageInput}
-                            enableFollowersMessageSubmitButton={this.props.enableFollowersMessageSubmitButton}
-                            showFollowersMessageSubmitButton = {this.props.showFollowersMessageSubmitButton}
-                            showFollowersMessageSubmitLoadingButton = {this.props.showFollowersMessageSubmitLoadingButton}
+                            followersMessage={props.followersMessage}
+                            showFollowersMessageForm={props.showFollowersMessageForm}
+                            handleFollowersMessageChange={props.handleFollowersMessageChange}
+                            handleFollowersMessageSubmit={props.handleFollowersMessageSubmit}
+                            enableFollowersMessageInput={props.enableFollowersMessageInput}
+                            enableFollowersMessageSubmitButton={props.enableFollowersMessageSubmitButton}
+                            showFollowersMessageSubmitButton = {props.showFollowersMessageSubmitButton}
+                            showFollowersMessageSubmitLoadingButton = {props.showFollowersMessageSubmitLoadingButton}
                           />
                           
                   </Card.Body>
@@ -459,20 +461,18 @@ class App extends Component {
           </Row>
         </Container>
    
+
          <Footer />
          
          </>          
                
       )
-  }
-  
   
 }
 
-function mapStateToProps(state) {
- 
-    return {
-      
+
+const mapStateToProps = state => ({
+
       //main UI
       showMainAccordion: state.showMainAccordion,
       
@@ -599,19 +599,17 @@ function mapStateToProps(state) {
       recentFollowersSearches: state.recentFollowersSearches,
       showCommentersRecentSearchContainer: state.showCommentersRecentSearchContainer,
       showFollowersRecentSearchContainer: state.showFollowersRecentSearchContainer
-      }
       
-}
+      })
+      
 
-
-//basically, functions...
-const mapDispatchToProps = {
-      fetchAuth,
+const mapDispatchToProps = dispatch => ({
+      fetchAuth: () => fetchAuth(dispatch),
       handleLoginChange,
       handleLoginSubmit,
       handleLogoutSubmit,
-      handleLoginSwitchToSignup,
-      handleSignupSwitchToLogin,
+      handleLoginSwitchToSignup: () => handleLoginSwitchToSignup(dispatch),
+      handleSignupSwitchToLogin: () => handleSignupSwitchToLogin(dispatch),
       handleSignupChange,
       handleSignupSubmit,
       handleCommentersSearchChange,
@@ -637,13 +635,15 @@ const mapDispatchToProps = {
       handleReceivedMessagesSelectedRowsChange,
       handleReceivedMessagesMessageChange,
       handleReceivedMessagesMessageSubmit,
-      handleReceivedMessagesRefresh,
+      handleReceivedMessagesRefresh: () => handleReceivedMessagesRefresh(dispatch),
       handleToggleConfigModal,
       handleCloseConfigModal,
       handleTestModeChange,
       handleDownloadLogs,
       handleCommentersRecentSearchSubmit,
       handleFollowersRecentSearchSubmit
-}
+
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

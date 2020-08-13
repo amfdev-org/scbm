@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import Badge from 'react-bootstrap/Badge'
 import DataTable from 'react-data-table-component'
@@ -9,15 +11,16 @@ library.add(faExclamationTriangle)
 
 function CommentersTable(props) {
 
-
+    const context = useContext(ContextConsumer);
+  
     const handleChange = (event) => {
       
-          props.handleCommentersSelectedRowsChange(event.selectedRows);
+          props.handleCommentersSelectedRowsChange(event.selectedRows, context);
     }
     
     const handleRecentSearchClick = (searchUrl) => {
 
-      props.handleCommentersRecentSearchSubmit(searchUrl);
+      props.handleCommentersRecentSearchSubmit(searchUrl, context);
     }
     
       

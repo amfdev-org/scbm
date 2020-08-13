@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Alert from 'react-bootstrap/Alert'
 
-function infoAlert(props) {
+function InfoAlert(props) {
     
+     const context = useContext(ContextConsumer);
+     
     const handleChange = (alertType, alertAction) => {
         //ReactTooltip.hide();
-        props.handleAlertChange(alertType, alertAction) 
+        props.handleAlertChange(alertType, alertAction, context) 
     }
 
         const showInfoAlert = props.showInfoAlert ? {display: 'block'} : {display: 'none'};
@@ -28,4 +32,4 @@ function infoAlert(props) {
 }
 
 
-export default infoAlert;
+export default InfoAlert;

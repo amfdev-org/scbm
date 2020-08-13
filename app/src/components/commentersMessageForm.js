@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-function CommentersMessageForm(props) {
+const CommentersMessageForm = (props)  => {
 
-
+    const context = useContext(ContextConsumer);
+    
     const handleChange = (event) => {
         ReactTooltip.hide();
-        props.handleCommentersMessageChange(event)
+        props.handleCommentersMessageChange(event, context)
     }
     
-   const handleSubmit = () => {
-        props.handleCommentersMessageSubmit()
+   const handleSubmit = (event) => {
+        props.handleCommentersMessageSubmit(event, context)
     }
     
     

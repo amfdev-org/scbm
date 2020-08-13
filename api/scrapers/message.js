@@ -312,9 +312,22 @@ const moment = require('moment')
              return Promise.reject(new Error("ERROR! cookies could not be loaded"));
          }
        
+         try {
+            await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-cookies-loaded.png'});
+            await console.log('**screenshot saved**');
+         } catch(error) {
+            console.log(error)
+            await console.log('ERROR! screenshot could not be saved!');
+         }
+         
+         
         try {
-           await page.goto(url, {waitUntil: 'networkidle0'});
+           await page.goto(url);
            await console.log('**navigated to: ' + url);
+           
+            await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-navigate.png'});
+            await console.log('**screenshot saved**');
+     
         } catch(error) {
            await console.log('ERROR! could not navigate to url ' + url);
            return Promise.reject(new Error('ERROR! could not navigate to url ' + url));

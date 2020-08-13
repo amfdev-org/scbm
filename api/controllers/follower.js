@@ -16,7 +16,8 @@ module.exports.getFollowers = (req, res) => {
         res.end();
     }
     
-    //console.log(req)
+    console.log(req.query)
+    console.log(req.session.user.scProfile)
     //console.log(req.session.user)
      
     let validateFollowersSearchUrl = () => {
@@ -25,7 +26,7 @@ module.exports.getFollowers = (req, res) => {
             
             //remove trailing slash if preset
             let searchUrl = decodeURI(req.query.searchUrl).replace(/\/$/, "");
-            
+            console.log('search url ' + searchUrl)
             let isMyFollowersSearch = false;
 
             if (!searchUrl.includes("soundcloud")) {
@@ -36,10 +37,10 @@ module.exports.getFollowers = (req, res) => {
                  console.log("Profile Search URL looks like a Song URL")
                 reject("Profile Search URL looks like a Song URL");
                 //res.send(JSON.stringify({errorMessage : "Server says: could not get followers!"}))
-            } else if (searchUrl === req.session.user.scProfile) {
+            } else if (searchUrl === req.session.user.scProfile || searchUrl === "https://soundcloud.com") {
                 console.log('is my follower search')
                 //console.log(isMyFollowersSearch)
-                resolve({searchUrl: searchUrl, isMyFollowersSearch: true});
+                resolve({searchUrl: req.session.user.scProfile, isMyFollowersSearch: true});
             } else {  
                 //console.log('is my follower search')
                 //console.log(isMyFollowersSearch)
@@ -53,12 +54,14 @@ module.exports.getFollowers = (req, res) => {
         let logSearchToDb = (data) => {
         
         return new Promise((resolve, reject) => {
-            
+        
                 SearchModel.Search.create({search: data.searchUrl,
                                    type: "follower",
                                    user: req.session.user.scUsername
                                    })
                 .then(function(search) {
+                    console.log('logSearchToDb result')
+                    //console.log(search)
                     resolve({searchUrl: data.searchUrl});
                 })
                 .catch(error => {

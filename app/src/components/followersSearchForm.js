@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
@@ -6,17 +8,18 @@ import ReactTooltip from "react-tooltip";
 
 function FollowersSearchForm(props) {
     
-  
+    const context = useContext(ContextConsumer);
+    
     const handleChange = (event) => {
           
         ReactTooltip.hide();
-        props.handleFollowersSearchChange(event)
+        props.handleFollowersSearchChange(event, context)
         
     }
     
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
 
-        props.handleFollowersSearchSubmit()
+        props.handleFollowersSearchSubmit(event, context)
 
     }
     

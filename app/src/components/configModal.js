@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
 //import { connect } from 'react-redux';
 //import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -7,6 +8,7 @@ import Switch from "react-switch";
 
 function ConfigModal(props) {
     
+    const context = useContext(ContextConsumer);
     
     const handleDownloadLogs = (event) => {
 
@@ -14,19 +16,23 @@ function ConfigModal(props) {
         event.nativeEvent.stopImmediatePropagation()
         event.stopPropagation()
         
-        props.handleDownloadLogs()
+        props.handleDownloadLogs(event, context)
 
     }
     
     const handleChange = (checked) => {
         //console.log('configmodal handlechange "checked" variable is: '+checked);
-        props.handleTestModeChange(checked);
+        props.handleTestModeChange(checked, context);
+    }
+    
+    const handleCloseConfigModal = () => {
+        props.handleCloseConfigModal(context)
     }
     
                      
         return (
          <>                      
-        <Modal show={props.showConfigModal} onHide={props.handleCloseConfigModal}>
+        <Modal show={props.showConfigModal} onHide={handleCloseConfigModal}>
           <Modal.Header closeButton>
             <Modal.Title>Settings</Modal.Title>
           </Modal.Header>
@@ -50,7 +56,7 @@ function ConfigModal(props) {
                   
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={props.handleCloseConfigModal}>
+            <Button variant="primary" onClick={handleCloseConfigModal}>
               Save & Close
             </Button>
           </Modal.Footer>

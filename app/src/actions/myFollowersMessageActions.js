@@ -7,47 +7,46 @@ import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
-export const MY_FOLLOWERS_MESSAGE_CHANGE = 'MY_FOLLOWERS_MESSAGE_CHANGE'
-export const MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE = 'MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE'
-export const MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE = 'MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE'
-export const MY_FOLLOWERS_MESSAGE_SUBMITTED = 'MY_FOLLOWERS_MESSAGE_SUBMITTED'
-export const MY_FOLLOWERS_MESSAGE_ERROR = 'MY_FOLLOWERS_MESSAGE_ERROR'
-export const MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR = 'MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR'
-export const MY_FOLLOWERS_MESSAGE_RESULT = 'MY_FOLLOWERS_MESSAGE_RESULT'
 
-export function handleMyFollowersMessageChange(event) {
-    
-    return (dispatch, getState) => {
+export function handleMyFollowersMessageChange(event, context) {
+
+        const dispatch = context.dispatch;
+        const state = context.state;
         
         const { value } = event.target
-  
+   
+        const myFollowersMessage = value;
+        
             dispatch({
-                type: MY_FOLLOWERS_MESSAGE_CHANGE,
-                myFollowersMessage: value
+                type: "MY_FOLLOWERS_MESSAGE_CHANGE",
+                myFollowersMessage: myFollowersMessage
             })
        
-        if(getState().myFollowersMessage && getState().myFollowersMessage.length > 10) {
+        if(myFollowersMessage && myFollowersMessage.length > 10) {
             dispatch({
-                type: MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE
+                type: "MY_FOLLOWERS_MESSAGE_SUBMIT_ENABLE"
           })
         } else {
             dispatch({
-                type: MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE
+                type: "MY_FOLLOWERS_MESSAGE_SUBMIT_DISABLE"
           })
         }
 
-          
-    }
     
 }
 
 
-export function handleMyFollowersMessageSubmit(event) {
+export function handleMyFollowersMessageSubmit(event, context) {
+
+    //console.log('handleMyFollowersMessageSubmit')
+    //console.log(event);
+
+    const dispatch = context.dispatch;
+    const state = context.state;
     
-    return (dispatch, getState) => {
 
     dispatch({
-         type: MY_FOLLOWERS_MESSAGE_SUBMITTED
+         type: "MY_FOLLOWERS_MESSAGE_SUBMITTED"
        });
            
         axios({
@@ -56,34 +55,34 @@ export function handleMyFollowersMessageSubmit(event) {
         headers: {}, 
         data: {
             messageType: "sent",
-            selectedProfiles: getState().selectedMyFollowers,
-            message: getState().myFollowersMessage,
-            searchUrl: getState().scProfile,
-            isTestMode: getState().isTestMode
+            selectedProfiles: state.selectedMyFollowers,
+            message: state.myFollowersMessage,
+            searchUrl: state.scProfile,
+            isTestMode: state.isTestMode
         }
         })    
         .then(json => catchMyFollowersMessageError(json.data, dispatch))
-        .then(json => dispatch(doMyFollowersMessageSuccess(json, dispatch, getState)))
+        .then(json => doMyFollowersMessageSuccess(json, dispatch, state))
         .catch(error => {
 
                 if (error.response) {
                     console.log('catch catch error.response in my followers messageactions')
                       dispatch({
-                          type: MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR
+                          type: "MY_FOLLOWERS_MESSAGE_UNKNOWN_ERROR"
                       })  
                 }
         });
-                  
-    }
+                
     
 }
 
 
 function catchMyFollowersMessageError(json, dispatch) {
+    console.log(json)
     console.log('catch catchMyFollowersMessageError')
     if (!json.success) {
         dispatch({
-                type: MY_FOLLOWERS_MESSAGE_ERROR
+                type: "MY_FOLLOWERS_MESSAGE_ERROR"
               })
         throw Error(json.error);
     }
@@ -92,36 +91,34 @@ function catchMyFollowersMessageError(json, dispatch) {
 }
 
 
-function doMyFollowersMessageSuccess(json, dispatch, getState) {
-    
-    return (dispatch, getState) => {
+function doMyFollowersMessageSuccess(json, dispatch, state) {
         
             let successArray = [];
             
                 for (let sendResult of json.result) {
          
-                  const elementsIndex = getState().myFollowerData.findIndex(element => element.profileUrl === sendResult.recipientProfileUrl );
+                  const elementsIndex = state.myFollowerData.findIndex(element => element.profileUrl === sendResult.recipientProfileUrl );
                    
-                   let newArray = [...getState().myFollowerData]
+                   let newArray = [...state.myFollowerData]
                   
                     newArray[elementsIndex] = {...newArray[elementsIndex], messaged: sendResult.messageResult}
              
                         //await console.log(newArray);
                        
                            dispatch({
-                             type: MY_FOLLOWERS_MESSAGE_RESULT,
+                             type: "MY_FOLLOWERS_MESSAGE_RESULT",
                              myFollowerData: newArray
                            })
                                
                         
-                          if (sendResult.messageResult === 'Success') {
+                          if (sendResult.messageResult === 'Success' || "Success - Test") {
                              successArray.push(sendResult.recipientProfileUrl);
                           }
                                  
                    
                 }
               
-                dispatch(fetchSentMessages());
+                fetchSentMessages(dispatch);
                 //dispatch(fetchMyFollowers());
                         
                 if(successArray.length > 0) {
@@ -147,6 +144,5 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
                 }
                 //return { newArray, successArray };
      
-    }
     
 }
