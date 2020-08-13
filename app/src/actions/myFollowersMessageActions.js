@@ -114,7 +114,7 @@ function doMyFollowersMessageSuccess(json, dispatch, getState) {
                            })
                                
                         
-                          if (sendResult.messageResult === 'Success') {
+                          if (sendResult.messageResult === 'Success' || 'Success - Test') {
                              successArray.push(sendResult.recipientProfileUrl);
                           }
                                  

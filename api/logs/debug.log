@@ -2912,3 +2912,43 @@ GET /auth/
 x-request-app header validated
 not authd - req.sesssion.user && req.cookies.scbm_sid are invalid
 session invalid
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /sent-message/
+GET /followers/
+is my follower search
+GET /received message/
+checkForLoggedMessages
+checkForLoggedFollowers
+check for logged messages then block
+has recent logged messages!
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - follower
+GET /searches/ - commenter
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /followers/
+is my follower search
+GET /sent-message/
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+GET /searches/ - follower
