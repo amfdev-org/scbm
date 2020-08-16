@@ -31,8 +31,8 @@ export function fetchMyFollowers(dispatch) {
 }
 
 function catchMyFollowersSearchNoResults(json, dispatch) {
-    console.log('catchMyFollowersSearchNoResults')
-    console.log(json);
+    //console.log('catchMyFollowersSearchNoResults')
+    //console.log(json);
     if (json.noResults) {
         dispatch({
                 type: "MY_FOLLOWERS_SEARCH_NO_RESULTS"

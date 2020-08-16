@@ -25,7 +25,7 @@ export function fetchReceivedMessages(forceRefresh = false, dispatch) {
 
 function catchReceivedMessagesSearchNoResults(json, dispatch) {
     //console.log('catchReceivedMessagesSearchNoResults')
-    console.log(json);
+    //console.log(json);
     if (json.noResults) {
         dispatch({
                 type: "RECEIVED_MESSAGES_SEARCH_NO_RESULTS"

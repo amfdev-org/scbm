@@ -13744,3 +13744,90 @@ GET /searches/ - commenter
 1 logged searches for type: commenter
 GET /searches/ - follower
 1 logged searches for type: follower
+Started on PORT 3002
+Started on PORT 3002
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+GET /sent-message/
+check for logged messages then block
+scrape inbox
+GET /followers/
+{ searchUrl: 'https://soundcloud.com' }
+https://soundcloud.com/cloaked-music
+search url https://soundcloud.com
+is my follower search
+logSearchToDb result
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+2 logged searches for type: commenter
+GET /searches/ - follower
+2 logged searches for type: follower
+**browser and page instantiated**
+**document evaluated + stealth preload applied**
+**cookies loaded**
+**screenshot saved**
+**navigated to: https://soundcloud.com
+**screenshot saved**
+got .notificationIcon
+**clicked header__userNavMessagesButton **
+got .dropdownContent__list
+**screenshot saved**
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET /followers/
+{ searchUrl: 'https://soundcloud.com' }
+https://soundcloud.com/cloaked-music
+search url https://soundcloud.com
+is my follower search
+logSearchToDb result
+checkForLoggedFollowers
+check for logged followers then block
+scrape followers
+FOUND logged followers!
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+2 logged searches for type: commenter
+GET /searches/ - follower
+2 logged searches for type: follower
+GET /auth/
+x-request-app header validated
+authd - req.sesssion.user && req.cookies.scbm_sid are valid
+user found
+GET /received message/
+checkForLoggedMessages
+check for logged messages then block
+has recent logged messages!
+GET /sent-message/
+GET /followers/
+{ searchUrl: 'https://soundcloud.com' }
+https://soundcloud.com/cloaked-music
+search url https://soundcloud.com
+is my follower search
+logSearchToDb result
+checkForLoggedFollowers
+check for logged followers then block
+FOUND logged followers!
+scrape followers
+resolving logged followers instead of scraping
+follower model
+GET /searches/ - commenter
+2 logged searches for type: commenter
+GET /searches/ - follower
+2 logged searches for type: follower

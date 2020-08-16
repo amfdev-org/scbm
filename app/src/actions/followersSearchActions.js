@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export function fetchRecentFollowersSearches(dispatch) {
 
-    console.log('action fetchRecentFollowersSearches');
+    //console.log('action fetchRecentFollowersSearches');
     
         dispatch({type: "FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED"});
             
