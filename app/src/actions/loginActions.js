@@ -30,18 +30,18 @@ export function handleLoginChange(event, context) {
         const dispatch = context.dispatch;
         const state = context.state;
         
-        //console.log('actions handleLoginChange:')
+        console.log('actions handleLoginChange:')
 
         const { name, value } = event.target
         
         if (name === 'scUsername') {
-          //console.log('scUsername dispatch '+value)
+          console.log('scUsername dispatch '+value)
             dispatch({
                 type: "LOGIN_USERNAME_CHANGE",
                 scUsername: value
             })
         } else  if (name === 'scPassword') {
-          //console.log('scPassword dispatch '+value)
+          console.log('scPassword dispatch '+value)
             dispatch({
                 type: "LOGIN_PASSWORD_CHANGE",
                 scPassword: value

@@ -254,3 +254,11 @@ h6 {
 .recent-search-container {
   margin-top: 30px;
 }
+
+.suspense-loader {
+  margin-top:5px;
+  margin-bottom: 5px;
+      display: table;
+    margin-left: auto;
+    margin-right: auto;
+}

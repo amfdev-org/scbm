@@ -15,8 +15,7 @@ import {
 export function handleSentMessagesMessageChange(event, context) {
   
       const dispatch = context.dispatch;
-      const state = context.state;
-        
+
         const { value } = event.target
         const sentMessagesMessage = value;
           

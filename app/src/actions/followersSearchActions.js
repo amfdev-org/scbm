@@ -76,7 +76,6 @@ export function handleFollowersRecentSearchSubmit(searchUrl, context) {
 export function handleFollowersSearchChange(event, context) {
     
         const dispatch = context.dispatch;
-        const state = context.state;
         const followersSearchUrl = event.target.value;
         
         dispatch({

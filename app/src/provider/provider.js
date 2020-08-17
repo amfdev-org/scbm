@@ -15,7 +15,7 @@ const ContextProvider = ({ children }) => {
   // pass in the returned value of useReducer
   const contextValue = React.useMemo(() => ({ state, dispatch, initialState }), [
     state,
-    dispatch.
+    dispatch,
     initialState
   ]);
 

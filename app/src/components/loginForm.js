@@ -24,9 +24,9 @@ function LoginForm(props) {
 
     }
     
-        const showLoginForm = props.showLoginForm ? {display: 'block'} : {display: 'none'}
-        const showLoginSubmitButton = props.showLoginSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showLoginSubmitLoadingButton = props.showLoginSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+    const showLoginForm = props.showLoginForm ? {display: 'block'} : {display: 'none'}
+    const showLoginSubmitButton = props.showLoginSubmitButton ? {display: 'block'} : {display: 'none'};
+    const showLoginSubmitLoadingButton = props.showLoginSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
 
         return (
           <Form style={showLoginForm}>
