@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config();
 const fs = require('fs').promises;
 const moment = require('moment');
 
+const runMode = process.env.RUN_MODE;
 const rootPath = process.env.ROOT_PATH;
 const apiPath = rootPath + "/api"
 const screenshotPath = apiPath + "/screenshots";
@@ -234,6 +235,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
     }
     
     module.exports = {
+                runMode,
                 rootPath,
                 apiPath,
                 screenshotPath,

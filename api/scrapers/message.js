@@ -95,12 +95,15 @@ const moment = require('moment')
                
             //await page.waitFor(randomWaitLong);
             
-            try {
-               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-navigate.png'});
-               await console.log('**screenshot saved**');
-            } catch(error) {
-               console.log(error)
-               await console.log('ERROR! screenshot could not be saved!');
+            if (utils.runMode === 'dev') {
+                  
+               try {
+                  await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-navigate.png'});
+                  await console.log('**screenshot saved**');
+               } catch(error) {
+                  console.log(error)
+                  await console.log('ERROR! screenshot could not be saved!');
+               }
             }
     
             try {
@@ -140,15 +143,16 @@ const moment = require('moment')
                //return;
             }
             
-            try {
-               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-click-open-messages.png'});
-               await console.log('**screenshot saved**');
-            } catch(error) {
-               console.log(error)
-               await console.log('ERROR! screenshot could not be saved!');
+            if (utils.runMode === 'dev') {
+               try {
+                  await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-click-open-messages.png'});
+                  await console.log('**screenshot saved**');
+               } catch(error) {
+                  console.log(error)
+                  await console.log('ERROR! screenshot could not be saved!');
+               }
             }
-            
-      
+                
    
             try {
               let messageFrame = await page.frames().find(frame => frame.name().includes('sp_message_iframe'));
@@ -161,15 +165,15 @@ const moment = require('moment')
                await console.log('ERROR! could not dismiss message popup / iframe!!')
             }
                
-        
-            try {
-               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-dismiss-modal.png'});
-               await console.log('**screenshot saved**');
-            } catch(error) {
-               console.log(error)
-               await console.log('ERROR! screenshot could not be saved!');
+            if (utils.runMode === 'dev') {
+                  try {
+                     await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-dismiss-modal.png'});
+                     await console.log('**screenshot saved**');
+                  } catch(error) {
+                     console.log(error)
+                     await console.log('ERROR! screenshot could not be saved!');
+                  }
             }
-            
             
             try {
                await page.waitForSelector('.textfield__inputWrapper > textarea')
@@ -210,12 +214,15 @@ const moment = require('moment')
                //return;
             }
             
-            try {
-               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-message-enter.png'});
-               await console.log('**screenshot saved**');
-            } catch(error) {
-               console.log(error)
-               await console.log('ERROR! screenshot could not be saved!');
+            if (utils.runMode === 'dev') {
+               
+               try {
+                  await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-message-enter.png'});
+                  await console.log('**screenshot saved**');
+               } catch(error) {
+                  console.log(error)
+                  await console.log('ERROR! screenshot could not be saved!');
+               }
             }
             
             //await page.waitFor(randomWaitShort);
@@ -249,15 +256,15 @@ const moment = require('moment')
             }
             
             //await page.waitFor(randomWaitLong);          
-                      
-            try {
-               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-message-send.png'});
-               await console.log('**screenshot saved**');
-            } catch(error) {
-               console.log(error)
-               await console.log('ERROR! screenshot could not be saved!');
+            if (utils.runMode === 'dev') {         
+               try {
+                  await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-message-send.png'});
+                  await console.log('**screenshot saved**');
+               } catch(error) {
+                  console.log(error)
+                  await console.log('ERROR! screenshot could not be saved!');
+               }
             }
-    
          
             sendMessageResult.push({recipientProfileUrl : recipientProfileUrl,
                                     recipient: recipient,
@@ -312,22 +319,24 @@ const moment = require('moment')
              return Promise.reject(new Error("ERROR! cookies could not be loaded"));
          }
        
-         try {
-            await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-cookies-loaded.png'});
-            await console.log('**screenshot saved**');
-         } catch(error) {
-            console.log(error)
-            await console.log('ERROR! screenshot could not be saved!');
+         if (utils.runMode === 'dev') {  
+            try {
+               await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-cookies-loaded.png'});
+               await console.log('**screenshot saved**');
+            } catch(error) {
+               console.log(error)
+               await console.log('ERROR! screenshot could not be saved!');
+            }
          }
          
          
         try {
            await page.goto(url);
            await console.log('**navigated to: ' + url);
-           
-            await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-navigate.png'});
-            await console.log('**screenshot saved**');
-     
+            if (utils.runMode === 'dev') {  
+               await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-navigate.png'});
+               await console.log('**screenshot saved**');
+            }
         } catch(error) {
            await console.log('ERROR! could not navigate to url ' + url);
            return Promise.reject(new Error('ERROR! could not navigate to url ' + url));
@@ -359,13 +368,14 @@ const moment = require('moment')
             await console.log('ERROR! could not get .dropdownContent__list');
         }
       
-      
-         try {
-            await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-clicks.png'});
-            await console.log('**screenshot saved**');
-         } catch(error) {
-            console.log(error)
-            await console.log('ERROR! screenshot could not be saved!');
+         if (utils.runMode === 'dev') {  
+            try {
+               await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-clicks.png'});
+               await console.log('**screenshot saved**');
+            } catch(error) {
+               console.log(error)
+               await console.log('ERROR! screenshot could not be saved!');
+            }
          }
          
             
@@ -508,7 +518,7 @@ const moment = require('moment')
          }
    
          try {
-            await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-scroll-down.png'});
+            await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-scroll-down.png'});
             await console.log('**screenshot saved**');
          } catch(error) {
             console.log(error)
@@ -589,7 +599,7 @@ const moment = require('moment')
          
          
             try {
-               await page.screenshot({path: utils.screenshotPath + '/message/screenshot-after-clicks.png'});
+               await page.screenshot({path: utils.screenshotPath + '/message--screenshot-after-clicks.png'});
                await console.log('**screenshot saved**');
             } catch(error) {
                console.log(error)

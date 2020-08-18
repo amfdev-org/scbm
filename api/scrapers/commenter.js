@@ -67,14 +67,17 @@ const connection = require('./connection')
             await console.log('**could not click modal dismiss')
         }
             
-        try {
-            await page.screenshot({path: utils.screenshotPath + '/commenters/screenshot-after-navigate.png'});
-            await console.log('**screenshot saved**');
-         } catch(error) {
-            console.log(error)
-            await console.log('ERROR! screenshot could not be saved!');
-         }
-         
+        if (utils.runMode === 'dev') {
+    
+            try {
+                await page.screenshot({path: utils.screenshotPath + '/commenters--screenshot-after-navigate.png'});
+                await console.log('**screenshot saved**');
+             } catch(error) {
+                console.log(error)
+                await console.log('ERROR! screenshot could not be saved!');
+             }
+        }
+        
          //await page.waitFor(utils.randomWait1);
         
         try {
@@ -113,15 +116,15 @@ const connection = require('./connection')
             await console.log("ERROR! could not scroll down on " + searchUrl);
          }
     
-        
-         try {
-            await page.screenshot({path: utils.screenshotPath + '/commenters/screenshot-after-scroll-down.png'});
-            await console.log('**screenshot saved**');
-         } catch(error) {
-            console.log(error)
-            await console.log('ERROR! screenshot could not be saved!');
+         if (utils.runMode === 'dev') {
+            try {
+               await page.screenshot({path: utils.screenshotPath + '/commenters--screenshot-after-scroll-down.png'});
+               await console.log('**screenshot saved**');
+            } catch(error) {
+               console.log(error)
+               await console.log('ERROR! screenshot could not be saved!');
+            }
          }
-         
          //await page.waitFor(utils.randomWait3);
     
         const profileUrlsRaw = await page.evaluate(() => {
