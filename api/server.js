@@ -22,16 +22,6 @@ console.log = function(d) {
     utils.consoleLogToFile(d)
 }
 
-//CONTROLLERS
-const AuthController = require('./controllers/auth')
-const SignupController = require('./controllers/signup')
-const LoginController = require('./controllers/login')
-const CommenterController = require('./controllers/commenter')
-const FollowerController = require('./controllers/follower')
-const MessageController = require('./controllers/message')
-const UserController = require('./controllers/user')
-const SearchController = require('./controllers/search')
-
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -49,6 +39,17 @@ app.use(session({
     }
 }))
 
+//CONTROLLERS
+const AuthController = require('./controllers/auth')
+const SignupController = require('./controllers/signup')
+const LoginController = require('./controllers/login')
+const CommenterController = require('./controllers/commenter')
+const FollowerController = require('./controllers/follower')
+const MessageController = require('./controllers/message')
+const UserController = require('./controllers/user')
+const SearchController = require('./controllers/search')
+
+//ROUTES
 app.get('/auth/', (req, res) => {
     AuthController.getAuth(req, res);
 })
@@ -97,8 +98,9 @@ app.get('/download-logs/', function(req, res) {
     utils.getDownloadLogs(req, res);
 });
 
-var server = app.listen(3002,() => {
-  console.log("Started on PORT 3002")
+//START THE SERVER
+var server = app.listen(process.env.PORT,() => {
+  console.log("Started on PORT " + process.env.PORT)
 })
 
 server.setTimeout(900000);

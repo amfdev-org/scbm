@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function fetchMyFollowers(dispatch) {
 
     console.log('fetch my followers');
@@ -10,7 +12,7 @@ export function fetchMyFollowers(dispatch) {
         
         //let followersSearchUrlNoSlash = state.followersSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+        axios.get(API_URL + '/followers/', {
          params: {
            searchUrl: "https://soundcloud.com"
          }

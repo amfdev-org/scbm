@@ -1,11 +1,13 @@
+const dotenv = require('dotenv').config();
 const fs = require('fs').promises;
 const moment = require('moment');
 
-const rootPath = '/var/www/vhosts/scbm';
+const rootPath = process.env.ROOT_PATH;
 const apiPath = rootPath + "/api"
 const screenshotPath = apiPath + "/screenshots";
 const userDataPath = apiPath  + "/user_data";
 const logPath = apiPath  + "/logs";
+const baseUrl = process.env.BASE_URL;
 
 const randomWait1 = Math.floor((Math.random() * 1000) + 3);
 const randomWait2 = Math.floor((Math.random() * 1000) + 4);
@@ -237,6 +239,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                 screenshotPath,
                 userDataPath,
                 logPath,
+                baseUrl,
                 randomWait1,
                 randomWait2,
                 randomWait3,

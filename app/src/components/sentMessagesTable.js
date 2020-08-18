@@ -14,13 +14,13 @@ function SentMessagesTable(props) {
 
       const context = useContext(ContextConsumer);
       
-    const handleChange = (event) => {
+      const handleChange = (event) => {
       
           props.handleSentMessagesSelectedRowsChange(event.selectedRows, context);
-    }
+      }
     
         
-        const showSentMessagesTable = props.showSentMessagesTable ? {display: 'block'} : {display: 'none'};
+      const showSentMessagesTable = props.showSentMessagesTable ? {display: 'block'} : {display: 'none'};
 
       const  messageCaveat = props.isTestMode ? "Only test sends made via SCBM will be shown." : "Only real messages sent via SCBM will be shown.";
       

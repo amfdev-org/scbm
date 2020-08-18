@@ -1,12 +1,10 @@
-//import { initialState } from '../store/configureStore';
-//import { fetchAuth } from '../actions/authActions'
-
 import axios from 'axios';
 
 import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function handleMyFollowersMessageChange(event, context) {
 
@@ -50,7 +48,7 @@ export function handleMyFollowersMessageSubmit(event, context) {
            
         axios({
         method: 'post',
-        url: 'https://scbm.amfdev.co.uk/api/message/',
+        url: API_URL + '/message/',
         headers: {}, 
         data: {
             messageType: "sent",

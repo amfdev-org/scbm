@@ -20,6 +20,7 @@ import {
   fetchRecentFollowersSearches
   } from '../actions/followersSearchActions'
   
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function handleSignupChange(event, context) {
         
@@ -66,7 +67,7 @@ export function handleSignupSubmit(event, context) {
            
         axios({
             method: 'post',
-            url: 'https://scbm.amfdev.co.uk/api/signup/',
+            url: API_URL + '/signup/',
             headers: {
                 "X-Request-App": "scbm"
                 },

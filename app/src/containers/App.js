@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import connect from "../provider/connect";
 
 //ACTION CREATORS
@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Accordion from 'react-bootstrap/Accordion'
+import Spinner from 'react-bootstrap/Spinner'
 
 //CONTAINERS
 import AlertContainer from './alertContainer';
@@ -23,7 +24,7 @@ import CommentersContainer from './commentersContainer';
 import FollowersContainer from './followersContainer';
 
 //COMPONENTS
-import Footer from '../components/footer';
+const Footer = React.lazy(() => import('../components/footer'));
 
 function App(props) {
 
@@ -42,22 +43,29 @@ function App(props) {
       <>
       
         <HeaderContainer />
+        
             <Container className="main-container">
               <Row>        
                 <Col>
+                
                 <AlertContainer />
-                <LoginContainer />      
+                <LoginContainer />
+                
                     <Accordion className="main-accordion" defaultActiveKey="0" style={showMainAccordion}>
                         <ReceivedMessagesContainer />
                         <SentMessagesContainer />
                         <MyFollowersContainer />
                         <CommentersContainer />
                         <FollowersContainer />
-                    </Accordion> 
+                    </Accordion>
+                    
                    </Col>
                   </Row>
                 </Container>
-              <Footer />
+                
+              <Suspense fallback={<div className="suspense-loader">Loading... <Spinner animation="border" role="status"><span className="sr-only">Loading...</span></Spinner></div>}>
+                <Footer />
+              </Suspense>
          </>                  
       )
   

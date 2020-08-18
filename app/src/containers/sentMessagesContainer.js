@@ -90,7 +90,9 @@ const mapStateToProps = state => ({
       enableSentMessagesMessageInput: state.enableSentMessagesMessageInput,
       enableSentMessagesMessageSubmitButton: state.enableSentMessagesMessageSubmitButton,
       showSentMessagesMessageSubmitButton: state.showSentMessagesMessageSubmitButton,
-      showSentMessagesMessageSubmitLoadingButton: state.showSentMessagesMessageSubmitLoadingButton
+      showSentMessagesMessageSubmitLoadingButton: state.showSentMessagesMessageSubmitLoadingButton,
+      
+      isTestMode: state.isTestMode   
       })
       
 

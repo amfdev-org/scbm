@@ -1,3 +1,4 @@
+const utils = require('../utils')
 const db = require('../database')
 const Op = db.Op;
 const UserModel = require('../models/user')
@@ -5,7 +6,7 @@ const UserModel = require('../models/user')
 module.exports.updateUser = (req, res) => {
     
     console.log('POST /user/');
-    console.log(req.headers);
+    //console.log(req.headers);
     console.log('POST /user/ req.body.userSettings:');
     console.log(req.body.userSettings);
     
@@ -13,8 +14,8 @@ module.exports.updateUser = (req, res) => {
         
         return new Promise((resolve, reject) => {
             
-            if (req.headers['origin'] !== 'https://scbm.amfdev.co.uk') {
-                   console.log('ERROR! origin is not https://scbm.amfdev.co.uk')
+            if (req.headers['origin'] !== utils.baseUrl) {
+                   console.log('ERROR! origin is not ' + utils.baseUrl)
                     reject('forbidden')
                     res.sendStatus(403)
         

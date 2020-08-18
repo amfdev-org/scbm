@@ -1,7 +1,5 @@
 import axios from 'axios';
-//import { useDispatch, useSelector } from 'react-redux'
 
-//import { initialState } from '../store/configureStore';
 import { fetchAuth } from '../actions/authActions'
 
 import {
@@ -24,24 +22,25 @@ import {
   fetchRecentFollowersSearches
   } from '../actions/followersSearchActions'
   
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function handleLoginChange(event, context) {
   
         const dispatch = context.dispatch;
         const state = context.state;
         
-        console.log('actions handleLoginChange:')
+        //console.log('actions handleLoginChange:')
 
         const { name, value } = event.target
         
         if (name === 'scUsername') {
-          console.log('scUsername dispatch '+value)
+          //console.log('scUsername dispatch '+value)
             dispatch({
                 type: "LOGIN_USERNAME_CHANGE",
                 scUsername: value
             })
         } else  if (name === 'scPassword') {
-          console.log('scPassword dispatch '+value)
+          //console.log('scPassword dispatch '+value)
             dispatch({
                 type: "LOGIN_PASSWORD_CHANGE",
                 scPassword: value
@@ -65,7 +64,7 @@ export function handleLoginChange(event, context) {
 
 export function handleLoginSubmit(context) {
   
-        console.log('actions handleLoginSubmit')
+        //console.log('actions handleLoginSubmit')
         
         const dispatch = context.dispatch;
         const state = context.state;
@@ -76,7 +75,7 @@ export function handleLoginSubmit(context) {
         
         axios({
             method: 'post',
-            url: 'https://scbm.amfdev.co.uk/api/login/',
+            url: API_URL + '/login/',
             headers: {}, 
             data: {
               scUsername: state.scUsername,
@@ -104,12 +103,10 @@ export function handleLoginSubmit(context) {
 }
 
 
-export function handleLoginSwitchToSignup(dispatch) {
-       
+export function handleLoginSwitchToSignup(dispatch) {     
         dispatch({
                 type: "LOGIN_SWITCH_TO_SIGNUP"
-        })
-        
+        });  
 }
   
   
@@ -141,7 +138,6 @@ function catchLoginCookieError(json, dispatch) {
 
 function doLoginSuccess(json, dispatch) {
     //console.log('doLoginSuccess')
- 
         dispatch({
                 type: "LOGIN_SUCCESS",
                 userData: json.userData,
@@ -159,7 +155,7 @@ export function handleLogoutSubmit(context) {
 
         axios({
             method: 'get',
-            url: 'https://scbm.amfdev.co.uk/api/logout/'
+            url: API_URL + '/logout/'
             })
             .then(json => doLogout(json.data, context))
             .then(json => fetchAuth(dispatch))

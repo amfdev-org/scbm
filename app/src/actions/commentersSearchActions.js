@@ -3,6 +3,8 @@
 
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function fetchRecentCommentersSearches(dispatch) {
 
     //console.log('fetch received messages');
@@ -11,7 +13,7 @@ export function fetchRecentCommentersSearches(dispatch) {
             
         //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/searches/', {params: {type: "commenter"} })
+        axios.get(API_URL + '/searches/', {params: {type: "commenter"} })
         .then(json => doRecentCommentersSearchesResult(json, dispatch))
         .catch(error => {
 
@@ -54,7 +56,7 @@ export function handleCommentersRecentSearchSubmit(searchUrl, context) {
          type: "COMMENTERS_SEARCH_SUBMITTED"
        });
            
-        axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
+        axios.get(API_URL + '/commenters/', {
          params: {
            searchUrl: encodeURI(searchUrl)
          }
@@ -83,7 +85,7 @@ export function handleCommentersSearchSubmit(event, context) {
          type: "COMMENTERS_SEARCH_SUBMITTED"
        });
            
-        axios.get('https://scbm.amfdev.co.uk/api/commenters/', {
+        axios.get(API_URL + '/commenters/', {
          params: {
            searchUrl: encodeURI(state.commentersSearchUrl)
          }

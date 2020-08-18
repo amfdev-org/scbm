@@ -19,7 +19,7 @@ export function authReducer(state = initialState, action) {
 
     case "AUTH_SESSION_ERROR":
 
-    console.log('reducer AUTH_SESSION_ERROR')
+    //console.log('reducer AUTH_SESSION_ERROR')
     
       return {
         ...state,
@@ -35,7 +35,7 @@ export function authReducer(state = initialState, action) {
       };
       
     case "AUTH_COOKIE_ERROR":
-console.log('reducer AUTH_COOKIE_ERROR')
+    //console.log('reducer AUTH_COOKIE_ERROR')
       return {
         ...state,
         errorAlertText: "Auth cookie error. Please contact support.",

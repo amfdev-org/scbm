@@ -53,5 +53,5 @@ let logCommenters = (data) => {
 }
 
 //Commenter.sync({ force: true });
-
+Commenter.sync();
 module.exports = { Commenter, logCommenters };

@@ -58,5 +58,5 @@ let logFollowers = (data) => {
 }
 
 //Follower.sync({ force: true });
-
+Follower.sync();
 module.exports = { Follower, logFollowers };

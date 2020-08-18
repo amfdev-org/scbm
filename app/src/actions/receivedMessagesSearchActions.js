@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function fetchReceivedMessages(forceRefresh = false, dispatch) {
 
     console.log('fetch received messages');
@@ -8,7 +10,7 @@ export function fetchReceivedMessages(forceRefresh = false, dispatch) {
             
         //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/received-messages/', {params: {forceRefresh: forceRefresh}})
+        axios.get(API_URL + '/received-messages/', {params: {forceRefresh: forceRefresh}})
         .then(json => catchReceivedMessagesSearchNoResults(json.data, dispatch))
         .then(json => catchReceivedMessagesSearchOtherError(json, dispatch))
         .then(json => doReceivedMessagesSearchSuccess(json, dispatch))

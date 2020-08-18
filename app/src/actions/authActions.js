@@ -20,13 +20,14 @@ import {
   fetchRecentFollowersSearches
   } from '../actions/followersSearchActions'
   
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function fetchAuth(dispatch) {
     //dispatch(requestAuth())
     
     console.log('fetchAuth')
       
-        axios.get('https://scbm.amfdev.co.uk/api/auth/', { headers: { "X-Request-App": "scbm" } })
+      axios.get(API_URL + '/auth/', { headers: { "X-Request-App": "scbm" } })
       .then(json => catchAuthSessionError(json.data, dispatch))
       .then(json => catchAuthCookieError(json, dispatch))
       .then(json => doAuthSuccess(json, dispatch))

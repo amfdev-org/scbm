@@ -174,7 +174,7 @@ let checkFollowersMessageStatus = (data) => {
 }
 
 //Message.sync({ force: true });
-
+Message.sync();
 module.exports = { Message,
                 logMessages,
                 checkCommentersMessageStatus,

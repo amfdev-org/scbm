@@ -1,12 +1,14 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function fetchSentMessages(dispatch) {
 
       //console.log('fetch sent messages');
     
         //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/sent-messages/')
+        axios.get(API_URL + '/sent-messages/')
         .then(json => catchSentMessagesSearchNoResults(json.data, dispatch))
         .then(json => catchSentMessagesSearchOtherError(json, dispatch))
         .then(json => doSentMessagesSearchSuccess(json, dispatch))

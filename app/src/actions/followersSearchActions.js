@@ -3,6 +3,8 @@
 
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function fetchRecentFollowersSearches(dispatch) {
 
     //console.log('action fetchRecentFollowersSearches');
@@ -11,7 +13,7 @@ export function fetchRecentFollowersSearches(dispatch) {
             
         //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/searches/', {params: {type: "follower"} })
+        axios.get(API_URL + '/searches/', {params: {type: "follower"} })
         .then(json => doRecentFollowersSearchesResult(json, dispatch))
         .catch(error => {
 
@@ -53,7 +55,7 @@ export function handleFollowersRecentSearchSubmit(searchUrl, context) {
          type: "FOLLOWERS_SEARCH_SUBMITTED"
        });
            
-        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+        axios.get(API_URL + '/followers/', {
          params: {
            searchUrl: encodeURI(searchUrl)
          }
@@ -107,7 +109,7 @@ export function handleFollowersSearchSubmit(event, context) {
         
         //let followersSearchUrlNoSlash = state.followersSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+        axios.get(API_URL + '/followers/', {
          params: {
            searchUrl: encodeURI(state.followersSearchUrl)
          }

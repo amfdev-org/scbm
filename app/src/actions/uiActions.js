@@ -3,6 +3,8 @@ import axios from 'axios';
 import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
+
+const API_URL = process.env.REACT_APP_API_URL;
   
 export function handleAlertChange(alertType, alertAction, context) {
     
@@ -65,7 +67,7 @@ export function handleTestModeChange(checked, context) {
         
         axios({
         method: 'post',
-        url: 'https://scbm.amfdev.co.uk/api/user/',
+        url: API_URL + '/user/',
         headers: { "X-Request-App": "scbm" }, 
         data: {
             userSettings: {isTestMode: checked.toString()}
@@ -94,8 +96,7 @@ export function handleTestModeChange(checked, context) {
                 if (error.response) {
                         dispatch({type: alertTextType, text: alertText});
                         dispatch({type: alertShowType});
-                        
-                        
+                                      
                         window.setTimeout(()=>{ 
                         dispatch({ type: alertHideType });
                         },4000);
@@ -110,7 +111,7 @@ export function handleTestModeChange(checked, context) {
 export function handleDownloadLogs(event, context) {
     
     //console.log("handleDownloadLogs");
-        axios.get("https://scbm.amfdev.co.uk/api/download-logs/", {responseType: 'blob'})
+        axios.get(API_URL + "/download-logs/", {responseType: 'blob'})
        .then(response => {
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement('a');
