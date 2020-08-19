@@ -1,27 +1,24 @@
-import {
-    RECEIVED_MESSAGES_SEARCH_NO_RESULTS,
-    RECEIVED_MESSAGES_SEARCH_OTHER_ERROR,
-    RECEIVED_MESSAGES_SEARCH_RESULT,
-    RECEIVED_MESSAGES_SELECTED_ROWS_CHANGE,
-    RECEIVED_MESSAGES_SEARCH_UNKNOWN_ERROR,
-    RECEIVED_MESSAGES_SEARCH_REFRESH,
-    RECEIVED_MESSAGES_SEARCH_SUBMITTED
+export const initialState = {
+        receivedMessageData: [],
+        showReceivedMessagesTable: false,
+        showReceivedMessagesSubmitButton: true,
+        showReceivedMessagesSubmitLoadingButton: false,
+        selectedReceivedMessages: [],   
+        showReceivedMessagesLoadingIcon: true
+};
 
-} from '../actions/receivedMessagesSearchActions';
-
-
-export default function receivedMessagesSearchReducer(state, action) {
+export function receivedMessagesSearchReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case RECEIVED_MESSAGES_SEARCH_SUBMITTED:
+    case "RECEIVED_MESSAGES_SEARCH_SUBMITTED":
       return {
         ...state,
             enableReceivedMessagesRefresh: false
         
       };
       
-    case RECEIVED_MESSAGES_SEARCH_NO_RESULTS:
+    case "RECEIVED_MESSAGES_SEARCH_NO_RESULTS":
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {
@@ -38,7 +35,7 @@ export default function receivedMessagesSearchReducer(state, action) {
         
       };
       
-    case RECEIVED_MESSAGES_SEARCH_OTHER_ERROR:
+    case "RECEIVED_MESSAGES_SEARCH_OTHER_ERROR":
          //console.log("sc cookie error - reducer");
       return {
         ...state,
@@ -52,7 +49,7 @@ export default function receivedMessagesSearchReducer(state, action) {
       };
       
       
-    case RECEIVED_MESSAGES_SEARCH_RESULT:
+    case "RECEIVED_MESSAGES_SEARCH_RESULT":
         //console.log("sc myMessagesSearch result - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -67,7 +64,7 @@ export default function receivedMessagesSearchReducer(state, action) {
     
       };
       
-    case RECEIVED_MESSAGES_SEARCH_UNKNOWN_ERROR:
+    case "RECEIVED_MESSAGES_SEARCH_UNKNOWN_ERROR":
         //console.log('reducer other error')
       return {
         ...state,
@@ -79,7 +76,7 @@ export default function receivedMessagesSearchReducer(state, action) {
       };
       
       
-    case RECEIVED_MESSAGES_SELECTED_ROWS_CHANGE:
+    case "RECEIVED_MESSAGES_SELECTED_ROWS_CHANGE":
          //console.log("RECEIVED_MESSAGES_SELECTED_ROWS_CHANGE - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -89,7 +86,7 @@ export default function receivedMessagesSearchReducer(state, action) {
       };
       
       
-    case RECEIVED_MESSAGES_SEARCH_REFRESH:
+    case "RECEIVED_MESSAGES_SEARCH_REFRESH":
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {

@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import Badge from 'react-bootstrap/Badge'
 import DataTable from 'react-data-table-component'
@@ -7,23 +9,23 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 library.add(faExclamationTriangle)
 
-class CommentersTable extends Component {
+function CommentersTable(props) {
 
-
-    handleChange = (event) => {
+    const context = useContext(ContextConsumer);
+  
+    const handleChange = (event) => {
       
-          this.props.handleCommentersSelectedRowsChange(event.selectedRows);
+          props.handleCommentersSelectedRowsChange(event.selectedRows, context);
     }
     
-    handleRecentSearchClick = (searchUrl) => {
+    const handleRecentSearchClick = (searchUrl) => {
 
-      this.props.handleCommentersRecentSearchSubmit(searchUrl);
+      props.handleCommentersRecentSearchSubmit(searchUrl, context);
     }
     
-    render() {
       
-        const showCommentersTable = this.props.showCommentersTable ? {display: 'block'} : {display: 'none'};
-        const showCommentersRecentSearchContainer = this.props.showCommentersRecentSearchContainer ? {display: 'block'} : {display: 'none'};
+        const showCommentersTable = props.showCommentersTable ? {display: 'block'} : {display: 'none'};
+        const showCommentersRecentSearchContainer = props.showCommentersRecentSearchContainer ? {display: 'block'} : {display: 'none'};
         
         const columns =  [
             { name: 'Profile Name', selector: 'profileName', wrap: true, sortable: true },
@@ -36,9 +38,9 @@ class CommentersTable extends Component {
           <>
           <div className="recent-search-container" style={showCommentersRecentSearchContainer}>
           <h6>Recent Searches</h6>  
-            {this.props.recentCommentersSearches.map((item, key) => {
+            {props.recentCommentersSearches.map((item, key) => {
                   return (
-                        <Badge key={key} onClick={() => { this.handleRecentSearchClick(item.search) }} className="recent-search-badge" variant="primary">
+                        <Badge key={key} onClick={() => { handleRecentSearchClick(item.search) }} className="recent-search-badge" variant="primary">
                               {item.search}
                         </Badge>
                    )
@@ -48,12 +50,12 @@ class CommentersTable extends Component {
           <Form className="commentersDataTable">
               <DataTable style={showCommentersTable}
                 columns={columns}
-                data={this.props.commenterData}
+                data={props.commenterData}
                 defaultSortField="profileName"
                 selectableRows
-                onSelectedRowsChange={this.handleChange}
+                onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={this.props.toggledClearRows}
+                clearSelectedRows={props.toggledClearRows}
                 pagination
                 paginationPerPage={10}
               />
@@ -67,7 +69,6 @@ class CommentersTable extends Component {
             
             </>
         )
-    }
 
 }
 

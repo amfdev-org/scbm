@@ -1,42 +1,41 @@
-import {
-    FOLLOWERS_SEARCH_URL_CHANGE,
-    FOLLOWERS_SEARCH_SUBMIT_ENABLE,
-    FOLLOWERS_SEARCH_SUBMIT_DISABLE,
-    FOLLOWERS_SEARCH_SUBMITTED,
-    FOLLOWERS_SEARCH_NO_RESULTS,
-    FOLLOWERS_SEARCH_OTHER_ERROR,
-    FOLLOWERS_SEARCH_SUCCESS,
-    FOLLOWERS_SELECTED_ROWS_CHANGE,
-    FOLLOWERS_SEARCH_UNKNOWN_ERROR,
-    //FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR,
-    FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT
+export const initialState = {
+        followersSearchUrl : '',
+        followerData : [],
+        selectedFollowers : [],
+        //toggledClearRows: false,
+        showFollowersSearchSubmitButton: true,
+        enableFollowersSearchSubmitButton: false,
+        showFollowersSearchSubmitLoadingButton: false,
+        enableFollowersSearchInput: true,
+        showFollowersSearchForm: false,
+        showFollowersTable: false,
+        recentFollowersSearches: [],
+        showFollowersRecentSearchContainer: false
+};
 
-} from '../actions/followersSearchActions';
-
-
-export default function followersSearchReducer(state, action) {
+export function followersSearchReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case FOLLOWERS_SEARCH_URL_CHANGE:
+    case "FOLLOWERS_SEARCH_URL_CHANGE":
       return {
         ...state,
         followersSearchUrl: action.followersSearchUrl
       };
 
-    case FOLLOWERS_SEARCH_SUBMIT_ENABLE:
+    case "FOLLOWERS_SEARCH_SUBMIT_ENABLE":
       return {
         ...state,
         enableFollowersSearchSubmitButton: true
       };
       
-    case FOLLOWERS_SEARCH_SUBMIT_DISABLE:
+    case "FOLLOWERS_SEARCH_SUBMIT_DISABLE":
       return {
         ...state,
         enableFollowersSearchSubmitButton: false
       };
       
-    case FOLLOWERS_SEARCH_SUBMITTED:
+    case "FOLLOWERS_SEARCH_SUBMITTED":
       return {
         ...state,
             showFollowersTable: false,
@@ -49,7 +48,7 @@ export default function followersSearchReducer(state, action) {
         
       };
     
-    case FOLLOWERS_SEARCH_NO_RESULTS:
+    case "FOLLOWERS_SEARCH_NO_RESULTS":
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {
@@ -68,7 +67,7 @@ export default function followersSearchReducer(state, action) {
         
       };
       
-    case FOLLOWERS_SEARCH_OTHER_ERROR:
+    case "FOLLOWERS_SEARCH_OTHER_ERROR":
          //console.log("sc cookie error - reducer");
       return {
         ...state,
@@ -84,7 +83,7 @@ export default function followersSearchReducer(state, action) {
       };
       
       
-    case FOLLOWERS_SEARCH_SUCCESS:
+    case "FOLLOWERS_SEARCH_SUCCESS":
          //console.log("sc followersSearch success - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -101,7 +100,7 @@ export default function followersSearchReducer(state, action) {
     
       };
       
-    case FOLLOWERS_SEARCH_UNKNOWN_ERROR:
+    case "FOLLOWERS_SEARCH_UNKNOWN_ERROR":
         //console.log('reducer other error')
       return {
         ...state,
@@ -114,7 +113,7 @@ export default function followersSearchReducer(state, action) {
       };
       
       
-    case FOLLOWERS_SELECTED_ROWS_CHANGE:
+    case "FOLLOWERS_SELECTED_ROWS_CHANGE":
          //console.log("FOLLOWERS_SELECTED_ROWS_CHANGE - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -123,7 +122,7 @@ export default function followersSearchReducer(state, action) {
     
       };
       
-    case FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT:
+    case "FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT":
          //console.log("FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT - reducer");
          //console.log(action.data)
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'

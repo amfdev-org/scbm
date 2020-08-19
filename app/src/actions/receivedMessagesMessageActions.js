@@ -1,6 +1,3 @@
-//import { initialState } from '../store/configureStore';
-//import { fetchAuth } from '../actions/authActions'
-
 import axios from 'axios';
 
 import {
@@ -11,74 +8,65 @@ import {
   fetchSentMessages
   } from '../actions/sentMessagesSearchActions'
   
+const API_URL = process.env.REACT_APP_API_URL;
 
-export const RECEIVED_MESSAGES_MESSAGE_CHANGE = 'RECEIVED_MESSAGES_MESSAGE_CHANGE'
-export const RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE = 'RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE'
-export const RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE = 'RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE'
-export const RECEIVED_MESSAGES_MESSAGE_SUBMITTED = 'RECEIVED_MESSAGES_MESSAGE_SUBMITTED'
-export const RECEIVED_MESSAGES_MESSAGE_ERROR = 'RECEIVED_MESSAGES_MESSAGE_ERROR'
-export const RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR = 'RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR'
-export const RECEIVED_MESSAGES_MESSAGE_RESULT = 'RECEIVED_MESSAGES_MESSAGE_RESULT'
-
-export function handleReceivedMessagesMessageChange(event) {
-    
-    return (dispatch, getState) => {
-        
-        const { value } = event.target
+export function handleReceivedMessagesMessageChange(event, context) {
   
+        const dispatch = context.dispatch;
+
+        const { value } = event.target
+        const receivedMessagesMessage = value;
+        
             dispatch({
-                type: RECEIVED_MESSAGES_MESSAGE_CHANGE,
-                receivedMessagesMessage: value
+                type: "RECEIVED_MESSAGES_MESSAGE_CHANGE",
+                receivedMessagesMessage: receivedMessagesMessage
             })
        
-        if(getState().receivedMessagesMessage && getState().receivedMessagesMessage.length > 10) {
+        if(receivedMessagesMessage && receivedMessagesMessage.length > 10) {
             dispatch({
-                type: RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE
+                type: "RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE"
           })
         } else {
             dispatch({
-                type: RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE
+                type: "RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE"
           })
         }
 
-          
-    }
-    
 }
 
 
-export function handleReceivedMessagesMessageSubmit(event) {
-    
-    return (dispatch, getState) => {
+export function handleReceivedMessagesMessageSubmit(event, context) {
 
+    const dispatch = context.dispatch;
+    const state = context.state;
+        
     dispatch({
-         type: RECEIVED_MESSAGES_MESSAGE_SUBMITTED
+         type: "RECEIVED_MESSAGES_MESSAGE_SUBMITTED"
        });
            
         axios({
         method: 'post',
-        url: 'https://scbm.amfdev.co.uk/api/message/',
+        url: API_URL + '/message/',
         headers: {}, 
         data: {
           messageType: "received",
-            selectedProfiles: getState().selectedReceivedMessages,
-            message: getState().receivedMessagesMessage,
-            searchUrl: getState().scProfile,
-            isTestMode: getState().isTestMode
+            selectedProfiles: state.selectedReceivedMessages,
+            message: state.receivedMessagesMessage,
+            searchUrl: state.scProfile,
+            isTestMode: state.isTestMode
         }
         })    
         .then(json => catchReceivedMessagesMessageError(json.data, dispatch))
-        .then(json => dispatch(doReceivedMessagesMessageSuccess(json, dispatch, getState)))
+        .then(json => doReceivedMessagesMessageSuccess(json, dispatch, state))
         .catch(error => {
 
                 if (error.response) {   
                       dispatch({
-                          type: RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR
+                          type: "RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
-    }
     
 }
 
@@ -87,7 +75,7 @@ function catchReceivedMessagesMessageError(json, dispatch) {
     //console.log('catchFollowersMessageError')
     if (!json.success) {
         dispatch({
-                type: RECEIVED_MESSAGES_MESSAGE_ERROR
+                type: "RECEIVED_MESSAGES_MESSAGE_ERROR"
               })
         throw Error(json.error);
     }
@@ -96,24 +84,22 @@ function catchReceivedMessagesMessageError(json, dispatch) {
 }
 
 
-function doReceivedMessagesMessageSuccess(json, dispatch, getState) {
-    
-    return (dispatch, getState) => {
+function doReceivedMessagesMessageSuccess(json, dispatch, state) {
         
             let successArray = [];
             
                 for (let sendResult of json.result) {
          
-                  const elementsIndex = getState().receivedMessageData.findIndex(element => element.profileUrl === sendResult.profileUrl );
+                  const elementsIndex = state.receivedMessageData.findIndex(element => element.profileUrl === sendResult.profileUrl );
                    
-                   let newArray = [...getState().receivedMessageData]
+                   let newArray = [...state.receivedMessageData]
                   
                     newArray[elementsIndex] = {...newArray[elementsIndex], messaged: sendResult.messageResult}
              
                         //await console.log(newArray);
                        
                            dispatch({
-                             type: RECEIVED_MESSAGES_MESSAGE_RESULT,
+                             type: "RECEIVED_MESSAGES_MESSAGE_RESULT",
                              receivedMessageData: newArray
                            })
                                
@@ -125,8 +111,8 @@ function doReceivedMessagesMessageSuccess(json, dispatch, getState) {
                    
                 }
               
-                dispatch(fetchSentMessages());
-                dispatch(fetchMyFollowers());
+                fetchSentMessages(dispatch);
+                fetchMyFollowers(dispatch);
                 
                 if(successArray.length > 0) {
                     
@@ -151,7 +137,6 @@ function doReceivedMessagesMessageSuccess(json, dispatch, getState) {
                 }
                 //return { newArray, successArray };
      
-    }
     
 }
 

@@ -1,31 +1,32 @@
-import React, { Component } from 'react'
-//import { connect } from 'react-redux';
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class LoginForm extends Component {
+function LoginForm(props) {
     
-      
-    handleChange = (event) => {
-          
+    const context = useContext(ContextConsumer);
+
+    const handleChange = (event) => {
+        console.log('loginform handleChange:')
+         console.log(event.target)
         ReactTooltip.hide();
-        this.props.handleLoginChange(event)
+        props.handleLoginChange(event, context)
         
     }
     
-    handleSubmit = (event) => {
-
-        this.props.handleLoginSubmit(event)
+    const handleSubmit = () => {
+        console.log('loginform handleSubmit:')
+        props.handleLoginSubmit(context)
 
     }
     
-    render() {
-        
-        const showLoginForm = this.props.showLoginForm ? {display: 'block'} : {display: 'none'}
-        const showLoginSubmitButton = this.props.showLoginSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showLoginSubmitLoadingButton = this.props.showLoginSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+    const showLoginForm = props.showLoginForm ? {display: 'block'} : {display: 'none'}
+    const showLoginSubmitButton = props.showLoginSubmitButton ? {display: 'block'} : {display: 'none'};
+    const showLoginSubmitLoadingButton = props.showLoginSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
 
         return (
           <Form style={showLoginForm}>
@@ -37,8 +38,8 @@ class LoginForm extends Component {
                     id="login-sc-username"
                     name="scUsername"
                     autoComplete="off"
-                    value={this.props.scUsername || ""}
-                    onChange={this.handleChange} />
+                    value={props.scUsername || ""}
+                    onChange={handleChange} />
                     <ReactTooltip delayShow={250}/>
                     
             <Form.Label>Password</Form.Label>
@@ -47,16 +48,16 @@ class LoginForm extends Component {
                     type="password"
                     name="scPassword"
                     id="login-sc-password"
-                    value={this.props.scPassword || ""}
-                    onChange={this.handleChange} />
+                    value={props.scPassword || ""}
+                    onChange={handleChange} />
                     <ReactTooltip delayShow={250}/>         
              </Form.Group>
              
             <Button
                 type="submit"
                 value="Submit"
-                disabled={!this.props.enableLoginSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={props.enableLoginSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showLoginSubmitButton}>
                 Go
             </Button>
@@ -76,24 +77,7 @@ class LoginForm extends Component {
           
           
         );
-    }
-
+    
 }
 
 export default LoginForm;
-
-
-/*function mapStateToProps(state) {
- 
-    return {
-        showLoginForm: state.showLoginForm,
-        showLoginSubmitButton: state.showLoginSubmitButton,
-        showLoginSubmitLoadingButton: state.showLoginSubmitLoadingButton
-       
-        
-    }
-      
-      
-}
-
-export default connect(mapStateToProps)(LoginForm);*/

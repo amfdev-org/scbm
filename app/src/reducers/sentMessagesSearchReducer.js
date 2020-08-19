@@ -1,19 +1,18 @@
-import {
-    SENT_MESSAGES_SEARCH_NO_RESULTS,
-    SENT_MESSAGES_SEARCH_OTHER_ERROR,
-    SENT_MESSAGES_SEARCH_RESULT,
-    SENT_MESSAGES_SELECTED_ROWS_CHANGE,
-    SENT_MESSAGES_SEARCH_UNKNOWN_ERROR
+export const initialState = {
+        sentMessageData: [],
+        showSentMessagesTable: false,
+        showSentMessagesSubmitButton: true,
+        showSentMessagesSubmitLoadingButton: false,
+        selectedSentMessages: [],   
+        showSentMessagesLoadingIcon: true
+};
 
-} from '../actions/sentMessagesSearchActions';
-
-
-export default function sentMessagesSearchReducer(state, action) {
+export function sentMessagesSearchReducer(state = initialState, action) {
   
   switch(action.type) {
 
     
-    case SENT_MESSAGES_SEARCH_NO_RESULTS:
+    case "SENT_MESSAGES_SEARCH_NO_RESULTS":
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {
@@ -29,7 +28,7 @@ export default function sentMessagesSearchReducer(state, action) {
         
       };
       
-    case SENT_MESSAGES_SEARCH_OTHER_ERROR:
+    case "SENT_MESSAGES_SEARCH_OTHER_ERROR":
          //console.log("sc cookie error - reducer");
       return {
         ...state,
@@ -42,7 +41,7 @@ export default function sentMessagesSearchReducer(state, action) {
       };
       
       
-    case SENT_MESSAGES_SEARCH_RESULT:
+    case "SENT_MESSAGES_SEARCH_RESULT":
         //console.log("sc myMessagesSearch result - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -56,7 +55,7 @@ export default function sentMessagesSearchReducer(state, action) {
     
       };
       
-    case SENT_MESSAGES_SEARCH_UNKNOWN_ERROR:
+    case "SENT_MESSAGES_SEARCH_UNKNOWN_ERROR":
         //console.log('reducer other error')
       return {
         ...state,
@@ -67,7 +66,7 @@ export default function sentMessagesSearchReducer(state, action) {
       };
       
       
-    case SENT_MESSAGES_SELECTED_ROWS_CHANGE:
+    case "SENT_MESSAGES_SELECTED_ROWS_CHANGE":
          //console.log("SENT_MESSAGES_SELECTED_ROWS_CHANGE - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {

@@ -1,50 +1,40 @@
-import {
-    SIGNUP_USERNAME_CHANGE,
-    SIGNUP_PASSWORD_CHANGE,
-    SIGNUP_SUBMIT_ENABLE,
-    SIGNUP_SUBMIT_DISABLE,
-    SIGNUP_SUBMITTED,
-    SIGNUP_SC_LOGIN_ERROR,
-    SIGNUP_COOKIE_ERROR,
-    SIGNUP_USER_CREATED_ERROR,
-    SIGNUP_UNKNOWN_ERROR,
-    SIGNUP_SUCCESS,
-    SIGNUP_USER_ALREADY_EXISTS,
-    SIGNUP_SWITCH_TO_LOGIN
+export const initialState = {
+        showSignupSubmitButton: true,
+        enableSignupSubmitButton: true,
+        showSignupSubmitLoadingButton: false,
+        enableSignupFormInputs: true
+};
 
-} from '../actions/signupActions';
-
-
-export default function signupReducer(state, action) {
+export function signupReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case SIGNUP_USERNAME_CHANGE:
+    case "SIGNUP_USERNAME_CHANGE":
       return {
         
         ...state,
         scUsername: action.scUsername
       };
     
-    case SIGNUP_PASSWORD_CHANGE:
+    case "SIGNUP_PASSWORD_CHANGE":
       return {
         ...state,
         scPassword: action.scPassword
       };
     
-    case SIGNUP_SUBMIT_ENABLE:
+    case "SIGNUP_SUBMIT_ENABLE":
       return {
         ...state,
         enableSignupSubmitButton: true
       };
       
-    case SIGNUP_SUBMIT_DISABLE:
+    case "SIGNUP_SUBMIT_DISABLE":
       return {
         ...state,
         enableSignupSubmitButton: false
       };
       
-    case SIGNUP_SUBMITTED:
+    case "SIGNUP_SUBMITTED":
       return {
         ...state,
         showErrorAlert: false,
@@ -57,7 +47,7 @@ export default function signupReducer(state, action) {
       };
       
             
-    case SIGNUP_USER_ALREADY_EXISTS:
+    case "SIGNUP_USER_ALREADY_EXISTS":
         //console.log("sc login error - reducer");
       return {
         ...state,
@@ -72,7 +62,7 @@ export default function signupReducer(state, action) {
         enableSignupSubmitButton: true
       };
       
-    case SIGNUP_SC_LOGIN_ERROR:
+    case "SIGNUP_SC_LOGIN_ERROR":
         //console.log("sc login error - reducer");
       return {
         ...state,
@@ -86,7 +76,7 @@ export default function signupReducer(state, action) {
         enableSignupSubmitButton: true
       };
       
-    case SIGNUP_COOKIE_ERROR:
+    case "SIGNUP_COOKIE_ERROR":
          //console.log("sc cookie error - reducer");
       return {
         ...state,
@@ -100,7 +90,7 @@ export default function signupReducer(state, action) {
         enableSignupSubmitButton: true
       };
       
-    case SIGNUP_USER_CREATED_ERROR:
+    case "SIGNUP_USER_CREATED_ERROR":
          //console.log("sc user created error - reducer");
       return {
         ...state,
@@ -115,7 +105,7 @@ export default function signupReducer(state, action) {
             
       };
       
-    case SIGNUP_UNKNOWN_ERROR:
+    case "SIGNUP_UNKNOWN_ERROR":
         //console.log("sc unknown error - reducer");
       return {
         ...state,
@@ -130,7 +120,7 @@ export default function signupReducer(state, action) {
       };
 
       
-    case SIGNUP_SUCCESS:
+    case "SIGNUP_SUCCESS":
          //console.log("sc signup success - reducer");
       return {
         ...state,
@@ -151,7 +141,7 @@ export default function signupReducer(state, action) {
         //successAlertText: "You're now logged in!"
       };
       
-    case SIGNUP_SWITCH_TO_LOGIN:
+    case "SIGNUP_SWITCH_TO_LOGIN":
     //console.log('login success reducer');
       return {
         ...state,

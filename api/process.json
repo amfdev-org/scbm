@@ -7,5 +7,5 @@
     "usePolling": true
   },
   "restart_delay": 500,
-    "name": "api"
+    "name": "scbm-dev-api"
 }

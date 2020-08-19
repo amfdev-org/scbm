@@ -1,26 +1,30 @@
-import React, { Component } from 'react'
-//import { connect } from 'react-redux';
-//import Form from 'react-bootstrap/Form'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Button from 'react-bootstrap/Button'
-//import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 import { Nav, Navbar } from "react-bootstrap";
 import { GiSettingsKnobs } from 'react-icons/gi';
 
 
-class Header extends Component {
+function Header(props) {
     
-    handleLogoutSubmit = () => {
+    const context = useContext(ContextConsumer);
+    
+    const handleLogoutSubmit = () => {
         
         ReactTooltip.hide();
-        this.props.handleLogoutSubmit()
+        props.handleLogoutSubmit(context)
 
     }
     
-    render() {
+    const handleToggleConfigModal = () => {
         
-        const showLoggedInInfo = this.props.showLoggedInInfo ? {display: 'block'} : {display: 'none'};
-        const showLogoutSubmitButton = this.props.showLogoutSubmitButton ? {display: 'block'} : {display: 'none'};
+        props.handleToggleConfigModal(context);
+    }
+    
+        const showLoggedInInfo = props.showLoggedInInfo ? {display: 'block'} : {display: 'none'};
+        const showLogoutSubmitButton = props.showLogoutSubmitButton ? {display: 'block'} : {display: 'none'};
                  
         return (
                                
@@ -39,7 +43,7 @@ class Header extends Component {
                 </Nav>
                 <Nav className="nav-logged-in-info">
                   <Nav.Link className="logged-in-info" style={showLoggedInInfo}>
-                  {this.props.loggedInInfoText}
+                  {props.loggedInInfoText}
                  
                   </Nav.Link>
                   
@@ -47,7 +51,7 @@ class Header extends Component {
                     className="header-config-link"
                     data-tip="Settings"
                    style={showLoggedInInfo}
-                   onClick={this.props.handleToggleConfigModal}
+                   onClick={handleToggleConfigModal}
                     />
                     <ReactTooltip delayShow={250}/>
                    
@@ -59,7 +63,7 @@ class Header extends Component {
                       type="submit"
                       value="Submit"
                       style={showLogoutSubmitButton}
-                      onClick={() => { this.handleLogoutSubmit() }}
+                      onClick={() => { handleLogoutSubmit() }}
                       >
                       Logout
                   </Button>
@@ -71,7 +75,6 @@ class Header extends Component {
 
             
         );
-    }
 
 }
 

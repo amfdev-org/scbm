@@ -73,12 +73,15 @@ const connection = require('./connection')
             await console.log("ERROR! could not scroll down on " + searchedProfileFollowersPage);
          }
     
-          try {
-            await page.screenshot({path: utils.screenshotPath + '/followers/screenshot-after-scroll-down.png'});
-            await console.log('**screenshot saved**');
-         } catch(error) {
-            console.log(error)
-            await console.log('ERROR! screenshot could not be saved!');
+         if (utils.runMode === 'dev') {
+            
+            try {
+              await page.screenshot({path: utils.screenshotPath + '/followers--screenshot-after-scroll-down.png'});
+              await console.log('**screenshot saved**');
+           } catch(error) {
+              console.log(error)
+              await console.log('ERROR! screenshot could not be saved!');
+           }
          }
      
          //await page.waitFor(utils.randomWait3);

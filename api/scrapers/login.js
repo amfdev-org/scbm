@@ -29,13 +29,17 @@ const connection = require('./connection')
          throw new Error(error)
       }
       
-      try {
-        await page.screenshot({path: utils.screenshotPath + '/login/screenshot-after-navigate.png'});
-        await console.log('**screenshot saved**');
-     } catch(error) {
-        console.log(error)
-        await console.log('ERROR! screenshot could not be saved!');
-     }
+      if (utils.runMode === 'dev') {
+         
+         try {
+           await page.screenshot({path: utils.screenshotPath + '/login--screenshot-after-navigate.png'});
+           await console.log('**screenshot saved**');
+        } catch(error) {
+           console.log(error)
+           await console.log('ERROR! screenshot could not be saved!');
+        }
+     
+      }
             
       //await page.waitFor(utils.randomWait1);
       
@@ -69,6 +73,18 @@ const connection = require('./connection')
          throw new Error(error)
       }
       
+      if (utils.runMode === 'dev') {
+         
+         try {
+           await page.screenshot({path: utils.screenshotPath + '/login--screenshot-after-username-enter.png'});
+           await console.log('**screenshot saved**');
+        } catch(error) {
+           console.log(error)
+           await console.log('ERROR! screenshot could not be saved!');
+        }
+     
+      }
+      
       await frame.waitFor(utils.randomWait3);
       
       //try to submit username
@@ -100,9 +116,22 @@ const connection = require('./connection')
          await console.log("ERROR! could not enter password! - " + scPassword);
          throw new Error(error)
       }
+      
 
       await frame.waitFor(utils.randomWait5);
 
+      if (utils.runMode === 'dev') {
+         
+         try {
+           await page.screenshot({path: utils.screenshotPath + '/login--screenshot-after-password-enter.png'});
+           await console.log('**screenshot saved**');
+        } catch(error) {
+           console.log(error)
+           await console.log('ERROR! screenshot could not be saved!');
+        }
+     
+      }
+      
       //try to submit the password
       try {
          await frame.click('#enter_password_submit');
@@ -125,7 +154,18 @@ const connection = require('./connection')
       //another random wait
       await page.waitFor(utils.randomWait7);
         
-        
+      if (utils.runMode === 'dev') {
+         
+         try {
+           await page.screenshot({path: utils.screenshotPath + '/login--screenshot-after-scroll-down.png'});
+           await console.log('**screenshot saved**');
+        } catch(error) {
+           console.log(error)
+           await console.log('ERROR! screenshot could not be saved!');
+        }
+     
+      }
+      
       //NEW - get the profile URL
       await page.waitForSelector('.header__userNav > a.header__userNavUsernameButton')
         .then(() => console.log('**got username/profile link'))
@@ -135,7 +175,19 @@ const connection = require('./connection')
       })
       
       const profileUrl = await page.$eval('.header__userNav > a.header__userNavUsernameButton', el => el.href);
-      console.log(profileUrl);
+      
+      if (utils.runMode === 'dev') {
+         
+         try {
+           await page.screenshot({path: utils.screenshotPath + '/login--screenshot-after-grab-profileurl.png'});
+           await console.log('**screenshot saved**');
+        } catch(error) {
+           console.log(error)
+           await console.log('ERROR! screenshot could not be saved!');
+        }
+     
+      }
+      
       //const html = await page.content();
       //console.log(html);
       
@@ -231,13 +283,14 @@ const connection = require('./connection')
       //   throw new Error('ERROR! cookie file zero bytes.')
       //}
       
-      //try to take the final screenshot
-      //try {
-      //   await page.screenshot({path: utils.screenshotPath + '/screenshot.png'});
-      //   await console.log('**screenshot saved**');
-      //} catch(error) {
-      //   await console.log('ERROR! screenshot could not be saved!');
-      //}
+      if (utils.runMode === 'dev') {
+         try {
+            await page.screenshot({path: utils.screenshotPath + '/login--screenshot-after-cookie-save.png'});
+            await console.log('**screenshot saved**');
+         } catch(error) {
+            await console.log('ERROR! screenshot could not be saved!');
+         }
+      }
       
       //close the browser
       await browser.close();

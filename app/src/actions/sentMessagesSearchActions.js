@@ -1,24 +1,14 @@
 import axios from 'axios';
 
-export const SENT_MESSAGES_SEARCH_SUBMITTED = 'SENT_MESSAGES_SEARCH_SUBMITTED'
-export const SENT_MESSAGES_SEARCH_OTHER_ERROR = 'SENT_MESSAGES_SEARCH_OTHER_ERROR'
-export const SENT_MESSAGES_SEARCH_UNKNOWN_ERROR = 'SENT_MESSAGES_SEARCH_UNKNOWN_ERROR'
-export const SENT_MESSAGES_SELECTED_ROWS_CHANGE = 'SENT_MESSAGES_SELECTED_ROWS_CHANGE'
-export const SENT_MESSAGES_SEARCH_NO_RESULTS = 'SENT_MESSAGES_SEARCH_NO_RESULTS'
-export const SENT_MESSAGES_SEARCH_RESULT = 'SENT_MESSAGES_SEARCH_RESULT'
-export const SENT_MESSAGES_MESSAGE_FORM_SHOW = 'SENT_MESSAGES_MESSAGE_FORM_SHOW'
-export const SENT_MESSAGES_MESSAGE_FORM_HIDE = 'SENT_MESSAGES_MESSAGE_FORM_HIDE'
+const API_URL = process.env.REACT_APP_API_URL;
 
-
-export function fetchSentMessages() {
-
-    return (dispatch, getState) => {
+export function fetchSentMessages(dispatch) {
 
       //console.log('fetch sent messages');
     
-        //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
+        //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/sent-messages/')
+        axios.get(API_URL + '/sent-messages/')
         .then(json => catchSentMessagesSearchNoResults(json.data, dispatch))
         .then(json => catchSentMessagesSearchOtherError(json, dispatch))
         .then(json => doSentMessagesSearchSuccess(json, dispatch))
@@ -26,14 +16,11 @@ export function fetchSentMessages() {
 
                 if (error.response) {   
                       dispatch({
-                          type: SENT_MESSAGES_SEARCH_UNKNOWN_ERROR
+                          type: "SENT_MESSAGES_SEARCH_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
-    }
-    
-
 }
 
 function catchSentMessagesSearchNoResults(json, dispatch) {
@@ -41,7 +28,7 @@ function catchSentMessagesSearchNoResults(json, dispatch) {
     //console.log(json);
     if (json.noResults) {
         dispatch({
-                type: SENT_MESSAGES_SEARCH_NO_RESULTS
+                type: "SENT_MESSAGES_SEARCH_NO_RESULTS"
               })
     
         throw Error(json.error);
@@ -56,7 +43,7 @@ function catchSentMessagesSearchOtherError(json, dispatch) {
     //console.log('catchSentMessagesSearchOtherError')
     if (!json.success) {
         dispatch({
-                type: SENT_MESSAGES_SEARCH_OTHER_ERROR
+                type: "SENT_MESSAGES_SEARCH_OTHER_ERROR"
               })
         throw Error(json.error);
     }
@@ -69,7 +56,7 @@ function doSentMessagesSearchSuccess(json, dispatch) {
     //console.log('doMessagesSearchSuccess')
  
         dispatch({
-                type: SENT_MESSAGES_SEARCH_RESULT,
+                type: "SENT_MESSAGES_SEARCH_RESULT",
                 sentMessageData: json.messageData
               })
           
@@ -83,31 +70,28 @@ function doSentMessagesSearchSuccess(json, dispatch) {
 }
 
 
-export function handleSentMessagesSelectedRowsChange(selectedSentMessages) {
-    
-    //console.log(selectedSentMessages);
-    
-    return (dispatch, getState) => {
-  
+export function handleSentMessagesSelectedRowsChange(selectedSentMessages, context) {
+
+        const dispatch = context.dispatch;
+
         //console.log('dispatch rows change selected messages')
             dispatch({
-                type: SENT_MESSAGES_SELECTED_ROWS_CHANGE,
+                type: "SENT_MESSAGES_SELECTED_ROWS_CHANGE",
                 selectedSentMessages: selectedSentMessages
             })
        
-        if(getState().selectedSentMessages && getState().selectedSentMessages.length > 0) {
+        if(selectedSentMessages && selectedSentMessages.length > 0) {
             //console.log('yes selected messages more than 0')
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
-                type: SENT_MESSAGES_MESSAGE_FORM_SHOW
+                type: "SENT_MESSAGES_MESSAGE_FORM_SHOW"
             })
         } else {
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
             dispatch({
-                type: SENT_MESSAGES_MESSAGE_FORM_HIDE
+                type: "SENT_MESSAGES_MESSAGE_FORM_HIDE"
           })
         }
         
-    }
            
 }

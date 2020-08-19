@@ -1,20 +1,20 @@
-import {
-    MY_FOLLOWERS_SEARCH_SUBMITTED,
-    MY_FOLLOWERS_SEARCH_NO_RESULTS,
-    MY_FOLLOWERS_SEARCH_OTHER_ERROR,
-    MY_FOLLOWERS_SEARCH_RESULT,
-    MY_FOLLOWERS_SELECTED_ROWS_CHANGE,
-    MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR
+export const initialState = {
+        myFollowerData: [],
+        showMyFollowersTable: false,
+        showMyFollowersSubmitButton: true,
+        showMyFollowersSubmitLoadingButton: false,
+        selectedMyFollowers: [],   
+        showMyFollowersLoadingIcon: true,
+        scProfile: ''
+};
 
-} from '../actions/myFollowersSearchActions';
 
-
-export default function myFollowersSearchReducer(state, action) {
+export function myFollowersSearchReducer(state = initialState, action) {
   
   switch(action.type) {
 
       
-    case MY_FOLLOWERS_SEARCH_SUBMITTED:
+    case "MY_FOLLOWERS_SEARCH_SUBMITTED":
       return {
         ...state,
             showMyFollowersLoadingIcon: true,
@@ -25,7 +25,7 @@ export default function myFollowersSearchReducer(state, action) {
         
       };
     
-    case MY_FOLLOWERS_SEARCH_NO_RESULTS:
+    case "MY_FOLLOWERS_SEARCH_NO_RESULTS":
         //console.log("sc login error - reducer");
         //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
       return {
@@ -41,7 +41,7 @@ export default function myFollowersSearchReducer(state, action) {
         
       };
       
-    case MY_FOLLOWERS_SEARCH_OTHER_ERROR:
+    case "MY_FOLLOWERS_SEARCH_OTHER_ERROR":
          //console.log("sc cookie error - reducer");
       return {
         ...state,
@@ -54,7 +54,7 @@ export default function myFollowersSearchReducer(state, action) {
       };
       
       
-    case MY_FOLLOWERS_SEARCH_RESULT:
+    case "MY_FOLLOWERS_SEARCH_RESULT":
          //console.log("sc myFollowersSearch success - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {
@@ -68,7 +68,7 @@ export default function myFollowersSearchReducer(state, action) {
     
       };
       
-    case MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR:
+    case "MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR":
         //console.log('reducer other error')
       return {
         ...state,
@@ -79,7 +79,7 @@ export default function myFollowersSearchReducer(state, action) {
       };
       
       
-    case MY_FOLLOWERS_SELECTED_ROWS_CHANGE:
+    case "MY_FOLLOWERS_SELECTED_ROWS_CHANGE":
          //console.log("MY_FOLLOWERS_SELECTED_ROWS_CHANGE - reducer");
          //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none'
       return {

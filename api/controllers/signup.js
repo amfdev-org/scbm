@@ -1,6 +1,5 @@
-const sanitize = require("sanitize-filename");
-
 const utils = require('../utils')
+const sanitize = require("sanitize-filename");
 const UserModel = require('../models/user')
 const LoginScraper = require('../scrapers/login')
 
@@ -15,8 +14,8 @@ module.exports.postSignup = (req, res) => {
         
         return new Promise((resolve, reject) => {
             
-            if (req.headers['origin'] !== 'https://scbm.amfdev.co.uk') {
-                   console.log('ERROR! origin is not https://scbm.amfdev.co.uk')
+            if (req.headers['origin'] !== utils.baseUrl) {
+                   console.log('ERROR! origin is not ' +utils.baseUrl)
                     reject('forbidden')
                     res.sendStatus(403)
         

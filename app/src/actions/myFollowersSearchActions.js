@@ -1,30 +1,20 @@
 import axios from 'axios';
 
-export const MY_FOLLOWERS_SEARCH_SUBMITTED = 'MY_FOLLOWERS_SEARCH_SUBMITTED'
-export const MY_FOLLOWERS_SEARCH_OTHER_ERROR = 'MY_FOLLOWERS_SEARCH_OTHER_ERROR'
-export const MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR = 'MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR'
-export const MY_FOLLOWERS_SELECTED_ROWS_CHANGE = 'MY_FOLLOWERS_SELECTED_ROWS_CHANGE'
-export const MY_FOLLOWERS_SEARCH_NO_RESULTS = 'MY_FOLLOWERS_SEARCH_NO_RESULTS'
-export const MY_FOLLOWERS_SEARCH_RESULT = 'MY_FOLLOWERS_SEARCH_RESULT'
-export const MY_FOLLOWERS_MESSAGE_FORM_SHOW = 'MY_FOLLOWERS_MESSAGE_FORM_SHOW'
-export const MY_FOLLOWERS_MESSAGE_FORM_HIDE = 'MY_FOLLOWERS_MESSAGE_FORM_HIDE'
+const API_URL = process.env.REACT_APP_API_URL;
 
+export function fetchMyFollowers(dispatch) {
 
-export function fetchMyFollowers() {
+    console.log('fetch my followers');
 
-    return (dispatch, getState) => {
-
-    //console.log('fetch my followers');
-    
     dispatch({
-         type: MY_FOLLOWERS_SEARCH_SUBMITTED
+         type: "MY_FOLLOWERS_SEARCH_SUBMITTED"
        });
         
-        //let followersSearchUrlNoSlash = getState().followersSearchUrl.replace(/\/+$/, "");
+        //let followersSearchUrlNoSlash = state.followersSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+        axios.get(API_URL + '/followers/', {
          params: {
-           searchUrl: encodeURI(getState().scProfile)
+           searchUrl: "https://soundcloud.com"
          }
          })
         .then(json => catchMyFollowersSearchNoResults(json.data, dispatch))
@@ -34,13 +24,11 @@ export function fetchMyFollowers() {
 
                 if (error.response) {   
                       dispatch({
-                          type: MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR
+                          type: "MY_FOLLOWERS_SEARCH_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
-    }
-    
 
 }
 
@@ -49,7 +37,7 @@ function catchMyFollowersSearchNoResults(json, dispatch) {
     //console.log(json);
     if (json.noResults) {
         dispatch({
-                type: MY_FOLLOWERS_SEARCH_NO_RESULTS
+                type: "MY_FOLLOWERS_SEARCH_NO_RESULTS"
               })
         dispatch({ type: "SUCCESS_ALERT_SHOW" });
         
@@ -69,7 +57,7 @@ function catchMyFollowersSearchOtherError(json, dispatch) {
     //console.log('catchMyFollowersSearchOtherError')
     if (!json.success) {
         dispatch({
-                type: MY_FOLLOWERS_SEARCH_OTHER_ERROR
+                type: "MY_FOLLOWERS_SEARCH_OTHER_ERROR"
               })
         throw Error(json.error);
     }
@@ -82,7 +70,7 @@ function doMyFollowersSearchSuccess(json, dispatch) {
     //console.log('doFollowersSearchSuccess')
  
         dispatch({
-                type: MY_FOLLOWERS_SEARCH_RESULT,
+                type: "MY_FOLLOWERS_SEARCH_RESULT",
                 myFollowerData: json.followerData
               })
           
@@ -96,31 +84,27 @@ function doMyFollowersSearchSuccess(json, dispatch) {
 }
 
 
-export function handleMyFollowersSelectedRowsChange(selectedMyFollowers) {
+export function handleMyFollowersSelectedRowsChange(selectedMyFollowers, context) {
     
-    //console.log(selectedMyFollowers);
-    
-    return (dispatch, getState) => {
-  
+     const dispatch = context.dispatch;
+
         //console.log('dispatch rows change selected followers')
             dispatch({
-                type: MY_FOLLOWERS_SELECTED_ROWS_CHANGE,
+                type: "MY_FOLLOWERS_SELECTED_ROWS_CHANGE",
                 selectedMyFollowers: selectedMyFollowers
             })
        
-        if(getState().selectedMyFollowers && getState().selectedMyFollowers.length > 0) {
+        if(selectedMyFollowers && selectedMyFollowers.length > 0) {
             //console.log('yes selected followers more than 0')
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
-                type: MY_FOLLOWERS_MESSAGE_FORM_SHOW
+                type: "MY_FOLLOWERS_MESSAGE_FORM_SHOW"
             })
         } else {
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
             dispatch({
-                type: MY_FOLLOWERS_MESSAGE_FORM_HIDE
+                type: "MY_FOLLOWERS_MESSAGE_FORM_HIDE"
           })
         }
         
-    }
-           
 }

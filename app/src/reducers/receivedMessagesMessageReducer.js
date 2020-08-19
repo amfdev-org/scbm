@@ -1,57 +1,49 @@
-import {
-  RECEIVED_MESSAGES_MESSAGE_FORM_SHOW,
-  RECEIVED_MESSAGES_MESSAGE_FORM_HIDE
+export const initialState = {
+        receivedMessagesMessage : 'Hi <<profileName>>,',
+        showReceivedMessagesMessageForm: false,
+        enableReceivedMessagesMessageInput: true,
+        enableReceivedMessagesMessageSubmitButton: false,
+        showReceivedMessagesMessageSubmitButton: true,
+        showReceivedMessagesMessageSubmitLoadingButton: false,
+        enableReceivedMessagesRefresh: true
+};
 
-} from '../actions/receivedMessagesSearchActions';
-
-import {
-  RECEIVED_MESSAGES_MESSAGE_CHANGE,
-  RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE,
-  RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE,
-  RECEIVED_MESSAGES_MESSAGE_ERROR,
-  RECEIVED_MESSAGES_MESSAGE_RESULT,
-  RECEIVED_MESSAGES_MESSAGE_SUBMITTED,
-  RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR
-
-} from '../actions/receivedMessagesMessageActions';    
-        
-        
-export default function receivedMessagesMessageReducer(state, action) {
+export function receivedMessagesMessageReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case RECEIVED_MESSAGES_MESSAGE_FORM_SHOW:
+    case "RECEIVED_MESSAGES_MESSAGE_FORM_SHOW":
         //console.log('show message form - reducer')
       return {
         ...state,
         showReceivedMessagesMessageForm: true
       };
       
-    case RECEIVED_MESSAGES_MESSAGE_FORM_HIDE:
+    case "RECEIVED_MESSAGES_MESSAGE_FORM_HIDE":
       return {
         ...state,
         showReceivedMessagesMessageForm: false
       };
       
-    case RECEIVED_MESSAGES_MESSAGE_CHANGE:
+    case "RECEIVED_MESSAGES_MESSAGE_CHANGE":
       return {
         ...state,
         receivedMessagesMessage: action.receivedMessagesMessage
       };
           
-    case RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE:
+    case "RECEIVED_MESSAGES_MESSAGE_SUBMIT_ENABLE":
       return {
         ...state,
         enableReceivedMessagesMessageSubmitButton: true
       };
                 
-    case RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE:
+    case "RECEIVED_MESSAGES_MESSAGE_SUBMIT_DISABLE":
       return {
         ...state,
           enableReceivedMessagesMessageSubmitButton: false
       };
       
-    case RECEIVED_MESSAGES_MESSAGE_SUBMITTED:
+    case "RECEIVED_MESSAGES_MESSAGE_SUBMITTED":
       return {
         ...state,
         showErrorAlert: false,
@@ -66,7 +58,7 @@ export default function receivedMessagesMessageReducer(state, action) {
       };
     
           
-    case RECEIVED_MESSAGES_MESSAGE_ERROR:
+    case "RECEIVED_MESSAGES_MESSAGE_ERROR":
       return {
         ...state,
           showReceivedMessagesMessageSubmitButton: true,
@@ -79,7 +71,7 @@ export default function receivedMessagesMessageReducer(state, action) {
               
       };
     
-      case RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR:
+      case "RECEIVED_MESSAGES_MESSAGE_UNKNOWN_ERROR":
         //console.log('reducer unknoqn error')
       return {
         ...state,
@@ -92,7 +84,7 @@ export default function receivedMessagesMessageReducer(state, action) {
               
       };
           
-    case RECEIVED_MESSAGES_MESSAGE_RESULT:
+    case "RECEIVED_MESSAGES_MESSAGE_RESULT":
       return {
         ...state,
         toggledClearRows: true,

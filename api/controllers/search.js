@@ -35,7 +35,9 @@ module.exports.getSearches = (req, res) => {
             //console.log('check for logged messages then block')
             //console.log(data)
             if (searches.length === 0) {
-                console.log('no logged messagsearcheses')
+                console.log('no logged searches for type: '+req.query.type)
+            } else {
+                console.log(searches.length + ' logged searches for type: '+req.query.type)
             }
             
             res.send(searches);

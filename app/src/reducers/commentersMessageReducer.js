@@ -1,59 +1,48 @@
-import {
-  COMMENTERS_MESSAGE_FORM_SHOW,
-  COMMENTERS_MESSAGE_FORM_HIDE
-
-} from '../actions/commentersSearchActions';
-
-import {
-  COMMENTERS_MESSAGE_CHANGE,
-  COMMENTERS_MESSAGE_SUBMIT_ENABLE,
-  COMMENTERS_MESSAGE_SUBMIT_DISABLE,
-  COMMENTERS_MESSAGE_ERROR,
-  COMMENTERS_MESSAGE_RESULT,
-  COMMENTERS_MESSAGE_SUBMITTED,
-  COMMENTERS_MESSAGE_UNKNOWN_ERROR
-
-} from '../actions/commentersMessageActions';    
+export const initialState = {
+    showCommentersMessageForm: false,
+    commentersMessage : 'Hi <<profileName>>,',
+    enableCommentersMessageSubmitButton: false,
+    showCommentersMessageSubmitButton: true,
+    showCommentersMessageSubmitLoadingButton: false,
+    enableCommentersMessageInput: true
+};     
         
-        
-export default function commentersMessageReducer(state, action) {
+export function commentersMessageReducer(state = initialState, action) {
   
   switch(action.type) {
 
   
-    case COMMENTERS_MESSAGE_FORM_SHOW:
+    case "COMMENTERS_MESSAGE_FORM_SHOW":
       return {
         ...state,
         showCommentersMessageForm: true
       };
       
-    case COMMENTERS_MESSAGE_FORM_HIDE:
+    case "COMMENTERS_MESSAGE_FORM_HIDE":
       return {
         ...state,
         showCommentersMessageForm: false
       };
       
-    case COMMENTERS_MESSAGE_CHANGE:
+    case "COMMENTERS_MESSAGE_CHANGE":
       return {
         ...state,
         commentersMessage: action.commentersMessage
       };
-    
-          
-    case COMMENTERS_MESSAGE_SUBMIT_ENABLE:
+           
+    case "COMMENTERS_MESSAGE_SUBMIT_ENABLE":
       return {
         ...state,
         enableCommentersMessageSubmitButton: true
-      };
-      
+      };  
             
-    case COMMENTERS_MESSAGE_SUBMIT_DISABLE:
+    case "COMMENTERS_MESSAGE_SUBMIT_DISABLE":
       return {
         ...state,
           enableCommentersMessageSubmitButton: false
       };
       
-    case COMMENTERS_MESSAGE_SUBMITTED:
+    case "COMMENTERS_MESSAGE_SUBMITTED":
       return {
         ...state,
         showErrorAlert: false,
@@ -68,7 +57,7 @@ export default function commentersMessageReducer(state, action) {
       };
     
           
-    case COMMENTERS_MESSAGE_ERROR:
+    case "COMMENTERS_MESSAGE_ERROR":
       return {
         ...state,
           showCommentersMessageSubmitButton: true,
@@ -81,7 +70,7 @@ export default function commentersMessageReducer(state, action) {
               
       };
     
-      case COMMENTERS_MESSAGE_UNKNOWN_ERROR:
+      case "COMMENTERS_MESSAGE_UNKNOWN_ERROR":
         //console.log('reducer unknoqn error')
       return {
         ...state,
@@ -94,7 +83,7 @@ export default function commentersMessageReducer(state, action) {
               
       };
           
-    case COMMENTERS_MESSAGE_RESULT:
+    case "COMMENTERS_MESSAGE_RESULT":
       console.log(action.commenterData)
       return {
         ...state,

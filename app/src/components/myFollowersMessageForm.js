@@ -1,27 +1,28 @@
-import React, { Component } from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class MyFollowersMessageForm extends Component {
+function MyFollowersMessageForm(props) {
 
+    const context = useContext(ContextConsumer);
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
         ReactTooltip.hide();
-        this.props.handleMyFollowersMessageChange(event)
+        props.handleMyFollowersMessageChange(event, context)
     }
     
-    handleSubmit = () => {
-        this.props.handleMyFollowersMessageSubmit()
+    const handleSubmit = (event) => {
+        props.handleMyFollowersMessageSubmit(event, context)
     }
     
-    
-    render() {
-        
-        const showMyFollowersMessageForm = this.props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'}
-        const showMyFollowersMessageSubmitButton = this.props.showMyFollowersMessageSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showMyFollowersMessageSubmitLoadingButton = this.props.showMyFollowersMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+
+        const showMyFollowersMessageForm = props.showMyFollowersMessageForm ? {display: 'block'} : {display: 'none'}
+        const showMyFollowersMessageSubmitButton = props.showMyFollowersMessageSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showMyFollowersMessageSubmitLoadingButton = props.showMyFollowersMessageSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
         
         return (
           
@@ -31,16 +32,16 @@ class MyFollowersMessageForm extends Component {
           data-tip="Must be at least 10 characters long. You can include a full song URL. <<profileName>> will be automatically converted."
           rows="8"
           name="myFollowersMessage"
-          value={this.props.myFollowersMessage}
-          disabled={!this.props.enableMyFollowersMessageInput}
-          onChange={this.handleChange} />
+          value={props.myFollowersMessage}
+          disabled={!props.enableMyFollowersMessageInput}
+          onChange={handleChange} />
         <ReactTooltip delayShow={400}/>
           
             <Button
                 type="submit"
                 value="Send Message!"
-                disabled={!this.props.enableMyFollowersMessageSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableMyFollowersMessageSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showMyFollowersMessageSubmitButton}>
                 Submit
             </Button>
@@ -57,7 +58,6 @@ class MyFollowersMessageForm extends Component {
               </Button>
           </Form>
         )
-    }
 
 }
 

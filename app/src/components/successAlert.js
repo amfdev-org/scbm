@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
-//import { connect } from 'react-redux';
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Alert from 'react-bootstrap/Alert'
 
-class successAlert extends Component {
+function SuccessAlert(props) {
     
-    handleChange = (alertType, alertAction) => {
+    const context = useContext(ContextConsumer);
+    
+    const handleChange = (alertType, alertAction) => {
         //ReactTooltip.hide();
-        this.props.handleAlertChange(alertType, alertAction) 
+        props.handleAlertChange(alertType, alertAction, context) 
     }
-    
-    render() {
 
-        const showSuccessAlert = this.props.showSuccessAlert ? {display: 'block'} : {display: 'none'};
+        const showSuccessAlert = props.showSuccessAlert ? {display: 'block'} : {display: 'none'};
      
         return (
                 
@@ -20,28 +21,15 @@ class successAlert extends Component {
                 className="success-alert alert-fixed"
                 style={showSuccessAlert}
                 variant='success'
-                onClose={() => this.handleChange("SUCCESS", "HIDE")}
+                onClose={() => handleChange("SUCCESS", "HIDE")}
                 dismissible>
               <Alert.Heading>Success!</Alert.Heading>
-                 {this.props.successAlertText}
+                 {props.successAlertText}
               </Alert>
  
         );
-    }
 
 }
 
 
-export default successAlert;
-
-/*function mapStateToProps(state) {
- 
-    return {
-        showSuccessAlert: state.showSuccessAlert,
-        successAlertText: state.successAlertText
-    }
-      
-      
-}
-
-export default connect(mapStateToProps)(successAlert);*/
+export default SuccessAlert;

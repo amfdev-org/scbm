@@ -1,51 +1,52 @@
-import React, { Component } from 'react'
+import React, { useContext } from "react";
+import { ContextConsumer } from "../provider/provider";
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
-class FollowersSearchForm extends Component {
+function FollowersSearchForm(props) {
     
-  
-    handleChange = (event) => {
+    const context = useContext(ContextConsumer);
+    
+    const handleChange = (event) => {
           
         ReactTooltip.hide();
-        this.props.handleFollowersSearchChange(event)
+        props.handleFollowersSearchChange(event, context)
         
     }
     
-    handleSubmit = () => {
+    const handleSubmit = (event) => {
 
-        this.props.handleFollowersSearchSubmit()
+        props.handleFollowersSearchSubmit(event, context)
 
     }
     
-    render() {
-        
-        //const showSearchForm = this.props.showSearchForm ? {display: 'block'} : {display: 'none'}
+        //const showSearchForm = props.showSearchForm ? {display: 'block'} : {display: 'none'}
          
-        const showFollowersSearchSubmitButton = this.props.showFollowersSearchSubmitButton ? {display: 'block'} : {display: 'none'};
-        const showFollowersSearchSubmitLoadingButton = this.props.showFollowersSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
+        const showFollowersSearchSubmitButton = props.showFollowersSearchSubmitButton ? {display: 'block'} : {display: 'none'};
+        const showFollowersSearchSubmitLoadingButton = props.showFollowersSearchSubmitLoadingButton ? {display: 'block'} : {display: 'none'};
     
         
         return (
-          <Form inline onSubmit={this.handleSubmit}>
+          <Form inline onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Control
                     data-tip="Must include http or https"
                     type="text"
                     name="followerSearchUrl"
                     placeholder="e.g. https://soundloud.com/artist"
-                    value={this.props.followersSearchUrl}
-                    disabled={!this.props.enableFollowersSearchInput}
-                    onChange={this.handleChange} />
+                    value={props.followersSearchUrl}
+                    disabled={!props.enableFollowersSearchInput}
+                    onChange={handleChange} />
                     <ReactTooltip delayShow={250}/>
     
             <Button
                 type="submit"
                 value="Submit"
-                disabled={!this.props.enableFollowersSearchSubmitButton}
-                onClick={e => {e.preventDefault(); this.handleSubmit()}}
+                disabled={!props.enableFollowersSearchSubmitButton}
+                onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showFollowersSearchSubmitButton}>
                 Submit
             </Button>
@@ -66,8 +67,7 @@ class FollowersSearchForm extends Component {
           
           
         );
-    }
-
+    
 }
 
 export default FollowersSearchForm;

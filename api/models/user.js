@@ -55,5 +55,5 @@ User.prototype.decryptPassword = function() {
 };
 
 //User.sync({ force: true });
-
+User.sync();
 module.exports = User;

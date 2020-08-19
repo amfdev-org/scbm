@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import { ContextProvider } from "./provider/provider";
+//import configureStore from './store/configureStore';
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
-const store = configureStore();
+//const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}>
+  <ContextProvider>
     <App />
-  </Provider>,
+  </ContextProvider>,
   document.getElementById('root')
 );

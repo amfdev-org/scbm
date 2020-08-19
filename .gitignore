@@ -1,2 +1,3 @@
-api/node_modules/puppeteer/.local-chromium/linux-756035/chrome-linux/chrome
-/var/www/vhosts/scbm/api/node_modules/puppeteer/.local-chromium/linux-756035/chrome-linux/chrome
+logs/
+node_modules/.yarn-integrity
+node_modules/

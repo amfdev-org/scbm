@@ -1,4 +1,21 @@
-export default function uiReducer(state, action) {
+export const initialState = {
+        isTestMode: false,
+        showMainAccordion: false,
+        showConfigModal: false,
+        showErrorAlert: false,
+        showSuccessAlert: false,
+        showInfoAlert: false,
+        errorAlertText: '',
+        successAlertText: '',
+        infoAlertText: '',
+        infoAlertTextHeading: '',
+        errorAlertLink: '',
+        errorAlertLinkText: '',
+        showErrorAlertSwitchToSignup: false,
+        showErrorAlertSwitchToLogin: false
+};
+
+export function uiReducer(state = initialState, action) {
   
   switch(action.type) {
 

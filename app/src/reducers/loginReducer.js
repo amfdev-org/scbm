@@ -1,23 +1,21 @@
-import {
-  LOGIN_USERNAME_CHANGE,
-  LOGIN_PASSWORD_CHANGE,
-  LOGIN_SUBMIT_ENABLE,
-  LOGIN_SUBMIT_DISABLE,
-  LOGIN_USER_NOT_FOUND_ERROR,
-  LOGIN_COOKIE_ERROR,
-  LOGIN_UNKNOWN_ERROR,
-  LOGIN_SUCCESS,
-  LOGOUT_SUCCESS,
-  LOGIN_SWITCH_TO_SIGNUP,
-  LOGIN_SUBMITTED
-} from '../actions/loginActions';
+export const initialState = {
+        scUsername: '',
+        scPassword: '',
+        showLoginForm: false,
+        showLoginSubmitButton: true,
+        showLogoutSubmitButton: false,
+        enableLoginSubmitButton: false,
+        showLoginSubmitLoadingButton: false,
+        loginHeaderText: 'Login',
+        loggedInInfoText: '',
+        showLoggedInInfo: false
+};
 
+export function loginReducer(state = initialState, action) {
 
-export default function loginReducer(state, action) {
-  
   switch(action.type) {
 
-    case LOGIN_USERNAME_CHANGE:
+    case "LOGIN_USERNAME_CHANGE":
 
       return {
         
@@ -25,27 +23,27 @@ export default function loginReducer(state, action) {
         scUsername: action.scUsername
       };
     
-    case LOGIN_PASSWORD_CHANGE:
+    case "LOGIN_PASSWORD_CHANGE":
 
       return {
         ...state,
         scPassword: action.scPassword
       };
     
-    case LOGIN_SUBMIT_ENABLE:
+    case "LOGIN_SUBMIT_ENABLE":
 
       return {
         ...state,
         enableLoginSubmitButton: true
       };
       
-    case LOGIN_SUBMIT_DISABLE:
+    case "LOGIN_SUBMIT_DISABLE":
       return {
         ...state,
         enableLoginSubmitButton: false
       };
       
-    case LOGIN_SUBMITTED:
+    case "LOGIN_SUBMITTED":
       return {
         ...state,
         showErrorAlert: false,
@@ -55,7 +53,7 @@ export default function loginReducer(state, action) {
         showLoginSubmitLoadingButton: true
       };
       
-    case LOGIN_USER_NOT_FOUND_ERROR:
+    case "LOGIN_USER_NOT_FOUND_ERROR":
          //console.log('reducer user not found error')
       return {
         ...state,
@@ -68,7 +66,7 @@ export default function loginReducer(state, action) {
             showLoginSubmitLoadingButton: false
       };
                 
-    case LOGIN_COOKIE_ERROR:
+    case "LOGIN_COOKIE_ERROR":
       return {
         ...state,
             showLoginForm: false,
@@ -77,7 +75,7 @@ export default function loginReducer(state, action) {
             errorAlertLinkText: '',           
       };
     
-    case LOGIN_UNKNOWN_ERROR:
+    case "LOGIN_UNKNOWN_ERROR":
       console.log('reducer login unkown error')
       return {
         ...state,
@@ -86,7 +84,7 @@ export default function loginReducer(state, action) {
       };
 
       
-    case LOGIN_SUCCESS:
+    case "LOGIN_SUCCESS":
     //console.log('login success reducer');
       return {
         ...state,
@@ -105,7 +103,7 @@ export default function loginReducer(state, action) {
       };
     
     
-    case LOGIN_SWITCH_TO_SIGNUP:
+    case "LOGIN_SWITCH_TO_SIGNUP":
     //console.log('login success reducer');
       return {
         ...state,
@@ -122,8 +120,8 @@ export default function loginReducer(state, action) {
       };
           
         
-    case LOGOUT_SUCCESS:
-      //console.log('login success reducer');
+    case "LOGOUT_SUCCESS":
+      console.log('logout success reducer');
        //console.log(action.initialState);
       return action.initialState;
     

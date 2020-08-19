@@ -3,53 +3,36 @@
 
 import axios from 'axios';
 
-export const FOLLOWERS_SEARCH_URL_CHANGE = 'FOLLOWERS_SEARCH_URL_CHANGE'
-export const FOLLOWERS_SEARCH_SUBMIT_ENABLE = 'FOLLOWERS_SEARCH_SUBMIT_ENABLE'
-export const FOLLOWERS_SEARCH_SUBMIT_DISABLE = 'FOLLOWERS_SEARCH_SUBMIT_DISABLE'
-export const FOLLOWERS_SEARCH_SUBMITTED = 'FOLLOWERS_SEARCH_SUBMITTED'
-export const FOLLOWERS_SEARCH_NO_RESULTS = 'FOLLOWERS_SEARCH_NO_RESULTS'
-export const FOLLOWERS_SEARCH_OTHER_ERROR = 'FOLLOWERS_SEARCH_OTHER_ERROR'
-export const FOLLOWERS_SEARCH_SUCCESS = 'FOLLOWERS_SEARCH_SUCCESS'
-export const FOLLOWERS_SELECTED_ROWS_CHANGE = 'FOLLOWERS_SELECTED_ROWS_CHANGE'
-export const FOLLOWERS_MESSAGE_FORM_SHOW = 'FOLLOWERS_MESSAGE_FORM_SHOW'
-export const FOLLOWERS_MESSAGE_FORM_HIDE = 'FOLLOWERS_MESSAGE_FORM_HIDE'
-export const FOLLOWERS_SEARCH_UNKNOWN_ERROR = 'FOLLOWERS_SEARCH_UNKNOWN_ERROR'
-export const FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED = 'FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED'
-export const FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR = 'FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR'
-export const FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT = 'FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT'
+const API_URL = process.env.REACT_APP_API_URL;
 
-export function fetchRecentFollowersSearches() {
+export function fetchRecentFollowersSearches(dispatch) {
 
-    return (dispatch, getState) => {
-
-    //console.log('fetch received messages');
+    //console.log('action fetchRecentFollowersSearches');
     
-        dispatch({type: FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED});
+        dispatch({type: "FOLLOWERS_SEARCH_RECENT_SEARCHES_SUBMITTED"});
             
-        //let messagesSearchUrlNoSlash = getState().messagesSearchUrl.replace(/\/+$/, "");
+        //let messagesSearchUrlNoSlash = state.messagesSearchUrl.replace(/\/+$/, "");
         
-        axios.get('https://scbm.amfdev.co.uk/api/searches/', {params: {type: "follower"} })
+        axios.get(API_URL + '/searches/', {params: {type: "follower"} })
         .then(json => doRecentFollowersSearchesResult(json, dispatch))
         .catch(error => {
 
                 if (error.response) {   
                       dispatch({
-                          type: FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR
+                          type: "FOLLOWERS_SEARCH_RECENT_SEARCHES_ERROR"
                       })  
                 }
         });
-                  
-    }
-    
 
 }
+
 
 function doRecentFollowersSearchesResult(json, dispatch) {
         //console.log('doRecentFollowersSearchesSuccess')
         //console.log(json.data)
         if (json.data && json.data.length > 0) {
                dispatch({
-                type: FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT,
+                type: "FOLLOWERS_SEARCH_RECENT_SEARCHES_RESULT",
                 data: json.data
               })
         }  
@@ -59,21 +42,20 @@ function doRecentFollowersSearchesResult(json, dispatch) {
 }
 
 
-
-export function handleFollowersRecentSearchSubmit(searchUrl) {
+export function handleFollowersRecentSearchSubmit(searchUrl, context) {
     
-    return (dispatch, getState) => {
+    const dispatch = context.dispatch;
 
     dispatch({
-         type: FOLLOWERS_SEARCH_URL_CHANGE,
+         type: "FOLLOWERS_SEARCH_URL_CHANGE",
          followersSearchUrl: searchUrl
        });
     
     dispatch({
-         type: FOLLOWERS_SEARCH_SUBMITTED
+         type: "FOLLOWERS_SEARCH_SUBMITTED"
        });
            
-        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+        axios.get(API_URL + '/followers/', {
          params: {
            searchUrl: encodeURI(searchUrl)
          }
@@ -85,69 +67,66 @@ export function handleFollowersRecentSearchSubmit(searchUrl) {
 
                 if (error.response) {   
                       dispatch({
-                          type: FOLLOWERS_SEARCH_UNKNOWN_ERROR
+                          type: "FOLLOWERS_SEARCH_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
-    }
-    
+
 }
 
-export function handleFollowersSearchChange(event) {
+export function handleFollowersSearchChange(event, context) {
     
-    return (dispatch, getState) => {
-
-            dispatch({
-                type: FOLLOWERS_SEARCH_URL_CHANGE,
-                followersSearchUrl: event.target.value
-            })
+        const dispatch = context.dispatch;
+        const followersSearchUrl = event.target.value;
+        
+        dispatch({
+            type: "FOLLOWERS_SEARCH_URL_CHANGE",
+            followersSearchUrl: followersSearchUrl
+        })
        
-        if(getState().followersSearchUrl && getState().followersSearchUrl.length > 0 && getState().followersSearchUrl.includes("http")) {
+        if(followersSearchUrl && followersSearchUrl.length > 0 && followersSearchUrl.includes("http")) {
             dispatch({
-                type: FOLLOWERS_SEARCH_SUBMIT_ENABLE
+                type: "FOLLOWERS_SEARCH_SUBMIT_ENABLE"
           })
         } else {
             dispatch({
-                type: FOLLOWERS_SEARCH_SUBMIT_DISABLE
+                type: "FOLLOWERS_SEARCH_SUBMIT_DISABLE"
           })
         }
 
-          
-    }
-    
 }
 
 
-export function handleFollowersSearchSubmit(event) {
+export function handleFollowersSearchSubmit(event, context) {
     
-    return (dispatch, getState) => {
-
-    dispatch({
-         type: FOLLOWERS_SEARCH_SUBMITTED
-       });
+        const dispatch = context.dispatch;
+        const state = context.state;
         
-        //let followersSearchUrlNoSlash = getState().followersSearchUrl.replace(/\/+$/, "");
+        dispatch({
+            type: "FOLLOWERS_SEARCH_SUBMITTED"
+        });
         
-        axios.get('https://scbm.amfdev.co.uk/api/followers/', {
+        //let followersSearchUrlNoSlash = state.followersSearchUrl.replace(/\/+$/, "");
+        
+        axios.get(API_URL + '/followers/', {
          params: {
-           searchUrl: encodeURI(getState().followersSearchUrl)
+           searchUrl: encodeURI(state.followersSearchUrl)
          }
          })
         .then(json => catchFollowersSearchNoResults(json.data, dispatch))
         .then(json => catchFollowersSearchOtherError(json, dispatch))
         .then(json => doFollowersSearchSuccess(json, dispatch))
-        .then(json => dispatch(fetchRecentFollowersSearches()))
+        .then(json => fetchRecentFollowersSearches(dispatch))
         .catch(error => {
 
                 if (error.response) {   
                       dispatch({
-                          type: FOLLOWERS_SEARCH_UNKNOWN_ERROR
+                          type: "FOLLOWERS_SEARCH_UNKNOWN_ERROR"
                       })  
                 }
         });
                   
-    }
     
 }
 
@@ -158,7 +137,7 @@ function catchFollowersSearchNoResults(json, dispatch) {
     //console.log(json);
     if (json.noResults) {
         dispatch({
-                type: FOLLOWERS_SEARCH_NO_RESULTS
+                type: "FOLLOWERS_SEARCH_NO_RESULTS"
               })
         dispatch({ type: "SUCCESS_ALERT_SHOW" });
         
@@ -178,7 +157,7 @@ function catchFollowersSearchOtherError(json, dispatch) {
     //console.log('catchFollowersSearchOtherError')
     if (!json.success) {
         dispatch({
-                type: FOLLOWERS_SEARCH_OTHER_ERROR
+                type: "FOLLOWERS_SEARCH_OTHER_ERROR"
               })
         throw Error(json.error);
     }
@@ -191,7 +170,7 @@ function doFollowersSearchSuccess(json, dispatch) {
     //console.log('doFollowersSearchSuccess')
  
         dispatch({
-                type: FOLLOWERS_SEARCH_SUCCESS,
+                type: "FOLLOWERS_SEARCH_SUCCESS",
                 followerData: json.followerData
               })
           
@@ -205,31 +184,28 @@ function doFollowersSearchSuccess(json, dispatch) {
 }
 
 
-export function handleFollowersSelectedRowsChange(selectedFollowers) {
+export function handleFollowersSelectedRowsChange(selectedFollowers, context) {
     
+    const dispatch = context.dispatch;
+        
     //console.log(selectedFollowers);
-    
-    return (dispatch, getState) => {
-  
         //console.log('dispatch rows change selected followers')
-            dispatch({
-                type: FOLLOWERS_SELECTED_ROWS_CHANGE,
-                selectedFollowers: selectedFollowers
-            })
+        dispatch({
+            type: "FOLLOWERS_SELECTED_ROWS_CHANGE",
+            selectedFollowers: selectedFollowers
+        })
        
-        if(getState().selectedFollowers && getState().selectedFollowers.length > 0) {
+        if(selectedFollowers && selectedFollowers.length > 0) {
             //console.log('yes selected followers more than 0')
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'block';
             dispatch({
-                type: FOLLOWERS_MESSAGE_FORM_SHOW
+                type: "FOLLOWERS_MESSAGE_FORM_SHOW"
           })
         } else {
             //document.getElementsByClassName('rdt_TableHeader')[0].style.display = 'none';
             dispatch({
-                type: FOLLOWERS_MESSAGE_FORM_HIDE
+                type: "FOLLOWERS_MESSAGE_FORM_HIDE"
           })
         }
         
-    }
-           
 }

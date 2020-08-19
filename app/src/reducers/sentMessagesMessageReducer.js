@@ -1,57 +1,48 @@
-import {
-  SENT_MESSAGES_MESSAGE_FORM_SHOW,
-  SENT_MESSAGES_MESSAGE_FORM_HIDE
+export const initialState = {
+        sentMessagesMessage : 'Hi <<profileName>>,',
+        showSentMessagesMessageForm: false,
+        enableSentMessagesMessageInput: true,
+        enableSentMessagesMessageSubmitButton: false,
+        showSentMessagesMessageSubmitButton: true,
+        showSentMessagesMessageSubmitLoadingButton: false
+};
 
-} from '../actions/sentMessagesSearchActions';
-
-import {
-  SENT_MESSAGES_MESSAGE_CHANGE,
-  SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE,
-  SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE,
-  SENT_MESSAGES_MESSAGE_ERROR,
-  SENT_MESSAGES_MESSAGE_RESULT,
-  SENT_MESSAGES_MESSAGE_SUBMITTED,
-  SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR
-
-} from '../actions/sentMessagesMessageActions';    
-        
-        
-export default function sentMessagesMessageReducer(state, action) {
+export function sentMessagesMessageReducer(state = initialState, action) {
   
   switch(action.type) {
 
-    case SENT_MESSAGES_MESSAGE_FORM_SHOW:
+    case "SENT_MESSAGES_MESSAGE_FORM_SHOW":
         //console.log('show message form - reducer')
       return {
         ...state,
         showSentMessagesMessageForm: true
       };
       
-    case SENT_MESSAGES_MESSAGE_FORM_HIDE:
+    case "SENT_MESSAGES_MESSAGE_FORM_HIDE":
       return {
         ...state,
         showSentMessagesMessageForm: false
       };
       
-    case SENT_MESSAGES_MESSAGE_CHANGE:
+    case "SENT_MESSAGES_MESSAGE_CHANGE":
       return {
         ...state,
         sentMessagesMessage: action.sentMessagesMessage
       };
           
-    case SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE:
+    case "SENT_MESSAGES_MESSAGE_SUBMIT_ENABLE":
       return {
         ...state,
         enableSentMessagesMessageSubmitButton: true
       };
                 
-    case SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE:
+    case "SENT_MESSAGES_MESSAGE_SUBMIT_DISABLE":
       return {
         ...state,
           enableSentMessagesMessageSubmitButton: false
       };
       
-    case SENT_MESSAGES_MESSAGE_SUBMITTED:
+    case "SENT_MESSAGES_MESSAGE_SUBMITTED":
       return {
         ...state,
         showErrorAlert: false,
@@ -66,7 +57,7 @@ export default function sentMessagesMessageReducer(state, action) {
       };
     
           
-    case SENT_MESSAGES_MESSAGE_ERROR:
+    case "SENT_MESSAGES_MESSAGE_ERROR":
       return {
         ...state,
           showSentMessagesMessageSubmitButton: true,
@@ -79,7 +70,7 @@ export default function sentMessagesMessageReducer(state, action) {
               
       };
     
-      case SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR:
+      case "SENT_MESSAGES_MESSAGE_UNKNOWN_ERROR":
         //console.log('reducer unknoqn error')
       return {
         ...state,
@@ -92,7 +83,7 @@ export default function sentMessagesMessageReducer(state, action) {
               
       };
           
-    case SENT_MESSAGES_MESSAGE_RESULT:
+    case "SENT_MESSAGES_MESSAGE_RESULT":
       return {
         ...state,
         toggledClearRows: true,

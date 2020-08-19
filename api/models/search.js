@@ -35,7 +35,7 @@ let logSearches = (data) => {
 }
 
 //Search.sync({ force: true });
-
+Search.sync();
 module.exports = {
                 Search,
                 logSearches
