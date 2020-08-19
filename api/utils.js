@@ -9,6 +9,7 @@ const screenshotPath = apiPath + "/screenshots";
 const userDataPath = apiPath  + "/user_data";
 const logPath = apiPath  + "/logs";
 const baseUrl = process.env.BASE_URL;
+const expressSessionName = process.env.EXPRESS_SESSION_NAME;
 
 const randomWait1 = Math.floor((Math.random() * 1000) + 3);
 const randomWait2 = Math.floor((Math.random() * 1000) + 4);
@@ -242,6 +243,7 @@ const randomWaitShort4 = Math.floor((Math.random() * 100) + 11);
                 userDataPath,
                 logPath,
                 baseUrl,
+                expressSessionName,
                 randomWait1,
                 randomWait2,
                 randomWait3,

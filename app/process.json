@@ -1,5 +1,5 @@
 {
-  "script": "npm",
+  "script": "yarn",
   "args" : "start",
   "watch": true,
   "watch_options": {

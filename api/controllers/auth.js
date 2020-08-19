@@ -28,7 +28,7 @@ module.exports.getAuth = (req, res) => {
         
         return new Promise((resolve, reject) => {
             
-            if (req.session.user && req.cookies.scbm_sid) {
+            if (req.session.user && req.cookies[utils.expressSessionName]) {
                 console.log('authd - req.sesssion.user && req.cookies.scbm_sid are valid')
                 resolve(true)
             } else {
