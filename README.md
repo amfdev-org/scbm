@@ -1,4 +1,11 @@
-Welcome to SCBM
+#SCBM#
 
-To run the api do `node server.js` from inside the `api` directory, or install and use`nodemon` or `pm2`
-To run the app do `yarn run` from inside the `app` directory or install `pm2`
+* Clone
+
+* Populate your environmental variables in /api/.env
+    * The backend will run on `localhost` at the specified `PORT`
+    
+* Populate your environmental variables in /app/.env
+    * If using the Create React App dev server, this will run on `localhost` at the specified `PORT`
+
+* Run `yarn` from the root directory to install dependencies
