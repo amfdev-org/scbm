@@ -6,6 +6,6 @@
     "followSymlinks": false,
     "usePolling": true
   },
-    "name": "scbm-dev-app",
+    "name": "scbm-app",
     "restart_delay": 500,
 }
