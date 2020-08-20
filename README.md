@@ -1,11 +1,13 @@
 # SCBM
 
+A messaging & promotion tool for music producers and their platform of choice
+
 ## Pre-requisites
 
-* ubuntu 16.04 (might run on other distros - I don't know)
-* node (built with v10.18 - might work on other versions - I don't know)
+* ubuntu 16.04 (probably runs on other distros but this is not tested)
+* node (built with v10.18 - probably works on other versions but this is not tested)
 * yarn
-* mysql (for api session storage)
+* mysql (it should be possible to use another DB but you'd need to refactor)
 * Nginx or another webserver, if you plan to reverse-proxy external requests to `localhost` ([Nginx sample config can be found here](nginx.conf.sample))
 * SSL cert, if you plan on accessing from external web
 
@@ -22,7 +24,7 @@
     
 4. From the root directory, run `yarn` to install dependencies
 
-5. From the root directory run `sudo chmod a+x start-dev && sudo chmod a+x stop-dev` to make the start/stop scripts executable
+5. From the root directory run `sudo chmod u+x start-dev && sudo chmod u+x stop-dev` to make the start/stop scripts executable
 
 6. It should also be possible to create a production build rather than use the Create React App dev server:
     * run `yarn build` from the `app` directory
@@ -30,10 +32,10 @@
     
 ## To start the app
 
-* Simply run `./start-dev' from the root directory - this will use `pm2` to create two watched processes "scbm-api" and "scbm-app"
+* Run `./start-dev` from the root directory - this will use `pm2` to create two watched processes `scbm-api` and `scbm-app`
 
-* To check the status of the processes, do `pm2 status`
+* To check the status of these processes, do `pm2 status`
 
 ## To stop the app
 
-* Simply run `./stop-dev' from the root directory
+* Run `./stop-dev` from the root directory
