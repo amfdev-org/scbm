@@ -55,5 +55,17 @@ User.prototype.decryptPassword = function() {
 };
 
 //User.sync({ force: true });
-User.sync();
-module.exports = User;
+const createTable = () => {
+      
+      User.sync()
+      .then(result => {
+        console.log("User table created")
+      })
+      .catch(error => {
+        console.log("Error! User table not created")
+        console.log(error)
+      })
+      
+}
+
+module.exports = {User, createTable};

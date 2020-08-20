@@ -35,8 +35,21 @@ let logSearches = (data) => {
 }
 
 //Search.sync({ force: true });
-Search.sync();
+const createTable = () => {
+      
+      Search.sync()
+      .then(result => {
+        console.log("Search table created")
+      })
+      .catch(error => {
+        console.log("Error! Search table not created")
+        console.log(error)
+      })
+      
+}
+
 module.exports = {
                 Search,
-                logSearches
+                logSearches,
+                createTable
                 };

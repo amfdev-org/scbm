@@ -57,6 +57,18 @@ let logFollowers = (data) => {
 
 }
 
+const createTable = () => {
+      
+      Follower.sync()
+      .then(result => {
+        console.log("Follower table created")
+      })
+      .catch(error => {
+        console.log("Error! Follower table not created")
+        console.log(error)
+      })
+      
+}
 //Follower.sync({ force: true });
-Follower.sync();
-module.exports = { Follower, logFollowers };
+
+module.exports = { Follower, logFollowers, createTable };

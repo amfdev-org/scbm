@@ -1,7 +1,4 @@
 const dotenv = require('dotenv').config()
-const fs = require('fs');
-const utils = require('./utils');    
-const moment = require('moment')
 
 const { Sequelize, DataTypes, Op } = require('sequelize');
 
