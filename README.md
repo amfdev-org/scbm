@@ -7,7 +7,7 @@ A messaging & promotion tool for music producers and their platform of choice
 * node v10.18 or newer
 * yarn
 * a mysql server
-* Nginx (or another webserver to reverse-proxy external requests to `localhost`) ([Nginx sample config can be found here](nginx.conf.sample))
+* Nginx (or another reverse-proxying web server) ([Nginx sample config can be found here](nginx.conf.sample))
 * SSL cert for your external domain - might work without but this is not tested
 
 ## Installation
