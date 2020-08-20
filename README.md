@@ -19,7 +19,7 @@ A messaging & promotion tool for music producers and their platform of choice
     * populate & save the file with your environmental variables
         
         * `RUN_MODE`: can be set to **dev** or **prod**. Setting to **dev** is recommended
-        * `PORT`: the port on `localhost` where you want the api to run - naturally needs to match Nginx or other reverse proxy config
+        * `PORT`: the port on localhost where you want the api to run - naturally needs to match Nginx or other reverse proxy config
         * `DB_HOST`: mysql hostname, usually **localhost**
         * `DB_USER`: mysql username, usually **root**
         * `DB_PASS`: mysql password
@@ -36,7 +36,7 @@ A messaging & promotion tool for music producers and their platform of choice
     * rename **/app/.env.sample** to **/app/.env**
     * populate & save the file with your environmental variables
 
-        * `PORT`: the port on `localhost` where you want the Create React App dev server to run - naturally needs to match Nginx or other reverse proxy config
+        * `PORT`: the port on localhost where you want the Create React App dev server to run - naturally needs to match Nginx or other reverse proxy config
         * `REACT_APP_ROOT_PATH`: the full current working directory for the app e.g. **/path/to/your/folder/scbm/app**
         * `REACT_APP_BASE_URL`: the full external URL you're using for the app e.g. **https://scbm.co.uk**
         * `REACT_APP_API_URL`: the full external URL you're using for the api e.g. **https://scbm.co.uk/api**
