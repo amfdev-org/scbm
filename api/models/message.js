@@ -174,9 +174,22 @@ let checkFollowersMessageStatus = (data) => {
 }
 
 //Message.sync({ force: true });
-Message.sync();
+const createTable = () => {
+      
+      Message.sync()
+      .then(result => {
+        console.log("Message table created")
+      })
+      .catch(error => {
+        console.log("Error! Message table not created")
+        console.log(error)
+      })
+      
+}
+
 module.exports = { Message,
                 logMessages,
                 checkCommentersMessageStatus,
-                checkFollowersMessageStatus
+                checkFollowersMessageStatus,
+                createTable
                 };

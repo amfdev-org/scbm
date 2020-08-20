@@ -1,6 +1,7 @@
 {
-  "script": "yarn",
+  "script": "npm",
   "args" : "start",
+  "interpreter": '/bin/bash',
   "watch": true,
   "watch_options": {
     "followSymlinks": false,

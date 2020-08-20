@@ -1,2 +1,2 @@
 #!/bin/bash
-pm2 start api/process.json --watch && pm2 start app/process.json --watch && sleep 2 && pm2 status
+cd api && pm2 start process.json --watch && cd ../app && pm2 start process.json --watch && sleep 2 && pm2 status

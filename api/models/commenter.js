@@ -52,6 +52,19 @@ let logCommenters = (data) => {
 
 }
 
-//Commenter.sync({ force: true });
-Commenter.sync();
-module.exports = { Commenter, logCommenters };
+const createTable = () => {
+      
+      Commenter.sync()
+      .then(result => {
+        console.log("Commenter table created")
+      })
+      .catch(error => {
+        console.log("Error! Commenter table not created")
+        console.log(error)
+      })
+      
+}
+
+    //Commenter.sync({ force: true }); 
+
+module.exports = { Commenter, logCommenters, createTable };

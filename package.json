@@ -2,8 +2,5 @@
   "dependencies": {
     "pm2": "^4.4.1",
     "postinstall": "^0.7.0"
-  },
-  "scripts": {
-    "postinstall": "(cd api && yarn); (cd app && yarn);"
   }
 }
