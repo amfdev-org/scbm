@@ -24,7 +24,7 @@ A messaging & promotion tool for music producers and their platform of choice
     
 4. From the root directory, run `yarn` to install dependencies
 
-5. From the root directory run `sudo chmod a+x start-dev && sudo chmod a+x stop-dev` to make the start/stop scripts executable
+5. From the root directory run `sudo chmod u+x start-dev && sudo chmod u+x stop-dev` to make the start/stop scripts executable
 
 6. It should also be possible to create a production build rather than use the Create React App dev server:
     * run `yarn build` from the `app` directory
@@ -32,10 +32,10 @@ A messaging & promotion tool for music producers and their platform of choice
     
 ## To start the app
 
-* Simply run `./start-dev' from the root directory - this will use `pm2` to create two watched processes "scbm-api" and "scbm-app"
+* Run `./start-dev'` from the root directory - this will use `pm2` to create two watched processes `scbm-api` and `scbm-app`
 
-* To check the status of the processes, do `pm2 status`
+* To check the status of these processes, do `pm2 status`
 
 ## To stop the app
 
-* Simply run `./stop-dev' from the root directory
+* Run `./stop-dev` from the root directory
