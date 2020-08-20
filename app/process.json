@@ -1,11 +1,11 @@
 {
-  "script": "npm",
+  "script": "yarn",
   "args" : "start",
   "watch": true,
   "watch_options": {
     "followSymlinks": false,
     "usePolling": true
   },
-    "name": "scbm-dev-app",
+    "name": "scbm-app",
     "restart_delay": 500,
 }
