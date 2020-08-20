@@ -1,11 +1,13 @@
 # SCBM
 
+A messaging & promotion tool for music producers and their platform of choice
+
 ## Pre-requisites
 
 * ubuntu 16.04 (might run on other distros - I don't know)
 * node (built with v10.18 - might work on other versions - I don't know)
 * yarn
-* mysql (for api session storage)
+* mysql (it should be possible to use another DB but you'd need to refactor)
 * Nginx or another webserver, if you plan to reverse-proxy external requests to `localhost` ([Nginx sample config can be found here](nginx.conf.sample))
 * SSL cert, if you plan on accessing from external web
 
