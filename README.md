@@ -7,14 +7,15 @@ A messaging & promotion tool for music producers and their platform of choice
 * node v10.18 or newer
 * yarn
 * a mysql server
-* Nginx (or another reverse-proxying web server) ([Nginx sample config can be found here](nginx.conf.sample))
+* Nginx (or another reverse-proxying web server)
+    * ([Nginx sample config can be found here](nginx.conf.sample))
 * SSL cert for your external domain - might work without but this is not tested
 
 ## Installation
 
 1. Clone the repository
 
-2. Configure the Express backend
+2. Configure the Express API backend
     * rename **/api/.env.sample** to **/api/.env**
     * populate & save the file with your environmental variables
         
