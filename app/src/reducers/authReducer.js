@@ -28,10 +28,7 @@ export function authReducer(state = initialState, action) {
         showLoginForm: true,
         showLoginSubmitButton: true,
         infoAlertTextHeading: "Welcome",
-        infoAlertText: "Please log in.",
-        enableLoginSubmitButton: true,
-        //showInfoAlert: true                        
-                              
+        infoAlertText: "Please log in."                         
       };
       
     case "AUTH_COOKIE_ERROR":
@@ -45,7 +42,7 @@ export function authReducer(state = initialState, action) {
     
     case "AUTH_SUCCESS":
       //console.log("authReducer AUTH_SUCCESS - action.userSettings.isTestMode: "+action.userSettings.isTestMode)
-      console.log("authReducer AUTH_SUCCESS");
+      //console.log("authReducer AUTH_SUCCESS");
       return {
         ...state,
         errorAlertText: null,
@@ -54,10 +51,6 @@ export function authReducer(state = initialState, action) {
         showLogoutSubmitButton: true,
         loggedInInfoText: "Logged in as " + action.userData.scUsername,
         showMainAccordion: true,
-        //showCommentersSearchForm: true,
-        //showCommentersSearchSubmitButton: true,
-        //enableCommentersSearchSubmitButton: false, 
-        //enableCommentersSearchInput: true,
         scProfile: action.userData.scProfile,
         isTestMode: action.userSettings.isTestMode === "true"
                     

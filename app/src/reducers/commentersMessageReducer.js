@@ -4,7 +4,8 @@ export const initialState = {
     enableCommentersMessageSubmitButton: false,
     showCommentersMessageSubmitButton: true,
     showCommentersMessageSubmitLoadingButton: false,
-    enableCommentersMessageInput: true
+    enableCommentersMessageInput: true,
+    toggledCommentersClearRows: false
 };     
         
 export function commentersMessageReducer(state = initialState, action) {
@@ -52,8 +53,7 @@ export function commentersMessageReducer(state = initialState, action) {
         enableCommentersSearchSubmitButton: false,
         showCommentersMessageSubmitButton: false,
         showCommentersMessageSubmitLoadingButton: true,
-        enableCommentersMessageInput: false
-        
+        enableCommentersMessageInput: false     
       };
     
           
@@ -84,16 +84,16 @@ export function commentersMessageReducer(state = initialState, action) {
       };
           
     case "COMMENTERS_MESSAGE_RESULT":
-      console.log(action.commenterData)
+      //console.log(action.commenterData)
       return {
         ...state,
-        toggledClearRows: true,
         showCommentersMessageSubmitButton: true,
         showCommentersMessageSubmitLoadingButton: false,
         enableCommentersMessageInput: true,
         enableCommentersSearchSubmitButton: true,
         enableCommentersSearchInput: true,
-        commenterData: action.commenterData
+        commenterData: action.commenterData,
+        toggledCommentersClearRows: action.toggledCommentersClearRows
       };
     
     

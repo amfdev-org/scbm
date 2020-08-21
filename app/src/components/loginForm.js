@@ -7,19 +7,18 @@ import Spinner from 'react-bootstrap/Spinner'
 import ReactTooltip from "react-tooltip";
 
 function LoginForm(props) {
-    
+
     const context = useContext(ContextConsumer);
 
     const handleChange = (event) => {
-        console.log('loginform handleChange:')
-         console.log(event.target)
+        //console.log('loginform handleChange:')
         ReactTooltip.hide();
         props.handleLoginChange(event, context)
         
     }
     
     const handleSubmit = () => {
-        console.log('loginform handleSubmit:')
+        //console.log('loginform handleSubmit:')
         props.handleLoginSubmit(context)
 
     }
@@ -56,7 +55,7 @@ function LoginForm(props) {
             <Button
                 type="submit"
                 value="Submit"
-                disabled={props.enableLoginSubmitButton}
+                disabled={!props.enableLoginSubmitButton}
                 onClick={e => {e.preventDefault(); handleSubmit()}}
                 style={showLoginSubmitButton}>
                 Go

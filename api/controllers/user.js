@@ -58,7 +58,7 @@ module.exports.updateUser = (req, res) => {
        console.log('POST /user/ updateUser function called');
        return new Promise((resolve, reject) => {
             console.log('POST /user/ updateUser promise opened, querying users with req.session.user.scUsername');
-           UserModel.findOne({ where: { scUsername: req.session.user.scUsername } })
+           UserModel.User.findOne({ where: { scUsername: req.session.user.scUsername } })
                .then(function (user) {
                    
                if (user) {

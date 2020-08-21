@@ -36,7 +36,7 @@ module.exports.postSignup = (req, res) => {
        
        return new Promise((resolve, reject) => {
            
-           UserModel.findOne({ where: { scUsername: req.body.scUsername } })
+           UserModel.User.findOne({ where: { scUsername: req.body.scUsername } })
                .then(function (user) {
                    
                if (user) {
@@ -123,7 +123,7 @@ module.exports.postSignup = (req, res) => {
         
         return new Promise((resolve, reject) => {
             
-            UserModel.create({
+            UserModel.User.create({
                 scUsername: req.body.scUsername,
                 scPassword: req.body.scPassword,
                 scCookies: data.scCookies,

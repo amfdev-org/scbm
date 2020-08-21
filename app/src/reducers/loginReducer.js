@@ -31,7 +31,7 @@ export function loginReducer(state = initialState, action) {
       };
     
     case "LOGIN_SUBMIT_ENABLE":
-
+        //console.log("LOGIN_SUBMIT_ENABLE reducer")
       return {
         ...state,
         enableLoginSubmitButton: true
@@ -121,7 +121,7 @@ export function loginReducer(state = initialState, action) {
           
         
     case "LOGOUT_SUCCESS":
-      console.log('logout success reducer');
+      //console.log('logout success reducer');
        //console.log(action.initialState);
       return action.initialState;
     

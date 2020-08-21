@@ -4,7 +4,8 @@ export const initialState = {
         enableSentMessagesMessageInput: true,
         enableSentMessagesMessageSubmitButton: false,
         showSentMessagesMessageSubmitButton: true,
-        showSentMessagesMessageSubmitLoadingButton: false
+        showSentMessagesMessageSubmitLoadingButton: false,
+        toggledSentMessagesClearRows: false
 };
 
 export function sentMessagesMessageReducer(state = initialState, action) {
@@ -53,7 +54,6 @@ export function sentMessagesMessageReducer(state = initialState, action) {
         showSentMessagesMessageSubmitButton: false,
         showSentMessagesMessageSubmitLoadingButton: true,
         enableSentMessagesMessageInput: false
-        
       };
     
           
@@ -86,13 +86,13 @@ export function sentMessagesMessageReducer(state = initialState, action) {
     case "SENT_MESSAGES_MESSAGE_RESULT":
       return {
         ...state,
-        toggledClearRows: true,
         showSentMessagesMessageSubmitButton: true,
         showSentMessagesMessageSubmitLoadingButton: false,
         enableSentMessagesMessageInput: true,
         enableSentMessagesSearchSubmitButton: true,
         enableSentMessagesSearchInput: true,
-        sentMessageData: action.sentMessageData
+        sentMessageData: action.sentMessageData,
+        toggledSentMessagesClearRows: action.toggledSentMessagesClearRows
       };
     
     

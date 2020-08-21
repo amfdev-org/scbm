@@ -2,7 +2,6 @@ export const initialState = {
     commentersSearchUrl : '',
     commenterData : [],
     selectedCommenters : [],
-    toggledClearRows: false,
     showCommentersSearchSubmitButton: true,
     enableCommentersSearchSubmitButton: false,
     showCommentersSearchSubmitLoadingButton: false,

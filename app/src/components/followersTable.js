@@ -55,7 +55,7 @@ function FollowersTable(props) {
                 selectableRows
                 onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={props.toggledClearRows}
+                clearSelectedRows={props.toggledFollowersClearRows}
                 pagination
                 paginationPerPage={10}
               />

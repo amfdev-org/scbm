@@ -72,7 +72,7 @@ function ReceivedMessagesContainer(props) {
                        handleReceivedMessagesSelectedRowsChange={props.handleReceivedMessagesSelectedRowsChange}
                        showReceivedMessagesLoadingIcon={props.showReceivedMessagesLoadingIcon}
                        selectedReceivedMessages={props.selectedReceivedMessages}
-                       toggledClearRows={props.toggledClearRows}
+                       toggledReceivedMessagesClearRows={props.toggledReceivedMessagesClearRows}
                        />
 
                         <h6 style={showReceivedMessagesMessageForm} className="messageForm">Message</h6>
@@ -112,6 +112,7 @@ const mapStateToProps = state => ({
       selectedReceivedMessages: state.selectedReceivedMessages,   
       showReceivedMessagesLoadingIcon: state.showReceivedMessagesLoadingIcon,
       enableReceivedMessagesRefresh: state.enableReceivedMessagesRefresh,
+      toggledReceivedMessagesClearRows: state.toggledReceivedMessagesClearRows,
       
       //received messages message
       receivedMessagesMessage: state.receivedMessagesMessage,

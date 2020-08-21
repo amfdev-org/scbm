@@ -4,7 +4,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export function fetchMyFollowers(dispatch) {
 
-    console.log('fetch my followers');
+    //console.log('fetch my followers');
 
     dispatch({
          type: "MY_FOLLOWERS_SEARCH_SUBMITTED"

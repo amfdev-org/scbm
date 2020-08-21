@@ -5,7 +5,8 @@ export const initialState = {
         enableReceivedMessagesMessageSubmitButton: false,
         showReceivedMessagesMessageSubmitButton: true,
         showReceivedMessagesMessageSubmitLoadingButton: false,
-        enableReceivedMessagesRefresh: true
+        enableReceivedMessagesRefresh: true,
+        toggledReceivedMessagesClearRows: false
 };
 
 export function receivedMessagesMessageReducer(state = initialState, action) {
@@ -54,7 +55,6 @@ export function receivedMessagesMessageReducer(state = initialState, action) {
         showReceivedMessagesMessageSubmitButton: false,
         showReceivedMessagesMessageSubmitLoadingButton: true,
         enableReceivedMessagesMessageInput: false
-        
       };
     
           
@@ -87,13 +87,13 @@ export function receivedMessagesMessageReducer(state = initialState, action) {
     case "RECEIVED_MESSAGES_MESSAGE_RESULT":
       return {
         ...state,
-        toggledClearRows: true,
         showReceivedMessagesMessageSubmitButton: true,
         showReceivedMessagesMessageSubmitLoadingButton: false,
         enableReceivedMessagesMessageInput: true,
         enableReceivedMessagesSearchSubmitButton: true,
         enableReceivedMessagesSearchInput: true,
-        receivedMessageData: action.receivedMessageData
+        receivedMessageData: action.receivedMessageData,
+        toggledReceivedMessagesClearRows: action.toggledReceivedMessagesClearRows
       };
     
     

@@ -34,11 +34,13 @@ export function handleLoginChange(event, context) {
         const { name, value } = event.target
         
         if (name === 'scUsername') {
-          //console.log('scUsername dispatch '+value)
+          console.log('scUsername dispatch '+value)
             dispatch({
                 type: "LOGIN_USERNAME_CHANGE",
                 scUsername: value
             })
+            
+            
         } else  if (name === 'scPassword') {
           //console.log('scPassword dispatch '+value)
             dispatch({
@@ -57,7 +59,6 @@ export function handleLoginChange(event, context) {
           })
         }
 
-    
 }
 
 
@@ -151,7 +152,7 @@ export function handleLogoutSubmit(context) {
     
     const dispatch = context.dispatch;
         
-    console.log('logout')
+    //console.log('logout')
 
         axios({
             method: 'get',

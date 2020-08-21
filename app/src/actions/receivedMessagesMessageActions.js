@@ -100,7 +100,8 @@ function doReceivedMessagesMessageSuccess(json, dispatch, state) {
                        
                            dispatch({
                              type: "RECEIVED_MESSAGES_MESSAGE_RESULT",
-                             receivedMessageData: newArray
+                             receivedMessageData: newArray,
+                              toggledReceivedMessagesClearRows: !state.toggledReceivedMessagesClearRows
                            })
                                
                         
