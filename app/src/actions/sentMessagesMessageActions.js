@@ -100,7 +100,8 @@ function doSentMessagesMessageSuccess(json, dispatch, state) {
                        
                            dispatch({
                              type: "SENT_MESSAGES_MESSAGE_RESULT",
-                             sentMessageData: newArray
+                             sentMessageData: newArray,
+                             toggledSentMessagesClearRows: !state.toggledSentMessagesClearRows
                            })
                                
                         

@@ -10,7 +10,7 @@ module.exports.postLogin = (req, res) => {
             
             return new Promise((resolve, reject) => {
                 
-                UserModel.findOne({ where: { scUsername: req.body.scUsername } })
+                UserModel.User.findOne({ where: { scUsername: req.body.scUsername } })
                     .then(function (user) {
                         
                     if (!user) {

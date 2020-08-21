@@ -76,7 +76,7 @@ module.exports.getAuth = (req, res) => {
             
             return new Promise((resolve, reject) => {
                 
-                UserModel.findOne({ where: { scUsername: req.session.user.scUsername } })
+                UserModel.User.findOne({ where: { scUsername: req.session.user.scUsername } })
                     .then(function (user) {
                         
                     if (!user) {

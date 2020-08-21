@@ -46,7 +46,7 @@ function MyFollowersContainer(props) {
                        handleMyFollowersSelectedRowsChange={props.handleMyFollowersSelectedRowsChange}
                        showMyFollowersLoadingIcon={props.showMyFollowersLoadingIcon}
                        selectedMyFollowers={props.selectedMyFollowers}
-                       toggledClearRows={props.toggledClearRows}
+                       toggledMyFollowersClearRows={props.toggledMyFollowersClearRows}
                        />
                    
                        <h6 style={showMyFollowersMessageForm} className="messageForm">Message</h6>
@@ -81,6 +81,7 @@ const mapStateToProps = state => ({
       showMyFollowersTable: state.showMyFollowersTable,
       showMyFollowersLoadingIcon: state.showMyFollowersLoadingIcon,
       selectedMyFollowers: state.selectedMyFollowers,
+      toggledMyFollowersClearRows: state.toggledMyFollowersClearRows,
       
       //my followers messages
       myFollowersMessage: state.myFollowersMessage,

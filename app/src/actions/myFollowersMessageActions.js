@@ -75,8 +75,8 @@ export function handleMyFollowersMessageSubmit(event, context) {
 
 
 function catchMyFollowersMessageError(json, dispatch) {
-    console.log(json)
-    console.log('catch catchMyFollowersMessageError')
+    //console.log(json)
+    //console.log('catch catchMyFollowersMessageError')
     if (!json.success) {
         dispatch({
                 type: "MY_FOLLOWERS_MESSAGE_ERROR"
@@ -104,7 +104,8 @@ function doMyFollowersMessageSuccess(json, dispatch, state) {
                        
                            dispatch({
                              type: "MY_FOLLOWERS_MESSAGE_RESULT",
-                             myFollowerData: newArray
+                             myFollowerData: newArray,
+                             toggledMyFollowersClearRows: !state.toggledMyFollowersClearRows
                            })
                                
                         

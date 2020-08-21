@@ -109,7 +109,8 @@ function doCommentersMessageSuccess(json, dispatch, state) {
                        
                            dispatch({
                              type: "COMMENTERS_MESSAGE_RESULT",
-                             commenterData: newArray
+                             commenterData: newArray,
+                             toggledCommentersClearRows: !state.toggledCommentersClearRows
                            })
                                
                         

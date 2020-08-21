@@ -58,11 +58,8 @@ function CommentersContainer(props) {
                              commenterData={props.commenterData}
                              showCommentersTable={props.showCommentersTable}
                              handleCommentersSelectedRowsChange={props.handleCommentersSelectedRowsChange}
-                             //handleCommentersSelecSubmit={props.handleCommentersSubmit}
-                             showCommentersSubmitButton={props.showCommentersSubmitButton}
-                             showCommentersSubmitLoadingButton={props.showCommentersSubmitLoadingButton}
                              selectedCommenters={props.selectedCommenters}
-                             toggledClearRows={props.toggledClearRows}
+                             toggledCommentersClearRows={props.toggledCommentersClearRows}
                              recentCommentersSearches={props.recentCommentersSearches}
                              handleCommentersRecentSearchSubmit={props.handleCommentersRecentSearchSubmit}
                              showCommentersRecentSearchContainer={props.showCommentersRecentSearchContainer}
@@ -105,7 +102,7 @@ const mapStateToProps = state => ({
       showCommentersTable: state.showCommentersTable,
       commenterData : state.commenterData,
       selectedCommenters : state.selectedCommenters,
-      toggledClearRows: state.toggledClearRows,
+      toggledCommentersClearRows: state.toggledCommentersClearRows,
 
       //commenters messages
       showCommentersMessageForm: state.showCommentersMessageForm,

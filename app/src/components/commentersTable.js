@@ -55,7 +55,7 @@ function CommentersTable(props) {
                 selectableRows
                 onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={props.toggledClearRows}
+                clearSelectedRows={props.toggledCommentersClearRows}
                 pagination
                 paginationPerPage={10}
               />

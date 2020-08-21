@@ -102,8 +102,9 @@ function doFollowersMessageSuccess(json, dispatch, state) {
                         //await console.log(newArray);
                        
                            dispatch({
-                             type: "FOLLOWERS_MESSAGE_RESULT",
-                             followerData: newArray
+                              type: "FOLLOWERS_MESSAGE_RESULT",
+                              followerData: newArray,
+                              toggledFollowersClearRows: !state.toggledFollowersClearRows
                            })
                                
                         

@@ -15,7 +15,6 @@ const sequelize = new Sequelize("", process.env.DB_USER, process.env.DB_PASS, {
 });
 
 sequelize.query("CREATE DATABASE `"+process.env.DB_NAME+"`;").then(data => {
-    
     console.log("database schema created");
     
     CommenterModel.createTable();
@@ -23,5 +22,4 @@ sequelize.query("CREATE DATABASE `"+process.env.DB_NAME+"`;").then(data => {
     MessageModel.createTable();
     SearchModel.createTable();
     UserModel.createTable();
-    
 });

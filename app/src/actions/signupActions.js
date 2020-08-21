@@ -163,9 +163,7 @@ function doSignupSuccess(json, dispatch) {
 }
 
 
-export function handleSignupSwitchToLogin(event, context) {
-
-        const dispatch = context.dispatch;
+export function handleSignupSwitchToLogin(dispatch) {
 
         dispatch({
                 type: "SIGNUP_SWITCH_TO_LOGIN"

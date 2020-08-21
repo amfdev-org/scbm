@@ -58,10 +58,8 @@ function FollowersContainer(props) {
                             followerData={props.followerData}
                             showFollowersTable={props.showFollowersTable}
                             handleFollowersSelectedRowsChange={props.handleFollowersSelectedRowsChange}
-                            showFollowersSubmitButton={props.showFollowersSubmitButton}
-                            showFollowersSubmitLoadingButton={props.showFollowersSubmitLoadingButton}
                             selectedFollowers={props.selectedFollowers}
-                            toggledClearRows={props.toggledClearRows}
+                            toggledFollowersClearRows={props.toggledFollowersClearRows}
                             recentFollowersSearches={props.recentFollowersSearches}
                             handleFollowersRecentSearchSubmit={props.handleFollowersRecentSearchSubmit}
                             showFollowersRecentSearchContainer={props.showFollowersRecentSearchContainer}
@@ -104,6 +102,7 @@ const mapStateToProps = state => ({
       showFollowersTable: state.showFollowersTable,
       followerData : state.followerData,
       selectedFollowers : state.selectedFollowers,
+      toggledFollowersClearRows: state.toggledFollowersClearRows,
       
       //followers messages
       showFollowersMessageForm: state.showFollowersMessageForm,

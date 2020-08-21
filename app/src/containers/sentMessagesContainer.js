@@ -44,7 +44,7 @@ function SentMessagesContainer(props) {
                        handleSentMessagesSelectedRowsChange={props.handleSentMessagesSelectedRowsChange}
                        showSentMessagesLoadingIcon={props.showSentMessagesLoadingIcon}
                        selectedSentMessages={props.selectedSentMessages}
-                       toggledClearRows={props.toggledClearRows}
+                       toggledSentMessagesClearRows={props.toggledSentMessagesClearRows}
                        isTestMode={props.isTestMode}
                        />
                    
@@ -83,6 +83,7 @@ const mapStateToProps = state => ({
       showSentMessagesSubmitLoadingButton: state.showSentMessagesSubmitLoadingButton,
       selectedSentMessages: state.selectedSentMessages,   
       showSentMessagesLoadingIcon: state.showSentMessagesLoadingIcon,
+      toggledSentMessagesClearRows: state.toggledSentMessagesClearRows,
       
       //sent messages message
       sentMessagesMessage: state.sentMessagesMessage,
@@ -91,7 +92,6 @@ const mapStateToProps = state => ({
       enableSentMessagesMessageSubmitButton: state.enableSentMessagesMessageSubmitButton,
       showSentMessagesMessageSubmitButton: state.showSentMessagesMessageSubmitButton,
       showSentMessagesMessageSubmitLoadingButton: state.showSentMessagesMessageSubmitLoadingButton,
-      
       isTestMode: state.isTestMode   
       })
       

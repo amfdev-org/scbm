@@ -42,7 +42,7 @@ function SentMessagesTable(props) {
                 selectableRows
                 onSelectedRowsChange={handleChange}
                 highlightOnHover
-                clearSelectedRows={props.toggledClearRows}
+                clearSelectedRows={props.toggledSentMessagesClearRows}
                 pagination
                 paginationPerPage={10}
               />

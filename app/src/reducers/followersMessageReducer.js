@@ -4,7 +4,8 @@ export const initialState = {
         enableFollowersMessageSubmitButton: false,
         showFollowersMessageSubmitButton: true,
         showFollowersMessageSubmitLoadingButton: false,
-        enableFollowersMessageInput: true
+        enableFollowersMessageInput: true,
+        toggledFollowersClearRows: false
 };
 
 export function followersMessageReducer(state = initialState, action) {
@@ -53,7 +54,6 @@ export function followersMessageReducer(state = initialState, action) {
         showFollowersMessageSubmitButton: false,
         showFollowersMessageSubmitLoadingButton: true,
         enableFollowersMessageInput: false
-        
       };
     
           
@@ -86,13 +86,13 @@ export function followersMessageReducer(state = initialState, action) {
     case "FOLLOWERS_MESSAGE_RESULT":
       return {
         ...state,
-        toggledClearRows: true,
         showFollowersMessageSubmitButton: true,
         showFollowersMessageSubmitLoadingButton: false,
         enableFollowersMessageInput: true,
         enableFollowersSearchSubmitButton: true,
         enableFollowersSearchInput: true,
-        followerData: action.followerData
+        followerData: action.followerData,
+        toggledFollowersClearRows: action.toggledFollowersClearRows
       };
     
     
