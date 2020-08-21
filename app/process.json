@@ -1,5 +1,5 @@
 {
-  "script": "npm",
+  "script": "yarn",
   "args" : "start",
   "interpreter": '/bin/bash',
   "watch": true,
