@@ -25,7 +25,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 export function handleSignupChange(event, context) {
         
         const dispatch = context.dispatch;
-        const state = context.state;
+        //const state = context.state;
         
         const { name, value } = event.target
         
