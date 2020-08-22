@@ -27,7 +27,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 export function handleLoginChange(event, context) {
   
         const dispatch = context.dispatch;
-        const state = context.state;
+        //const state = context.state;
         
         //console.log('actions handleLoginChange:')
 
