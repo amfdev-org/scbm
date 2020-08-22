@@ -34,7 +34,7 @@ export function handleLoginChange(event, context) {
         const { name, value } = event.target
         
         if (name === 'scUsername') {
-          console.log('scUsername dispatch '+value)
+          //console.log('scUsername dispatch '+value)
             dispatch({
                 type: "LOGIN_USERNAME_CHANGE",
                 scUsername: value
@@ -49,7 +49,7 @@ export function handleLoginChange(event, context) {
             })
         }
         
-        if(state.scUsername && state.scUsername.length > 0 && state.scPassword && state.scPassword.length > 0) {
+        /*if(state.scUsername && state.scUsername.length > 0 && state.scPassword && state.scPassword.length > 0) {
             dispatch({
                 type: "LOGIN_SUBMIT_ENABLE"
           })
@@ -57,7 +57,7 @@ export function handleLoginChange(event, context) {
             dispatch({
                 type: "LOGIN_SUBMIT_DISABLE"
           })
-        }
+        }*/
 
 }
 
@@ -69,7 +69,12 @@ export function handleLoginSubmit(context) {
         
         const dispatch = context.dispatch;
         const state = context.state;
-               
+        
+        if (!state.scUsername || state.scUsername.length < 5 || !state.scPassword || state.scPassword.length < 5) {
+        dispatch({type: "LOGIN_USER_NOT_FOUND_ERROR"});
+        return;
+        }
+        
         //console.log(state.scUsername);
          //console.log(state.scPassword);
         dispatch({type: "LOGIN_SUBMITTED"});

@@ -1,0 +1,2 @@
+#/bin/bash
+cd api && pm2 start process.json --watch

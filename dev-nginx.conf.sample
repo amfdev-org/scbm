@@ -13,9 +13,8 @@ server {
         return 301 https://$server_name$request_uri;
     }
     
-    error_log /your/nginx/logpath/$server_name.error.log;
+    error_log /your/nginx/logpath/your-server-name.error.log;
     
-   
     gzip on;
     gzip_disable "msie6";
 
@@ -25,8 +24,8 @@ server {
     gzip_buffers 16 8k;
     gzip_http_version 1.1;
     gzip_min_length 0;
-    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype;
-       
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype;
+
        
     location /static {
         proxy_pass http://localhost:YOUR_REACT_APP_PORT;
@@ -50,21 +49,14 @@ server {
  
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            
+            proxy_set_header Connection 'upgrade';  
             proxy_set_header Host $http_host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-NginX-Proxy true;
             proxy_set_header X-Forwarded-Proto http;
-        
             proxy_cache_bypass $http_upgrade;
-            
-            proxy_cookie_domain amfdev.co.uk localhost;
-            proxy_cookie_domain scbm.amfdev.co.uk localhost;
-
-            proxy_pass_header Set-Cookie;
-            
+            proxy_pass_header Set-Cookie;      
             proxy_pass http://localhost:YOUR_API_PORT/;
     }
 

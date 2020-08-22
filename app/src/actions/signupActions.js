@@ -41,7 +41,7 @@ export function handleSignupChange(event, context) {
             })
         }
         
-        if(state.scUsername && state.scUsername.length > 0 && state.scPassword && state.scPassword.length > 0) {
+        /*if(state.scUsername && state.scUsername.length > 0 && state.scPassword && state.scPassword.length > 0) {
             dispatch({
                 type: "SIGNUP_SUBMIT_ENABLE"
           })
@@ -49,10 +49,9 @@ export function handleSignupChange(event, context) {
             dispatch({
                 type: "SIGNUP_SUBMIT_DISABLE"
           })
-        }
+        }*/
 
-          
-
+  
 }
 
 
@@ -60,6 +59,11 @@ export function handleSignupSubmit(event, context) {
 
     const dispatch = context.dispatch;
     const state = context.state;
+         
+    if (!state.scUsername || state.scUsername.length < 5 || !state.scPassword || state.scPassword.length < 5) {
+      dispatch({type: "SIGNUP_SC_LOGIN_ERROR"});
+      return;
+    }
         
     dispatch({
          type: "SIGNUP_SUBMITTED"

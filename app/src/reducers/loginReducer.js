@@ -4,7 +4,7 @@ export const initialState = {
         showLoginForm: false,
         showLoginSubmitButton: true,
         showLogoutSubmitButton: false,
-        enableLoginSubmitButton: false,
+        enableLoginSubmitButton: true,
         showLoginSubmitLoadingButton: false,
         loginHeaderText: 'Login',
         loggedInInfoText: '',
