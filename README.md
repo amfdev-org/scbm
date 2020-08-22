@@ -8,7 +8,7 @@ A messaging & promotion tool for music producers and their platform of choice
 * yarn
 * a mysql server
 * Nginx or another reverse-proxying web server
-    * [Nginx dev sample config can be found here](dev.nginx.conf.sample)
+    * [Nginx dev sample config is included](https://github.com/amfdev-org/scbm/blob/master/dev-nginx.conf.sample)
 * SSL cert for your external domain - the app might work without this, but it's not tested
 
 ## Installation
@@ -46,9 +46,9 @@ A messaging & promotion tool for music producers and their platform of choice
 
 5. From the root directory, run `./install` to generate dependencies and install the mysql db schema
 
-6. Yo create a production build rather than use the Create React App dev server:
+6. To create a production build rather than use the Create React App dev server:
     * run `yarn build` from the `app` directory
-    * re-configure Nginx as per the [included sample config](prod.nginx.conf.sample) or instructions [here](https://stackoverflow.com/a/47505427) to point to the **build** directory
+    * re-configure Nginx as per the [included sample config](https://github.com/amfdev-org/scbm/blob/master/prod-nginx.conf.sample) or instructions [here](https://stackoverflow.com/a/47505427) to point to the **build** directory
     * you will still need the api backend to run of course, so from the root directory you can use `./start-api-only`
     
 ## To start the app
