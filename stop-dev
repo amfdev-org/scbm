@@ -1,2 +1,2 @@
 #!/bin/bash
-pm2 stop api/process.json && pm2 stop app/process.json && pm2 status
+pm2 stop api/process.json && pm2 stop app/process.json && sleep 2 && pm2 save && sleep 2 && pm2 status
