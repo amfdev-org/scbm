@@ -56,6 +56,13 @@ export function handleCommentersRecentSearchSubmit(searchUrl, context) {
          type: "COMMENTERS_SEARCH_SUBMITTED"
        });
            
+        dispatch({type: "INFO_ALERT_SET_TEXT", text: "Searching for commenters on: " + searchUrl});
+        
+        dispatch({type: "INFO_ALERT_SET_TEXT_HEADING", textHeading: "Please sit tight!"});
+        dispatch({type: "INFO_ALERT_SHOW" });
+      
+        dispatch({type: "INFO_ALERT_SPINNER_SHOW" });
+        
         axios.get(API_URL + '/commenters/', {
          params: {
            searchUrl: encodeURI(searchUrl)
@@ -84,7 +91,14 @@ export function handleCommentersSearchSubmit(event, context) {
     dispatch({
          type: "COMMENTERS_SEARCH_SUBMITTED"
        });
-           
+    
+        dispatch({type: "INFO_ALERT_SET_TEXT", text: "Searching for commenters on: " + state.commentersSearchUrl});
+        
+        dispatch({type: "INFO_ALERT_SET_TEXT_HEADING", textHeading: "Please sit tight!"});
+        dispatch({type: "INFO_ALERT_SHOW" });
+      
+        dispatch({type: "INFO_ALERT_SPINNER_SHOW" });
+         
         axios.get(API_URL + '/commenters/', {
          params: {
            searchUrl: encodeURI(state.commentersSearchUrl)
@@ -138,6 +152,9 @@ export function handleCommentersSearchChange(event, context) {
 function catchCommentersSearchNoResults(json, dispatch) {
     //console.log('catchCommentersSearchNoResults')
     //console.log(json);
+    dispatch({type: "INFO_ALERT_HIDE" });
+    dispatch({type: "INFO_ALERT_SPINNER_HIDE" });
+    
     if (json.noResults) {
         dispatch({
                 type: "COMMENTERS_SEARCH_NO_RESULTS"

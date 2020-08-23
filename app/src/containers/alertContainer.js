@@ -50,6 +50,7 @@ function AlertContainer(props) {
             infoAlertText={props.infoAlertText}
             infoAlertTextHeading={props.infoAlertTextHeading}
             dismissInfoAlert={props.dismissInfoAlert}
+            showInfoAlertSpinner={props.showInfoAlertSpinner}
            />
             
          </>          
@@ -72,7 +73,7 @@ const mapStateToProps = state => ({
       successAlertText: state.successAlertText,
       showErrorAlertSwitchToSignup: state.showErrorAlertSwitchToSignup,
       showErrorAlertSwitchToLogin: state.showErrorAlertSwitchToLogin,
-   
+      showInfoAlertSpinner: state.showInfoAlertSpinner
       });
       
 

@@ -43,11 +43,21 @@ export function handleFollowersMessageSubmit(event, context) {
 
     const dispatch = context.dispatch;
     const state = context.state;
+          
+    const alertMessageType = state.isTestMode ? "test" : "live";
+    const alertMessageExplanation = state.isTestMode ? "You can deactivate test mode in settings." : "";
     
-    dispatch({
-         type: "FOLLOWERS_MESSAGE_SUBMITTED"
-       });
+        dispatch({
+          type: "FOLLOWERS_MESSAGE_SUBMITTED"
+        });
            
+        dispatch({type: "INFO_ALERT_SET_TEXT",
+                 text: "Sending message to "+ state.selectedFollowers.length + " recipients in " + alertMessageType + " mode. " + alertMessageExplanation});
+        
+        dispatch({type: "INFO_ALERT_SET_TEXT_HEADING", textHeading: "Please sit tight!"});
+        dispatch({type: "INFO_ALERT_SHOW" });
+         dispatch({type: "INFO_ALERT_SPINNER_SHOW" });
+         
         axios({
         method: 'post',
         url: API_URL + '/message/',
@@ -76,6 +86,8 @@ export function handleFollowersMessageSubmit(event, context) {
 
 function catchFollowersMessageError(json, dispatch) {
     //console.log('catchFollowersMessageError')
+    dispatch({ type: "INFO_ALERT_HIDE" });
+    dispatch({type: "INFO_ALERT_SPINNER_HIDE" });
     if (!json.success) {
         dispatch({
                 type: "FOLLOWERS_MESSAGE_ERROR"
@@ -119,9 +131,12 @@ function doFollowersMessageSuccess(json, dispatch, state) {
                 fetchSentMessages(dispatch);
                 fetchMyFollowers(dispatch);
                 
+                const alertMessage = state.isTestMode ? "Message would have been sent to " + successArray.length + " users."  : "Message sent to " + successArray.length + " users.";
+                const alertMessageExplanation = state.isTestMode ? "You can deactivate test mode in settings." : "";   
+    
                 if(successArray.length > 0) {
                     
-                    dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: "Message sent to " + successArray.length + " users." });
+                    dispatch({ type: "SUCCESS_ALERT_SET_TEXT", text: alertMessage +  " " + alertMessageExplanation});
                 
                     dispatch({ type: "SUCCESS_ALERT_SHOW" });
                     

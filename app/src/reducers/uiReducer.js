@@ -12,7 +12,8 @@ export const initialState = {
         errorAlertLink: '',
         errorAlertLinkText: '',
         showErrorAlertSwitchToSignup: false,
-        showErrorAlertSwitchToLogin: false
+        showErrorAlertSwitchToLogin: false,
+        showInfoAlertSpinner: false
 };
 
 export function uiReducer(state = initialState, action) {
@@ -61,10 +62,22 @@ export function uiReducer(state = initialState, action) {
         showInfoAlert: true   
       };
       
+    case "INFO_ALERT_SPINNER_SHOW":
+      return {
+        ...state,
+        showInfoAlertSpinner: true   
+      };
+      
     case "INFO_ALERT_HIDE":
       return {
         ...state,
         showInfoAlert: false   
+      };
+
+    case "INFO_ALERT_SPINNER_HIDE":
+      return {
+        ...state,
+        showInfoAlertSpinner: false   
       };
       
     case "INFO_ALERT_SET_TEXT_HEADING":

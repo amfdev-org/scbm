@@ -41,19 +41,25 @@ function ConfigModal(props) {
           
             <h6>Test Mode (do not actually send messages)</h6>
             <Switch onChange={handleChange} checked={props.isTestMode} />
-
-      
-            <br/> <br/>
-            <h6>Download Server Logs</h6>
-            <Button variant="secondary"
-            size="sm"
-            type="submit"
-              value="download-logs"
-              onClick={ handleDownloadLogs }
-              >
-              Go
-            </Button>
-                  
+            
+                {process.env.NODE_ENV === "development" ? (
+                            <div className="download-logs">
+                            <br/>
+                            <h6>Download Server Logs</h6>
+                            <Button variant="secondary"
+                            size="sm"
+                            type="submit"
+                              value="download-logs"
+                              onClick={ handleDownloadLogs }
+                              >
+                              Go
+                            </Button>
+                        </div>
+                  ) : (
+                    <div className="download-logs"></div>
+                  )}
+    
+               
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={handleCloseConfigModal}>

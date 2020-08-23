@@ -9,7 +9,8 @@ export const initialState = {
     showCommentersSearchForm: false,
     showCommentersTable: false,
     recentCommentersSearches: [],
-    showCommentersRecentSearchContainer: false
+    showCommentersRecentSearchContainer: false,
+    enableCommentersRecentSearchBadges: true
 };     
       
       
@@ -43,9 +44,10 @@ export function commentersSearchReducer(state = initialState, action) {
             showCommentersSearchSubmitButton: false,
             showCommentersSearchSubmitLoadingButton: true,
             enableCommentersSearchInput: false,
-            showErrorAlert: false,
-            showSuccessAlert: false,
-            showInfoAlert: false
+            enableCommentersRecentSearchBadges: false
+            //showErrorAlert: false,
+            //showSuccessAlert: false,
+            //showInfoAlert: false
         
       };
     
@@ -77,7 +79,8 @@ export function commentersSearchReducer(state = initialState, action) {
         enableCommentersSearchInput : true,
         enableCommentersSearchSubmitButton: true, 
         showCommentersSearchSubmitButton: true,
-        showCommentersSearchSubmitLoadingButton: false
+        showCommentersSearchSubmitLoadingButton: false,
+        enableCommentersRecentSearchBadges: true
       };
       
       
@@ -95,6 +98,7 @@ export function commentersSearchReducer(state = initialState, action) {
         commenterData: action.commenterData,
         showCommentersTable: true,
         successAlertText: "Found " + action.commenterData.length + ' commenters.',
+        enableCommentersRecentSearchBadges: true
     
       };
       
@@ -105,6 +109,7 @@ export function commentersSearchReducer(state = initialState, action) {
           showCommentersSearchSubmitButton: true,
           showCommentersSearchSubmitLoadingButton: false,
           enableCommentersSearchInput: true,
+          enableCommentersRecentSearchBadges: true,
           showErrorAlert: true,
           errorAlertText: "Something went wrong. Please contact support."
               

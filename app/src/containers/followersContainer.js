@@ -63,6 +63,7 @@ function FollowersContainer(props) {
                             recentFollowersSearches={props.recentFollowersSearches}
                             handleFollowersRecentSearchSubmit={props.handleFollowersRecentSearchSubmit}
                             showFollowersRecentSearchContainer={props.showFollowersRecentSearchContainer}
+                            enableFollowersRecentSearchBadges={props.enableFollowersRecentSearchBadges}
                           />
                       
                           <h6 style={showFollowersMessageForm} className="messageForm">Message</h6>
@@ -112,7 +113,8 @@ const mapStateToProps = state => ({
       enableFollowersMessageSubmitButton : state.enableFollowersMessageSubmitButton,
       enableFollowersMessageInput: state.enableFollowersMessageInput,
       recentFollowersSearches: state.recentFollowersSearches,
-      showFollowersRecentSearchContainer: state.showFollowersRecentSearchContainer
+      showFollowersRecentSearchContainer: state.showFollowersRecentSearchContainer,
+      enableFollowersRecentSearchBadges: state.enableFollowersRecentSearchBadges
       
       })
       

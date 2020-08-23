@@ -40,7 +40,11 @@ function FollowersTable(props) {
           <h6>Recent Searches</h6>  
             {props.recentFollowersSearches.map((item, key) => {
                   return (
-                        <Badge key={key} onClick={() => { handleRecentSearchClick(item.search) }} className="recent-search-badge" variant="primary">
+                        <Badge
+                              key={key}
+                              onClick={() => props.enableFollowersRecentSearchBadges && handleRecentSearchClick(item.search) }
+                              className={`${props.enableFollowersRecentSearchBadges ? "recent-search-badge" : "recent-search-badge disabled-badge"}`}
+                              variant="primary">
                               {item.search}
                         </Badge>
                    )
