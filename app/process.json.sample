@@ -7,6 +7,6 @@
     "followSymlinks": false,
     "usePolling": true
   },
-    "name": "YOUR-APP-NAME",
+    "name": "<<APP_PROCESS_NAME>>",
     "restart_delay": 500,
 }
