@@ -51,7 +51,7 @@ A messaging & promotion tool for music producers and their platform of choice
 
 ## To start the app in development mode
 
-* Run `./start-dev` from the root directory - this will use `pm2` to create two watched processes `scbm-api` and `scbm-app`
+* Run `./start-dev` from the root directory - this will use `pm2` to create two managed processes
 
 * To check the status of these processes, do `pm2 status`
 
