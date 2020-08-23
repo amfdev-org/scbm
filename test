@@ -1,0 +1,14 @@
+#!/bin/bash
+read_var() {
+    VAR=$(grep $1 $2 | xargs)
+    IFS="=" read -ra VAR <<< "$VAR"
+    echo ${VAR[1]}
+}
+
+API_PROCESS_NAME=$(read_var API_PROCESS_NAME api/.env)
+
+echo $API_PROCESS_NAME
+
+cp api/process.json.sample api/process2.json
+
+sed -i "s/<<API_PROCESS_NAME>>/${API_PROCESS_NAME}/g" api/process2.json

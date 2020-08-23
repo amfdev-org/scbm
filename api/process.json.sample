@@ -1,0 +1,11 @@
+{
+  "script": "server.js",
+  "watch": true,
+  "ignore_watch" : ["user_data", "logs", "screenshots"],
+  "watch_options": {
+    "followSymlinks": false,
+    "usePolling": true
+  },
+  "restart_delay": 500,
+   "name": "<<API_PROCESS_NAME>>"
+}

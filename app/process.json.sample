@@ -1,0 +1,12 @@
+{
+  "script": "yarn",
+  "args" : "start",
+  "interpreter": '/bin/bash',
+  "watch": true,
+  "watch_options": {
+    "followSymlinks": false,
+    "usePolling": true
+  },
+    "name": "YOUR-APP-NAME",
+    "restart_delay": 500,
+}
