@@ -11,13 +11,15 @@ cd app
 yarn
 cp process.json.sample process.json
 APP_PROCESS_NAME=$(read_var APP_PROCESS_NAME .env)
-sed -i "s/<<APP_PROCESS_NAME>>/${APP_PROCESS_NAME}/g" process.json
+CLEAN_APP_PROCESS_NAME=$(echo $APP_PROCESS_NAME|tr -d '\040\011\012\015')
+sed -i "s/<<APP_PROCESS_NAME>>/${CLEAN_APP_PROCESS_NAME}/g" process.json
 
 cd ../api
 yarn
 node createSchema.js
 cp process.json.sample process.json
 API_PROCESS_NAME=$(read_var API_PROCESS_NAME .env)
-sed -i "s/<<API_PROCESS_NAME>>/${API_PROCESS_NAME}/g" process.json
+CLEAN_API_PROCESS_NAME=$(echo $API_PROCESS_NAME|tr -d '\040\011\012\015')
+sed -i "s/<<API_PROCESS_NAME>>/${CLEAN_API_PROCESS_NAME}/g" process.json
 
 echo "Finished"
