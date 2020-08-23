@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ContextConsumer } from "../provider/provider";
 
 import Alert from 'react-bootstrap/Alert'
+import Spinner from 'react-bootstrap/Spinner'
 
 function InfoAlert(props) {
     
@@ -12,7 +13,8 @@ function InfoAlert(props) {
         props.handleAlertChange(alertType, alertAction, context) 
     }
 
-        const showInfoAlert = props.showInfoAlert ? {display: 'block'} : {display: 'none'};
+     const showInfoAlert = props.showInfoAlert ? {display: 'block'} : {display: 'none'};
+     const showInfoAlertSpinner = props.showInfoAlertSpinner ? {display: 'block'} : {display: 'none'};
      
         return (
      
@@ -24,8 +26,19 @@ function InfoAlert(props) {
                 dismissible
                 >
                 <Alert.Heading>{props.infoAlertTextHeading}</Alert.Heading>
+                
                  {props.infoAlertText}
+ 
+                    <Spinner className="info-alert-spinner" style={showInfoAlertSpinner}
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    />
+        
               </Alert>
+              
           
         );
 

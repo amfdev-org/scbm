@@ -55,6 +55,13 @@ export function handleFollowersRecentSearchSubmit(searchUrl, context) {
          type: "FOLLOWERS_SEARCH_SUBMITTED"
        });
            
+        dispatch({type: "INFO_ALERT_SET_TEXT", text: "Searching for followers on: " + searchUrl});
+        
+        dispatch({type: "INFO_ALERT_SET_TEXT_HEADING", textHeading: "Please sit tight!"});
+        dispatch({type: "INFO_ALERT_SHOW" });
+      
+        dispatch({type: "INFO_ALERT_SPINNER_SHOW" });
+        
         axios.get(API_URL + '/followers/', {
          params: {
            searchUrl: encodeURI(searchUrl)
@@ -107,6 +114,12 @@ export function handleFollowersSearchSubmit(event, context) {
             type: "FOLLOWERS_SEARCH_SUBMITTED"
         });
         
+            
+        dispatch({type: "INFO_ALERT_SET_TEXT", text: "Searching for followers on: " + state.followersSearchUrl});
+        
+        dispatch({type: "INFO_ALERT_SET_TEXT_HEADING", textHeading: "Please sit tight!"});
+        dispatch({type: "INFO_ALERT_SHOW" });
+        dispatch({type: "INFO_ALERT_SPINNER_SHOW" });
         //let followersSearchUrlNoSlash = state.followersSearchUrl.replace(/\/+$/, "");
         
         axios.get(API_URL + '/followers/', {
@@ -135,6 +148,9 @@ export function handleFollowersSearchSubmit(event, context) {
 function catchFollowersSearchNoResults(json, dispatch) {
     //console.log('catchFollowersSearchNoResults')
     //console.log(json);
+    dispatch({type: "INFO_ALERT_HIDE" });
+    dispatch({type: "INFO_ALERT_SPINNER_HIDE" });
+    
     if (json.noResults) {
         dispatch({
                 type: "FOLLOWERS_SEARCH_NO_RESULTS"

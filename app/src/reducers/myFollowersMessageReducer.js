@@ -47,9 +47,9 @@ export function myFollowersMessageReducer(state = initialState, action) {
     case "MY_FOLLOWERS_MESSAGE_SUBMITTED":
       return {
         ...state,
-        showErrorAlert: false,
-        showSuccessAlert: false,
-        showInfoAlert: false,
+        //showErrorAlert: false,
+        //showSuccessAlert: false,
+        //showInfoAlert: false,
         enableMyFollowersSearchInput: false,
         enableMyFollowersSearchSubmitButton: false,
         showMyFollowersMessageSubmitButton: false,

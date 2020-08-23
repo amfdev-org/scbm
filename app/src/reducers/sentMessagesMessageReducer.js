@@ -46,9 +46,9 @@ export function sentMessagesMessageReducer(state = initialState, action) {
     case "SENT_MESSAGES_MESSAGE_SUBMITTED":
       return {
         ...state,
-        showErrorAlert: false,
-        showSuccessAlert: false,
-        showInfoAlert: false,
+        //showErrorAlert: false,
+        //showSuccessAlert: false,
+        //showInfoAlert: false,
         enableSentMessagesSearchInput: false,
         enableSentMessagesSearchSubmitButton: false,
         showSentMessagesMessageSubmitButton: false,

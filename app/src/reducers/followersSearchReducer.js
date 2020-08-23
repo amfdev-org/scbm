@@ -10,7 +10,8 @@ export const initialState = {
         showFollowersSearchForm: false,
         showFollowersTable: false,
         recentFollowersSearches: [],
-        showFollowersRecentSearchContainer: false
+        showFollowersRecentSearchContainer: false,
+        enableFollowersRecentSearchBadges: true
 };
 
 export function followersSearchReducer(state = initialState, action) {
@@ -42,9 +43,10 @@ export function followersSearchReducer(state = initialState, action) {
             showFollowersSearchSubmitButton: false,
             showFollowersSearchSubmitLoadingButton: true,
             enableFollowersSearchInput: false,
-            showErrorAlert: false,
-            showSuccessAlert: false,
-            showInfoAlert: false
+            enableFollowersRecentSearchBadges: false
+            //showErrorAlert: false,
+            //showSuccessAlert: false,
+            //showInfoAlert: false
         
       };
     
@@ -63,7 +65,8 @@ export function followersSearchReducer(state = initialState, action) {
         enableFollowersSearchInput : true,
         enableFollowersSearchSubmitButton: true, 
         showFollowersTable: true,
-        successAlertText: "But there were no followers found for this track."
+        successAlertText: "But there were no followers found for this track.",
+        enableFollowersRecentSearchBadges: true
         
       };
       
@@ -79,7 +82,8 @@ export function followersSearchReducer(state = initialState, action) {
         enableFollowersSearchInput : true,
         enableFollowersSearchSubmitButton: true, 
         showFollowersSearchSubmitButton: true,
-        showFollowersSearchSubmitLoadingButton: false
+        showFollowersSearchSubmitLoadingButton: false,
+        enableFollowersRecentSearchBadges: true
       };
       
       
@@ -97,6 +101,7 @@ export function followersSearchReducer(state = initialState, action) {
         followerData: action.followerData,
         showFollowersTable: true,
         successAlertText: "Found " + action.followerData.length + ' followers.',
+        enableFollowersRecentSearchBadges: true
     
       };
       
@@ -108,7 +113,8 @@ export function followersSearchReducer(state = initialState, action) {
           showFollowersSearchSubmitLoadingButton: false,
           enableFollowersSearchInput: true,
           showErrorAlert: true,
-          errorAlertText: "Something went wrong. Please contact support."
+          errorAlertText: "Something went wrong. Please contact support.",
+          enableFollowersRecentSearchBadges: true
               
       };
       

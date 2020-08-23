@@ -47,9 +47,9 @@ export function receivedMessagesMessageReducer(state = initialState, action) {
     case "RECEIVED_MESSAGES_MESSAGE_SUBMITTED":
       return {
         ...state,
-        showErrorAlert: false,
-        showSuccessAlert: false,
-        showInfoAlert: false,
+        //showErrorAlert: false,
+        //showSuccessAlert: false,
+        //showInfoAlert: false,
         enableReceivedMessagesSearchInput: false,
         enableReceivedMessagesSearchSubmitButton: false,
         showReceivedMessagesMessageSubmitButton: false,

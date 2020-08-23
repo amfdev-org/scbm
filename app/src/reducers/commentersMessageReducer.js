@@ -46,14 +46,15 @@ export function commentersMessageReducer(state = initialState, action) {
     case "COMMENTERS_MESSAGE_SUBMITTED":
       return {
         ...state,
-        showErrorAlert: false,
-        showSuccessAlert: false,
-        showInfoAlert: false,
+        //showErrorAlert: false,
+        //showSuccessAlert: false,
+        //showInfoAlert: false,
         enableCommentersSearchInput: false,
         enableCommentersSearchSubmitButton: false,
         showCommentersMessageSubmitButton: false,
         showCommentersMessageSubmitLoadingButton: true,
-        enableCommentersMessageInput: false     
+        enableCommentersMessageInput: false,
+        enableCommentersRecentSearchBadges: false
       };
     
           
@@ -66,7 +67,8 @@ export function commentersMessageReducer(state = initialState, action) {
           enableCommentersSearchSubmitButton: true,
           enableCommentersSearchInput: true,
           showErrorAlert: true,
-          errorAlertText: "Something went wrong."
+          errorAlertText: "Something went wrong.",
+          enableCommentersRecentSearchBadges: true
               
       };
     
@@ -79,7 +81,8 @@ export function commentersMessageReducer(state = initialState, action) {
           enableCommentersMessageInput: true,
           enableCommentersSearchInput: true,
           showErrorAlert: true,
-          errorAlertText: "Something went wrong. Please contact support."
+          errorAlertText: "Something went wrong. Please contact support.",
+          enableCommentersRecentSearchBadges: true
               
       };
           
@@ -93,7 +96,8 @@ export function commentersMessageReducer(state = initialState, action) {
         enableCommentersSearchSubmitButton: true,
         enableCommentersSearchInput: true,
         commenterData: action.commenterData,
-        toggledCommentersClearRows: action.toggledCommentersClearRows
+        toggledCommentersClearRows: action.toggledCommentersClearRows,
+        enableCommentersRecentSearchBadges: true
       };
     
     

@@ -46,14 +46,15 @@ export function followersMessageReducer(state = initialState, action) {
     case "FOLLOWERS_MESSAGE_SUBMITTED":
       return {
         ...state,
-        showErrorAlert: false,
-        showSuccessAlert: false,
-        showInfoAlert: false,
+        //showErrorAlert: false,
+        //showSuccessAlert: false,
+        //showInfoAlert: false,
         enableFollowersSearchInput: false,
         enableFollowersSearchSubmitButton: false,
         showFollowersMessageSubmitButton: false,
         showFollowersMessageSubmitLoadingButton: true,
-        enableFollowersMessageInput: false
+        enableFollowersMessageInput: false,
+        enableFollowersRecentSearchBadges: false
       };
     
           
@@ -66,7 +67,8 @@ export function followersMessageReducer(state = initialState, action) {
           enableFollowersSearchSubmitButton: true,
           enableFollowersSearchInput: true,
           showErrorAlert: true,
-          errorAlertText: "Something went wrong."
+          errorAlertText: "Something went wrong.",
+          enableFollowersRecentSearchBadges: true
               
       };
     
@@ -79,7 +81,8 @@ export function followersMessageReducer(state = initialState, action) {
           enableFollowersMessageInput: true,
           enableFollowersSearchInput: true,
           showErrorAlert: true,
-          errorAlertText: "Something went wrong. Please contact support."
+          errorAlertText: "Something went wrong. Please contact support.",
+          enableFollowersRecentSearchBadges: true
               
       };
           
@@ -92,7 +95,8 @@ export function followersMessageReducer(state = initialState, action) {
         enableFollowersSearchSubmitButton: true,
         enableFollowersSearchInput: true,
         followerData: action.followerData,
-        toggledFollowersClearRows: action.toggledFollowersClearRows
+        toggledFollowersClearRows: action.toggledFollowersClearRows,
+        enableFollowersRecentSearchBadges: true
       };
     
     

@@ -40,7 +40,11 @@ function CommentersTable(props) {
           <h6>Recent Searches</h6>  
             {props.recentCommentersSearches.map((item, key) => {
                   return (
-                        <Badge key={key} onClick={() => { handleRecentSearchClick(item.search) }} className="recent-search-badge" variant="primary">
+                        <Badge
+                              key={key}
+                              onClick={() => props.enableCommentersRecentSearchBadges && handleRecentSearchClick(item.search) }
+                              className={`${props.enableCommentersRecentSearchBadges ? "recent-search-badge" : "recent-search-badge disabled-badge"}`}
+                              variant="primary">
                               {item.search}
                         </Badge>
                    )

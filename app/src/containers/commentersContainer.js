@@ -40,7 +40,7 @@ function CommentersContainer(props) {
                 <Accordion.Collapse eventKey="3">
                   <Card.Body>
                   
-                      <h6 className="main">Song URL</h6>
+                      <h6 className="main">Track URL</h6>
                       
                        <Suspense fallback={<div className="suspense-loader">Loading... <Spinner animation="border" role="status"><span className="sr-only">Loading...</span></Spinner></div>}>
         
@@ -63,6 +63,7 @@ function CommentersContainer(props) {
                              recentCommentersSearches={props.recentCommentersSearches}
                              handleCommentersRecentSearchSubmit={props.handleCommentersRecentSearchSubmit}
                              showCommentersRecentSearchContainer={props.showCommentersRecentSearchContainer}
+                             enableCommentersRecentSearchBadges={props.enableCommentersRecentSearchBadges}
                              />
                          
                          <h6 style={showCommentersMessageForm} className="messageForm">Message</h6>
@@ -113,6 +114,7 @@ const mapStateToProps = state => ({
       enableCommentersMessageInput: state.enableCommentersMessageInput,
       recentCommentersSearches: state.recentCommentersSearches,
       showCommentersRecentSearchContainer: state.showCommentersRecentSearchContainer,
+      enableCommentersRecentSearchBadges: state.enableCommentersRecentSearchBadges
 });
       
 
