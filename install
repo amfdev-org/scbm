@@ -1,2 +1,23 @@
 #!/bin/bash
-yarn && cd app && yarn && cd ../api && yarn && node createSchema.js
+read_var() {
+    VAR=$(grep $1 $2 | xargs)
+    IFS="=" read -ra VAR <<< "$VAR"
+    echo ${VAR[1]}
+}
+
+yarn
+
+cd app
+yarn
+cp process.json.sample process.json
+APP_PROCESS_NAME=$(read_var APP_PROCESS_NAME app/.env)
+sed -i "s/<<APP_PROCESS_NAME>>/${APP_PROCESS_NAME}/g" process.json
+
+cd ../api
+yarn
+node createSchema.js
+cp process.json.sample process.json
+API_PROCESS_NAME=$(read_var API_PROCESS_NAME api/.env)
+sed -i "s/<<API_PROCESS_NAME>>/${API_PROCESS_NAME}/g" process.json
+
+echo "Finished"

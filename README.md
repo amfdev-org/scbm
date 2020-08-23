@@ -32,6 +32,7 @@ A messaging & promotion tool for music producers and their platform of choice
         * `CRYPTR_KEY`: should be a randomly-generated string for password encryption
         * `ROOT_PATH`: the full current working directory for the api e.g. **/path/to/your/folder/scbm/api**
         * `BASE_URL`: the full external URL you're using for the api e.g. **https://scbm.co.uk/api**
+        * `API_PROCESS_NAME`: the name that PM2 will use for the managed process e.g. **scbm-api**
         
 3. Configure the React frontend
     * rename **/app/.env.sample** to **/app/.env**
@@ -41,16 +42,12 @@ A messaging & promotion tool for music producers and their platform of choice
         * `REACT_APP_ROOT_PATH`: the full current working directory for the app e.g. **/path/to/your/folder/scbm/app**
         * `REACT_APP_BASE_URL`: the full external URL you're using for the app e.g. **https://scbm.co.uk**
         * `REACT_APP_API_URL`: the full external URL you're using for the api e.g. **https://scbm.co.uk/api**
+        * `APP_PROCESS_NAME`: the name that PM2 will use for the managed process e.g. **scbm-app**
 
 4. From the root directory, run `sudo chmod u+x install && sudo chmod u+x start-dev && sudo chmod u+x stop-dev` to make the install, start and stop scripts executable
 
 5. From the root directory, run `./install` to generate dependencies and install the mysql db schema
 
-6. To create a production build rather than use the Create React App dev server:
-    * run `yarn build` from the `app` directory
-    * re-configure Nginx as per the [included sample config](https://github.com/amfdev-org/scbm/blob/master/prod-nginx.conf.sample) or instructions [here](https://stackoverflow.com/a/47505427) to point to the **build** directory
-    * you will still need the api backend to run of course, so from the root directory you can use `./start-api-only`
-    
 ## To start the app
 
 * Run `./start-dev` from the root directory - this will use `pm2` to create two watched processes `scbm-api` and `scbm-app`
@@ -62,3 +59,12 @@ A messaging & promotion tool for music producers and their platform of choice
 ## To stop the app
 
 * Run `./stop-dev` from the root directory
+
+## To create a production build rather than use the Create React App dev server:
+
+* run `yarn build` from the `app` directory
+
+* re-configure Nginx as per the [included sample config](https://github.com/amfdev-org/scbm/blob/master/prod-nginx.conf.sample) or instructions [here](https://stackoverflow.com/a/47505427) to point to the **build** directory
+
+* you will still need the api backend to run of course, so from the root directory you can use `./start-api-only` and `./stop-api-only`
+    
