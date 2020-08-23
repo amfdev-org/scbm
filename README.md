@@ -44,7 +44,8 @@ A messaging & promotion tool for music producers and their platform of choice
         * `REACT_APP_API_URL`: the full external URL you're using for the api e.g. **https://scbm.co.uk/api**
         * `APP_PROCESS_NAME`: the name that PM2 will use for the managed process e.g. **scbm-app**
 
-4. From the root directory, run `sudo chmod u+x install && sudo chmod u+x start-dev && sudo chmod u+x stop-dev` to make the install, start and stop scripts executable
+4. From the root directory ensure all the install, start and stop scripts are executable
+    * `sudo chmod u+x install && sudo chmod u+x start-dev && sudo chmod u+x stop-dev && sudo chmod u+x start-api-only && sudo chmod u+x stop-api-only` to
 
 5. From the root directory, run `./install` to generate dependencies and install the mysql db schema
 
