@@ -49,7 +49,7 @@ A messaging & promotion tool for music producers and their platform of choice
 
 5. From the root directory, run `./install` to generate dependencies and install the mysql db schema
 
-## To start the app
+## To start the app in development mode
 
 * Run `./start-dev` from the root directory - this will use `pm2` to create two watched processes `scbm-api` and `scbm-app`
 
@@ -57,11 +57,11 @@ A messaging & promotion tool for music producers and their platform of choice
 
 * To see real-time logging, do `pm2 logs`
 
-## To stop the app
+## To stop the app in development mode
 
 * Run `./stop-dev` from the root directory
 
-## To create a production build rather than use the Create React App dev server:
+## To create a production build
 
 * run `yarn build` from the `app` directory
 
